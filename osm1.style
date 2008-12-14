@@ -1,0 +1,104 @@
+#define _db_connection "host=localhost dbname=osm user=www-data password=www-data"
+
+#define _bg_clr "#F5F5F5"
+
+#define _forest_clr "#CCDEAD"
+#define _forest_lbl_clr "#23491B"
+#define _nature_clr "#DADEAD"
+#define _industrial_clr "#E3E2DF"
+#define _residential_clr "#E6E4DF"
+#define _water_clr "#80B1D3"
+#define _park_clr "#C6DEC8"
+#define _park_lbl_clr _forest_lbl_clr
+#define _hospital_clr "#E3CCD8"
+#define _building_offset_clr "#8E8D8C"
+#define _building_clr "#D1D0CD"
+#define _cemetery_clr _industrial_clr
+
+#define _default_lbl \
+  TYPE TRUETYPE \
+  FONT sc \
+  PARTIALS FALSE \
+  OUTLINEWIDTH 3
+
+
+#define _runway_clr "#d5d5d4"
+#define _runway_ol_clr 150 150 150
+
+#define _sports_clr _nature_clr
+#define _parking_clr _industrial_clr
+#define _education_clr _hospital_clr
+
+#define _pedestrian_clr "#EDEDED"
+#define _pedestrian_ol_clr "#B7AC9A"
+
+#define _motorway_tunnel_ol_clr "#9E735A"
+#define _motorway_tunnel_clr "#FBA197"
+#define _motorway_clr "#FB8072"
+#define _motorway_ol_clr "#9E4D1F"
+#define _motorway_width 20
+#define _motorway_minwidth 2
+#define _motorway_minwidth_close 3
+#define _motorway_maxwidth 17
+#define _motorway_lbl_bg_clr "#FB8072"
+#define _motorway_lbl_shadow_clr "#A83232"
+
+#define _bridge_clr 50 50 50
+#define _oneway_clr 90 90 90
+
+#define _trunk_tunnel_clr "#FDC586"
+#define _trunk_tunnel_ol_clr "#AF9648"
+#define _trunk_clr "#FDB462"
+#define _trunk_ol_clr "#AF8C1D"
+#define _trunk_width 18
+#define _trunk_min_width 2
+#define _trunk_min_width_close 3
+#define _trunk_max_width 15
+#define _trunk_lbl_bg_clr "#FDB462"
+#define _trunk_lbl_shadow_clr "#AF8C1D"
+
+#define _primary_tunnel_clr "#FFFFBC"
+#define _primary_tunnel_ol_clr "#B7AC9A"
+#define _primary_clr "#FFFF7A"
+#define _primary_ol_clr "#B7AC9A"
+#define _primary_width 14
+#define _primary_min_width 1.5
+#define _primary_min_width_close 2
+#define _primary_max_width 12
+#define _primary_lbl_bg_clr "#FDB462"
+#define _primary_lbl_shadow_clr "#AF8C1D"
+
+#define _secondary_tunnel_clr "#ffffe0"
+#define _secondary_tunnel_ol_clr "#B7AC9A"
+#define _secondary_clr "#ffffbc"
+#define _secondary_ol_clr "#B7AC9A"
+#define _secondary_width 12
+#define _secondary_min_width 1
+#define _secondary_min_width_close 1.5
+#define _secondary_max_width 10
+#define _secondary_lbl_bg_clr "#FDB462"
+#define _secondary_lbl_shadow_clr "#AF8C1D"
+#define _secondary_far_clr "#808080"
+
+#define _tertiary_tunnel_clr "#FAFAFA"
+#define _tertiary_tunnel_ol_clr "#B7AC9A"
+#define _tertiary_clr "#ffffff"
+#define _tertiary_ol_clr "#B7AC9A"
+#define _tertiary_width 10
+#define _tertiary_min_width 1.5
+#define _tertiary_max_width 9
+#define _tertiary_lbl_bg_clr "#FDB462"
+#define _tertiary_lbl_shadow_clr "#AF8C1D"
+#define _tertiary_far_clr "#808080"
+
+#define _other_tunnel_clr "#FAFAFA"
+#define _other_tunnel_ol_clr "#B7AC9A"
+#define _other_clr "#ffffff"
+#define _other_ol_clr "#B7AC9A"
+#define _other_width 8
+#define _other_min_width 1
+#define _other_max_width 8
+#define _other_lbl_bg_clr "#FDB462"
+#define _other_lbl_shadow_clr "#AF8C1D"
+#define _other_far_clr "#808080"
+

@@ -1,0 +1,918 @@
+SYMBOL
+    NAME "rail"
+    TYPE TRUETYPE
+    FONT sc
+    CHARACTER '|'
+    GAP -3
+END
+
+SYMBOL
+    NAME "path"
+    TYPE SIMPLE
+    PATTERN 1 1 END
+END
+SYMBOL
+    NAME "dash"
+    TYPE SIMPLE
+    PATTERN 3 3 END
+END
+
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    GROUP "default"
+    NAME "railways"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way, osm_id ,railway, name from osm_line where railway is not null) as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASSITEM railway
+    MAXSCALEDENOM 130000
+    CLASS
+        MAXSCALEDENOM 70000
+        EXPRESSION "rail"
+        STYLE
+            WIDTH 2
+            OUTLINEWIDTH 1
+            OUTLINECOLOR "#A5A5A4"
+            COLOR 255 255 255
+        END
+        STYLE
+            SYMBOL rail
+            SIZE 5
+            COLOR "#A5A5A4"
+        END
+    END
+    CLASS
+        EXPRESSION "rail"
+        STYLE
+            WIDTH 1
+            OUTLINEWIDTH 1
+            OUTLINECOLOR "#A5A5A4"
+            COLOR 255 255 255
+        END
+        STYLE
+            SYMBOL rail
+            SIZE 4
+            COLOR "#A5A5A4"
+        END
+   END
+   
+END
+
+
+SYMBOL
+NAME "tunnel"
+TYPE SIMPLE
+PATTERN 5 5 END
+END
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    GROUP "default"
+    NAME "highways-far"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way, osm_id ,highway,ref, name from osm_line where highway like 'motorway%' or highway like 'trunk%' or highway like 'primary%' or highway='secondary' order by z_order) as foo using unique osm_id using srid=900913"
+    ##PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    SIZEUNITS meters
+    CLASSITEM "highway"
+    LABELITEM "name"
+    MINSCALEDENOM 510000
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ([ref])
+        STYLE
+            WIDTH _motorway_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _motorway_ol_clr
+            MINWIDTH _motorway_minwidth
+            MAXWIDTH _motorway_maxwidth
+        END
+        STYLE
+            WIDTH _motorway_width
+            COLOR _motorway_clr
+            MINWIDTH _motorway_minwidth
+            MAXWIDTH _motorway_maxwidth
+        END
+       LABEL
+           _default_lbl 
+            MAXSCALEDENOM 3000000
+            PRIORITY 1
+            FONT scb
+            SIZE 10
+            MINSIZE 8
+            MAXSIZE 8
+            MINDISTANCE 150
+            MAXLENGTH 6
+            COLOR 255 255 255
+            BACKGROUNDCOLOR _motorway_lbl_bg_clr
+            BACKGROUNDSHADOWCOLOR _motorway_lbl_shadow_clr 
+        END
+    END
+   CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR _motorway_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _motorway_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ([ref])
+        STYLE
+            WIDTH _trunk_width 
+            OUTLINECOLOR _trunk_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _trunk_min_width
+            MAXWIDTH _trunk_max_width
+        END
+        STYLE
+            WIDTH _trunk_width 
+            COLOR _trunk_clr
+            MINWIDTH _trunk_min_width
+            MAXWIDTH _trunk_max_width
+        END
+        LABEL
+            MAXSCALEDENOM 1500000
+           _default_lbl 
+            FONT scb
+            SIZE 10
+            MINSIZE 8
+            MAXSIZE 8
+            MINDISTANCE 150
+            MAXLENGTH 6
+            COLOR 255 255 255
+            BACKGROUNDCOLOR _trunk_lbl_bg_clr
+            BACKGROUNDSHADOWCOLOR _trunk_lbl_shadow_clr
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 10
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+            OUTLINECOLOR _trunk_ol_clr
+        END
+        STYLE
+            WIDTH 10
+            COLOR _trunk_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "primary_link"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR _primary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _primary_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "primary"
+        STYLE
+            WIDTH _primary_width 
+            OUTLINECOLOR _primary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _primary_min_width
+            MAXWIDTH _primary_max_width
+        END
+        STYLE
+            WIDTH _primary_width 
+            COLOR _primary_clr
+            MINWIDTH _primary_min_width
+            MAXWIDTH _primary_max_width
+        END
+        
+   END
+   CLASS
+        EXPRESSION "secondary"
+        MAXSCALEDENOM 2600000
+        STYLE
+            WIDTH 12
+            MINWIDTH 0.5
+            COLOR _secondary_far_clr
+        END
+    END
+END 
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    GROUP "default"
+    NAME "highways-close"
+    CONNECTIONTYPE postgis
+    CONNECTION "host=localhost dbname=osm user=www-data password=www-data"
+    DATA "way from (select way, osm_id ,highway,ref, name, tunnel from osm_line where highway is not null order by z_order) as foo using unique osm_id using srid=900913"
+    ##PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    SIZEUNITS meters
+    CLASSITEM "highway"
+    LABELITEM "name"
+    MAXSCALEDENOM 510000
+    CLASS
+        EXPRESSION ("[highway]"="motorway" and "[tunnel]"="yes")
+        STYLE
+            WIDTH _motorway_width
+            SYMBOL "tunnel"
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _motorway_tunnel_ol_clr
+            MINWIDTH _motorway_minwidth_close
+            MAXWIDTH _motorway_maxwidth
+        END
+        STYLE
+            WIDTH _motorway_width
+            COLOR _motorway_tunnel_clr
+            MINWIDTH _motorway_minwidth_close
+            MAXWIDTH _motorway_maxwidth
+        END
+    END
+   CLASS
+        EXPRESSION ("[highway]"="motorway_link" and "[tunnel]"="yes")
+
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH 10
+            OUTLINECOLOR _motorway_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _motorway_tunnel_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="trunk" and "[tunnel]"="yes")
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH _trunk_width
+            OUTLINECOLOR _trunk_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _trunk_min_width_close
+            MAXWIDTH _trunk_max_width
+        END
+        STYLE
+            WIDTH _trunk_width
+            COLOR _trunk_tunnel_clr
+            MINWIDTH _trunk_min_width
+            MAXWIDTH _trunk_max_width
+        END
+   END
+    CLASS
+        EXPRESSION ("[highway]"="trunk_link" and "[tunnel]"="yes")
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH 10
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+            OUTLINECOLOR _trunk_tunnel_ol_clr
+        END
+        STYLE
+            WIDTH 10
+            COLOR _trunk_tunnel_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="primary_link" and "[tunnel]"="yes")
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH 10
+            OUTLINECOLOR _primary_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _primary_tunnel_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="primary" and "[tunnel]"="yes")
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH _primary_width
+            OUTLINECOLOR _primary_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+        STYLE
+            WIDTH _primary_width
+            COLOR _primary_tunnel_clr
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="secondary_link" and "[tunnel]"="yes")
+        MAXSCALEDENOM 130000
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH 10
+            OUTLINECOLOR _secondary_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+        END
+        STYLE
+            WIDTH 10
+            MINWIDTH 1
+            COLOR _secondary_tunnel_clr
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="secondary" and "[tunnel]"="yes")
+        MAXSCALEDENOM 130000
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH _secondary_width
+            OUTLINECOLOR _secondary_tunnel_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _secondary_min_width_close
+        END
+        STYLE
+            WIDTH _secondary_width
+            MINWIDTH _secondary_min_width_close
+            COLOR _secondary_tunnel_clr
+        END
+    END
+    CLASS
+        EXPRESSION ("[highway]"="tertiary" and "[tunnel]"="yes")
+        MAXSCALEDENOM 30000
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH _tertiary_width
+            MINWIDTH _tertiary_min_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _tertiary_tunnel_ol_clr
+        END
+        STYLE
+            WIDTH _tertiary_width
+            MINWIDTH _tertiary_min_width
+            COLOR _tertiary_tunnel_clr
+        END
+    END
+     CLASS
+        EXPRESSION (('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service') and "[tunnel]"="yes")
+        MAXSCALEDENOM 15000
+        STYLE
+            SYMBOL "tunnel"
+            WIDTH _other_width
+            MINWIDTH _other_min_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _other_tunnel_ol_clr
+        END
+        STYLE
+            WIDTH _other_width
+            MINWIDTH _other_min_width
+            COLOR _other_tunnel_clr
+        END
+    END
+
+    CLASS
+        EXPRESSION "motorway"
+        TEXT ([ref])
+        STYLE
+            WIDTH _motorway_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _motorway_ol_clr
+            MINWIDTH _motorway_minwidth_close
+            MAXWIDTH _motorway_maxwidth
+        END
+        STYLE
+            WIDTH _motorway_width
+            COLOR _motorway_clr
+            MINWIDTH _motorway_minwidth_close
+            MAXWIDTH _motorway_maxwidth
+        END
+        STYLE
+            SYMBOL dash
+            MAXSCALEDENOM 20000
+            WIDTH 1
+            MINWIDTH 1
+            COLOR 255 255 0
+        END
+        LABEL
+            MAXSCALEDENOM 3000000
+           _default_lbl 
+            PRIORITY 1
+            FONT scb
+            SIZE 10
+            MINSIZE 8
+            MAXSIZE 8
+            MINDISTANCE 150
+            MAXLENGTH 6
+            COLOR 255 255 255
+            BACKGROUNDCOLOR _motorway_lbl_bg_clr
+            BACKGROUNDSHADOWCOLOR _motorway_lbl_shadow_clr 
+        END
+    END
+   CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR _motorway_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _motorway_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "trunk"
+        TEXT ([ref])
+        STYLE
+            WIDTH _trunk_width 
+            OUTLINECOLOR _trunk_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _trunk_min_width_close
+            MAXWIDTH _trunk_max_width
+        END
+        STYLE
+            WIDTH _trunk_width 
+            COLOR _trunk_clr
+            MINWIDTH _trunk_min_width_close
+            MAXWIDTH _trunk_max_width
+        END
+        LABEL
+            MAXSCALEDENOM 1500000
+            _default_lbl
+            FONT scb
+            SIZE 10
+            MINSIZE 8
+            MAXSIZE 8
+            MINDISTANCE 150
+            MAXLENGTH 6
+            COLOR 255 255 255
+            BACKGROUNDCOLOR _trunk_lbl_bg_clr
+            BACKGROUNDSHADOWCOLOR _trunk_lbl_shadow_clr
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH 10
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+            OUTLINECOLOR _trunk_ol_clr
+        END
+        STYLE
+            WIDTH 10
+            COLOR _trunk_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "primary_link"
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR _primary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+        STYLE
+            WIDTH 10
+            COLOR _primary_clr
+            MINWIDTH 1
+            MAXWIDTH 10
+        END
+    END
+    CLASS
+        EXPRESSION "primary"
+        MINSCALEDENOM 70000
+        STYLE
+            WIDTH _primary_width 
+            OUTLINECOLOR _primary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+        STYLE
+            WIDTH _primary_width 
+            COLOR _primary_clr
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+        TEXT([ref])
+        LABEL
+          _default_lbl
+          MINDISTANCE 150
+          MINSCALEDENOM 110000
+          FONT scb
+          SIZE 10
+          MINSIZE 7
+          MAXSIZE 7
+          COLOR _primary_ol_clr
+          BACKGROUNDCOLOR _primary_clr
+          BACKGROUNDSHADOWCOLOR _primary_ol_clr
+        END
+    END
+    CLASS
+        EXPRESSION "primary"
+        MAXSCALEDENOM 70000
+        STYLE
+            WIDTH _primary_width 
+            OUTLINECOLOR _primary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+        STYLE
+            WIDTH _primary_width 
+            COLOR _primary_clr
+            MINWIDTH _primary_min_width_close
+            MAXWIDTH _primary_max_width
+        END
+        LABEL
+        _default_lbl
+        PRIORITY 4
+            SIZE 14 
+            MINSIZE 7
+            MAXSIZE 10
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+            OUTLINECOLOR _primary_clr
+            MINFEATURESIZE 20
+        END
+    END
+    CLASS
+        EXPRESSION "secondary_link"
+        MAXSCALEDENOM 260000
+        STYLE
+            WIDTH 10
+            OUTLINECOLOR _secondary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH 1
+        END
+        STYLE
+            WIDTH 10
+            MINWIDTH 1
+            COLOR _secondary_clr 
+        END
+    END
+    CLASS
+        EXPRESSION "secondary"
+        MAXSCALEDENOM 260000
+        STYLE
+            WIDTH _secondary_width
+            OUTLINECOLOR _secondary_ol_clr
+            OUTLINEWIDTH 1
+            MINWIDTH _secondary_min_width_close
+            MAXWIDTH _secondary_max_width
+        END
+        STYLE
+            WIDTH _secondary_width
+            MINWIDTH _secondary_min_width_close
+            MAXWIDTH _secondary_max_width
+            COLOR _secondary_clr
+        END
+        LABEL
+        _default_lbl
+        PRIORITY 3
+            MAXSCALEDENOM 30000
+            SIZE 12 
+            MINSIZE 7
+            MAXSIZE 10
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+            OUTLINECOLOR _secondary_clr
+           MINFEATURESIZE 20
+        END
+    END
+    CLASS
+        EXPRESSION "secondary"
+        MAXSCALEDENOM 2600000
+        STYLE
+            WIDTH 12
+            MINWIDTH 0.5
+            COLOR _secondary_far_clr
+        END
+    END
+    CLASS
+        EXPRESSION "tertiary"
+        MAXSCALEDENOM 60000
+        STYLE
+            WIDTH _tertiary_width
+            MINWIDTH _tertiary_min_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _tertiary_ol_clr
+        END
+        STYLE
+            WIDTH _tertiary_width
+            MINWIDTH _tertiary_min_width
+            COLOR _tertiary_clr
+        END
+         LABEL
+_default_lbl
+PRIORITY 2
+MAXSCALEDENOM 30000
+            SIZE 8 
+            MINSIZE 7
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+            OUTLINECOLOR _tertiary_clr
+MINFEATURESIZE 20
+        END
+    END
+    CLASS
+        EXPRESSION "tertiary"
+        MAXSCALEDENOM 300000
+        STYLE
+            WIDTH _tertiary_width
+            MINWIDTH 0.4
+            COLOR _tertiary_far_clr
+        END
+    END
+     CLASS
+        EXPRESSION ('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service' or '[highway]'='road')
+        MAXSCALEDENOM 26000
+        STYLE
+            WIDTH _other_width
+            MINWIDTH _other_min_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _other_ol_clr
+        END
+        STYLE
+            WIDTH _other_width
+            MINWIDTH _other_min_width
+            COLOR _other_clr
+        END
+        LABEL
+_default_lbl
+PRIORITY 1
+            SIZE 8 
+            MINSIZE 7
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+            OUTLINECOLOR _other_clr
+MINFEATURESIZE 20
+        END
+    END
+    CLASS
+        EXPRESSION "track"
+        MAXSCALEDENOM 15000
+        STYLE
+            WIDTH 4
+            MINWIDTH 1
+            OUTLINEWIDTH 1
+            OUTLINECOLOR "#B7AC9A"
+        END
+        STYLE
+            WIDTH 4
+            MINWIDTH 1
+            COLOR 255 255 255
+        END
+        STYLE
+            SYMBOL dash
+            WIDTH 4
+            MINWIDTH 1
+            COLOR "#B7AC9A"
+        END
+        LABEL
+_default_lbl
+PRIORITY 1
+            SIZE 8 
+            MINSIZE 7
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+MINFEATURESIZE 20
+        END
+    END
+
+     CLASS
+        EXPRESSION ('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service' or '[highway]'='road' or '[highway]'='track')
+        MAXSCALEDENOM 300000
+        STYLE
+            WIDTH _other_width
+            MINWIDTH 0.2
+            COLOR _other_far_clr
+        END
+        
+    END
+
+    CLASS
+        EXPRESSION 'footway'
+        MAXSCALEDENOM 60000
+        STYLE
+            SYMBOL "path"
+            WIDTH 3 
+            MINWIDTH 0.5
+            MAXWIDTH 2
+            COLOR 128 128 128
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian'
+        MAXSCALEDENOM 7000
+        STYLE
+            WIDTH 6 
+            COLOR _pedestrian_clr
+            OUTLINECOLOR _pedestrian_ol_clr
+            OUTLINEWIDTH 0.5
+        END
+        LABEL
+            _default_lbl
+            PRIORITY 1
+            SIZE 7 
+            MINSIZE 6
+            MINDISTANCE 200
+            ANGLE FOLLOW
+            COLOR 0 0 0
+        END
+    END
+    CLASS
+        EXPRESSION 'pedestrian'
+        MAXSCALEDENOM 70000
+        STYLE
+            WIDTH 6 
+            COLOR _pedestrian_ol_clr
+            MINWIDTH 0.3
+        END
+    END
+END
+
+##redraw over pedestrian areas
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    NAME "pedestrian_hack"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    DATA "way from (select way,osm_id from osm_polygon where highway='pedestrian') as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+  CLASS
+        STYLE
+            COLOR _pedestrian_clr
+        END
+    END
+END
+
+
+
+SYMBOL
+    NAME "aeroway"
+    TYPE SIMPLE
+    LINECAP SQUARE
+END
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    GROUP "default"
+    NAME "aeroways"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way, osm_id ,aeroway from osm_line where aeroway is not null) as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASSITEM aeroway
+    MAXSCALEDENOM 260000
+    SIZEUNITS meters
+    CLASS
+        EXPRESSION "runway"
+        MAXSCALEDENOM 26000
+        STYLE
+           WIDTH 45
+           SYMBOL "aeroway"
+            MAXWIDTH 30
+            MINWIDTH 1
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _runway_ol_clr
+            COLOR _runway_clr
+        END
+        STYLE
+            SYMBOL dash
+            MINWIDTH 1
+            MAXWIDTH 1
+            COLOR _runway_ol_clr
+        END
+    END
+    CLASS
+        EXPRESSION "runway"
+        MAXSCALEDENOM 101000
+        STYLE
+           WIDTH 45
+           SYMBOL "aeroway"
+            MAXWIDTH 30
+            MINWIDTH 1
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _runway_ol_clr
+            COLOR _runway_clr
+        END
+    END
+    CLASS
+        EXPRESSION "runway"
+        STYLE
+           WIDTH 45
+           SYMBOL "aeroway"
+            MAXWIDTH 30
+            MINWIDTH 1
+            COLOR _runway_ol_clr
+        END
+    END
+    CLASS
+        EXPRESSION "taxiway"
+        MAXSCALEDENOM 60000
+        STYLE
+            WIDTH 15
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _runway_ol_clr 
+            COLOR _runway_clr
+        END
+    END
+    CLASS
+        EXPRESSION "taxiway"
+        STYLE
+            WIDTH 15
+            MINWIDTH 0.8
+            COLOR _runway_ol_clr
+        END
+   END
+END
+
+
+SYMBOL
+NAME "butt"
+TYPE SIMPLE
+LINECAP butt
+END
+
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    GROUP "default"
+    NAME "tram"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way, osm_id ,railway, name from osm_line where railway='tram') as foo using unique osm_id using srid=900913"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+   CLASS
+     MAXSCALEDENOM 26000
+     STYLE
+        COLOR "#A5A5A4"
+        WIDTH 1.5
+        MINWIDTH 1.5
+     END
+     LABEL
+     _default_lbl
+      MAXSCALEDENOM 11000
+      COLOR 255 255 255
+      OUTLINECOLOR "#A5A5A4"
+      SIZE 8
+      ANGLE AUTO
+     END
+   END
+END
+
+

@@ -1,0 +1,83 @@
+LAYER
+    STATUS ON
+    GROUP "default"
+    NAME "building"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way,osm_id, name from osm_polygon where (building is not null and building!='no' and building!='false') or aeroway='terminal' or leisure='stadium' or amenity='library' or amenity='cinema' or amenity='place_of_worship' or amenity='townhall' or amenity='prison' or amenity='public_building' ) as foo using unique osm_id using srid=900913"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 60000
+    CLASS
+        MAXSCALEDENOM 7000
+        STYLE
+            COLOR _building_offset_clr
+            OFFSET 2 2
+        END
+        STYLE
+            COLOR _building_clr
+        END
+        LABEL
+        _default_lbl
+        MAXSCALEDENOM 7000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 11000
+        STYLE
+            COLOR _building_offset_clr
+            OFFSET 1 1 
+        END
+        STYLE
+            COLOR _building_clr
+        END
+    END
+    CLASS
+        STYLE
+            COLOR _building_clr
+            OUTLINECOLOR _building_offset_clr
+            WIDTH 0.5
+        END
+    END
+END
+
+LAYER
+    STATUS ON
+    GROUP "default"
+    NAME "sports"
+    TYPE POLYGON
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "way from (select way,osm_id, name from osm_polygon where leisure='track' or leisure='pitch') as foo using unique osm_id using srid=900913"
+    LABELITEM "name"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 60000
+    CLASS
+        STYLE
+            COLOR _sports_clr
+        END
+        LABEL
+        _default_lbl
+        MAXSCALEDENOM 7000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+END
+
+
