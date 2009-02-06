@@ -1,19 +1,4 @@
 LAYER
-  TYPE POLYGON
-  STATUS DEFAULT
-  GROUP "default"
-  NAME "coastline"
-  DATA "coastlines/fr.shp"
-  CLASS
-    STYLE
-      COLOR _bg_clr
-      WIDTH 0.5
-      OUTLINECOLOR _bg_clr
-    END
-  END
-END
-
-LAYER
     TYPE POLYGON
     STATUS ON
     NAME "landuse_layer1"

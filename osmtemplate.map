@@ -7,13 +7,14 @@ OUTPUTFORMAT
     FORMATOPTION "INTERLACE=false"
     MIMETYPE "image/png"
 END
-FONTSET "/patate1/SIGDATA/mapserver/fonts.lst"
+FONTSET "fonts.lst"
 IMAGETYPE agg
 MAXSIZE 4000
 SIZE 800 800
 EXTENT 47586 1621243 1197769 2679357
+EXTENT 16805492 -4049385 16857351 -3975830
 UNITS meters
-IMAGECOLOR _water_clr
+IMAGECOLOR _bg_clr
 WEB
     METADATA
         wms_srs "epsg:900913"
@@ -23,7 +24,7 @@ WEB
 END
 
 ##DEBUG 10
-CONFIG "PROJ_LIB" "/patate1/SIGDATA/mapserver/"
+CONFIG "PROJ_LIB" "."
 CONFIG "MS_ERRORFILE" "stderr"
 PROJECTION
 ##900913
@@ -392,23 +393,5 @@ LAYER
         END
     END
 END
-LAYER
-    STATUS ON
-    GROUP "debug"
-    NAME "area"
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION "host=localhost dbname=osm user=www-data password=www-data"
-    DATA "way from (select way,osm_id, name from osm_polygon where area is not null ) as foo using unique osm_id using srid=900913"
-    LABELITEM "name"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    CLASS
-        STYLE
-        OPACITY 30
-            COLOR 0 255 0
-            OFFSET 2 2
-        END
- END
-END
+
 END
