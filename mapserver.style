@@ -1,4 +1,4 @@
-#define _db_connection "host=localhost dbname=osm user=www-data password=www-data port=5433"
+#define _db_connection "host=localhost dbname=osm user=www-data password=www-data port=5432"
 
 #define _bg_clr "#EDEBE6"
 

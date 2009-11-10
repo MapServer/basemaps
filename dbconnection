@@ -1,0 +1,1 @@
+#define _db_connection "host=localhost dbname=osm user=www-data password=www-data port=5432"

@@ -1,4 +1,4 @@
-CPP=cpp
+CPP=cpp-4.2
 template=osmtemplate.map
 theme=mapserver
 includes=landuse.map buildings.map\
@@ -11,6 +11,7 @@ includes=landuse.map buildings.map\
 		 highways-close.map highways-medium.map highways-far.map\
 		 $(theme).style
 mapfile=osm-$(theme).map
+here=`pwd`
 all:$(mapfile)
 
 
@@ -18,15 +19,18 @@ SED=sed -i
 #if on BSD, use
 # SED=sed -i ""
 
-$(mapfile):$(template) $(includes) processed_p.zip
-	$(CPP) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\"
+$(mapfile):$(template) $(includes) coastlines 
+	$(CPP) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
 	$(SED) 's/##.*$$//g' $(mapfile)
 	$(SED) '/^ *$$/d' $(mapfile)
+
+
+coastlines: processed_p.zip
+	unzip processed_p.zip
 
 processed_p.zip:
 	@echo "Attempting to retrieve coast shapefile via wget: (will fail if wget is not installed)"
 	wget http://hypercube.telascience.org/~kleptog/processed_p.zip
-	unzip processed_p.zip
 
 
 extent="-189249.81140511,4805160.045596,339916.56951172,5334326.4265128"

@@ -1,5 +1,3 @@
-#define _db_connection "host=localhost dbname=osm user=www-data password=www-data port=5433"
-
 #define _bg_clr "#F6F1E6"
 
 #define _forest_clr "#DCDCB4"
@@ -103,3 +101,9 @@
 #define _track_clr "#ffffff"
 
 #define _path_clr "#7f7f7f"
+
+#define _capital_clr "#FF6767"
+#define _city_clr _capital_clr
+#define _town_clr 255 255 255
+
+
