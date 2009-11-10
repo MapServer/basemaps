@@ -14,7 +14,7 @@ SIZE 800 800
 EXTENT 47586 1621243 1197769 2679357
 EXTENT 16805492 -4049385 16857351 -3975830
 UNITS meters
-IMAGECOLOR _bg_clr
+IMAGECOLOR _water_clr
 WEB
     METADATA
         wms_srs "epsg:900913"
@@ -23,248 +23,106 @@ WEB
     END
 END
 
-##DEBUG 10
-CONFIG "PROJ_LIB" "."
+DEBUG 10
+CONFIG "PROJ_LIB" "/home/tbonfort/data/mapserver-utils"
 CONFIG "MS_ERRORFILE" "stderr"
 PROJECTION
 ##900913
-"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
+##"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
 ##"init=epsg:27572"
 ##"+proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=0 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +a=6378249.2 +b=6356515 +towgs84=-168,-60,320,0,0,0,0 +pm=paris +units=m +no_defs"
+"init=epsg:4326"
 END
-
-#include "landuse.map"
-#include "highways.map"
-#include "buildings.map"
-
 
 
 LAYER
-    TYPE LINE
+    TYPE POLYGON
     STATUS ON
     GROUP "default"
-    NAME "bridges"
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way, name,osm_id, highway from osm_line where bridge='yes' and highway is not null order by z_order) as foo using unique osm_id using srid=900913"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    SIZEUNITS meters
-    LABELITEM "name"
-    MAXSCALEDENOM 60000
-    
-        CLASS
-        EXPRESSION ("[highway]"="motorway")
-        STYLE
-            MAXSCALEDENOM 20000
-            WIDTH _motorway_width
-            SYMBOL "butt"
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _bridge_clr
-            MINWIDTH _motorway_minwidth_close
-            MAXWIDTH _motorway_maxwidth
-        END
-        STYLE
-            WIDTH _motorway_width
-            COLOR _motorway_clr
-            MINWIDTH _motorway_minwidth_close
-            MAXWIDTH _motorway_maxwidth
-        END
-        STYLE
-            SYMBOL dash
-            MAXSCALEDENOM 20000
-            WIDTH 1
-            MINWIDTH 1
-            COLOR 255 255 0
-        END
+    NAME "land"
+    PROJECTION
+        "init=epsg:900913"
     END
-   CLASS
-        EXPRESSION ("[highway]"="motorway_link")
-
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH 10
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH 1
-            MAXWIDTH 10
-        END
-        STYLE
-            WIDTH 10
-            COLOR _motorway_clr
-            MINWIDTH 1
-            MAXWIDTH 10
-        END
-    END
+    DATA "coastlines/processed_p"
     CLASS
-        EXPRESSION ("[highway]"="trunk")
         STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH _trunk_width
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH _trunk_min_width_close
-            MAXWIDTH _trunk_max_width
-        END
-        STYLE
-            WIDTH _trunk_width
-            COLOR _trunk_clr
-            MINWIDTH _trunk_min_width_close
-            MAXWIDTH _trunk_max_width
-        END
-   END
-    CLASS
-        EXPRESSION ("[highway]"="trunk_link")
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH 10
-            OUTLINEWIDTH 1
-            MINWIDTH 1
-            MAXWIDTH 10
-            OUTLINECOLOR _bridge_clr
-        END
-        STYLE
-            WIDTH 10
-            COLOR _trunk_clr
-            MINWIDTH 1
-            MAXWIDTH 10
-        END
-    END
-    CLASS
-        EXPRESSION ("[highway]"="primary_link" )
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH 10
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH 1
-            MAXWIDTH 10
-        END
-        STYLE
-            WIDTH 10
-            COLOR _primary_clr
-            MINWIDTH 1
-            MAXWIDTH 10
-        END
-    END
-    CLASS
-        EXPRESSION ("[highway]"="primary" )
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH _primary_width
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH _primary_min_width_close
-            MAXWIDTH _primary_max_width
-        END
-        STYLE
-            WIDTH _primary_width
-            COLOR _primary_clr 
-            MINWIDTH _primary_min_width_close
-            MAXWIDTH _primary_max_width
-        END
-    END
-    CLASS
-        EXPRESSION ("[highway]"="secondary_link" )
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH 10
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH 1
-        END
-        STYLE
-            WIDTH 10
-            COLOR _secondary_clr 
-            MINWIDTH 1
-        END
-    END
-    CLASS
-        EXPRESSION ("[highway]"="secondary" )
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH _secondary_width
-            OUTLINECOLOR _bridge_clr
-            OUTLINEWIDTH 1
-            MINWIDTH _secondary_min_width_close
-            MAXWIDTH _secondary_max_width
-        END
-        STYLE
-            WIDTH _secondary_width
-            MINWIDTH _secondary_min_width_close
-            MAXWIDTH _secondary_max_width
-            COLOR _secondary_clr
-        END
-    END
-    CLASS
-        EXPRESSION ("[highway]"="tertiary" )
-        MAXSCALEDENOM 30000
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH _tertiary_width
-            MINWIDTH _tertiary_min_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _bridge_clr
-        END
-        STYLE
-            WIDTH _tertiary_width
-            MINWIDTH _tertiary_min_width
-            COLOR _tertiary_clr
-        END
-    END
-     CLASS
-        EXPRESSION (('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service') )
-        MAXSCALEDENOM 15000
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH _other_width
-            MINWIDTH _other_min_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _bridge_clr
-        END
-        STYLE
-            COLOR _other_clr
-            WIDTH _other_width
-            MINWIDTH _other_min_width
-        END
-    END
-    CLASS
-        EXPRESSION ('[highway]'='footway')
-        MAXSCALEDENOM 60000
-        STYLE
-            MAXSCALEDENOM 20000
-            SYMBOL "butt"
-            WIDTH 3
-            MINWIDTH 0.5
-            MAXWIDTH 2
-            OUTLINEWIDTH 1.5
-            OUTLINECOLOR 128 128 128
-        END
-        STYLE
-            WIDTH 3 
-            MINWIDTH 0.5
-            MAXWIDTH 2
-            OUTLINEWIDTH 1.4
-            OUTLINECOLOR 255 255 255
-        END
-
-        STYLE
-            SYMBOL "path"
-            WIDTH 3 
-            MINWIDTH 0.5
-            MAXWIDTH 2
-            COLOR 128 128 128
+            COLOR _bg_clr
+            OUTLINECOLOR _bg_clr
         END
     END
 END
+
+SYMBOL
+    NAME "rail"
+    TYPE TRUETYPE
+    FONT sc
+    CHARACTER '|'
+    GAP -3
+END
+
+SYMBOL
+    NAME "railfar"
+    TYPE SIMPLE
+    PATTERN 5 5 END
+END
+
+SYMBOL
+    NAME "path"
+    TYPE SIMPLE
+    PATTERN 1 1 END
+END
+
+SYMBOL
+    NAME "track"
+    TYPE SIMPLE
+    PATTERN
+        5 5 
+    END
+END
+
+SYMBOL
+    NAME "tunnel"
+    TYPE SIMPLE
+    PATTERN 2 2 END
+END
+
+SYMBOL
+    NAME "dash"
+    TYPE SIMPLE
+    PATTERN 2 2 END
+END
+
+SYMBOL
+    NAME "butt"
+    TYPE SIMPLE
+    LINECAP butt
+END
+
+#include "landuse.map"
+#include "highways_5k.map"
+#include "highways_10k.map"
+#include "highways_25k.map"
+#include "highways_50k.map"
+#include "highways_100k.map"
+#include "highways_250k.map"
+#include "highways_500k.map"
+#include "highways_1m.map"
+#include "highways_2.5m.map"
+#include "highways_5m.map"
+#include "highways_10m.map"
+
+
+##include "buildings.map"
+
+
+
+SYMBOL
+    NAME "citycircle"
+    TYPE ELLIPSE
+    POINTS  1 1 END
+    FILLED TRUE
+END
+
 
 SYMBOL
  NAME "oneway"
@@ -277,13 +135,16 @@ END
 LAYER
     TYPE LINE
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     GROUP "default"
     NAME "oneways"
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way, osm_id from osm_line where oneway='yes' and highway is not null order by z_order) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way, osm_id from osm_line where oneway='yes' and (highway ~ 'link' or highway in ('residential','tertiary','secondary','primary','service')) order by z_order) as foo using unique osm_id using srid=4326"
     PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 9000
+    MAXSCALEDENOM 10010
     CLASS
         STYLE
             SYMBOL "oneway"
@@ -292,106 +153,17 @@ LAYER
         END
     END
 END
- 
 
-LAYER
-    TYPE ANNOTATION
-    STATUS ON
-    GROUP "default" 
-    NAME "villes"
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,place , name from osm_point where place is not null) as foo using unique osm_id using srid=900913"
-    LABELITEM 'name'
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    PROCESSING "LABEL_NO_CLIP=yes"
-    CLASSITEM 'place'
-    CLASS
-        MINSCALEDENOM 300000
-        EXPRESSION 'city'
-        STYLE
-            SIZE 0
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 9
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            OUTLINEWIDTH 4
-            WRAP ' '
-            MAXLENGTH 8
-            ALIGN CENTER
-            PRIORITY 10
-            PARTIALS FALSE
-        END
-    END
-    CLASS
-        EXPRESSION 'town'
-        MAXSCALEDENOM 2600000
-        MINSCALEDENOM 30000
-        STYLE
-            SIZE 0
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 8
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            OUTLINEWIDTH 3
-            WRAP ' '
-            BUFFER 4
-            MAXLENGTH 8
-            ALIGN CENTER
-            PRIORITY 9
-            PARTIALS FALSE
-        END
-    END
-    CLASS
-        EXPRESSION ('[place]'='village')
-        MAXSCALEDENOM 300000
-        MINSCALEDENOM 30000
-        STYLE
-            SIZE 0
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            OUTLINEWIDTH 3
-            WRAP ' '
-            BUFFER 4
-            MAXLENGTH 8
-            ALIGN CENTER
-            PRIORITY 9
-            PARTIALS FALSE
-        END
-    END
-    CLASS
-        EXPRESSION ('[place]'='suburb' or '[place]'='hamlet')
-        MAXSCALEDENOM 110000
-        MINSCALEDENOM 30000
-        STYLE
-            SIZE 0
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            OUTLINEWIDTH 3
-            WRAP ' '
-            BUFFER 4
-            MAXLENGTH 8
-            ALIGN CENTER
-            PRIORITY 9
-            PARTIALS FALSE
-        END
-    END
-END
+#include "places_25k.map"
+#include "places_50k.map"
+#include "places_100k.map"
+#include "places_250k.map"
+#include "places_500k.map"
+#include "places_1m.map"
+#include "places_2.5m.map"
+#include "places_5m.map"
+#include "places_10m.map"
+#include "places_25m.map"
+
 
 END

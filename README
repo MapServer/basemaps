@@ -1,0 +1,18 @@
+- this package uses the c preprocessor to build a complete mapfile from a set of
+  templates and a styling file.
+
+- we rely on the gnu version of sed for post-processing the created mapfile. if on
+  a BSD platform (e.g. MacOSX, adapt the Makefile accordingly to the inline comment)
+
+
+- the osm data can be imported from an osm.bz2 export. The import should be done with a
+  recent version of osm2pgsql, typically one from svn.
+
+  ~/src/osm2pgsql/osm2pgsql -d osm -p osm -S ~/src/osm2pgsql/default.style -H localhost -U osm -W france.osm.bz2
+
+- the osm data has to be postprocessed to allow rendering enhancements and speedups,
+  and to rename the column "natural" to "nature":
+
+  cat postprocess.sql | psql -d osm
+
+

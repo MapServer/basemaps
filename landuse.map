@@ -1,16 +1,19 @@
 LAYER
     TYPE POLYGON
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     NAME "landuse_layer1"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,landuse, name from osm_polygon where landuse is not null) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id ,landuse, name from osm_polygon where landuse is not null) as foo using unique osm_id using srid=4326"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
     LABELITEM "name"
-   
+    MAXSCALEDENOM 1000010   
     CLASS
         EXPRESSION ('[landuse]'='industrial' or '[landuse]'='commercial' or '[landuse]'='airport' or '[landuse]'='brownfield' or '[landuse]'='military' or '[landuse]'='railway')
         STYLE
@@ -40,11 +43,14 @@ END
 LAYER
     TYPE POLYGON
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     GROUP "default"
     NAME "landuse_layer2"
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,leisure , landuse, name from osm_polygon where leisure='park' or leisure='golf_course' or landuse='recreation_ground' or landuse='cemetery') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id ,leisure , landuse, name from osm_polygon where leisure='park' or leisure='golf_course' or landuse='recreation_ground' or landuse='cemetery') as foo using unique osm_id using srid=4326"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
@@ -90,12 +96,15 @@ END
 
 LAYER
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     GROUP "default"
     NAME "landuse_layer3"
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id,amenity,aeroway, name from osm_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,amenity,aeroway, name from osm_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=4326"
     LABELITEM "name"
     CLASSITEM "amenity"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -146,14 +155,18 @@ END
 LAYER
     TYPE POLYGON
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     NAME "landuse_layer4"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from osm_polygon where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from osm_polygon_view where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=4326"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
+    MAXSCALEDENOM 5000010   
     LABELITEM "name"
     CLASS
         EXPRESSION ('[nature]'='wood' or '[landuse]'="forest")
@@ -188,10 +201,6 @@ LAYER
         STYLE
             COLOR _pedestrian_clr
         END
-        STYLE
-          MAXSCALEDENOM 11000
-          OUTLINECOLOR _pedestrian_ol_clr
-        END
         LABEL
           _default_lbl
           MAXSCALEDENOM 11000
@@ -208,12 +217,16 @@ END
 LAYER
     TYPE POLYGON
     STATUS ON
+    PROJECTION
+        "init=epsg:4326"
+    END
     NAME "landuse_layer5"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature , name from osm_polygon where nature='water' or landuse='basin' or landuse='reservoir') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id ,nature , name from osm_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=4326"
     PROCESSING "LABEL_NO_CLIP=ON"
+    MAXSCALEDENOM 5000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASS
@@ -242,7 +255,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'way from (select way,waterway,osm_id from osm_line where waterway is not null) as foo using unique osm_id using srid=900913'
+    DATA 'way from (select way,waterway,osm_id from osm_line where waterway is not null) as foo using unique osm_id using srid=4326'
     CLASSITEM "waterway"
     SIZEUNITS meters
     MAXSCALEDENOM 1500000
@@ -250,7 +263,7 @@ LAYER
         EXPRESSION "river"
         STYLE
             COLOR _water_clr 
-            WIDTH 10
+            WIDTH 30
             MINWIDTH 0.5
         END
     END

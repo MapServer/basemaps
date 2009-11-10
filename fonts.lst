@@ -1,2 +1,2 @@
-sc /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed.ttf
-scb /usr/share/fonts/truetype/ttf-dejavu/DejaVuSansCondensed-Bold.ttf
+sc fonts/DejaVuSansCondensed.ttf
+scb fonts/DejaVuSansCondensed-Bold.ttf
