@@ -1,4 +1,4 @@
-CPP=cpp-4.2
+CPP=cpp
 template=osmtemplate.map
 theme=mapserver
 includes=landuse.map buildings.map\
