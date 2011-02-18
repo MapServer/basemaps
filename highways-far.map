@@ -20,8 +20,11 @@ LAYER
             MAXLENGTH 6
             BUFFER 15
             COLOR 255 255 255
-            BACKGROUNDCOLOR _motorway_lbl_bg_clr
-            BACKGROUNDSHADOWCOLOR _motorway_lbl_shadow_clr 
+            STYLE
+                GEOMTRANSFORM LABELPOLY
+                COLOR _motorway_lbl_bg_clr
+                OUTLINECOLOR _motorway_lbl_shadow_clr 
+            END
         END
     END
     CLASS
@@ -38,8 +41,11 @@ LAYER
             MAXLENGTH 6
             BUFFER 15
             COLOR 255 255 255
-            BACKGROUNDCOLOR _trunk_lbl_bg_clr
-            BACKGROUNDSHADOWCOLOR _trunk_lbl_shadow_clr
+            STYLE
+               GEOMTRANSFORM LABELPOLY
+               COLOR _trunk_lbl_bg_clr
+               OUTLINECOLOR _trunk_lbl_shadow_clr
+            END
         END
     END
     CLASS
