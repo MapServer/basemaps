@@ -44,11 +44,45 @@ LAYER
     PROJECTION
         "init=epsg:900913"
     END
-    DATA "coastlines/processed_p"
+    MINSCALEDENOM 5000000
+    DATA "data/shoreline_300"
     CLASS
         STYLE
             COLOR _bg_clr
             OUTLINECOLOR _bg_clr
+        END
+    END
+END
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    GROUP "default"
+    NAME "land"
+    PROJECTION
+        "init=epsg:900913"
+    END
+    MAXSCALEDENOM 5000000
+    DATA "data/processed_p"
+    CLASS
+        STYLE
+            COLOR _bg_clr
+            OUTLINECOLOR _bg_clr
+        END
+    END
+END
+
+LAYER
+   TYPE LINE
+   STATUS ON
+   GROUP "default"
+   NAME "borders"
+   MINSCALEDENOM 5000000
+   DATA "data/10m_admin_0_boundary_lines_land"
+    CLASS
+        STYLE
+            WIDTH 0.5
+            COLOR _border_clr
         END
     END
 END

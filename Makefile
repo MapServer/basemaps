@@ -19,19 +19,13 @@ SED=sed -i
 #if on BSD, use
 # SED=sed -i ""
 
-$(mapfile):$(template) $(includes) coastlines 
+$(mapfile):$(template) $(includes) shapefiles
 	$(CPP) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
 	$(SED) 's/##.*$$//g' $(mapfile)
 	$(SED) '/^ *$$/d' $(mapfile)
 
-
-coastlines: processed_p.zip
-	unzip processed_p.zip
-
-processed_p.zip:
-	@echo "Attempting to retrieve coast shapefile via wget: (will fail if wget is not installed)"
-	wget http://hypercube.telascience.org/~kleptog/processed_p.zip
-
+shapefiles:
+	cd data; $(MAKE) $(MFLAGS)
 
 extent="-189249.81140511,4805160.045596,339916.56951172,5334326.4265128"
 extent="235459.12591906,5064998.3775063,246042.4535374,5075581.7051247"

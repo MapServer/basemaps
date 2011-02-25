@@ -1,6 +1,5 @@
-#define _db_connection "host=localhost dbname=osm user=www-data password=www-data port=5432"
-
 #define _bg_clr "#EDEBE6"
+#define _border_clr "#cDcBc6"
 
 #define _forest_clr "#DCDCB4"
 #define _forest_lbl_clr "#3D6035"
