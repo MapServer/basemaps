@@ -226,14 +226,12 @@ LAYER
     CONNECTION _db_connection
     DATA "way from (select way,osm_id ,nature , name from osm_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=4326"
     PROCESSING "LABEL_NO_CLIP=ON"
-    MAXSCALEDENOM 5000010   
+    MAXSCALEDENOM 50000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASS
         STYLE
             COLOR _water_clr
-            WIDTH 0.5
-            OUTLINECOLOR _water_clr
         END
         LABEL
           _default_lbl

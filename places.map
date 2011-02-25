@@ -26,16 +26,19 @@ LAYER
             FONT sc
             TYPE TRUETYPE
             SIZE _capital_lbl_size
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+            COLOR _capital_lbl_clr
+            OUTLINECOLOR _capital_lbl_ol_clr
             OUTLINEWIDTH 4
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
             PRIORITY 10
-            BUFFER 10
             PARTIALS FALSE
+            #ifdef _display_place_symbol
             POSITION auto
+            #else
+            POSITION cc
+            #endif
         END
     END
 #endif
@@ -53,7 +56,7 @@ LAYER
             PRIORITY 9
             BUFFER 1
             PARTIALS FALSE
-            POSITION auto
+            POSITION cc
         END
     END
 #endif
@@ -72,16 +75,20 @@ LAYER
             FONT sc
             TYPE TRUETYPE
             SIZE _city_lbl_size
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+            COLOR _city_lbl_clr
+            OUTLINECOLOR _city_lbl_ol_clr
             OUTLINEWIDTH 4
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
             PRIORITY 9
-            BUFFER 10
             PARTIALS FALSE
             POSITION auto
+            #ifdef _display_place_symbol
+            POSITION auto
+            #else
+            POSITION cc
+            #endif
         END
     END
 #endif
@@ -100,16 +107,20 @@ LAYER
             FONT sc
             TYPE TRUETYPE
             SIZE _town_lbl_size
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+            COLOR _town_lbl_clr
+            OUTLINECOLOR _town_lbl_ol_clr
             OUTLINEWIDTH 3
             WRAP ' '
-            BUFFER 10
             MAXLENGTH 8
             ALIGN CENTER
             PRIORITY 8
             PARTIALS FALSE
             POSITION AUTO
+            #ifdef _display_place_symbol
+            POSITION auto
+            #else
+            POSITION cc
+            #endif
         END
     END
 #endif
@@ -128,16 +139,20 @@ LAYER
             FONT sc
             TYPE TRUETYPE
             SIZE _village_lbl_size
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+            COLOR _village_lbl_clr
+            OUTLINECOLOR _village_lbl_ol_clr
             OUTLINEWIDTH 3
             WRAP ' '
-            BUFFER 10
             MAXLENGTH 8
             ALIGN CENTER
             PRIORITY 8
             PARTIALS FALSE
             POSITION AUTO
+            #ifdef _display_place_symbol
+            POSITION auto
+            #else
+            POSITION cc
+            #endif
         END
     END
 #endif
@@ -153,11 +168,10 @@ LAYER
             FONT sc
             TYPE TRUETYPE
             SIZE _other_place_lbl_size
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+            COLOR _other_place_lbl_clr
+            OUTLINECOLOR _other_place_lbl_ol_clr
             OUTLINEWIDTH 3
             WRAP ' '
-            BUFFER 4
             MAXLENGTH 8
             ALIGN CENTER
             PRIORITY 8

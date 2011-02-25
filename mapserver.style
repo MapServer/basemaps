@@ -103,7 +103,21 @@
 
 #define _path_clr "#7f7f7f"
 
+#define _lbl_ol_clr "#ffffff"
 #define _capital_clr "#FF6767"
 #define _city_clr "#ffbb00"
 #define _town_clr 255 255 255
+#define _country_lbl_clr "#555555"
 
+#define _capital_lbl_clr "#000000"
+#define _city_lbl_clr "#000000"
+#define _town_lbl_clr "#555555"
+#define _village_lbl_clr _town_lbl_clr
+#define _other_place_lbl_clr _town_lbl_clr
+
+#define _capital_lbl_ol_clr _lbl_ol_clr
+#define _city_lbl_ol_clr _lbl_ol_clr
+#define _town_lbl_ol_clr _lbl_ol_clr
+#define _village_lbl_ol_clr _lbl_ol_clr
+#define _other_place_lbl_ol_clr _lbl_ol_clr
+#define _country_lbl_ol_clr _lbl_ol_clr

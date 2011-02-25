@@ -57,6 +57,7 @@
 #undef _display_towns
 #undef _town_size
 #undef _town_lbl_size
+#undef _country_lbl_size
 #undef _display_villages
 #undef _village_size
 #undef _village_lbl_size

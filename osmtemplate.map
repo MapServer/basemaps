@@ -199,6 +199,7 @@ END
 #include "places_5m.map"
 #include "places_10m.map"
 #include "places_25m.map"
+#include "places_50m.map"
 
 
 END
