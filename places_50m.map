@@ -1,0 +1,17 @@
+#include "resetsizes.inc"
+#define _minscale 25000010
+#define _maxscale 250000000010
+
+#define _default_layer _default_lyr\
+    maxscaledenom _maxscale\
+    minscaledenom _minscale\
+
+
+#define _places_data "way from (select way,osm_id ,place , capital, name from osm_point where capital='yes' or place='country') as foo using unique osm_id using srid=4326"
+
+
+#define _display_countries
+#define _country_lbl_size 7
+
+#include "places.map"
+
