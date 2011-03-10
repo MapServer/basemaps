@@ -27,7 +27,7 @@ LAYER
 
     CLASS
         EXPRESSION "motorway"
-        TEXT ([ref])
+        TEXT ("[ref]")
         STYLE
             WIDTH _motorway_width
             OUTLINEWIDTH 1
@@ -67,7 +67,7 @@ LAYER
     END
     CLASS
         EXPRESSION "trunk"
-        TEXT ([ref])
+        TEXT ("[ref]")
         STYLE
             WIDTH _trunk_width 
             OUTLINECOLOR _trunk_ol_clr
@@ -119,7 +119,7 @@ LAYER
     END
 #ifdef _primary_lbl_ref
     CLASS
-        TEXT ([ref])
+        TEXT ("[ref]")
         EXPRESSION "primary"
         STYLE
             WIDTH _primary_width 
