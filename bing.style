@@ -21,7 +21,7 @@
   STATUS ON\
   GROUP "default"\
   PROJECTION \
-    "init=epsg:4326"\
+    "init=epsg:OSM_SRID"\
   END\
   CONNECTIONTYPE postgis\
   CONNECTION _db_connection\

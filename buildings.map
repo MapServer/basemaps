@@ -1,14 +1,14 @@
 LAYER
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     GROUP "default"
     NAME "building"
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id, name from osm_polygon where (building is not null and building!='no' and building!='false') or aeroway='terminal' or leisure='stadium' or amenity='library' or amenity='cinema' or amenity='place_of_worship' or amenity='townhall' or amenity='prison' or amenity='public_building' ) as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id, name from OSM_PREFIX_polygon where (building is not null and building!='no' and building!='false') or aeroway='terminal' or leisure='stadium' or amenity='library' or amenity='cinema' or amenity='place_of_worship' or amenity='townhall' or amenity='prison' or amenity='public_building' ) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -58,12 +58,12 @@ LAYER
     GROUP "default"
     NAME "sports"
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id, name from osm_polygon where leisure='track' or leisure='pitch') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id, name from OSM_PREFIX_polygon where leisure='track' or leisure='pitch') as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"

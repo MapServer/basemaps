@@ -14,12 +14,12 @@ MAXSIZE 4000
 SIZE 800 800
 EXTENT 47586 1621243 1197769 2679357
 EXTENT 16805492 -4049385 16857351 -3975830
-UNITS dd
+UNITS OSM_UNITS 
 IMAGECOLOR _water_clr
 WEB
     METADATA
       "ows_enable_request"   "*"
-       wms_srs "EPSG:900913 EPSG:4326 EPSG:3857"
+       wms_srs OSM_WMS_SRS 
         labelcache_map_edge_buffer "-10"
         wms_title "osm france"
     END
@@ -33,7 +33,8 @@ PROJECTION
 ##"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
 ##"init=epsg:27572"
 ##"+proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=0 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +a=6378249.2 +b=6356515 +towgs84=-168,-60,320,0,0,0,0 +pm=paris +units=m +no_defs"
-"init=epsg:4326"
+##"init=epsg:OSM_SRID"
+"init=epsg:OSM_SRID"
 END
 
 
@@ -172,13 +173,13 @@ LAYER
     TYPE LINE
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     GROUP "default"
     NAME "oneways"
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way, osm_id from osm_line where oneway='yes' and (highway ~ 'link' or highway in ('residential','tertiary','secondary','primary','service')) order by z_order) as foo using unique osm_id using srid=4326"
+    DATA "way from (select way, osm_id from osm_line where oneway='yes' and (highway ~ 'link' or highway in ('residential','tertiary','secondary','primary','service')) order by z_order) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 10010
     CLASS

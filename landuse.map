@@ -2,13 +2,13 @@ LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     NAME "landuse_layer1"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,landuse, name from osm_polygon where landuse is not null) as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id ,landuse, name from OSM_PREFIX_polygon where landuse is not null) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
@@ -44,13 +44,13 @@ LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     GROUP "default"
     NAME "landuse_layer2"
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,leisure , landuse, name from osm_polygon where leisure='park' or leisure='golf_course' or landuse='recreation_ground' or landuse='cemetery') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id ,leisure , landuse, name from OSM_PREFIX_polygon where leisure='park' or leisure='golf_course' or landuse='recreation_ground' or landuse='cemetery') as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
@@ -97,14 +97,14 @@ END
 LAYER
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     GROUP "default"
     NAME "landuse_layer3"
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id,amenity,aeroway, name from osm_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id,amenity,aeroway, name from OSM_PREFIX_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     CLASSITEM "amenity"
     PROCESSING "LABEL_NO_CLIP=ON"
@@ -156,13 +156,13 @@ LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     NAME "landuse_layer4"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from osm_polygon_view where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from OSM_PREFIX_polygon_view where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
@@ -218,13 +218,13 @@ LAYER
     TYPE POLYGON
     STATUS ON
     PROJECTION
-        "init=epsg:4326"
+        "init=epsg:OSM_SRID"
     END
     NAME "landuse_layer5"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature , name from osm_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way,osm_id ,nature , name from OSM_PREFIX_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     MAXSCALEDENOM 50000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -253,7 +253,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'way from (select way,waterway,osm_id from osm_line where waterway is not null) as foo using unique osm_id using srid=4326'
+    DATA 'way from (select way,waterway,osm_id from OSM_PREFIX_line where waterway is not null) as foo using unique osm_id using srid=OSM_SRID'
     CLASSITEM "waterway"
     SIZEUNITS meters
     MAXSCALEDENOM 1500000

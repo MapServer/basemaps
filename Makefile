@@ -1,4 +1,10 @@
 CPP=cpp
+
+OSM_PREFIX=osm_
+OSM_SRID=4326
+OSM_UNITS=dd
+OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857"
+
 template=osmtemplate.map
 theme=mapserver
 includes=landuse.map buildings.map\
@@ -11,19 +17,29 @@ includes=landuse.map buildings.map\
 		 highways-close.map highways-medium.map highways-far.map\
 		 $(theme).style
 mapfile=osm-$(theme).map
+postprocess=postprocess.sql
+postprocess_in=postprocess.sql.in
 here=`pwd`
-all:$(mapfile)
 
+all:$(mapfile) $(postprocess)
 
-SED=sed -i
+SED=sed
+SEDI=$(SED) -i
 #if on BSD, use
 # SED=sed -i ""
 
 $(mapfile):$(template) $(includes) shapefiles
-	$(CPP) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
-	$(SED) 's/##.*$$//g' $(mapfile)
-	$(SED) '/^ *$$/d' $(mapfile)
+	$(CPP) -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
+	$(SEDI) 's/##.*$$//g' $(mapfile)
+	$(SEDI) '/^ *$$/d' $(mapfile)
+	$(SEDI) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(mapfile)
+	$(SEDI) -e 's/OSM_SRID/$(OSM_SRID)/g' $(mapfile)
+	$(SEDI) -e 's/OSM_UNITS/$(OSM_UNITS)/g' $(mapfile)
+	$(SEDI) -e 's/OSM_WMS_SRS/$(OSM_WMS_SRS)/g' $(mapfile)
 
+$(postprocess):$(postprocess_in)
+	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(postprocess_in) > $(postprocess)
+	
 shapefiles:
 	cd data; $(MAKE) $(MFLAGS)
 

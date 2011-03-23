@@ -7,7 +7,7 @@
     minscaledenom _minscale\
 
 
-#define _places_data "way from (select way,osm_id ,place ,capital, name from osm_point where place in ('town','city')) as foo using unique osm_id using srid=4326"
+#define _places_data "way from (select way,osm_id ,place ,capital, name from OSM_PREFIX_point where place in ('town','city')) as foo using unique osm_id using srid=OSM_SRID"
 #define _display_place_symbol
 
 #define _display_towns

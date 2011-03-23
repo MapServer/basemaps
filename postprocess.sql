@@ -2,11 +2,11 @@
 update osm_point set name = replace(name,'-',' ');
 
 -- grant our user access to the data
-grant SELECT on osm_line to "www-data";
-grant SELECT on osm_point to "www-data";
-grant SELECT on osm_polygon to "www-data";
+grant SELECT on osm_line to "openstreetmap";
+grant SELECT on osm_point to "openstreetmap";
+grant SELECT on osm_polygon to "openstreetmap";
 create or replace view osm_polygon_view as select osm_id, "natural" as nature, landuse, waterway, highway, name, way from osm_polygon;
-grant select on osm_polygon_view to "www-data" ;
+grant select on osm_polygon_view to "openstreetmap" ;
 
 -- correct a few common typos
 update osm_line set tunnel='yes' where tunnel='true';

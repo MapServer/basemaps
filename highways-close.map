@@ -2,7 +2,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "railways"
-    DATA "way from (select way, osm_id ,railway, name from osm_line where railway='rail') as foo using unique osm_id using srid=4326"
+    DATA "way from (select way, osm_id ,railway, name from OSM_PREFIX_line where railway='rail') as foo using unique osm_id using srid=OSM_SRID"
     CLASS
         STYLE
             WIDTH _railway_width
