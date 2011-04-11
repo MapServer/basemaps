@@ -94,46 +94,10 @@ SYMBOL
     TYPE TRUETYPE
     FONT sc
     CHARACTER '|'
-    GAP -3
 END
 
-SYMBOL
-    NAME "railfar"
-    TYPE SIMPLE
-    PATTERN 5 5 END
-END
 
-SYMBOL
-    NAME "path"
-    TYPE SIMPLE
-    PATTERN 1 1 END
-END
 
-SYMBOL
-    NAME "track"
-    TYPE SIMPLE
-    PATTERN
-        5 5 
-    END
-END
-
-SYMBOL
-    NAME "tunnel"
-    TYPE SIMPLE
-    PATTERN 2 2 END
-END
-
-SYMBOL
-    NAME "dash"
-    TYPE SIMPLE
-    PATTERN 2 2 END
-END
-
-SYMBOL
-    NAME "butt"
-    TYPE SIMPLE
-    LINECAP butt
-END
 
 #include "landuse.map"
 #include "highways_5k.map"
@@ -166,7 +130,6 @@ SYMBOL
  TYPE TRUETYPE
  FONT scb
  CHARACTER "&#8594;"
- GAP -150
 END
 
 LAYER
@@ -185,6 +148,7 @@ LAYER
     CLASS
         STYLE
             SYMBOL "oneway"
+            GAP -150
             SIZE 11
             COLOR _oneway_clr
         END

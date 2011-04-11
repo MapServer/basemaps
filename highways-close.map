@@ -12,6 +12,7 @@ LAYER
         END
         STYLE
             SYMBOL rail
+            GAP -3
             SIZE _railway_tie_size
             COLOR _railway_ol_clr
         END
@@ -31,7 +32,7 @@ LAYER
         EXPRESSION ("[highway]"="motorway" and "[tunnel]"="yes")
         STYLE
             WIDTH _motorway_width
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             OUTLINEWIDTH 1
             OUTLINECOLOR _motorway_tunnel_ol_clr
         END
@@ -43,7 +44,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="motorway_link" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _motorway_link_width
             OUTLINECOLOR _motorway_tunnel_ol_clr
             OUTLINEWIDTH 1
@@ -56,7 +57,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="trunk" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _trunk_width
             OUTLINECOLOR _trunk_tunnel_ol_clr
             OUTLINEWIDTH 1
@@ -69,7 +70,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="trunk_link" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _trunk_link_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _trunk_tunnel_ol_clr
@@ -82,7 +83,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="primary_link" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _primary_link_width
             OUTLINECOLOR _primary_tunnel_ol_clr
             OUTLINEWIDTH 1
@@ -95,7 +96,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="primary" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _primary_width
             OUTLINECOLOR _primary_tunnel_ol_clr
             OUTLINEWIDTH 1
@@ -108,7 +109,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="secondary_link" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _secondary_link_width
             OUTLINECOLOR _secondary_tunnel_ol_clr
             OUTLINEWIDTH 1
@@ -121,7 +122,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="secondary" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _secondary_width
             OUTLINECOLOR _secondary_tunnel_ol_clr
         END
@@ -133,7 +134,7 @@ LAYER
     CLASS
         EXPRESSION ("[highway]"="tertiary" and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _tertiary_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _tertiary_tunnel_ol_clr
@@ -146,7 +147,7 @@ LAYER
     CLASS
         EXPRESSION (('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service') and "[tunnel]"="yes")
         STYLE
-            SYMBOL "tunnel"
+            PATTERN 2 2 END
             WIDTH _other_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _other_tunnel_ol_clr
@@ -357,7 +358,7 @@ LAYER
             OUTLINECOLOR _track_ol_clr
         END
         STYLE
-            SYMBOL "track"
+            PATTERN 5 5 END
             WIDTH _track_width
             COLOR _track_clr
         END
@@ -378,7 +379,7 @@ LAYER
     CLASS
         EXPRESSION 'footway'
         STYLE
-            SYMBOL "path"
+            PATTERN 1 1 END
             WIDTH _path_width
             COLOR _path_clr
         END
