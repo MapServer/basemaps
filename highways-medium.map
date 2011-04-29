@@ -21,7 +21,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "roadsclose"
-    DATA "way from (select way, osm_id ,highway,ref, name, tunnel from OSM_PREFIX_line where highway is not null order by priority desc) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way, osm_id ,highway,ref, name, tunnel from OSM_PREFIX_line where highway is not null order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     CLASSITEM "highway"
 

@@ -5,8 +5,6 @@ update osm_point set name = replace(name,'-',' ');
 grant SELECT on osm_line to "openstreetmap";
 grant SELECT on osm_point to "openstreetmap";
 grant SELECT on osm_polygon to "openstreetmap";
-create or replace view osm_polygon_view as select osm_id, "natural" as nature, landuse, waterway, highway, name, way from osm_polygon;
-grant select on osm_polygon_view to "openstreetmap" ;
 
 -- correct a few common typos
 update osm_line set tunnel='yes' where tunnel='true';
@@ -32,26 +30,3 @@ create index osm_polygon_waterway_idx on osm_polygon(waterway);
 create index osm_polygon_natural_idx on osm_polygon("natural");
 create index osm_point_place_idx on osm_point(place);
 create index osm_line_zorder_idx on osm_line(z_order);
-
-
-alter table osm_line add column priority integer;
-update osm_line set priority = 10 where highway='motorway';
-update osm_line set priority = 20 where highway='trunk';
-update osm_line set priority = 26 where highway='trunk_link';
-update osm_line set priority = 25 where highway='motorway_link';
-update osm_line set priority = 30 where highway='primary';
-update osm_line set priority=35 where highway='primary_link';
-
-update osm_line set priority=40 where highway='secondary';
-update osm_line set priority=45 where highway='secondary_link';
-
-update osm_line set priority=50 where highway='tertiary';
-update osm_line set priority=65 where highway='tertiary_link';
-
-update osm_line set priority=70 where highway='residential';
-update osm_line set priority=75 where highway='service';
-update osm_line set priority=80 where highway='track';
-update osm_line set priority=85 where highway='pedestrian';
-
-create index line_priority_idx on osm_line(priority);
-

@@ -162,17 +162,16 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from OSM_PREFIX_polygon_view where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way,osm_id ,\"natural\",landuse ,highway, name from OSM_PREFIX_polygon where landuse is not null or \"natural\"='wood' or highway='pedestrian') as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
     MAXSCALEDENOM 5000010   
     LABELITEM "name"
     CLASS
-        EXPRESSION ('[nature]'='wood' or '[landuse]'="forest")
+        EXPRESSION ('[natural]'='wood' or '[landuse]'="forest")
         STYLE
             COLOR _forest_clr
-            OUTLINECOLOR _forest_clr
             OUTLINEWIDTH 0.3
         END
         LABEL
@@ -192,7 +191,6 @@ LAYER
         EXPRESSION ('[landuse]'='grass' or '[landuse]'='farm' or '[landuse]'='greenfield' or '[landuse]'='allotments' or '[landuse]'='meadow' or '[landuse]'='field')
         STYLE
             COLOR _nature_clr
-            OUTLINECOLOR _nature_clr
             OUTLINEWIDTH 0.3
         END
     END
@@ -224,7 +222,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature , name from OSM_PREFIX_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way,osm_id ,\"natural\" , name from OSM_PREFIX_polygon where \"natural\"='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     MAXSCALEDENOM 50000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"

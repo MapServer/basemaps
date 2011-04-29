@@ -25,15 +25,8 @@ WEB
     END
 END
 
-DEBUG 10
 CONFIG "PROJ_LIB" _proj_lib
-CONFIG "MS_ERRORFILE" "stderr"
 PROJECTION
-##900913
-##"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
-##"init=epsg:27572"
-##"+proj=lcc +lat_1=46.8 +lat_0=46.8 +lon_0=0 +k_0=0.99987742 +x_0=600000 +y_0=2200000 +a=6378249.2 +b=6356515 +towgs84=-168,-60,320,0,0,0,0 +pm=paris +units=m +no_defs"
-##"init=epsg:OSM_SRID"
 "init=epsg:OSM_SRID"
 END
 
@@ -51,7 +44,6 @@ LAYER
     CLASS
         STYLE
             COLOR _bg_clr
-            OUTLINECOLOR _bg_clr
         END
     END
 END
@@ -69,7 +61,6 @@ LAYER
     CLASS
         STYLE
             COLOR _bg_clr
-            OUTLINECOLOR _bg_clr
         END
     END
 END

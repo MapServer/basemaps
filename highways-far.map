@@ -2,7 +2,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "roadsfar"
-    DATA "way from (select way, osm_id ,highway,ref from OSM_PREFIX_line where highway in ('motorway','trunk','primary') order by priority desc) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way, osm_id ,highway,ref from OSM_PREFIX_line where highway in ('motorway','trunk','primary') order by z_order) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "ref"
     CLASSITEM "highway"
     CLASS
