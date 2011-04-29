@@ -29,6 +29,7 @@
 #define _display_tertiary_single
 #define _tertiary_width 0.5
 
+#define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads_gen1 order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
 #include "highways-medium.map"
 
 

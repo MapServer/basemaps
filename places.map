@@ -5,10 +5,10 @@ LAYER
     NAME "places"
     DATA _places_data
     LABELITEM 'name'
-    CLASSITEM 'place'
+    CLASSITEM 'type'
 #ifdef _display_capitals
     CLASS
-        EXPRESSION ("[place]"="city" and "[capital]"="yes")
+        EXPRESSION 'capital'
         #ifdef _display_place_symbol
         STYLE
             SIZE _capital_size
@@ -126,7 +126,7 @@ LAYER
 #endif
 #ifdef _display_villages
     CLASS
-        EXPRESSION ('[place]'='village')
+        EXPRESSION 'village'
         #ifdef _display_place_symbol
         STYLE
             SYMBOL "citycircle"
@@ -158,7 +158,7 @@ LAYER
 #endif
 #ifdef _display_other_places
     CLASS
-        EXPRESSION ('[place]'='suburb' or '[place]'='hamlet')
+        EXPRESSION ('[type]'='suburb' or '[type]'='hamlet')
         #ifdef _display_place_symbol
         STYLE
             SIZE _other_place_size

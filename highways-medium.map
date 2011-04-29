@@ -2,7 +2,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "railways"
-    DATA "way from (select way, osm_id ,railway, name from OSM_PREFIX_line where railway='rail') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry, osm_id from OSM_PREFIX_railways_gen1) as foo using unique osm_id using srid=OSM_SRID"
     CLASS
         STYLE
             WIDTH _railway_width
@@ -21,9 +21,9 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "roadsclose"
-    DATA "way from (select way, osm_id ,highway,ref, name, tunnel from OSM_PREFIX_line where highway is not null order by priority desc) as foo using unique osm_id using srid=OSM_SRID"
+    DATA _data_expr
     LABELITEM "name"
-    CLASSITEM "highway"
+    CLASSITEM "type"
 
     CLASS
         EXPRESSION "motorway"
@@ -240,7 +240,7 @@ LAYER
 
 #ifdef _display_other
     CLASS
-        EXPRESSION ('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service' or '[highway]'='road')
+        EXPRESSION ('[type]'='unclassified' or '[type]'='residential' or '[type]'='service' or '[type]'='road')
         STYLE
             WIDTH _other_width
             COLOR _other_single_clr

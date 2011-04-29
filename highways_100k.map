@@ -36,7 +36,7 @@
 #define _track_width 1
 #define _track_lbl_size 6
 
-
+#define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
 #include "highways-medium.map"
 
 

@@ -8,168 +8,13 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,landuse, name from OSM_PREFIX_polygon where landuse is not null) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
-    CLASSITEM "landuse"
     LABELITEM "name"
     MAXSCALEDENOM 1000010   
     CLASS
-        EXPRESSION ('[landuse]'='industrial' or '[landuse]'='commercial' or '[landuse]'='airport' or '[landuse]'='brownfield' or '[landuse]'='military' or '[landuse]'='railway')
-        STYLE
-            COLOR _industrial_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 2
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-    CLASS
-        EXPRESSION ('[landuse]'='residential')
-        STYLE
-            COLOR _residential_clr
-        END
-    END
-    
-END
-
-LAYER
-    TYPE POLYGON
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    GROUP "default"
-    NAME "landuse_layer2"
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,leisure , landuse, name from OSM_PREFIX_polygon where leisure='park' or leisure='golf_course' or landuse='recreation_ground' or landuse='cemetery') as foo using unique osm_id using srid=OSM_SRID"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    LABELITEM "name"
-    MAXSCALEDENOM 500000
- 
- CLASS
-        EXPRESSION ('[landuse]'='cemetery')
-        STYLE
-            COLOR _cemetery_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 2
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
- END
- 
- CLASS
-        STYLE
-            COLOR _park_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR _park_lbl_clr
-            OUTLINECOLOR 255 255 255
-            PRIORITY 2
-            POSITION cc
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-  
-END
-
-LAYER
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    GROUP "default"
-    NAME "landuse_layer3"
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id,amenity,aeroway, name from OSM_PREFIX_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "name"
-    CLASSITEM "amenity"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 110000
-    CLASS
-        EXPRESSION "hospital"
-        STYLE
-            COLOR _hospital_clr
-        END
-         LABEL
-          _default_lbl
-            MAXSCALEDENOM 15000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-    CLASS
-        EXPRESSION ("[amenity]"="parking" or "[aeroway]"="apron")
-        STYLE
-            COLOR _parking_clr
-        END
-    END
-    CLASS
-        EXPRESSION ("[amenity]"="school" or "[amenity]"="college" or "[amenity]"="university" )
-        STYLE
-            COLOR _education_clr
-        END
-        LABEL
-            _default_lbl
-            MAXSCALEDENOM 15000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-END
-
-LAYER
-    TYPE POLYGON
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    NAME "landuse_layer4"
-    GROUP "default"
-    CONNECTIONTYPE POSTGIS
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature,landuse ,highway, name from OSM_PREFIX_polygon_view where landuse is not null or nature='wood' or highway='pedestrian') as foo using unique osm_id using srid=OSM_SRID"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    CLASSITEM "landuse"
-    MAXSCALEDENOM 5000010   
-    LABELITEM "name"
-    CLASS
-        EXPRESSION ('[nature]'='wood' or '[landuse]'="forest")
+        EXPRESSION ('[type]'='wood' or '[type]'="forest")
         STYLE
             COLOR _forest_clr
             OUTLINECOLOR _forest_clr
@@ -189,7 +34,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ('[landuse]'='grass' or '[landuse]'='farm' or '[landuse]'='greenfield' or '[landuse]'='allotments' or '[landuse]'='meadow' or '[landuse]'='field')
+        EXPRESSION ('[type]'='grass' or '[type]'='farm' or '[type]'='greenfield' or '[type]'='allotments' or '[type]'='meadow' or '[type]'='field')
         STYLE
             COLOR _nature_clr
             OUTLINECOLOR _nature_clr
@@ -197,7 +42,7 @@ LAYER
         END
     END
   CLASS
-        EXPRESSION ('[highway]'='pedestrian')
+        EXPRESSION ('[type]'='pedestrian')
         STYLE
             COLOR _pedestrian_clr
         END
@@ -212,6 +57,106 @@ LAYER
           ALIGN CENTER
         END
     END
+    CLASS
+        EXPRESSION ('[type]'='industrial' or '[type]'='commercial' or '[type]'='airport' or '[type]'='brownfield' or '[type]'='military' or '[type]'='railway')
+        STYLE
+            COLOR _industrial_clr
+        END
+        LABEL
+        _default_lbl
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]'='residential')
+        STYLE
+            COLOR _residential_clr
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]'='cemetery')
+        STYLE
+            COLOR _cemetery_clr
+        END
+        LABEL
+        _default_lbl
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+ 
+    CLASS
+        EXPRESSION ('[type]'='park' or '[type]'='golf_course')
+        STYLE
+            COLOR _park_clr
+        END
+        LABEL
+        _default_lbl
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR _park_lbl_clr
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]' = "hospital")
+        STYLE
+            COLOR _hospital_clr
+        END
+         LABEL
+          _default_lbl
+            MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ("[type]"="parking")
+        STYLE
+            COLOR _parking_clr
+        END
+    END
+    CLASS
+        EXPRESSION ("[type]"="school" or "[type]"="college" or "[type]"="university" )
+        STYLE
+            COLOR _education_clr
+        END
+        LABEL
+            _default_lbl
+            MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    
 END
 
 LAYER
@@ -220,11 +165,11 @@ LAYER
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    NAME "landuse_layer5"
+    NAME "waterarea"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,nature , name from OSM_PREFIX_polygon_view where nature='water' or landuse='basin' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry,osm_id ,name from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     MAXSCALEDENOM 50000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -249,12 +194,12 @@ END
 
 LAYER
     TYPE LINE
-    NAME "landuse_layer6"
+    NAME "waterway"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'way from (select way,waterway,osm_id from OSM_PREFIX_line where waterway is not null) as foo using unique osm_id using srid=OSM_SRID'
-    CLASSITEM "waterway"
+    DATA 'geometry from (select geometry,osm_id,type from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID'
+    CLASSITEM "type"
     SIZEUNITS meters
     MAXSCALEDENOM 1500000
     CLASS

@@ -138,7 +138,7 @@ LAYER
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    GROUP "default"
+    GROUP "defaultoff"
     NAME "oneways"
     CONNECTIONTYPE postgis
     CONNECTION _db_connection

@@ -2,7 +2,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "railways"
-    DATA "way from (select way, osm_id ,railway, name from OSM_PREFIX_line where railway='rail') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry, osm_id from OSM_PREFIX_railways) as foo using unique osm_id using srid=OSM_SRID"
     CLASS
         STYLE
             WIDTH _railway_width
@@ -25,11 +25,11 @@ LAYER
     NAME "roadsclose"
     DATA _data_expr
     LABELITEM "name"
-    CLASSITEM "highway"
+    CLASSITEM "type"
 
 #ifdef _display_tunnels
     CLASS
-        EXPRESSION ("[highway]"="motorway" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="motorway" and "[tunnel]"="yes")
         STYLE
             WIDTH _motorway_width
             PATTERN 2 2 END
@@ -42,7 +42,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="motorway_link" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="motorway_link" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _motorway_link_width
@@ -55,7 +55,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="trunk" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="trunk" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _trunk_width
@@ -68,7 +68,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="trunk_link" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="trunk_link" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _trunk_link_width
@@ -81,7 +81,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="primary_link" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="primary_link" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _primary_link_width
@@ -94,7 +94,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="primary" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="primary" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _primary_width
@@ -107,7 +107,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="secondary_link" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="secondary_link" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _secondary_link_width
@@ -120,7 +120,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="secondary" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="secondary" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _secondary_width
@@ -132,7 +132,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[highway]"="tertiary" and "[tunnel]"="yes")
+        EXPRESSION ("[type]"="tertiary" and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _tertiary_width
@@ -145,7 +145,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION (('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service') and "[tunnel]"="yes")
+        EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service') and "[tunnel]"="yes")
         STYLE
             PATTERN 2 2 END
             WIDTH _other_width
@@ -327,7 +327,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ('[highway]'='unclassified' or '[highway]'='residential' or '[highway]'='service' or '[highway]'='road')
+        EXPRESSION ('[type]'='unclassified' or '[type]'='residential' or '[type]'='service' or '[type]'='road')
         STYLE
             WIDTH _other_width
             OUTLINEWIDTH 1
