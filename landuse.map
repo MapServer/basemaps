@@ -17,8 +17,6 @@ LAYER
         EXPRESSION ('[type]'='wood' or '[type]'="forest")
         STYLE
             COLOR _forest_clr
-            OUTLINECOLOR _forest_clr
-            OUTLINEWIDTH 0.3
         END
         LABEL
             MAXSCALEDENOM 600000
@@ -37,8 +35,6 @@ LAYER
         EXPRESSION ('[type]'='grass' or '[type]'='farm' or '[type]'='greenfield' or '[type]'='allotments' or '[type]'='meadow' or '[type]'='field')
         STYLE
             COLOR _nature_clr
-            OUTLINECOLOR _nature_clr
-            OUTLINEWIDTH 0.3
         END
     END
   CLASS

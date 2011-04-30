@@ -1,4 +1,4 @@
-all: world_bnd_m.shp 10m_populated_places.shp 10m_admin_0_boundary_lines_land.shp 110m_admin_0_boundary_lines.shp processed_p.shp shoreline_300.shp
+all: TM_WORLD_BORDERS-0.3.shp world_bnd_m.shp 10m_populated_places.shp 10m_admin_0_boundary_lines_land.shp 110m_admin_0_boundary_lines.shp processed_p.shp shoreline_300.shp
 
 processed_p.shp: processed_p.tar.bz2
 	tar xmjf processed_p.tar.bz2
@@ -16,6 +16,10 @@ world_bnd_m.shp: world_boundaries-spherical.tgz
 110m_admin_0_boundary_lines.shp: 110m-admin-0-boundary-lines.zip
 	unzip 110m-admin-0-boundary-lines.zip
 	touch 110m_admin_0_boundary_lines.shp
+
+TM_WORLD_BORDERS-0.3.shp: TM_WORLD_BORDERS-0.3.zip
+	unzip TM_WORLD_BORDERS-0.3.zip
+	touch TM_WORLD_BORDERS-0.3.shp
 
 10m_admin_0_boundary_lines_land.shp: 10m-admin-0-boundary-lines-land.zip
 	unzip 10m-admin-0-boundary-lines-land.zip
@@ -38,3 +42,6 @@ world_boundaries-spherical.tgz:
 
 shoreline_300.tar.bz2:
 	wget http://tile.openstreetmap.org/shoreline_300.tar.bz2
+
+TM_WORLD_BORDERS-0.3.zip:
+	wget http://thematicmapping.org/downloads/TM_WORLD_BORDERS-0.3.zip
