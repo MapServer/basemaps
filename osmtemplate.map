@@ -30,6 +30,22 @@ PROJECTION
 "init=epsg:OSM_SRID"
 END
 
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    GROUP "default"
+    NAME "land"
+    PROJECTION
+        "init=epsg:4326"
+    END
+    MINSCALEDENOM 100000000
+    DATA "data/TM_WORLD_BORDERS-0.3.shp"
+    CLASS
+        STYLE
+            COLOR _bg_clr
+        END
+    END
+END
 
 LAYER
     TYPE POLYGON
@@ -39,6 +55,7 @@ LAYER
     PROJECTION
         "init=epsg:900913"
     END
+    MAXSCALEDENOM 100000000
     MINSCALEDENOM 5000000
     DATA "data/shoreline_300"
     CLASS
