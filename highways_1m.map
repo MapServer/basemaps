@@ -22,6 +22,15 @@
 #define _primary_lbl_size 6
 #define _primary_lbl_ref
 
+#ifdef _no_road_outline
+ #define _secondary_clr_bak _secondary_clr
+ #undef _secondary_clr
+ #define _secondary_clr _secondary_single_clr
+ #define _primary_clr_bak _primary_clr
+ #undef _primary_clr
+ #define _primary_clr _primary_single_clr
+#endif
+
 #define _secondary_width 0.5
 #define _secondary_link_width 0.5
 #define _secondary_lbl_size 6
@@ -29,7 +38,15 @@
 #define _display_tertiary_single
 #define _tertiary_width 0.5
 
-#define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads_gen1 order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
+#define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"
 #include "highways-medium.map"
 
 
+#ifdef _no_road_outline
+ #undef _secondary_clr
+ #define _secondary_clr _secondary_clr_bak
+ #undef _secondary_clr_bak
+ #undef _primary_clr
+ #define _primary_clr _primary_clr_bak
+ #undef _primary_clr_bak
+#endif

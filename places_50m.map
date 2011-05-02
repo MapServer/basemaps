@@ -7,11 +7,14 @@
     minscaledenom _minscale\
 
 
-#define _places_data "geometry from (select geometry,osm_id ,type,  name from OSM_PREFIX_places where type='capital' or type='country' order by population asc) as foo using unique osm_id using srid=OSM_SRID"
+#define _places_data "geometry from (select geometry,osm_id ,type,  name from OSM_PREFIX_places where type='country' order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"
 
 
 #define _display_countries
-#define _country_lbl_size 7
+#define _country_lbl_size 8
+
+#define _display_capitals
+#define _capital_lbl_size 6
 
 #include "places.map"
 

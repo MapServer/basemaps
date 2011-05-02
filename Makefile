@@ -1,12 +1,12 @@
 CPP=cpp
 
-OSM_PREFIX=osm_new_
+OSM_PREFIX=osm_
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857"
 
 template=osmtemplate.map
-theme=mapserver
+theme=thematic
 includes=landuse.map buildings.map\
 		 highways_5k.map highways_10k.map highways_25k.map highways_50k.map \
 		 highways_100k.map highways_250k.map highways_500k.map highways_1m.map\

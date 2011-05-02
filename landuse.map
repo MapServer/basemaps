@@ -8,11 +8,14 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+       where type in ('forest','pedestrian','cemetery','industrial','commercial','brownfield','residential','school','college','university',\
+             'military','park','golf_course','hospital','parking')\
+       order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
-    MAXSCALEDENOM 1000010   
+    MAXSCALEDENOM 10000010   
     CLASS
         EXPRESSION ('[type]'='wood' or '[type]'="forest")
         STYLE
@@ -31,13 +34,13 @@ LAYER
             ALIGN CENTER
         END
     END
-    CLASS
-        EXPRESSION ('[type]'='grass' or '[type]'='farm' or '[type]'='greenfield' or '[type]'='allotments' or '[type]'='meadow' or '[type]'='field')
-        STYLE
-            COLOR _nature_clr
-        END
-    END
-  CLASS
+## CLASS
+##       EXPRESSION ('[type]'='grass' or '[type]'='farm' or '[type]'='greenfield' or '[type]'='allotments' or '[type]'='meadow' or '[type]'='field')
+##       STYLE
+##           COLOR _nature_clr
+##       END
+##   END
+   CLASS
         EXPRESSION ('[type]'='pedestrian')
         STYLE
             COLOR _pedestrian_clr
@@ -166,7 +169,6 @@ LAYER
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
     DATA "geometry from (select geometry,osm_id ,name from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
-    PROCESSING "LABEL_NO_CLIP=ON"
     MAXSCALEDENOM 50000010   
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
@@ -194,14 +196,14 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'geometry from (select geometry,osm_id,type from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID'
+    DATA 'geometry from (select geometry,name,osm_id,type from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID'
     CLASSITEM "type"
     SIZEUNITS meters
     MAXSCALEDENOM 1500000
+    LABELITEM "name"
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASS
         EXPRESSION "river"
@@ -209,6 +211,16 @@ LAYER
             COLOR _water_clr 
             WIDTH 30
             MINWIDTH 0.5
+        END
+        LABEL
+          _default_lbl
+          MAXSCALEDENOM 110000
+          MINDISTANCE 400
+          SIZE 8
+          MINSIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          ANGLE FOLLOW
         END
     END
     CLASS

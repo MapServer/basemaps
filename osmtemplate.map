@@ -19,9 +19,14 @@ WEB
     END
 END
 
-DEBUG 10
-CONFIG "PROJ_LIB" _proj_lib
+#define _debug 10
+
+DEBUG _debug
+#if _debug > 0 || _layerdebug > 0
 CONFIG "MS_ERRORFILE" "stderr"
+#endif
+
+CONFIG "PROJ_LIB" _proj_lib
 PROJECTION
 ##900913
 ##"+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
@@ -35,6 +40,7 @@ LAYER
     TYPE POLYGON
     STATUS ON
     GROUP "default"
+DEBUG _layerdebug
     NAME "land"
     PROJECTION
         "init=epsg:4326"
@@ -53,6 +59,7 @@ LAYER
     STATUS ON
     GROUP "default"
     NAME "land"
+DEBUG _layerdebug
     PROJECTION
         "init=epsg:900913"
     END
@@ -76,6 +83,7 @@ LAYER
     END
     MAXSCALEDENOM 5000000
     DATA "data/processed_p"
+DEBUG _layerdebug
     CLASS
         STYLE
             COLOR _bg_clr
@@ -83,17 +91,32 @@ LAYER
     END
 END
 
+#include "landuse.map"
+
 LAYER
    TYPE LINE
    STATUS ON
    GROUP "default"
    NAME "borders"
-   MINSCALEDENOM 5000000
    DATA "data/10m_admin_0_boundary_lines_land"
+DEBUG _layerdebug
     CLASS
+   MINSCALEDENOM 10000000
         STYLE
             WIDTH 0.5
             COLOR _border_clr
+        END
+    END
+    CLASS
+        STYLE
+            WIDTH 5
+            OPACITY 50
+            COLOR _border_clr
+        END
+        STYLE
+            WIDTH 1
+            pattern 6 6 2 6 end
+            COLOR _border_close_clr
         END
     END
 END
@@ -108,7 +131,6 @@ END
 
 
 
-#include "landuse.map"
 #include "highways_5k.map"
 #include "highways_10k.map"
 #include "highways_25k.map"
@@ -176,5 +198,31 @@ END
 #include "places_25m.map"
 #include "places_50m.map"
 
+LAYER
+   TYPE LINE
+   STATUS ON
+   GROUP "defaultoff"
+   NAME "admin_bnd"
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA "geometry from (select geometry, osm_id, name from osm_new_admin) as foo using unique osm_id using srid=OSM_SRID"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+DEBUG _layerdebug
+    CLASS
+        STYLE
+            WIDTH 0.5
+            COLOR 255 0 0
+        END
+        LABEL
+         SIZE small
+         COLOR 255 0 0
+        END
+    END
+END
 
 END

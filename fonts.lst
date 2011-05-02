@@ -1,2 +1,12 @@
+#sc fonts/unifont.TTF
+#scb fonts/unifont.TTF
+#sc fonts/ARIALUNI.TTF
+#scb fonts/ARIALUNI.TTF
+#sc fonts/Everson-Mono.ttf
+#scb fonts/Everson-Mono.ttf
+#sc fonts/TITUSCBZ.TTF
+#scb fonts/TITUSCBZ.TTF
 sc fonts/DejaVuSansCondensed.ttf
 scb fonts/DejaVuSansCondensed-Bold.ttf
+#sc fonts/Cyberbit.ttf
+#scb fonts/Cyberbit.ttf

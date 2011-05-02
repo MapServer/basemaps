@@ -3,7 +3,7 @@ LAYER
     TYPE LINE
     NAME "roadsfar"
     DATA "geometry from (select geometry, osm_id ,type,ref from OSM_PREFIX_roads_gen0 where type in ('motorway','trunk','primary') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "ref"
+##    LABELITEM "ref"
     CLASSITEM "type"
     CLASS
         EXPRESSION "motorway"

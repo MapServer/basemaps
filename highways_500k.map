@@ -22,6 +22,12 @@
 #define _primary_link_width 1
 #define _primary_lbl_size 7
 
+#ifdef _no_road_outline
+ #define _primary_clr_bak _primary_clr
+ #undef _primary_clr
+ #define _primary_clr _primary_single_clr
+#endif
+
 #define _secondary_width 0.8
 #define _secondary_link_width 0.8
 #define _secondary_lbl_size 7
@@ -38,3 +44,8 @@
 #include "highways-medium.map"
 
 
+#ifdef _no_road_outline
+ #undef _primary_clr
+ #define _primary_clr _primary_clr_bak
+ #undef _primary_clr_bak
+#endif

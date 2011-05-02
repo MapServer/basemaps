@@ -7,7 +7,7 @@
     minscaledenom _minscale\
 
 
-#define _places_data "geometry from (select geometry,osm_id ,type ,name from OSM_PREFIX_places order by population asc ) as foo using unique osm_id using srid=OSM_SRID"
+#define _places_data "geometry from (select geometry,osm_id ,type ,name from OSM_PREFIX_places order by population asc nulls first ) as foo using unique osm_id using srid=OSM_SRID"
 #define _display_place_symbol
 
 

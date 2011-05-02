@@ -4,7 +4,8 @@ LAYER
     NAME "railways"
     DATA "geometry from (select geometry, osm_id from OSM_PREFIX_railways) as foo using unique osm_id using srid=OSM_SRID"
     CLASS
-        STYLE
+#ifndef _no_road_outline
+       STYLE
             WIDTH _railway_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _railway_ol_clr
@@ -16,6 +17,13 @@ LAYER
             SIZE _railway_tie_size
             COLOR _railway_ol_clr
         END
+#else
+        STYLE
+         WIDTH _railway_width
+         COLOR _railway_clr
+         PATTERN 2 2 END
+        END
+#endif
     END
 END
 
@@ -30,12 +38,14 @@ LAYER
 #ifdef _display_tunnels
     CLASS
         EXPRESSION ("[type]"="motorway" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             WIDTH _motorway_width
             PATTERN 2 2 END
             OUTLINEWIDTH 1
             OUTLINECOLOR _motorway_tunnel_ol_clr
         END
+#endif
         STYLE
             WIDTH _motorway_width
             COLOR _motorway_tunnel_clr
@@ -43,12 +53,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="motorway_link" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _motorway_link_width
             OUTLINECOLOR _motorway_tunnel_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _motorway_link_width
             COLOR _motorway_tunnel_clr
@@ -56,12 +68,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="trunk" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _trunk_width
             OUTLINECOLOR _trunk_tunnel_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _trunk_width
             COLOR _trunk_tunnel_clr
@@ -69,12 +83,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="trunk_link" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _trunk_link_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _trunk_tunnel_ol_clr
         END
+#endif
         STYLE
             WIDTH _trunk_link_width
             COLOR _trunk_tunnel_clr
@@ -82,12 +98,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="primary_link" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _primary_link_width
             OUTLINECOLOR _primary_tunnel_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _primary_link_width
             COLOR _primary_tunnel_clr
@@ -95,12 +113,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="primary" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _primary_width
             OUTLINECOLOR _primary_tunnel_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _primary_width
             COLOR _primary_tunnel_clr
@@ -108,12 +128,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="secondary_link" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _secondary_link_width
             OUTLINECOLOR _secondary_tunnel_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _secondary_link_width
             COLOR _secondary_tunnel_clr
@@ -121,11 +143,13 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="secondary" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _secondary_width
             OUTLINECOLOR _secondary_tunnel_ol_clr
         END
+#endif
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_tunnel_clr
@@ -133,12 +157,14 @@ LAYER
     END
     CLASS
         EXPRESSION ("[type]"="tertiary" and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _tertiary_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _tertiary_tunnel_ol_clr
         END
+#endif
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_tunnel_clr
@@ -146,12 +172,14 @@ LAYER
     END
     CLASS
         EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service') and "[tunnel]"="yes")
+#ifndef _no_road_outline
         STYLE
             PATTERN 2 2 END
             WIDTH _other_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _other_tunnel_ol_clr
         END
+#endif
         STYLE
             WIDTH _other_width
             COLOR _other_tunnel_clr
@@ -162,11 +190,13 @@ LAYER
     CLASS
         EXPRESSION "motorway"
         TEXT ("[ref]")
+#ifndef _no_road_outline
         STYLE
             WIDTH _motorway_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _motorway_ol_clr
         END
+#endif
         STYLE
             WIDTH _motorway_width
             COLOR _motorway_clr
@@ -188,11 +218,13 @@ LAYER
     END
     CLASS
         EXPRESSION "motorway_link"
+#ifndef _no_road_outline
         STYLE
             WIDTH _motorway_link_width
             OUTLINECOLOR _motorway_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _motorway_link_width
             COLOR _motorway_clr
@@ -201,11 +233,13 @@ LAYER
     CLASS
         EXPRESSION "trunk"
         TEXT ("[ref]")
+#ifndef _no_road_outline
         STYLE
             WIDTH _trunk_width 
             OUTLINECOLOR _trunk_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _trunk_width 
             COLOR _trunk_clr
@@ -226,11 +260,13 @@ LAYER
     END
     CLASS
         EXPRESSION "trunk_link"
+#ifndef _no_road_outline
         STYLE
             WIDTH _trunk_link_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _trunk_ol_clr
         END
+#endif
         STYLE
             WIDTH _trunk_link_width
             COLOR _trunk_clr
@@ -238,11 +274,13 @@ LAYER
     END
     CLASS
         EXPRESSION "primary_link"
+#ifndef _no_road_outline
         STYLE
             WIDTH _primary_link_width
             OUTLINECOLOR _primary_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _primary_link_width
             COLOR _primary_clr
@@ -250,11 +288,13 @@ LAYER
     END
     CLASS
         EXPRESSION "primary"
+#ifndef _no_road_outline
         STYLE
             WIDTH _primary_width 
             OUTLINECOLOR _primary_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _primary_width 
             COLOR _primary_clr
@@ -272,11 +312,13 @@ LAYER
     END
     CLASS
         EXPRESSION "secondary_link"
+#ifndef _no_road_outline
         STYLE
             WIDTH _secondary_link_width
             OUTLINECOLOR _secondary_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _secondary_link_width
             COLOR _secondary_clr 
@@ -284,11 +326,13 @@ LAYER
     END
     CLASS
         EXPRESSION "secondary"
+#ifndef _no_road_outline
         STYLE
             WIDTH _secondary_width
             OUTLINECOLOR _secondary_ol_clr
             OUTLINEWIDTH 1
         END
+#endif
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -306,11 +350,13 @@ LAYER
     END
     CLASS
         EXPRESSION "tertiary"
+#ifndef _no_road_outline
         STYLE
             WIDTH _tertiary_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _tertiary_ol_clr
         END
+#endif
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
@@ -328,11 +374,13 @@ LAYER
     END
     CLASS
         EXPRESSION ('[type]'='unclassified' or '[type]'='residential' or '[type]'='service' or '[type]'='road')
+#ifndef _no_road_outline
         STYLE
             WIDTH _other_width
             OUTLINEWIDTH 1
             OUTLINECOLOR _other_ol_clr
         END
+#endif
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -352,11 +400,13 @@ LAYER
     END
     CLASS
         EXPRESSION "track"
+#ifndef _no_road_outline
         STYLE
             WIDTH _track_width
             OUTLINEWIDTH 1.5
             OUTLINECOLOR _track_ol_clr
         END
+#endif
         STYLE
             PATTERN 5 5 END
             WIDTH _track_width
