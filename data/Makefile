@@ -1,4 +1,4 @@
-all: TM_WORLD_BORDERS-0.3.shp 10m_admin_0_boundary_lines_land.shp processed_p.shp shoreline_300.shp gadm_lev2.shp gadm_lev1.shp
+all: TM_WORLD_BORDERS-0.3.shp 10m_admin_0_boundary_lines_land.shp processed_p.shp shoreline_300.shp gadm1_lev2.shp gadm1_lev1.shp
 
 processed_p.shp: processed_p.tar.bz2
 	tar xmjf processed_p.tar.bz2
