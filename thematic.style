@@ -1,14 +1,14 @@
 #define _debug 0
 #define _layerdebug 0
-#define _bg_clr "#EDEBE6"
+#define _bg_clr "#E8E6E1"
 #define _border_clr "#cDcBc6"
 #define _border_close_clr "#8D8B86"
 
 #define _forest_clr "#C2D1B2"
 #define _forest_lbl_clr "#3D6035"
 #define _nature_clr _forest_clr
-#define _industrial_clr "#EBE5D9"
-#define _residential_clr "#F6F1E6"
+#define _industrial_clr "#d1d1d1"
+#define _residential_clr "#E3DED4"
 #define _water_clr "#B3C6D4"
 #define _park_clr "#DCDCB4"
 #define _park_lbl_clr _forest_lbl_clr
@@ -17,7 +17,7 @@
 #define _building_clr "#AB9E89"
 #define _cemetery_clr _industrial_clr
 
-
+#define _tunnel_opacity 30
 #define _railway_ol_clr "#555554"
 #define _railway_clr "#777777"
 
@@ -47,8 +47,8 @@
 #define _parking_clr _industrial_clr
 #define _education_clr "#DED1AB"
 
-#define _pedestrian_clr "#FAFAF5"
-#define _pedestrian_ol_clr "#B7AC9A"
+#define _pedestrian_clr "#F2f2ed"
+#define _pedestrian_ol_clr _pedestrian_clr
 
 #define _motorway_clr "#ffffff"
 #define _motorway_ol_clr "#24277A"

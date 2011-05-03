@@ -2,8 +2,9 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "railways"
-    DATA "geometry from (select geometry, osm_id from OSM_PREFIX_railways_gen1 where type='rail') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry, osm_id,tunnel from OSM_PREFIX_railways_gen1 where type='rail') as foo using unique osm_id using srid=OSM_SRID"
     CLASS
+     EXPRESSION([tunnel]=0)
 #ifndef _no_road_outline
         STYLE
             WIDTH _railway_width
@@ -15,6 +16,22 @@ LAYER
             PATTERN 2 2 END
             WIDTH _railway_width
             COLOR _railway_clr
+        END
+    END
+    CLASS
+#ifndef _no_road_outline
+        STYLE
+            WIDTH _railway_width
+            OUTLINEWIDTH 1
+            OUTLINECOLOR _railway_ol_clr
+            OPACITY 30
+        END
+#endif
+        STYLE
+            PATTERN 2 2 END
+            WIDTH _railway_width
+            COLOR _railway_clr
+            OPACITY 30
         END
     END
 END
