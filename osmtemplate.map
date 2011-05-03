@@ -19,8 +19,6 @@ WEB
     END
 END
 
-#define _debug 10
-
 DEBUG _debug
 #if _debug > 0 || _layerdebug > 0
 CONFIG "MS_ERRORFILE" "stderr"
