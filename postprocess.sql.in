@@ -22,6 +22,7 @@ create index osm_polygon_amenity_idx on osm_polygon(amenity);
 create index osm_polygon_landuse_idx on osm_polygon(landuse);
 create index osm_line_highway_idx on osm_line(highway);
 create index osm_line_aeroway_idx on osm_line(aeroway);
+create index osm_line_waterway_idx on osm_line(waterway);
 create index osm_line_railway_idx on osm_line(railway);
 create index osm_line_bridge_idx on osm_line(bridge);
 create index osm_polygon_leisure_idx on osm_polygon(leisure);

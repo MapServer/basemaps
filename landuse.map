@@ -251,7 +251,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'way from (select way,waterway,osm_id from OSM_PREFIX_line where waterway is not null) as foo using unique osm_id using srid=OSM_SRID'
+    DATA 'way from (select way,waterway,osm_id from OSM_PREFIX_line where waterway IN ('river', 'stream', 'canal')) as foo using unique osm_id using srid=OSM_SRID'
     CLASSITEM "waterway"
     SIZEUNITS meters
     MAXSCALEDENOM 1500000
