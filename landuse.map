@@ -8,7 +8,7 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id ,landuse, name from OSM_PREFIX_polygon where landuse is not null) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way,osm_id ,landuse, name from OSM_PREFIX_polygon where landuse IN ('industrial', 'commercial', 'airport', 'brownfield', 'military', 'railway', 'residential')) as foo using unique osm_id using srid=OSM_SRID"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASSITEM "landuse"
@@ -104,7 +104,7 @@ LAYER
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection
-    DATA "way from (select way,osm_id,amenity,aeroway, name from OSM_PREFIX_polygon where amenity is not null or aeroway='apron') as foo using unique osm_id using srid=OSM_SRID"
+    DATA "way from (select way,osm_id,amenity,aeroway, name from OSM_PREFIX_polygon where aeroway='apron' or amenity IN ('hospital', 'parking', 'school', 'college', 'university')) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     CLASSITEM "amenity"
     PROCESSING "LABEL_NO_CLIP=ON"
