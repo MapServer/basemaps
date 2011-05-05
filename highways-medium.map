@@ -5,32 +5,17 @@ LAYER
     DATA "geometry from (select geometry, osm_id,tunnel from OSM_PREFIX_railways_gen1 where type='rail') as foo using unique osm_id using srid=OSM_SRID"
     CLASS
      EXPRESSION([tunnel]=0)
-#ifndef _no_road_outline
-        STYLE
-            WIDTH _railway_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _railway_ol_clr
-        END
-#endif
         STYLE
             PATTERN 2 2 END
             WIDTH _railway_width
-            COLOR _railway_clr
+            COLOR _railway_med_clr
         END
     END
     CLASS
-#ifndef _no_road_outline
-        STYLE
-            WIDTH _railway_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _railway_ol_clr
-            OPACITY 30
-        END
-#endif
         STYLE
             PATTERN 2 2 END
             WIDTH _railway_width
-            COLOR _railway_clr
+            COLOR _railway_med_clr
             OPACITY 30
         END
     END
@@ -47,236 +32,117 @@ LAYER
     CLASS
         EXPRESSION "motorway"
         TEXT ("[ref]")
-#ifndef _no_road_outline
         STYLE
             WIDTH _motorway_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _motorway_ol_clr
-        END
-#endif
-        STYLE
-            WIDTH _motorway_width
-            COLOR _motorway_clr
+            COLOR _motorway_med_clr
         END
         LABEL
-            _default_lbl 
+            _default_lbl
+            FONT _highway_font
             PRIORITY 1
-            FONT scb
+            FONT _highway_font_bold
             SIZE _motorway_lbl_size
             MINDISTANCE 200
             MAXLENGTH 6
             BUFFER 10
-            COLOR _motorway_lbl_bg_clr
-            OUTLINECOLOR _motorway_clr
+            COLOR _motorway_lbl_clr
+            OUTLINECOLOR _motorway_med_clr
             ANGLE AUTO
         END
     END
     CLASS
         EXPRESSION "motorway_link"
-#ifndef _no_road_outline
         STYLE
             WIDTH _motorway_link_width
-            OUTLINECOLOR _motorway_ol_clr
-            OUTLINEWIDTH 1
-        END
-#endif
-        STYLE
-            WIDTH _motorway_link_width
-            COLOR _motorway_clr
+            COLOR _motorway_med_clr
         END
     END
     CLASS
         EXPRESSION "trunk"
         TEXT ("[ref]")
-#ifndef _no_road_outline
         STYLE
             WIDTH _trunk_width 
-            OUTLINECOLOR _trunk_ol_clr
-            OUTLINEWIDTH 1
-        END
-#endif
-        STYLE
-            WIDTH _trunk_width 
-            COLOR _trunk_clr
+            COLOR _trunk_med_clr
         END
         LABEL
             _default_lbl
-            FONT scb
+            FONT _highway_font_bold
             PRIORITY 3
             BUFFER 10
             SIZE _trunk_lbl_size
             MINDISTANCE 150
             MAXLENGTH 6
-            OUTLINECOLOR _trunk_clr
-            COLOR _trunk_lbl_bg_clr
+            OUTLINECOLOR _trunk_med_clr
+            COLOR _trunk_lbl_clr
             ANGLE AUTO
         END
     END
     CLASS
         EXPRESSION "trunk_link"
-#ifndef _no_road_outline
         STYLE
             WIDTH _trunk_link_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _trunk_ol_clr
-        END
-#endif
-        STYLE
-            WIDTH _trunk_link_width
-            COLOR _trunk_clr
+            COLOR _trunk_med_clr
         END
     END
     CLASS
         EXPRESSION "primary_link"
-#ifndef _no_road_outline
         STYLE
             WIDTH _primary_link_width
-            OUTLINECOLOR _primary_ol_clr
-            OUTLINEWIDTH 1
-        END
-#endif
-        STYLE
-            WIDTH _primary_link_width
-            COLOR _primary_clr
+            COLOR _primary_med_clr
         END
     END
-#ifdef _primary_lbl_ref
     CLASS
+#ifdef _primary_lbl_ref
         TEXT ("[ref]")
-        EXPRESSION "primary"
-#ifndef _no_road_outline
-        STYLE
-            WIDTH _primary_width 
-            OUTLINECOLOR _primary_ol_clr
-            OUTLINEWIDTH 1
-        END
 #endif
+        EXPRESSION "primary"
         STYLE
             WIDTH _primary_width 
-            COLOR _primary_clr
+            COLOR _primary_med_clr
         END
         LABEL
             _default_lbl
+            FONT _highway_font
             PRIORITY 4
             SIZE _primary_lbl_size
             MINDISTANCE 200
             BUFFER 10
-            COLOR _primary_lbl_bg_clr
-            OUTLINECOLOR _primary_clr
-            ANGLE AUTO
-        END
-    END
-#else
-    CLASS
-        EXPRESSION "primary"
-#ifndef _no_road_outline
-        STYLE
-            WIDTH _primary_width 
-            OUTLINECOLOR _primary_ol_clr
-            OUTLINEWIDTH 1
-        END
-#endif
-        STYLE
-            WIDTH _primary_width 
-            COLOR _primary_clr
-        END
-        LABEL
-            _default_lbl
-            PRIORITY 4
-            SIZE _primary_lbl_size
-            MINDISTANCE 200
-            BUFFER 25
             ANGLE FOLLOW
             COLOR 0 0 0
-            OUTLINECOLOR _primary_clr
+            OUTLINECOLOR _primary_med_clr
             MINFEATURESIZE AUTO
         END
     END
-#endif
     CLASS
         EXPRESSION "secondary_link"
-#ifndef _no_road_outline
         STYLE
             WIDTH _secondary_link_width
-            OUTLINECOLOR _secondary_ol_clr
-            OUTLINEWIDTH 1
-        END
-#endif
-        STYLE
-            WIDTH _secondary_link_width
-            COLOR _secondary_clr 
+            COLOR _secondary_med_clr 
         END
     END
     CLASS
         EXPRESSION "secondary"
-#ifndef _no_road_outline
         STYLE
             WIDTH _secondary_width
-            OUTLINECOLOR _secondary_ol_clr
-            OUTLINEWIDTH 1
+            COLOR _secondary_med_clr
         END
-#endif
-        STYLE
-            WIDTH _secondary_width
-            COLOR _secondary_clr
-        END
-##        LABEL
-##            _default_lbl
-##            PRIORITY 3
-##            SIZE _secondary_lbl_size 
-##            MINDISTANCE 200
-##            ANGLE FOLLOW
-##            COLOR 0 0 0
-##            OUTLINECOLOR _secondary_clr
-##            MINFEATURESIZE AUTO
-##        END
     END
 
-#ifdef _display_tertiary_single
     CLASS
         EXPRESSION "tertiary"
         STYLE
             WIDTH _tertiary_width
-            COLOR _tertiary_single_clr
+            COLOR _tertiary_med_clr
         END
     END
-#endif
-#ifdef _display_tertiary
-    CLASS
-        EXPRESSION "tertiary"
-#ifndef _no_road_outline
-        STYLE
-            WIDTH _tertiary_width
-            OUTLINEWIDTH 1
-            OUTLINECOLOR _tertiary_ol_clr
-        END
-#endif
-        STYLE
-            WIDTH _tertiary_width
-            COLOR _tertiary_clr
-        END
-##        LABEL
-##            _default_lbl
-##            PRIORITY 2
-##            SIZE _tertiary_lbl_size
-##            MINDISTANCE 200
-##            ANGLE FOLLOW
-##            COLOR 0 0 0
-##            OUTLINECOLOR _tertiary_clr
-##            MINFEATURESIZE AUTO
-##        END
-    END
-#endif
 
-#ifdef _display_other
     CLASS
         EXPRESSION ('[type]'='unclassified' or '[type]'='residential' or '[type]'='service' or '[type]'='road')
         STYLE
             WIDTH _other_width
-            COLOR _other_single_clr
+            COLOR _other_med_clr
         END
     END
-#endif
 
 #ifdef _display_track
     CLASS
@@ -284,7 +150,7 @@ LAYER
         STYLE
             PATTERN 5 5 END
             WIDTH _track_width
-            COLOR _track_single_clr
+            COLOR _track_med_clr
         END
     END
 #endif

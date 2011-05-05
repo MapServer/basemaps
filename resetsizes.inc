@@ -17,10 +17,12 @@
 #undef _primary_lbl_size
 #undef _primary_lbl_ref
 
+#undef _display_secondary
 #undef _secondary_width
 #undef _secondary_link_width
 #undef _secondary_lbl_size
 
+#undef _display_tertiary
 #undef _display_tertiary_single
 #undef _display_tertiary
 #undef _tertiary_width

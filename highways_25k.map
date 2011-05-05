@@ -41,6 +41,7 @@
 #define _pedestrian_width 1
 #define _pedestrian_lbl_size 6
 
+#define _display_tunnels
 #define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
 #include "highways-close.map"
 

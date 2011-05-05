@@ -17,17 +17,13 @@
 #define _trunk_link_width _motorway_link_width
 #define _trunk_lbl_size _motorway_lbl_size
 
+#define _display_primary
 #define _primary_lbl_ref
 #define _primary_width 1.5
 #define _primary_link_width 1
 #define _primary_lbl_size 7
 
-#ifdef _no_road_outline
- #define _primary_clr_bak _primary_clr
- #undef _primary_clr
- #define _primary_clr _primary_single_clr
-#endif
-
+#define _display_secondaryy
 #define _secondary_width 0.8
 #define _secondary_link_width 0.8
 #define _secondary_lbl_size 7
@@ -41,11 +37,4 @@
 
 #define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads_gen1 order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
 
-#include "highways-medium.map"
-
-
-#ifdef _no_road_outline
- #undef _primary_clr
- #define _primary_clr _primary_clr_bak
- #undef _primary_clr_bak
-#endif
+#include "highways-far.map"

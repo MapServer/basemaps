@@ -24,6 +24,7 @@ LAYER
         LABEL
             MAXSCALEDENOM 600000
             _default_lbl
+          FONT _landuse_font
             SIZE 7
             COLOR _forest_lbl_clr
             OUTLINECOLOR 255 255 255
@@ -47,6 +48,7 @@ LAYER
         END
         LABEL
           _default_lbl
+          FONT _landuse_font
           MAXSCALEDENOM 11000
           SIZE 7
           COLOR 0 0 0
@@ -63,6 +65,7 @@ LAYER
         END
         LABEL
         _default_lbl
+          FONT _landuse_font
         MAXSCALEDENOM 30000
             SIZE 7
             COLOR 0 0 0
@@ -86,6 +89,7 @@ LAYER
         END
         LABEL
         _default_lbl
+          FONT _landuse_font
         MAXSCALEDENOM 30000
             SIZE 7
             COLOR 0 0 0
@@ -104,6 +108,7 @@ LAYER
         END
         LABEL
         _default_lbl
+          FONT _landuse_font
         MAXSCALEDENOM 30000
             SIZE 7
             COLOR _park_lbl_clr
@@ -122,6 +127,7 @@ LAYER
         END
          LABEL
           _default_lbl
+          FONT _landuse_font
             MAXSCALEDENOM 15000
             SIZE 7
             COLOR 0 0 0
@@ -145,6 +151,7 @@ LAYER
         END
         LABEL
             _default_lbl
+          FONT _landuse_font
             MAXSCALEDENOM 15000
             SIZE 7
             COLOR 0 0 0
@@ -178,6 +185,7 @@ LAYER
         END
         LABEL
           _default_lbl
+          FONT _landuse_font
           MAXSCALEDENOM 110000
           MINDISTANCE 400
           SIZE 8
@@ -214,6 +222,7 @@ LAYER
         END
         LABEL
           _default_lbl
+          FONT _landuse_font
           MAXSCALEDENOM 110000
           MINDISTANCE 400
           SIZE 8

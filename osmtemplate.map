@@ -154,36 +154,6 @@ SYMBOL
 END
 
 
-SYMBOL
- NAME "oneway"
- TYPE TRUETYPE
- FONT scb
- CHARACTER "&#8594;"
-END
-
-LAYER
-    TYPE LINE
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    GROUP "defaultoff"
-    NAME "oneways"
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way, osm_id from osm_line where oneway='yes' and (highway ~ 'link' or highway in ('residential','tertiary','secondary','primary','service')) order by z_order) as foo using unique osm_id using srid=OSM_SRID"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 10010
-    CLASS
-        STYLE
-            SYMBOL "oneway"
-            GAP -150
-            SIZE 11
-            COLOR _oneway_clr
-        END
-    END
-END
-
 #include "places_25k.map"
 #include "places_50k.map"
 #include "places_100k.map"
