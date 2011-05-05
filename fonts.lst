@@ -1,5 +1,5 @@
-#sc fonts/unifont.TTF
-#scb fonts/unifont.TTF
+unifont fonts/unifont.ttf
+arialuni fonts/arialuni.ttf
 #sc fonts/ARIALUNI.TTF
 #scb fonts/ARIALUNI.TTF
 #sc fonts/Everson-Mono.ttf

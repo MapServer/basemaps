@@ -35,7 +35,7 @@
 
 #define _default_lbl \
   TYPE TRUETYPE \
-  FONT sc \
+  FONT "sc,arialuni,unifont" \
   PARTIALS FALSE \
   OUTLINEWIDTH 3
 

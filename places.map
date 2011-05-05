@@ -23,7 +23,7 @@ LAYER
         END
         #endif
         LABEL
-            FONT sc
+            FONT "sc,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _capital_lbl_size
             COLOR _capital_lbl_clr
@@ -47,7 +47,7 @@ LAYER
     CLASS
         EXPRESSION 'country'
         LABEL
-            FONT scb
+            FONT "scb,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _country_lbl_size
             COLOR _country_lbl_clr
@@ -73,7 +73,7 @@ LAYER
         END
         #endif
         LABEL
-            FONT sc
+            FONT "sc,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _city_lbl_size
             COLOR _city_lbl_clr
@@ -106,7 +106,7 @@ LAYER
         END
         #endif
         LABEL
-            FONT sc
+            FONT "sc,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _town_lbl_size
             COLOR _town_lbl_clr
@@ -139,7 +139,7 @@ LAYER
         END
         #endif
         LABEL
-            FONT sc
+            FONT "sc,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _village_lbl_size
             COLOR _village_lbl_clr
@@ -169,7 +169,7 @@ LAYER
         END
         #endif
         LABEL
-            FONT sc
+            FONT "sc,arialuni,unifont"
             TYPE TRUETYPE
             SIZE _other_place_lbl_size
             COLOR _other_place_lbl_clr
