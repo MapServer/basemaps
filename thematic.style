@@ -38,13 +38,16 @@
   PARTIALS FALSE \
   OUTLINEWIDTH 3
 
-#define _highway_font "sc"
-#define _highway_font_bold "scb"
+#define _default_font "sc"
+#define _default_font_bold "scb"
 
-#define _place_font "sc"
-#define _country_font "scb"
+#define _highway_font _default_font
+#define _highway_font_bold _default_font_bold
 
-#define _landuse_font "sc"
+#define _place_font _default_font
+#define _country_font _default_font_bold
+
+#define _landuse_font _default_font
 
 #define _runway_clr "#d5d5d4"
 #define _runway_ol_clr 150 150 150
