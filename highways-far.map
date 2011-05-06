@@ -2,7 +2,7 @@ LAYER
     _default_layer
     TYPE LINE
     NAME "roadsfar"
-    DATA "geometry from (select geometry, osm_id ,type,ref from OSM_PREFIX_roads_gen0 where type in ('motorway','trunk','primary') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
+    DATA _data_expr
     CLASSITEM "type"
     CLASS
         EXPRESSION "motorway"
@@ -20,9 +20,30 @@ LAYER
     END
 #ifdef _display_primary
     CLASS
+        EXPRESSION "motorway_link"
+        STYLE
+            WIDTH _motorway_link_width
+            COLOR _motorway_far_clr
+        END
+    END
+    CLASS
+        EXPRESSION "trunk_link"
+        STYLE
+            WIDTH _trunk_link_width 
+            COLOR _trunk_far_clr
+        END
+    END
+    CLASS
         EXPRESSION "primary"
         STYLE
             WIDTH _primary_width 
+            COLOR _primary_far_clr
+        END
+    END
+    CLASS
+        EXPRESSION "primary_link"
+        STYLE
+            WIDTH _primary_link_width 
             COLOR _primary_far_clr
         END
     END

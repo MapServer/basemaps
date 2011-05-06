@@ -22,6 +22,9 @@
 #define _primary_lbl_size 6
 #define _primary_lbl_ref
 
+#undef _primary_far_clr
+#define _primary_far_clr _primary_med_clr
+
 #define _display_secondary
 #define _secondary_width 0.5
 #define _secondary_link_width 0.5
@@ -32,3 +35,6 @@
 
 #define _data_expr "geometry from (select geometry, osm_id ,type,ref, name, tunnel from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"
 #include "highways-far.map"
+
+#undef _primary_far_clr
+#define _primary_far_clr _road_far_clr

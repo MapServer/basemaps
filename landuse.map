@@ -4,6 +4,37 @@ LAYER
     PROJECTION
         "init=epsg:OSM_SRID"
     END
+    NAME "landuse_far"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    DATA "geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+       where type in ('forest','residential')\
+       order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 50000010
+    MINSCALEDENOM 5000010
+    CLASS
+        EXPRESSION ('[type]'="forest")
+        STYLE
+            COLOR _forest_clr
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]'='residential')
+        STYLE
+            COLOR _residential_clr
+        END
+    END
+END
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
     NAME "landuse_layer1"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
@@ -15,7 +46,7 @@ LAYER
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
-    MAXSCALEDENOM 10000010   
+    MAXSCALEDENOM 5000010   
     CLASS
         EXPRESSION ('[type]'='wood' or '[type]'="forest")
         STYLE

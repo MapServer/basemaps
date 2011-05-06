@@ -38,8 +38,8 @@
   PARTIALS FALSE \
   OUTLINEWIDTH 3
 
-#define _default_font "sc"
-#define _default_font_bold "scb"
+#define _default_font "sc,arialuni,unifont"
+#define _default_font_bold "scb,arialuni,unifont"
 
 #define _highway_font _default_font
 #define _highway_font_bold _default_font_bold
@@ -60,37 +60,40 @@
 #define _pedestrian_ol_clr _pedestrian_clr
 
 
-#define _motorway_clr "#ffffff"
+#define _road_clr "#ffffff"
+#define _road_far_clr "#cccccc"
+
+#define _motorway_clr _road_clr
 #define _motorway_med_clr _motorway_clr
 #define _motorway_far_clr _motorway_clr
 #define _motorway_lbl_clr "#FF5C1D"
 
-#define _trunk_clr _motorway_clr
+#define _trunk_clr _road_clr
 #define _trunk_med_clr _trunk_clr
 #define _trunk_far_clr _trunk_clr
 #define _trunk_lbl_clr _motorway_lbl_clr
 
-#define _primary_clr _motorway_clr
-#define _primary_med_clr _primary_clr
-#define _primary_far_clr "#dddddd"
+#define _primary_clr _road_clr
+#define _primary_med_clr _road_clr
+#define _primary_far_clr _road_far_clr
 #define _primary_lbl_clr "#000000"
 
-#define _secondary_clr _motorway_clr
-#define _secondary_far_clr _primary_far_clr
-#define _secondary_med_clr _primary_far_clr
+#define _secondary_clr _road_clr
+#define _secondary_far_clr _road_far_clr
+#define _secondary_med_clr _road_clr
 #define _secondary_lbl_clr _primary_lbl_clr
 
-#define _tertiary_clr _motorway_clr
-#define _tertiary_far_clr _primary_far_clr
-#define _tertiary_med_clr _primary_far_clr
+#define _tertiary_clr _road_clr
+#define _tertiary_far_clr _road_far_clr
+#define _tertiary_med_clr _road_far_clr
 #define _tertiary_lbl_clr _primary_lbl_clr
 
-#define _other_clr _motorway_clr
-#define _other_far_clr _primary_far_clr
-#define _other_med_clr _primary_far_clr
+#define _other_clr _road_clr
+#define _other_far_clr _road_far_clr
+#define _other_med_clr _road_far_clr
 #define _other_lbl_clr _primary_lbl_clr
 
-#define _track_clr _motorway_clr
+#define _track_clr _road_clr
 #define _track_med_clr "#CEC1AD"
 #define _track_lbl_clr _primary_lbl_clr
 

@@ -12,6 +12,7 @@
 #undef _trunk_link_width
 #undef _trunk_lbl_size
 
+#undef _display_primary
 #undef _primary_width
 #undef _primary_link_width
 #undef _primary_lbl_size
