@@ -7,21 +7,24 @@ insert into tbt_tmp_rings(admin_level,geometry)
    SELECT admin_level, ST_Collect(ST_ExteriorRing(geometry)) AS geometry 
    FROM (
       SELECT admin_level, osm_id, (ST_Dump(geometry)).geom As geometry
-      FROM osm_new_admin) As foo
+      FROM osm_admin) As foo
    GROUP BY admin_level,osm_id;
 
 
 insert into tbt_tmp_rings (admin_level,geometry) 
    select admin_level,st_collect(geom)
       from
-      (select admin_level, ST_InteriorRingN(geom, generate_series(1, ST_NumInteriorRing(geom))) as geom
+      (select osm_id,admin_level, ST_InteriorRingN(geom, generate_series(1, ST_NumInteriorRing(geom))) as geom
          from 
-         (select admin_level,
+         (select admin_level,osm_id,
             st_geometryN(geom, generate_series(1, st_numgeometries(geom))) as geom
             from
-            (select admin_level, geometry as geom from osm_new_admin) as foo) as bar) as baz group by admin_level;
+            (select admin_level,osm_id, geometry as geom from osm_admin) as foo) as bar) as baz group by admin_level,osm_id;
 
 create index tbt_tmp_rings_idx on tbt_tmp_rings using gist(geometry);
+cluster tbt_tmp_rings_idx on tbt_tmp_rings;
+vacuum analyze;
+
 drop table if exists tom_bnd_2;
 drop table if exists tom_bnd_4;
 drop table if exists tom_bnd_6;
