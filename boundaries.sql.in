@@ -52,15 +52,6 @@ create table tom_bnd_8 as (
    where c1.geometry && c2.geometry and c1.id>c2.id and c1.admin_level=8 and c2.admin_level=8
 );
 
-create or replace view osm_boundaries as (
-   select id,geometry,2 as admin_level from tom_bnd_2
-      union all
-   select id,geometry,4 as admin_level from tom_bnd_4
-      union all
-   select id,geometry,6 as admin_level from tom_bnd_6
-      union all
-   select id,geometry,8 as admin_level from tom_bnd_8
-);
 
 delete from tom_bnd_2 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
 delete from tom_bnd_4 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
@@ -72,8 +63,54 @@ update tom_bnd_4 set geometry = st_linemerge(geometry);
 update tom_bnd_6 set geometry = st_linemerge(geometry);
 update tom_bnd_8 set geometry = st_linemerge(geometry);
 
+
+
 create index bnd2_idx on tom_bnd_2 using gist(geometry);
 create index bnd4_idx on tom_bnd_4 using gist(geometry);
 create index bnd6_idx on tom_bnd_6 using gist(geometry);
 create index bnd8_idx on tom_bnd_8 using gist(geometry);
+
+delete from tom_bnd_8 where st_isempty(geometry);
+delete from tom_bnd_4 where st_isempty(geometry);
+delete from tom_bnd_6 where st_isempty(geometry);
+delete from tom_bnd_2 where st_isempty(geometry);
+
+
+update tom_bnd_4 set geometry = st_difference(tom_bnd_4.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_4.geometry &&t.geometry and st_relate(tom_bnd_4.geometry,t.geometry,'1********');
+delete from tom_bnd_4 where st_isempty(geometry);
+
+update tom_bnd_6 set geometry = st_difference(tom_bnd_6.geometry, t.geometry) FROM tom_bnd_4 t 
+   where tom_bnd_6.geometry &&t.geometry and st_relate(tom_bnd_6.geometry,t.geometry,'1********');
+delete from tom_bnd_6 where st_isempty(geometry);
+update tom_bnd_6 set geometry = st_difference(tom_bnd_6.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_6.geometry &&t.geometry and st_relate(tom_bnd_6.geometry,t.geometry,'1********');
+delete from tom_bnd_6 where st_isempty(geometry);
+
+
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_6 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_4 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+
+drop table if exists OSM_PREFIX_boundaries;
+create table OSM_PREFIX_boundaries as (
+   select id,geometry,2 as admin_level from tom_bnd_2
+      union all
+   select id,geometry,4 as admin_level from tom_bnd_4
+      union all
+   select id,geometry,6 as admin_level from tom_bnd_6
+      union all
+   select id,geometry,8 as admin_level from tom_bnd_8
+);
+
+
+create index boundaries_geom_idx on OSM_PREFIX_boundaries using gist(geometry);
+create index boundaries_id_idx on OSM_PREFIX_boundaries(id);
+create index boundaries_adminlevel_idx on OSM_PREFIX_boundaries(admin_level);
 

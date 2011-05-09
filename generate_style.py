@@ -150,10 +150,10 @@ vars= {
                 order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"'
          },
          'border_data': {
-            0: '"geometry from (select id,geometry,admin_level from osm_boundaries where admin_level<=2)as foo using unique id using srid=4326"',
-            6: '"geometry from (select id,geometry,admin_level from osm_boundaries where admin_level<=4)as foo using unique id using srid=4326"',
-            7: '"geometry from (select id,geometry,admin_level from osm_boundaries where admin_level<=6)as foo using unique id using srid=4326"',
-            10:'"geometry from (select id,geometry,admin_level from osm_boundaries where admin_level<=8)as foo using unique id using srid=4326"'
+            0: '"geometry from (select id,geometry,admin_level from OSM_PREFIX_boundaries where admin_level<=2)as foo using unique id using srid=4326"',
+            6: '"geometry from (select id,geometry,admin_level from OSM_PREFIX_boundaries where admin_level<=4)as foo using unique id using srid=4326"',
+            7: '"geometry from (select id,geometry,admin_level from OSM_PREFIX_boundaries where admin_level<=6)as foo using unique id using srid=4326"',
+            10:'"geometry from (select id,geometry,admin_level from OSM_PREFIX_boundaries where admin_level<=8)as foo using unique id using srid=4326"'
          },
          'display_border_2': {
             0:1
