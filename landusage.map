@@ -1,0 +1,246 @@
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    NAME "landuse_far"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    DATA _landusage_data
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale
+    CLASSITEM "type"
+    CLASS
+       EXPRESSION "forest"
+       STYLE
+          COLOR _forest_clr
+       END
+    END
+    CLASS
+       EXPRESSION "wood"
+       STYLE
+          COLOR _forest_clr
+       END
+    END
+    CLASS
+       EXPRESSION 'residential'
+       STYLE
+          COLOR _residential_clr
+       END
+   END
+   CLASS
+      EXPRESSION 'pedestrian'
+      STYLE
+         COLOR _pedestrian_clr
+      END
+      LABEL
+         _default_lbl
+         FONT _landuse_font
+         MAXSCALEDENOM 11000
+         SIZE 7
+         COLOR 0 0 0
+         OUTLINECOLOR 255 255 255
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+   END
+   CLASS
+        EXPRESSION ('[type]'='industrial' or '[type]'='commercial' or '[type]'='airport' or '[type]'='brownfield' or '[type]'='military' or '[type]'='railway')
+        STYLE
+            COLOR _industrial_clr
+        END
+        LABEL
+        _default_lbl
+          FONT _landuse_font
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]'='residential')
+        STYLE
+            COLOR _residential_clr
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]'='cemetery')
+        STYLE
+            COLOR _cemetery_clr
+        END
+        LABEL
+        _default_lbl
+          FONT _landuse_font
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+ 
+    CLASS
+        EXPRESSION ('[type]'='park' or '[type]'='golf_course')
+        STYLE
+            COLOR _park_clr
+        END
+        LABEL
+        _default_lbl
+          FONT _landuse_font
+        MAXSCALEDENOM 30000
+            SIZE 7
+            COLOR _park_lbl_clr
+            OUTLINECOLOR 255 255 255
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ('[type]' = "hospital")
+        STYLE
+            COLOR _hospital_clr
+        END
+         LABEL
+          _default_lbl
+          FONT _landuse_font
+            MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ("[type]"="parking")
+        STYLE
+            COLOR _parking_clr
+        END
+    END
+    CLASS
+        EXPRESSION ("[type]"="school" or "[type]"="college" or "[type]"="university" )
+        STYLE
+            COLOR _education_clr
+        END
+        LABEL
+            _default_lbl
+          FONT _landuse_font
+            MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR 0 0 0
+            OUTLINECOLOR 255 255 255
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+END
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    NAME "waterarea"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    DATA "geometry from (select geometry,osm_id ,name from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale  
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        STYLE
+            COLOR _water_clr
+        END
+        LABEL
+          _default_lbl
+          FONT _landuse_font
+          MAXSCALEDENOM 110000
+          MINDISTANCE 400
+          SIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+END
+
+LAYER
+    TYPE LINE
+    NAME "waterway"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    DATA 'geometry from (select geometry,name,osm_id,type from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID'
+    CLASSITEM "type"
+    SIZEUNITS meters
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale
+    LABELITEM "name"
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR _water_clr 
+            WIDTH 30
+            MINWIDTH 0.5
+        END
+        LABEL
+          _default_lbl
+          FONT _landuse_font
+          MAXSCALEDENOM 110000
+          MINDISTANCE 400
+          SIZE 8
+          MINSIZE 8
+          COLOR "#6B94B0"
+          OUTLINECOLOR 255 255 255
+          ANGLE FOLLOW
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION "stream"
+        STYLE
+            COLOR _water_clr
+            WIDTH 5
+            MINWIDTH 0.5
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR _water_clr
+            WIDTH 10
+            MINWIDTH 0.5
+        END
+    END
+END
+
+

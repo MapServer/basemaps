@@ -1,30 +1,89 @@
-CPP=cpp
+CPP=cpp-4.2
 
 OSM_PREFIX=osm_new_
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857"
 
-template=osmtemplate.map
-theme=thematic
-includes=landuse.map buildings.map\
-		 highways_5k.map highways_10k.map highways_25k.map highways_50k.map \
-		 highways_100k.map highways_250k.map highways_500k.map highways_1m.map\
-		 highways_2.5m.map highways_5m.map highways_10m.map\
-		 places.map places_25k.map places_50k.map places_100k.map places_250k.map\
-		 places_500k.map places_1m.map places_2.5m.map places_5m.map places_10m.map\
-		 places_25m.map\
-		 highways-close.map highways-medium.map highways-far.map\
-		 $(theme).style
-mapfile=osm-$(theme).map
+template=osmbase.map
+theme=osm
+includes=landusage.map borders.map highways.map places.map $(theme).style\
+		 style.inc \
+		 level0.inc level1.inc level2.inc level4.inc level3.inc level5.inc level6.inc\
+       level7.inc level8.inc level9.inc level10.inc level11.inc level12.inc\
+       level13.inc level14.inc level15.inc level16.inc level17.inc level18.inc
+
+
+
+mapfile=osm.map
 here=`pwd`
 
 all:$(mapfile) $(postprocess)
 
-SED=sed
+SED=gsed
 SEDI=$(SED) -i
 #if on BSD, use
 # SED=sed -i ""
+#
+
+style.inc: generate_style.py
+	python generate_style.py -s > style.inc
+
+level0.inc: generate_style.py
+	python generate_style.py -l 0 > $@ 
+
+level1.inc: generate_style.py
+	python generate_style.py -l 1 > $@ 
+
+level2.inc: generate_style.py
+	python generate_style.py -l 2 > $@ 
+
+level3.inc: generate_style.py
+	python generate_style.py -l 3 > $@ 
+
+level4.inc: generate_style.py
+	python generate_style.py -l 4 > $@ 
+
+level5.inc: generate_style.py
+	python generate_style.py -l 5 > $@ 
+
+level6.inc: generate_style.py
+	python generate_style.py -l 6 > $@ 
+
+level7.inc: generate_style.py
+	python generate_style.py -l 7 > $@ 
+
+level8.inc: generate_style.py
+	python generate_style.py -l 8 > $@ 
+
+level9.inc: generate_style.py
+	python generate_style.py -l 9 > $@ 
+
+level10.inc: generate_style.py
+	python generate_style.py -l 10 > $@
+level11.inc: generate_style.py
+	python generate_style.py -l 11 > $@
+
+level12.inc: generate_style.py
+	python generate_style.py -l 12 > $@
+
+level13.inc: generate_style.py
+	python generate_style.py -l 13 > $@
+
+level14.inc: generate_style.py
+	python generate_style.py -l 14 > $@
+
+level15.inc: generate_style.py
+	python generate_style.py -l 15 > $@
+
+level16.inc: generate_style.py
+	python generate_style.py -l 16 > $@
+
+level17.inc: generate_style.py
+	python generate_style.py -l 17 > $@
+
+level18.inc: generate_style.py
+	python generate_style.py -l 18 > $@
 
 $(mapfile):$(template) $(includes) shapefiles
 	$(CPP) -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
@@ -37,6 +96,3 @@ $(mapfile):$(template) $(includes) shapefiles
 
 shapefiles:
 	cd data; $(MAKE) $(MFLAGS)
-
-extent="-189249.81140511,4805160.045596,339916.56951172,5334326.4265128"
-extent="235459.12591906,5064998.3775063,246042.4535374,5075581.7051247"

@@ -1,8 +1,6 @@
-#define _debug 0
+#define _debug 10
 #define _layerdebug 0
 #define _bg_clr "#E8E6E1"
-#define _border_clr "#cDcBc6"
-#define _border_close_clr "#8D8B86"
 
 #define _forest_clr "#C2D1B2"
 #define _forest_lbl_clr "#3D6035"
@@ -21,7 +19,7 @@
 #define _railway_med_clr "#777777"
 #define _railway_clr "#777777"
 
-#define _default_lyr \
+#define _default_layer \
   STATUS ON\
   GROUP "default"\
   PROJECTION \
@@ -124,3 +122,5 @@
 #define _village_lbl_ol_clr _lbl_ol_clr
 #define _other_place_lbl_ol_clr _lbl_ol_clr
 #define _country_lbl_ol_clr _lbl_ol_clr
+
+#include "style.inc"

@@ -25,7 +25,9 @@ LAYER
         LABEL
             FONT _place_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _capital_lbl_size
+            ENCODING "utf-8"
             COLOR _capital_lbl_clr
             OUTLINECOLOR _capital_lbl_ol_clr
             OUTLINEWIDTH 4
@@ -49,6 +51,7 @@ LAYER
         LABEL
             FONT _country_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _country_lbl_size
             COLOR _country_lbl_clr
             WRAP ' '
@@ -75,6 +78,7 @@ LAYER
         LABEL
             FONT _place_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _city_lbl_size
             COLOR _city_lbl_clr
             OUTLINECOLOR _city_lbl_ol_clr
@@ -108,6 +112,7 @@ LAYER
         LABEL
             FONT _place_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _town_lbl_size
             COLOR _town_lbl_clr
             OUTLINECOLOR _town_lbl_ol_clr
@@ -141,6 +146,7 @@ LAYER
         LABEL
             FONT _place_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _village_lbl_size
             COLOR _village_lbl_clr
             OUTLINECOLOR _village_lbl_ol_clr
@@ -171,6 +177,7 @@ LAYER
         LABEL
             FONT _place_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _other_place_lbl_size
             COLOR _other_place_lbl_clr
             OUTLINECOLOR _other_place_lbl_ol_clr

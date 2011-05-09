@@ -177,3 +177,31 @@ LAYER
 END
     
 
+LAYER
+    _default_layer
+    TYPE LINE
+    NAME "aeroways-med"
+    DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
+    CLASSITEM "type"
+    SIZEUNITS meters
+    CLASS
+      EXPRESSION "runway"
+      STYLE
+        COLOR "#aaaaaa"
+        WIDTH 40
+        MINWIDTH 1
+        LINECAP BUTT
+        LINEJOIN MITER
+        MINWIDTH 3
+      END
+    END
+    CLASS
+      EXPRESSION "taxiway"
+      STYLE
+        COLOR "#aaaaaa"
+        WIDTH 10
+        MINWIDTH 0.8
+      END
+    END
+END
+    

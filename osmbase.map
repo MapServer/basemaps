@@ -1,0 +1,160 @@
+#include theme
+#include "dbconnection"
+MAP
+
+FONTSET "fonts.lst"
+IMAGETYPE png
+MAXSIZE 4000
+SIZE 800 800
+EXTENT 47586 1621243 1197769 2679357
+EXTENT 16805492 -4049385 16857351 -3975830
+UNITS OSM_UNITS 
+IMAGECOLOR _water_clr
+WEB
+   METADATA
+      "ows_enable_request"   "*"
+      "wms_srs" OSM_WMS_SRS 
+      "labelcache_map_edge_buffer" "-10"
+      "wms_title" "osm france"
+   END
+END
+
+DEBUG _debug
+#if _debug > 0 || _layerdebug > 0
+CONFIG "MS_ERRORFILE" "stderr"
+#endif
+
+CONFIG "PROJ_LIB" _proj_lib
+PROJECTION
+   "init=epsg:OSM_SRID"
+END
+
+LAYER
+   TYPE POLYGON
+   STATUS ON
+   GROUP "default"
+   DEBUG _layerdebug
+   NAME "land"
+   PROJECTION
+       "init=epsg:4326"
+   END
+   MINSCALEDENOM _minscale2
+   DATA "data/TM_WORLD_BORDERS-0.3.shp"
+   CLASS
+       STYLE
+           COLOR _bg_clr
+       END
+   END
+END
+
+LAYER
+   TYPE POLYGON
+   STATUS ON
+   GROUP "default"
+   NAME "land"
+   DEBUG _layerdebug
+   PROJECTION
+       "init=epsg:900913"
+   END
+   MAXSCALEDENOM _maxscale3
+   MINSCALEDENOM _minscale6
+   DATA "data/shoreline_300"
+   CLASS
+       STYLE
+           COLOR _bg_clr
+       END
+   END
+END
+
+LAYER
+   TYPE POLYGON
+   STATUS ON
+   GROUP "default"
+   NAME "land"
+   PROJECTION
+       "init=epsg:900913"
+   END
+   MAXSCALEDENOM _maxscale7
+   DATA "data/processed_p"
+   DEBUG _layerdebug
+   CLASS
+       STYLE
+           COLOR _bg_clr
+       END
+   END
+END
+
+#include "level0.inc"
+#include "borders.map"
+
+#include "level1.inc"
+#include "borders.map"
+
+#include "level2.inc"
+#include "borders.map"
+
+#include "level3.inc"
+#include "borders.map"
+
+#include "level4.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level5.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level6.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level7.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level8.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level9.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level10.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level11.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level12.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level13.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level14.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level15.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level16.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level17.inc"
+#include "landusage.map"
+#include "borders.map"
+
+#include "level18.inc"
+#include "landusage.map"
+#include "borders.map"
+
+
+END
