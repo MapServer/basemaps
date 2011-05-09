@@ -1,4 +1,4 @@
-CPP=cpp-4.2
+CPP=cpp
 
 OSM_PREFIX=osm_new_
 OSM_SRID=4326
@@ -18,9 +18,9 @@ includes=landusage.map borders.map highways.map places.map $(theme).style\
 mapfile=osm.map
 here=`pwd`
 
-all:$(mapfile) $(postprocess)
+all:$(mapfile) boundaries.sql
 
-SED=gsed
+SED=sed
 SEDI=$(SED) -i
 #if on BSD, use
 # SED=sed -i ""
@@ -93,6 +93,10 @@ $(mapfile):$(template) $(includes) shapefiles
 	$(SEDI) -e 's/OSM_SRID/$(OSM_SRID)/g' $(mapfile)
 	$(SEDI) -e 's/OSM_UNITS/$(OSM_UNITS)/g' $(mapfile)
 	$(SEDI) -e 's/OSM_WMS_SRS/$(OSM_WMS_SRS)/g' $(mapfile)
+
+boundaries.sql: boundaries.sql.in
+	cp -f $< $@
+	$(SEDI) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
 
 shapefiles:
 	cd data; $(MAKE) $(MFLAGS)
