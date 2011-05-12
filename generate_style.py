@@ -170,11 +170,11 @@ vars= {
          },
          'border_2_inner_clr': {
             0:'"#CDCBC6"',
-            4:'"#8d8b8d"'
+            5:'"#8d8b8d"'
          },
          'border_2_inner_width': {
             0:'0.5',
-            4:'1'
+            5:'1'
          },
          'border_2_inner_pattern': {
             0:''
@@ -255,6 +255,45 @@ vars= {
          'border_8_inner_pattern': {
             0:'',
             13:'PATTERN 2 2 END'
+         },
+         'waterarea_lbl_clr': {
+            0:'"#6B94B0"'
+         },
+         'waterarea_lbl_ol_clr': {
+            0:'"#FFFFFF"'
+         },
+         'display_waterways': {
+            0:0,
+            6:1
+         },
+         'river_width': {
+            0:0,
+            6:0.15,
+            7:0.25,
+            8:0.5,
+            9:1,
+            11:2,
+            13:3,
+            15:4,
+            16:5,
+            17:6,
+            18:7
+         },
+         'stream_width': {
+            0:0,
+            10:0.5,
+            12:1,
+            14:2
+         },
+         'canal_width': {
+            0:0,
+            10:0.5,
+            12:1,
+            14:2
+         },
+         'waterways_data': {
+            0:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+            10:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
          }
       }
 

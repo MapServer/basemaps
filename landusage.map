@@ -14,14 +14,9 @@ LAYER
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
     CLASSITEM "type"
+    LABELITEM "name"
     CLASS
-       EXPRESSION "forest"
-       STYLE
-          COLOR _forest_clr
-       END
-    END
-    CLASS
-       EXPRESSION "wood"
+       EXPRESSION /forest|wood/
        STYLE
           COLOR _forest_clr
        END
@@ -37,20 +32,21 @@ LAYER
       STYLE
          COLOR _pedestrian_clr
       END
+#if _display_landuse_pedestrian_lbl==1
       LABEL
          _default_lbl
          FONT _landuse_font
-         MAXSCALEDENOM 11000
-         SIZE 7
-         COLOR 0 0 0
-         OUTLINECOLOR 255 255 255
+         SIZE _landuse_font_size
+         COLOR _landuse_pedestrian_font_clr
+         OUTLINECOLOR _landuse_pedestrian_font_ol_clr
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER
       END
+#endif
    END
    CLASS
-        EXPRESSION ('[type]'='industrial' or '[type]'='commercial' or '[type]'='airport' or '[type]'='brownfield' or '[type]'='military' or '[type]'='railway')
+        EXPRESSION /industrial|commercial|parking/
         STYLE
             COLOR _industrial_clr
         END
@@ -68,13 +64,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ('[type]'='residential')
-        STYLE
-            COLOR _residential_clr
-        END
-    END
-    CLASS
-        EXPRESSION ('[type]'='cemetery')
+        EXPRESSION 'cemetery'
         STYLE
             COLOR _cemetery_clr
         END
@@ -93,7 +83,7 @@ LAYER
     END
  
     CLASS
-        EXPRESSION ('[type]'='park' or '[type]'='golf_course')
+        EXPRESSION /park|golf_course/
         STYLE
             COLOR _park_clr
         END
@@ -112,7 +102,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ('[type]' = "hospital")
+        EXPRESSION 'hospital'
         STYLE
             COLOR _hospital_clr
         END
@@ -130,13 +120,7 @@ LAYER
         END
     END
     CLASS
-        EXPRESSION ("[type]"="parking")
-        STYLE
-            COLOR _parking_clr
-        END
-    END
-    CLASS
-        EXPRESSION ("[type]"="school" or "[type]"="college" or "[type]"="university" )
+        EXPRESSION /school|college|university/
         STYLE
             COLOR _education_clr
         END
@@ -174,30 +158,31 @@ LAYER
         STYLE
             COLOR _water_clr
         END
+#if _display_waterarea_lbl == 1
         LABEL
           _default_lbl
-          FONT _landuse_font
-          MAXSCALEDENOM 110000
+          FONT _water_font
           MINDISTANCE 400
-          SIZE 8
-          COLOR "#6B94B0"
-          OUTLINECOLOR 255 255 255
+          SIZE _waterarea_lbl_size
+          COLOR _water_lbl_clr
+          OUTLINECOLOR _water_lbl_ol_clr
           WRAP ' '
           MAXLENGTH 5
           ALIGN CENTER
         END
+#endif
     END
 END
 
+#if _display_waterways == 1
 LAYER
     TYPE LINE
     NAME "waterway"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA 'geometry from (select geometry,name,osm_id,type from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID'
+    DATA _waterways_data
     CLASSITEM "type"
-    SIZEUNITS meters
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
     LABELITEM "name"
@@ -209,38 +194,56 @@ LAYER
         EXPRESSION "river"
         STYLE
             COLOR _water_clr 
-            WIDTH 30
-            MINWIDTH 0.5
+            WIDTH _river_width
         END
+#if _display_river_lbl == 1
         LABEL
           _default_lbl
-          FONT _landuse_font
-          MAXSCALEDENOM 110000
+          FONT _water_font
           MINDISTANCE 400
-          SIZE 8
-          MINSIZE 8
-          COLOR "#6B94B0"
-          OUTLINECOLOR 255 255 255
+          SIZE _river_lbl_size
+          COLOR _water_lbl_clr
+          OUTLINECOLOR _water_lbl_ol_clr
           ANGLE FOLLOW
         END
+#endif
     END
     CLASS
-        MAXSCALEDENOM 105000
         EXPRESSION "stream"
         STYLE
             COLOR _water_clr
-            WIDTH 5
-            MINWIDTH 0.5
+            WIDTH _stream_width
         END
+#if _display_stream_lbl == 1
+        LABEL
+          _default_lbl
+          FONT _water_font
+          MINDISTANCE 400
+          SIZE _stream_lbl_size
+          COLOR _water_lbl_clr
+          OUTLINECOLOR _water_lbl_ol_clr
+          ANGLE FOLLOW
+        END
+#endif
     END
     CLASS
         EXPRESSION "canal"
         STYLE
             COLOR _water_clr
-            WIDTH 10
-            MINWIDTH 0.5
+            WIDTH _canal_width
         END
+#if _display_canal_lbl == 1
+        LABEL
+          _default_lbl
+          FONT _water_font
+          MINDISTANCE 400
+          SIZE _canal_lbl_size
+          COLOR _water_lbl_clr
+          OUTLINECOLOR _water_lbl_ol_clr
+          ANGLE FOLLOW
+        END
+#endif
     END
 END
-
+#endif
 
