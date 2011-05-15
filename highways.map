@@ -1,14 +1,22 @@
 LAYER
-    _default_layer
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION _db_connection
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
     TYPE LINE
     NAME "railways"
+    DATA _railways_data
     DATA "geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways where type='rail') as foo using unique osm_id using srid=OSM_SRID"
     CLASS
+#ifdef _display_railway_tunnels
       EXPRESSION ([tunnel]=0)
+#endif
         STYLE
          WIDTH _railway_width
          COLOR _railway_clr
-         PATTERN 4 4 END
+         PATTERN _railway_pattern END
          LINECAP BUTT
         END
     END
@@ -16,22 +24,28 @@ LAYER
         STYLE
          WIDTH _railway_width
          COLOR _railway_clr
-         PATTERN 4 4 END
-         OPACITY _tunnel_opacity
+         PATTERN _railway_pattern END
+         OPACITY _railway_tunnel_opacity
          LINECAP BUTT
         END
     END
 END
 
 LAYER
-    _default_layer
+    GROUP "default"
+    STATUS ON
     TYPE LINE
-    NAME "roadsclose"
-    DATA _data_expr
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    NAME "roads"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
 
-#ifdef _display_tunnels
+#if _display_roads_tunnels == 1
+#if _display_motorways == 1
     CLASS
         EXPRESSION ("[type]"="motorway" and "[tunnel]"="1")
         STYLE
@@ -40,6 +54,8 @@ LAYER
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#if _display_motorway_links == 1
     CLASS
         EXPRESSION ("[type]"="motorway_link" and "[tunnel]"="1")
         STYLE
@@ -48,6 +64,8 @@ LAYER
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#if _display_trunks == 1
     CLASS
         EXPRESSION ("[type]"="trunk" and "[tunnel]"="1")
         STYLE
@@ -56,6 +74,8 @@ LAYER
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#if _display_trunk_links == 1
     CLASS
         EXPRESSION ("[type]"="trunk_link" and "[tunnel]"="1")
         STYLE
@@ -64,46 +84,38 @@ LAYER
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#if _display_primaries == 1
     CLASS
-        EXPRESSION ("[type]"="primary_link" and "[tunnel]"="1")
-        STYLE
-            WIDTH _primary_link_width
-            COLOR _primary_clr
-            OPACITY _tunnel_opacity
-        END
-    END
-    CLASS
-        EXPRESSION ("[type]"="primary" and "[tunnel]"="1")
+        EXPRESSION (("[type]"="primary" or "[type]"="primary_link") and "[tunnel]"="1")
         STYLE
             WIDTH _primary_width
             COLOR _primary_clr
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#ifdef _display_secondaries == 1
     CLASS
-        EXPRESSION ("[type]"="secondary_link" and "[tunnel]"="1")
-        STYLE
-            WIDTH _secondary_link_width
-            COLOR _secondary_clr
-            OPACITY _tunnel_opacity
-        END
-    END
-    CLASS
-        EXPRESSION ("[type]"="secondary" and "[tunnel]"="1")
+        EXPRESSION (("[type]"="secondary" or "[type]"="secondary_link" and "[tunnel]"="1")
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#ifdef _display_tertiaries == 1
     CLASS
-        EXPRESSION ("[type]"="tertiary" and "[tunnel]"="1")
+        EXPRESSION (("[type]"="tertiary" or "[type]"="tertiary_link") and "[tunnel]"="1")
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
             OPACITY _tunnel_opacity
         END
     END
+#endif
+#ifdef _display_other_roads == 1
     CLASS
         EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service') and "[tunnel]"="1")
         STYLE
@@ -113,8 +125,9 @@ LAYER
         END
     END
 #endif
-##(display_tunnels)
-
+#endif
+##(display_roads_tunnels)
+#if _display_motorways == 1
     CLASS
         EXPRESSION "motorway"
         TEXT ("[ref]")
@@ -133,6 +146,8 @@ LAYER
             ANGLE AUTO
         END
     END
+#endif
+#if _display_motorway_links == 1
     CLASS
         EXPRESSION "motorway_link"
         STYLE
@@ -140,6 +155,8 @@ LAYER
             COLOR _motorway_clr
         END
     END
+#endif
+#if _display_trunks == 1
     CLASS
         EXPRESSION "trunk"
         TEXT ("[ref]")
@@ -157,6 +174,8 @@ LAYER
             ANGLE AUTO
         END
     END
+#endif
+#if _display_trunk_links == 1
     CLASS
         EXPRESSION "trunk_link"
         STYLE
@@ -164,15 +183,10 @@ LAYER
             COLOR _trunk_clr
         END
     END
+#endif
+#if _display_primaries == 1
     CLASS
-        EXPRESSION "primary_link"
-        STYLE
-            WIDTH _primary_link_width
-            COLOR _primary_clr
-        END
-    END
-    CLASS
-        EXPRESSION "primary"
+        EXPRESSION /primary/
         STYLE
             WIDTH _primary_width 
             COLOR _primary_clr
@@ -189,15 +203,10 @@ LAYER
             MINFEATURESIZE AUTO
         END
     END
+#endif
+#if _display_secondaries == 1
     CLASS
-        EXPRESSION "secondary_link"
-        STYLE
-            WIDTH _secondary_link_width
-            COLOR _secondary_clr 
-        END
-    END
-    CLASS
-        EXPRESSION "secondary"
+        EXPRESSION /secondary/
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -214,12 +223,15 @@ LAYER
             MINFEATURESIZE AUTO
         END
     END
+#endif
+#if _display_tertiaries == 1
     CLASS
-        EXPRESSION "tertiary"
+        EXPRESSION /tertiary/
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
         END
+#if _display_tertiary_lbl == 1
         LABEL
             _default_lbl
             FONT _highway_font
@@ -231,14 +243,17 @@ LAYER
             OUTLINECOLOR _tertiary_clr
             MINFEATURESIZE AUTO
         END
+#endif
     END
+#endif
+#if _display_other_roads == 1
     CLASS
-        EXPRESSION ('[type]'='unclassified' or '[type]'='residential' or '[type]'='service' or '[type]'='road')
+        EXPRESSION /unclassified|residential|service|road/
         STYLE
             WIDTH _other_width
             COLOR _other_clr
         END
-#ifdef _label_other
+#ifdef _label_other_roads
         LABEL
             _default_lbl
             FONT _highway_font
@@ -252,6 +267,8 @@ LAYER
         END
 #endif
     END
+#endif
+#if _display_tracks == 1
     CLASS
         EXPRESSION "track"
         STYLE
@@ -273,7 +290,8 @@ LAYER
         END
 #endif
     END
-
+#endif
+#if _display_footways == 1
     CLASS
         EXPRESSION 'footway'
         STYLE
@@ -282,6 +300,8 @@ LAYER
             COLOR _path_clr
         END
     END
+#endif
+#if _display_pedestrian == 1
     CLASS
         EXPRESSION 'pedestrian'
         STYLE
@@ -301,42 +321,42 @@ LAYER
         END
 #endif
     END
+#endif
 END
     
 
+#if _display_aeroways == 1
 LAYER
-    _default_layer
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
     TYPE LINE
     NAME "aeroways"
     DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
-    SIZEUNITS meters
     CLASS
       EXPRESSION "runway"
       STYLE
-        COLOR "#aaaaaa"
-        WIDTH 40
-        MINWIDTH 1
+        COLOR _aeroway_clr
+        WIDTH _aeroway_width
         LINECAP BUTT
         LINEJOIN MITER
-        MINWIDTH 3
       END
       STYLE
-        COLOR "#111111"
-        WIDTH 1
-        MINWIDTH 0.5
-        MAXWIDTH 1
-        PATTERN 10 20 END
+        COLOR _aeroway_center_clr
+        WIDTH _aeroway_center_width
+        PATTERN _aeroway_center_pattern END
         LINECAP BUTT
       END
     END
     CLASS
       EXPRESSION "taxiway"
       STYLE
-        COLOR "#aaaaaa"
-        WIDTH 10
-        MINWIDTH 1
+        COLOR _taxiway_clr
+        WIDTH _taxiway_width
       END
     END
 END
+#endif
     

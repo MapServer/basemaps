@@ -32,54 +32,65 @@ LAYER
       STYLE
          COLOR _pedestrian_clr
       END
-#if _display_landuse_pedestrian_lbl==1
+#if _display_pedestrian_lbl==1
       LABEL
-         _default_lbl
-         FONT _landuse_font
-         SIZE _landuse_font_size
-         COLOR _landuse_pedestrian_font_clr
-         OUTLINECOLOR _landuse_pedestrian_font_ol_clr
+         TYPE TRUETYPE
+         FONT _pedestrian_font
+         SIZE _pedestrian_lbl_size
+         COLOR _pedestrian_lbl_clr
+         OUTLINECOLOR _pedestrian_lbl_ol_clr
+         OUTLINEWIDTH _pedestrian_lbl_ol_width
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
       END
 #endif
    END
    CLASS
-        EXPRESSION /industrial|commercial|parking/
-        STYLE
-            COLOR _industrial_clr
-        END
-        LABEL
-        _default_lbl
-          FONT _landuse_font
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 2
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
+     EXPRESSION /industrial|commercial|parking/
+     STYLE
+       COLOR _industrial_clr
+     END
+#if _display_industrial_lbl==1
+     LABEL
+       TYPE TRUETYPE
+       FONT _industrial_font
+       SIZE _industrial_lbl_size
+       COLOR _industrial_lbl_clr
+       OUTLINECOLOR _industrial_lbl_ol_clr
+       OUTLINEWIDTH _pedestrian_lbl_ol_width
+       PRIORITY 2
+       WRAP ' '
+       MAXLENGTH 6
+       ALIGN CENTER
+       MINFEATURESIZE AUTO
+       PARTIALS FALSE
+     END
+#endif
     END
     CLASS
         EXPRESSION 'cemetery'
         STYLE
-            COLOR _cemetery_clr
+          COLOR _cemetery_clr
         END
+#if _display_cemetery_lbl==1
         LABEL
-        _default_lbl
-          FONT _landuse_font
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _cemetery_font
+            SIZE _cemetery_lbl_size
+            COLOR _cemetery_lbl_clr
+            OUTLINECOLOR _cemetery_lbl_ol_clr
+            OUTLINEWIDTH _cemetery_lbl_ol_width
             PRIORITY 2
             WRAP ' '
             MAXLENGTH 6
             ALIGN CENTER
+            MINFEATURESIZE AUTO
         END
+#endif
     END
  
     CLASS
@@ -87,55 +98,67 @@ LAYER
         STYLE
             COLOR _park_clr
         END
+#if _display_park_lbl==1
         LABEL
-        _default_lbl
-          FONT _landuse_font
-        MAXSCALEDENOM 30000
-            SIZE 7
-            COLOR _park_lbl_clr
-            OUTLINECOLOR 255 255 255
-            PRIORITY 2
-            POSITION cc
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _park_font
+          SIZE _park_lbl_size
+          COLOR _park_lbl_clr
+          OUTLINECOLOR _park_lbl_ol_clr
+          OUTLINEWIDTH _park_lbl_ol_width
+          PRIORITY 2
+          POSITION cc
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
         END
+#endif
     END
     CLASS
         EXPRESSION 'hospital'
         STYLE
             COLOR _hospital_clr
         END
+#if _display_hospital_lbl==1
          LABEL
-          _default_lbl
-          FONT _landuse_font
-            MAXSCALEDENOM 15000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _hospital_font
+          SIZE _hospital_lbl_size
+          COLOR _hospital_lbl_clr
+          OUTLINECOLOR _hospital_lbl_ol_clr
+          OUTLINEWIDTH _hospital_lbl_ol_width
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
         END
+#endif
     END
     CLASS
         EXPRESSION /school|college|university/
         STYLE
             COLOR _education_clr
         END
+#if _display_education_lbl==1
         LABEL
-            _default_lbl
-          FONT _landuse_font
-            MAXSCALEDENOM 15000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _education_font
+          SIZE _education_lbl_size
+          COLOR _education_lbl_clr
+          OUTLINECOLOR _education_lbl_ol_clr
+          OUTLINEWIDTH _education_lbl_ol_width
+          PRIORITY 1
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
         END
+#endif
     END
 END
 
@@ -156,19 +179,22 @@ LAYER
     LABELITEM "name"
     CLASS
         STYLE
-            COLOR _water_clr
+            COLOR _waterarea_clr
         END
 #if _display_waterarea_lbl == 1
         LABEL
-          _default_lbl
-          FONT _water_font
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _waterarea_font
           MINDISTANCE 400
           SIZE _waterarea_lbl_size
-          COLOR _water_lbl_clr
-          OUTLINECOLOR _water_lbl_ol_clr
+          COLOR _waterarea_lbl_clr
+          OUTLINECOLOR _waterarea_lbl_ol_clr
+          OUTLINEWIDTH _waterarea_lbl_ol_width
           WRAP ' '
           MAXLENGTH 5
           ALIGN CENTER
+          MINFEATURESIZE AUTO
         END
 #endif
     END
@@ -193,17 +219,20 @@ LAYER
     CLASS
         EXPRESSION "river"
         STYLE
-            COLOR _water_clr 
+            COLOR _river_clr 
             WIDTH _river_width
         END
 #if _display_river_lbl == 1
         LABEL
-          _default_lbl
-          FONT _water_font
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _river_font
           MINDISTANCE 400
           SIZE _river_lbl_size
-          COLOR _water_lbl_clr
-          OUTLINECOLOR _water_lbl_ol_clr
+          COLOR _river_lbl_clr
+          OUTLINECOLOR _river_lbl_ol_clr
+          OUTLINEWIDTH _river_lbl_ol_width
+          MINFEATURESIZE AUTO
           ANGLE FOLLOW
         END
 #endif
@@ -211,17 +240,20 @@ LAYER
     CLASS
         EXPRESSION "stream"
         STYLE
-            COLOR _water_clr
+            COLOR _stream_clr
             WIDTH _stream_width
         END
 #if _display_stream_lbl == 1
         LABEL
-          _default_lbl
-          FONT _water_font
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _stream_font
           MINDISTANCE 400
           SIZE _stream_lbl_size
-          COLOR _water_lbl_clr
-          OUTLINECOLOR _water_lbl_ol_clr
+          COLOR _stream_lbl_clr
+          OUTLINECOLOR _stream_lbl_ol_clr
+          OUTLINEWIDTH _stream_lbl_ol_width
+          MINFEATURESIZE AUTO
           ANGLE FOLLOW
         END
 #endif
@@ -229,17 +261,19 @@ LAYER
     CLASS
         EXPRESSION "canal"
         STYLE
-            COLOR _water_clr
+            COLOR _canal_clr
             WIDTH _canal_width
         END
 #if _display_canal_lbl == 1
         LABEL
-          _default_lbl
-          FONT _water_font
+          TYPE TRUETYPE
+          FONT _canal_font
           MINDISTANCE 400
           SIZE _canal_lbl_size
-          COLOR _water_lbl_clr
-          OUTLINECOLOR _water_lbl_ol_clr
+          COLOR _canal_lbl_clr
+          OUTLINECOLOR _canal_lbl_ol_clr
+          OUTLINEWIDTH _canal_lbl_ol_width
+          MINFEATURESIZE AUTO
           ANGLE FOLLOW
         END
 #endif

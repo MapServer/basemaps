@@ -4,7 +4,7 @@ drop table if exists gadm_tmp_rings1;
 
 
 create table gadm_tmp_rings1 (id integer, geometry geometry);
-create table gadm_tmp_rings (id integer, geometry geometry);
+create table gadm_tmp_rings (gid serial, id integer, geometry geometry);
 insert into gadm_tmp_rings1 (id,geometry) select gid, (st_dump(geometry)).geom from lev0;
 
 insert into gadm_tmp_rings(id,geometry) 
@@ -17,6 +17,11 @@ insert into gadm_tmp_rings (id,geometry)
 
 create index gadm_tmp_rings_idx on gadm_tmp_rings using gist(geometry);
 cluster gadm_tmp_rings_idx on gadm_tmp_rings;
+
+delete from gadm_tmp_rings t1 using gadm_tmp_rings t2
+where t1.id <> t2.id
+and st_disjoint(t1.geometry, t2.geometry);
+
 vacuum analyze;
 
 drop table if exists gadm_boundaries;

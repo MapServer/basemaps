@@ -1,13 +1,15 @@
-CPP=cpp
+CPP=cpp-4.2
 
 OSM_PREFIX=osm_new_
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857"
+DEBUG=1
+LAYERDEBUG=1
 
 template=osmbase.map
-theme=osm
-includes=landusage.map borders.map highways.map places.map $(theme).style\
+
+includes=land.map landusage.map borders.map highways.map places.map \
 		 style.inc \
 		 level0.inc level1.inc level2.inc level4.inc level3.inc level5.inc level6.inc\
        level7.inc level8.inc level9.inc level10.inc level11.inc level12.inc\
@@ -20,7 +22,7 @@ here=`pwd`
 
 all:$(mapfile) boundaries.sql
 
-SED=sed
+SED=gsed
 SEDI=$(SED) -i
 #if on BSD, use
 # SED=sed -i ""
@@ -86,7 +88,7 @@ level18.inc: generate_style.py
 	python generate_style.py -l 18 > $@
 
 $(mapfile):$(template) $(includes) shapefiles
-	$(CPP) -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -Dtheme=\"$(theme).style\" -D_proj_lib=\"$(here)\"
+	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -D_proj_lib=\"$(here)\"
 	$(SEDI) 's/##.*$$//g' $(mapfile)
 	$(SEDI) '/^ *$$/d' $(mapfile)
 	$(SEDI) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(mapfile)

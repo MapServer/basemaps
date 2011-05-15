@@ -112,7 +112,7 @@
 #define _city_lbl_clr "#000000"
 #define _town_lbl_clr "#555555"
 #define _village_lbl_clr _town_lbl_clr
-#define _other_place_lbl_clr _town_lbl_clr
+#define _hamlet_lbl_clr _town_lbl_clr
 
 #define _lbl_ol_clr "#ffffff"
 
@@ -120,7 +120,7 @@
 #define _city_lbl_ol_clr _lbl_ol_clr
 #define _town_lbl_ol_clr _lbl_ol_clr
 #define _village_lbl_ol_clr _lbl_ol_clr
-#define _other_place_lbl_ol_clr _lbl_ol_clr
+#define _hamlet_lbl_ol_clr _lbl_ol_clr
 #define _country_lbl_ol_clr _lbl_ol_clr
 
 #include "style.inc"

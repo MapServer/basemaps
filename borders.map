@@ -1,14 +1,13 @@
 LAYER
-   _default_layer
+   GROUP "default"
+   STATUS ON
    MAXSCALEDENOM _maxscale
    MINSCALEDENOM _minscale
    TYPE LINE
    NAME "borders"
    DATA _border_data
-   CLASSITEM "admin_level"
 #if _display_border_2 == 1
    CLASS
-      EXPRESSION "2"
 #if _display_border_2_outer == 1
       STYLE
          WIDTH _border_2_width
