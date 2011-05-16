@@ -1,3 +1,4 @@
+#if _display_railways == 1
 LAYER
     GROUP "default"
     STATUS ON
@@ -8,11 +9,8 @@ LAYER
     TYPE LINE
     NAME "railways"
     DATA _railways_data
-    DATA "geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways where type='rail') as foo using unique osm_id using srid=OSM_SRID"
     CLASS
-#ifdef _display_railway_tunnels
       EXPRESSION ([tunnel]=0)
-#endif
         STYLE
          WIDTH _railway_width
          COLOR _railway_clr
@@ -30,6 +28,7 @@ LAYER
         END
     END
 END
+#endif
 
 LAYER
     GROUP "default"
@@ -135,6 +134,7 @@ LAYER
             WIDTH _motorway_width
             COLOR _motorway_clr
         END
+#if _label_motorways == 1
         LABEL
             _default_lbl 
             PRIORITY 1
@@ -145,6 +145,7 @@ LAYER
             COLOR _motorway_lbl_clr
             ANGLE AUTO
         END
+#endif
     END
 #endif
 #if _display_motorway_links == 1
@@ -164,6 +165,7 @@ LAYER
             WIDTH _trunk_width 
             COLOR _trunk_clr
         END
+#if _label_trunks == 1
         LABEL
             _default_lbl
             FONT _highway_font_bold
@@ -173,6 +175,7 @@ LAYER
             COLOR _trunk_lbl_clr
             ANGLE AUTO
         END
+#endif
     END
 #endif
 #if _display_trunk_links == 1
@@ -191,6 +194,7 @@ LAYER
             WIDTH _primary_width 
             COLOR _primary_clr
         END
+#if _label_primaries == 1
         LABEL
             _default_lbl
             FONT _highway_font
@@ -202,6 +206,7 @@ LAYER
             OUTLINECOLOR _primary_clr
             MINFEATURESIZE AUTO
         END
+#endif
     END
 #endif
 #if _display_secondaries == 1
@@ -211,6 +216,7 @@ LAYER
             WIDTH _secondary_width
             COLOR _secondary_clr
         END
+#if _label_secondaries == 1
         LABEL
             _default_lbl
             FONT _highway_font
@@ -222,6 +228,7 @@ LAYER
             OUTLINECOLOR _secondary_clr
             MINFEATURESIZE AUTO
         END
+#endif
     END
 #endif
 #if _display_tertiaries == 1
@@ -231,7 +238,7 @@ LAYER
             WIDTH _tertiary_width
             COLOR _tertiary_clr
         END
-#if _display_tertiary_lbl == 1
+#if _label_tertiaries == 1
         LABEL
             _default_lbl
             FONT _highway_font
@@ -308,7 +315,7 @@ LAYER
             WIDTH _pedestrian_width 
             COLOR _pedestrian_clr
         END
-#ifdef _label_pedestrian
+#if _label_pedestrian == 1
         LABEL
             _default_lbl
             FONT _highway_font

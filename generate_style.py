@@ -58,6 +58,7 @@ defaults = {
    'water_lbl_clr':{0:'"#6B94B0"'},
    'water_lbl_ol_clr':{0:'255 255 255'},
    'water_lbl_ol_width':{0:2},
+   'road_clr':{0:'"#ffffff"'},
 
 };
 
@@ -182,61 +183,137 @@ vars= {
       0:'"+init=epsg:4326"',
       3:'"+init=epsg:900913"',
    },
-   'motorway_clr': {
-      0:'"#ffffff"'
+   'roads_data': {
+      0:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
+   'display_motorways': {
+      0:0,
+      5:1
+   },
+   'display_trunks': {
+      0:0,
+      5:1
+   },
+   'motorway_clr': defaults['road_clr'],
+
    'motorway_width': {
-      0:1,
-      1:0.5
+      0:0.5,
+      8:1,
+      9:2,
+      10:3,
+      12:4,
+      14:5,
+      16:7,
+      18:9
    },
    'motorway_lbl_clr': {
-      0:'"#ffffff"'
+      0:'"#000000"'
    },
-   'trunk_clr': {
-      0:'"#ffffff"'
-   },
+   'trunk_clr': defaults['road_clr'],
    'trunk_width': {
-      0:'"#ffffff"'
+      0:0.5,
+      8:1,
+      9:2,
+      10:3,
+      12:4,
+      14:5,
+      16:7,
+      18:9
    },
-   'trunk_lbl_clr': {
-      0:'"#ffffff"'
+   'trunk_lbl_clr':defaults['lbl_clr'],
+   'display_primaries': {
+      0:0,
+      8:1
    },
    'primary_clr': {
-      0:'"#ffffff"'
+      0:'-1 -1 -1',
+      8:'"#cccccc"',
+      9:'"#ffffff"'
    },
    'primary_width': {
-      0:'"#ffffff"'
+      0:0.5,
+      9:0.75,
+      10:1,
+      11:1.5,
+      12:2,
+      13:2.5,
+      14:3,
+      15:3.5,
+      16:4,
+      17:4.5,
+      18:5
    },
    'primary_lbl_clr': {
-      0:'"#ffffff"'
+      0:defaults['lbl_clr']
+   },
+   'display_secondaries': {
+      0:0,
+      9:1
    },
    'secondary_clr': {
-      0:'"#ffffff"'
+      0:'"#cccccc"',
+      10:'"#ffffff"'
    },
    'secondary_width': {
-      0:'"#ffffff"'
+      0:0,
+      9:0.5,
+      10:0.75,
+      11:1,
+      12:1.5,
+      13:2,
+      14:2.5,
+      15:3,
+      16:3.5,
+      17:4,
+      18:4.5
    },
-   'secondary_lbl_clr': {
-      0:'"#ffffff"'
+   'secondary_lbl_clr': defaults['lbl_clr'],
+   
+   'display_tertiaries': {
+      0:0,
+      10:1
    },
    'tertiary_clr': {
-      0:'"#ffffff"'
+      0:'"#cccccc"',
+      11:'"#ffffff"'
    },
    'tertiary_width': {
-      0:'"#ffffff"'
+      0:0,
+      10:0.5,
+      11:0.75,
+      12:1,
+      13:1.5,
+      14:2,
+      15:2.5,
+      16:3,
+      17:3.5,
+      18:4
    },
-   'tertiary_lbl_clr': {
-      0:'"#ffffff"'
+   'tertiary_lbl_clr': defaults['lbl_clr'],
+
+   'display_other_roads': {
+      0:0,
+      11:1
    },
    'other_clr': {
-      0:'"#ffffff"'
+      0:'"#cccccc"',
+      12:'"#ffffff"'
    },
    'other_width': {
-      0:'"#ffffff"'
+      0:0,
+      11:0.5,
+      12:0.75,
+      13:1,
+      14:1.5,
+      15:2,
+      16:2.5,
+      17:3,
+      18:3.5,
    },
-   'other_lbl_clr': {
-      0:'"#ffffff"'
-   },
+   'other_lbl_clr': defaults['lbl_clr'],
+   
    'pedestrian_clr': {
       0:'"#ffffff"'
    },
@@ -264,21 +341,27 @@ vars= {
    'path_lbl_clr': {
       0:'"#ffffff"'
    },
+   
    'railway_clr': {
-      0:'"#ffffff"'
+      0:'"#777777"'
    },
    'railway_width': {
-      0:'"#ffffff"'
+      0:1
    },
-   'railway_inner_clr': {
-      0:'"#ffffff"'
+   'railway_pattern': {
+      0:'2 2'
    },
-   'railway_inner_width': {
-      0:'"#ffffff"'
+   'railway_tunnel_opacity': {
+      0:40
    },
-   'railway_inner_pattern': {
-      0:'"#ffffff"'
+   'railways_data': {
+      0:'"geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
    },
+   'display_railways': {
+      0:0,
+      8:1
+   },
+
    'landusage_data': {
       0:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'residential\')\
@@ -311,7 +394,7 @@ vars= {
    },
    'border_2_inner_width': {
       0:'0.5',
-      5:'1'
+      7:'1'
    },
    'border_2_inner_pattern': {
       0:''
@@ -430,17 +513,21 @@ vars= {
       0: '"geometry from (select * from OSM_PREFIX_places where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_capitals': {
-      0:1
+      0:0,
+      3:1
    },
    'display_capital_symbol': {
       0:1,
       10:0
    },
    'capital_lbl_size': {
-      0:8,
+      0:0,
+      3:7,
+      5:8,
+      8:9,
       10:10,
-      12:12,
-      14:18
+      13:11,
+      15:12
 
    },
    'capital_size': {
@@ -471,10 +558,12 @@ vars= {
       10:0
    },
    'city_lbl_size': {
-      0:7,
-      10:8,
-      12:10,
-      14:14
+      0:0,
+      5:7,
+      8:8,
+      10:9,
+      13:10,
+      15:11
    },
    'city_size': {
       0:5
@@ -486,27 +575,34 @@ vars= {
       0:"200 200 200"
    },
    'city_font': defaults['font'],
-   'city_lbl_clr': defaults['lbl_clr'],
+   'city_lbl_clr': {
+      0:'"#444444"',
+      8:'0 0 0'
+   },
    'city_lbl_ol_clr': defaults['lbl_ol_clr'],
    'city_lbl_ol_width':defaults['lbl_ol_width'],
    
    'display_towns': {
       0:0,
-      5:1
+      8:1
    },
    'display_town_symbol': {
       0:1,
       10:0
    },
    'town_font': defaults['font'],
-   'town_lbl_clr': defaults['lbl_clr'],
+   'town_lbl_clr': {
+      0:'"#444444"',
+      11:'0 0 0'
+   },
    'town_lbl_ol_clr': defaults['lbl_ol_clr'],
    'town_lbl_ol_width':defaults['lbl_ol_width'],
    'town_lbl_size': {
-      0:7,
+      0:0,
+      8:7,
       10:8,
-      12:10,
-      14:14
+      13:9,
+      15:10
    },
    'town_size': {
       0:5
@@ -518,22 +614,25 @@ vars= {
       0:"200 200 200"
    },
    'village_font': defaults['font'],
-   'village_lbl_clr': defaults['lbl_clr'],
+   'village_lbl_clr': {
+      0:'"#444444"',
+      13:'0 0 0'
+   },
    'village_lbl_ol_clr': defaults['lbl_ol_clr'],
    'village_lbl_ol_width':defaults['lbl_ol_width'],
    'display_villages': {
       0:0,
-      5:1
+      11:1
    },
    'display_village_symbol': {
       0:1,
       10:0
    },
    'village_lbl_size': {
-      0:7,
-      10:8,
-      12:10,
-      14:14
+      0:0,
+      10:7,
+      13:8,
+      15:9
    },
    'village_size': {
       0:5
@@ -547,22 +646,23 @@ vars= {
 
 
    'hamlet_font': defaults['font'],
-   'hamlet_lbl_clr': defaults['lbl_clr'],
+   'hamlet_lbl_clr': {
+      0:'"#444444"',
+      15:'0 0 0'
+   },
    'hamlet_lbl_ol_clr': defaults['lbl_ol_clr'],
    'hamlet_lbl_ol_width': defaults['lbl_ol_width'],
    'display_hamlets': {
       0:0,
-      5:1
+      13:1
    },
    'display_hamlet_symbol': {
-      0:1,
-      10:0
+      0:0,
    },
    'hamlet_lbl_size': {
-      0:7,
-      10:8,
-      12:10,
-
+      0:0,
+      13:7,
+      15:8,
    },
    'hamlet_size': {
       0:5
