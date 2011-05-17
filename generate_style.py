@@ -45,7 +45,7 @@ minscales = {
 }
 
 defaults = {
-   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5432"'},
+   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5433"'},
    'font': {0:'"sc"'},
    'boldfont': {0:'"scb"'},
    'lbl_clr': {0:"0 0 0"},
@@ -541,11 +541,14 @@ vars= {
       10:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'places_data': {
-      0: '"geometry from (select * from OSM_PREFIX_places where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"'
+      0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      3: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\',\'town\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\',\'town\',\'village\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      13: '"geometry from (select * from OSM_PREFIX_places where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
    },
    'display_capitals': {
       0:0,
-      3:1
    },
    'display_capital_symbol': {
       0:1,
@@ -582,7 +585,7 @@ vars= {
    'capital_lbl_ol_width':defaults['lbl_ol_width'],
    'display_cities': {
       0:0,
-      5:1,
+      3:1,
       16:0
    },
    'display_city_symbol': {
@@ -591,7 +594,7 @@ vars= {
    },
    'city_lbl_size': {
       0:0,
-      5:7,
+      3:7,
       8:8,
       10:9,
       11:11,
