@@ -152,7 +152,7 @@ LAYER
     CLASS
         EXPRESSION "motorway_link"
         STYLE
-            WIDTH _motorway_link_width
+            WIDTH _primary_width
             COLOR _motorway_clr
         END
     END
@@ -182,7 +182,7 @@ LAYER
     CLASS
         EXPRESSION "trunk_link"
         STYLE
-            WIDTH _trunk_link_width
+            WIDTH _primary_width
             COLOR _trunk_clr
         END
     END

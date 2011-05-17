@@ -160,6 +160,28 @@ LAYER
         END
 #endif
     END
+    CLASS
+      EXPRESSION /sports_center|stadium|pitch/
+      STYLE
+          COLOR _sports_clr
+      END
+#if _display_sports_lbl==1
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        FONT _sports_font
+        SIZE _sports_lbl_size
+        COLOR _sports_lbl_clr
+        OUTLINECOLOR _sports_lbl_ol_clr
+        OUTLINEWIDTH _sports_lbl_ol_width
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+#endif
+    END
 END
 
 LAYER
@@ -172,11 +194,18 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
-    DATA "geometry from (select geometry,osm_id ,name from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale  
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR _waterarea_clr
+        END
+    END
     CLASS
         STYLE
             COLOR _waterarea_clr

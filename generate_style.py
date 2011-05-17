@@ -85,6 +85,9 @@ vars= {
    'education_clr': {
       0:'"#DED1AB"'
    },
+   'sports_clr': {
+      0:'"#DED1AB"'
+   },
    'cemetery_clr': {
       0:'"#d1d1d1"'
    },
@@ -159,6 +162,13 @@ vars= {
    'education_lbl_clr': defaults['lbl_clr'],
    'education_lbl_ol_clr': defaults['lbl_ol_clr'],
    'education_lbl_ol_width': defaults['lbl_ol_width'],
+   
+   'display_sports_lbl' : {0:0, 6:1},
+   'sports_font': defaults['font'],
+   'sports_lbl_size': defaults['lbl_size'],
+   'sports_lbl_clr': defaults['lbl_clr'],
+   'sports_lbl_ol_clr': defaults['lbl_ol_clr'],
+   'sports_lbl_ol_width': defaults['lbl_ol_width'],
 
    'display_pedestrian_lbl' : {0:0, 6:1},
    'pedestrian_font': defaults['font'],
@@ -240,10 +250,10 @@ vars= {
       12:2,
       13:2.5,
       14:3,
-      15:3.5,
-      16:4,
-      17:4.5,
-      18:5
+      15:4,
+      16:5,
+      17:6,
+      18:7
    },
    'primary_lbl_clr': {
       0:defaults['lbl_clr']
@@ -264,12 +274,22 @@ vars= {
       12:1.5,
       13:2,
       14:2.5,
-      15:3,
-      16:3.5,
-      17:4,
-      18:4.5
+      15:3.5,
+      16:4.5,
+      17:5.5,
+      18:6.5
    },
    'secondary_lbl_clr': defaults['lbl_clr'],
+
+   'display_trunk_links': {
+      0:0,
+      9:1
+   },
+   'display_motorway_links': {
+      0:0,
+      9:1
+   },
+
    
    'display_tertiaries': {
       0:0,
@@ -314,15 +334,26 @@ vars= {
    },
    'other_lbl_clr': defaults['lbl_clr'],
    
+   'display_pedestrian': {
+      0:0,
+      12:1
+   },
    'pedestrian_clr': {
-      0:'"#ffffff"'
+      0:'"#f2f2ed"',
    },
    'pedestrian_width': {
-      0:'"#ffffff"'
+      0:0,
+      11:0.5,
+      12:0.75,
+      13:1,
+      14:1.5,
+      15:2,
+      16:2.5,
+      17:3,
+      18:3.5,
    },
-   'pedestrian_lbl_clr': {
-      0:'"#ffffff"'
-   },
+   'pedestrian_lbl_clr': defaults['lbl_clr'],
+   
    'track_clr': {
       0:'"#ffffff"'
    },
@@ -369,8 +400,8 @@ vars= {
       6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
-      \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\')\
-      order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"'
+      \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
+      \'pitch\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'border_data': {
       0: '"data/boundaries.shp"'
@@ -551,7 +582,8 @@ vars= {
    'capital_lbl_ol_width':defaults['lbl_ol_width'],
    'display_cities': {
       0:0,
-      5:1
+      5:1,
+      16:0
    },
    'display_city_symbol': {
       0:1,
@@ -562,17 +594,20 @@ vars= {
       5:7,
       8:8,
       10:9,
-      13:10,
-      15:11
+      11:11,
+      13:12,
+      15:13
    },
    'city_size': {
-      0:5
+      0:5,
+      8:6
    },
    'city_ol_clr': {
       0:'"#000000"'
    },
    'city_clr': {
-      0:"200 200 200"
+      0:"200 200 200",
+      8:"255 255 255"
    },
    'city_font': defaults['font'],
    'city_lbl_clr': {
@@ -580,7 +615,10 @@ vars= {
       8:'0 0 0'
    },
    'city_lbl_ol_clr': defaults['lbl_ol_clr'],
-   'city_lbl_ol_width':defaults['lbl_ol_width'],
+   'city_lbl_ol_width': {
+      0:2,
+      10:3
+   },
    
    'display_towns': {
       0:0,
@@ -588,11 +626,11 @@ vars= {
    },
    'display_town_symbol': {
       0:1,
-      10:0
+      12:0
    },
    'town_font': defaults['font'],
    'town_lbl_clr': {
-      0:'"#444444"',
+      0:'"#666666"',
       11:'0 0 0'
    },
    'town_lbl_ol_clr': defaults['lbl_ol_clr'],
@@ -601,17 +639,19 @@ vars= {
       0:0,
       8:7,
       10:8,
-      13:9,
+      12:9,
       15:10
    },
    'town_size': {
-      0:5
+      0:0,
+      8:3,
+      10:5
    },
    'town_ol_clr': {
       0:'"#000000"'
    },
    'town_clr': {
-      0:"200 200 200"
+      0:'200 200 200'
    },
    'village_font': defaults['font'],
    'village_lbl_clr': {
@@ -626,7 +666,7 @@ vars= {
    },
    'display_village_symbol': {
       0:1,
-      10:0
+      14:0
    },
    'village_lbl_size': {
       0:0,
@@ -635,7 +675,9 @@ vars= {
       15:9
    },
    'village_size': {
-      0:5
+      0:0,
+      11:3,
+      13:4
    },
    'village_ol_clr': {
       0:'"#000000"'
