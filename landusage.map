@@ -263,6 +263,7 @@ LAYER
           OUTLINEWIDTH _river_lbl_ol_width
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
+          BUFFER 3
         END
 #endif
     END
@@ -284,6 +285,7 @@ LAYER
           OUTLINEWIDTH _stream_lbl_ol_width
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
+          BUFFER 3
         END
 #endif
     END
@@ -304,6 +306,7 @@ LAYER
           OUTLINEWIDTH _canal_lbl_ol_width
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
+          BUFFER 3
         END
 #endif
     END

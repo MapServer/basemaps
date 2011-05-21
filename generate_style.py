@@ -45,7 +45,7 @@ minscales = {
 }
 
 defaults = {
-   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5433"'},
+   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5432"'},
    'font': {0:'"sc"'},
    'boldfont': {0:'"scb"'},
    'lbl_clr': {0:"0 0 0"},
@@ -100,14 +100,14 @@ vars= {
    'canal_clr':defaults['water_clr'],
 
 
-   'display_canal_lbl' : {0:0, 6:1},
+   'display_canal_lbl' : {0:0, 10:1},
    'canal_font': defaults['water_font'],
    'canal_lbl_size': defaults['water_lbl_size'],
    'canal_lbl_clr': defaults['water_lbl_clr'],
    'canal_lbl_ol_clr': defaults['water_lbl_ol_clr'],
    'canal_lbl_ol_width': defaults['water_lbl_ol_width'],
 
-   'display_stream_lbl' : {0:0, 6:1},
+   'display_stream_lbl' : {0:0, 12:1},
    'stream_font': defaults['water_font'],
    'stream_lbl_size': defaults['water_lbl_size'],
    'stream_lbl_clr': defaults['water_lbl_clr'],
@@ -543,8 +543,8 @@ vars= {
    'places_data': {
       0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
       3: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\',\'town\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\',\'town\',\'village\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
       13: '"geometry from (select * from OSM_PREFIX_places where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
    },
    'display_capitals': {
@@ -583,6 +583,43 @@ vars= {
    'capital_lbl_clr': defaults['lbl_clr'],
    'capital_lbl_ol_clr': defaults['lbl_ol_clr'],
    'capital_lbl_ol_width':defaults['lbl_ol_width'],
+   'display_continents': {
+      0:1,
+      3:0
+   },
+   'continent_lbl_size': {
+      0:7,
+      2:8
+   },
+   'continent_lbl_clr': defaults['lbl_clr'],
+   'continent_lbl_ol_width': {
+      0:"1"
+   },
+   'continent_lbl_ol_clr': {
+      0:"-1 -1 -1"
+   },
+   'continent_font': {
+      0:"scb"
+   },
+   'display_countries': {
+      0:0,
+      2:1,
+      8:0
+   },
+   'country_lbl_size': {
+      0:7,
+      3:8
+   },
+   'country_lbl_clr': defaults['lbl_clr'],
+   'country_lbl_ol_width': {
+      0:"1"
+   },
+   'country_lbl_ol_clr': {
+      0:"-1 -1 -1"
+   },
+   'country_font': {
+      0:"scb"
+   },
    'display_cities': {
       0:0,
       3:1,

@@ -45,6 +45,24 @@ LAYER
         END
     END
 #endif
+#if _display_continents == 1
+    CLASS
+        EXPRESSION 'continents'
+        LABEL
+            FONT _continent_font
+            TYPE TRUETYPE
+            ENCODING "utf-8"
+            SIZE _continent_lbl_size
+            COLOR _continent_lbl_clr
+            OUTLINECOLOR _continent_lbl_ol_clr
+            OUTLINEWIDTH _continent_lbl_ol_width
+            PRIORITY 9
+            BUFFER 3
+            PARTIALS FALSE
+            POSITION auto
+        END
+    END
+#endif
 #if _display_countries == 1
     CLASS
         EXPRESSION 'country'
@@ -54,6 +72,7 @@ LAYER
             ENCODING "utf-8"
             SIZE _country_lbl_size
             COLOR _country_lbl_clr
+            OUTLINECOLOR _country_lbl_ol_clr
             OUTLINEWIDTH _country_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
