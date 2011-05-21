@@ -307,6 +307,7 @@ LAYER
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
           BUFFER 3
+          PARTIALS FALSE
         END
 #endif
     END

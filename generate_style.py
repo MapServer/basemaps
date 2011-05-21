@@ -198,6 +198,13 @@ vars= {
       6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
       9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
+   'tunnel_opacity': {
+      0:40
+   },
+   'display_roads_tunnels': {
+      0:0,
+      12:1
+   },
    'display_motorways': {
       0:0,
       5:1
@@ -207,7 +214,6 @@ vars= {
       5:1
    },
    'motorway_clr': defaults['road_clr'],
-
    'motorway_width': {
       0:0.5,
       8:1,
@@ -215,11 +221,22 @@ vars= {
       10:3,
       12:4,
       14:5,
-      16:7,
-      18:9
+      15:6,
+      16:8,
+      17:9,
+      18:10
+   },
+   'label_motorways': {
+      0:0,
+      10:1
+   },
+   'motorway_font': defaults['boldfont'],
+   'motorway_lbl_size': {
+      0:7,
+      14:8
    },
    'motorway_lbl_clr': {
-      0:'"#000000"'
+      0:'"#555555"'
    },
    'trunk_clr': defaults['road_clr'],
    'trunk_width': {
@@ -229,10 +246,23 @@ vars= {
       10:3,
       12:4,
       14:5,
-      16:7,
-      18:9
+      15:6,
+      16:8,
+      17:9,
+      18:10
    },
-   'trunk_lbl_clr':defaults['lbl_clr'],
+   'label_trunks': {
+      0:0,
+      10:1
+   },
+   'trunk_font': defaults['boldfont'],
+   'trunk_lbl_size': {
+      0:7,
+      14:8
+   },
+   'trunk_lbl_clr': {
+      0:'"#555555"'
+   },
    'display_primaries': {
       0:0,
       8:1
@@ -251,12 +281,25 @@ vars= {
       13:2.5,
       14:3,
       15:4,
-      16:5,
-      17:6,
-      18:7
+      16:7,
+      17:8,
+      18:9
+   },
+   'label_primaries': {
+      0:0,
+      13:1
+   },
+   'primary_font': defaults['font'],
+   'primary_lbl_size': {
+      0:0,
+      13:7,
+      15:8
    },
    'primary_lbl_clr': {
-      0:defaults['lbl_clr']
+      0:'"#333333"'
+   },
+   'primary_lbl_ol_clr': {
+      0:'255 255 255'
    },
    'display_secondaries': {
       0:0,
@@ -275,11 +318,26 @@ vars= {
       13:2,
       14:2.5,
       15:3.5,
-      16:4.5,
-      17:5.5,
-      18:6.5
+      16:6,
+      17:7,
+      18:8
    },
-   'secondary_lbl_clr': defaults['lbl_clr'],
+   'label_secondaries': {
+      0:0,
+      13:1
+   },
+   'secondary_font': defaults['font'],
+   'secondary_lbl_size': {
+      0:0,
+      13:7,
+      15:8
+   },
+   'secondary_lbl_clr': {
+      0:'"#333333"'
+   },
+   'secondary_lbl_ol_clr': {
+      0:'255 255 255'
+   },
 
    'display_trunk_links': {
       0:0,
@@ -307,11 +365,25 @@ vars= {
       13:1.5,
       14:2,
       15:2.5,
-      16:3,
-      17:3.5,
-      18:4
+      16:5,
+      17:6,
+      18:7
    },
-   'tertiary_lbl_clr': defaults['lbl_clr'],
+   'label_tertiaries': {
+      0:0,
+      15:1
+   },
+   'tertiary_font': defaults['font'],
+   'tertiary_lbl_size': {
+      0:0,
+      15:7,
+   },
+   'tertiary_lbl_clr': {
+      0:'"#333333"'
+   },
+   'tertiary_lbl_ol_clr': {
+      0:'255 255 255'
+   },
 
    'display_other_roads': {
       0:0,
@@ -328,11 +400,25 @@ vars= {
       13:1,
       14:1.5,
       15:2,
-      16:2.5,
-      17:3,
-      18:3.5,
+      16:4,
+      17:5,
+      18:6,
    },
-   'other_lbl_clr': defaults['lbl_clr'],
+   'label_other_roads': {
+      0:0,
+      15:1
+   },
+   'other_font': defaults['font'],
+   'other_lbl_size': {
+      0:0,
+      15:7,
+   },
+   'other_lbl_clr': {
+      0:'"#333333"'
+   },
+   'other_lbl_ol_clr': {
+      0:'255 255 255'
+   },
    
    'display_pedestrian': {
       0:0,
@@ -377,7 +463,8 @@ vars= {
       0:'"#777777"'
    },
    'railway_width': {
-      0:1
+      0:0.5,
+      10:1
    },
    'railway_pattern': {
       0:'2 2'
@@ -591,7 +678,9 @@ vars= {
       0:7,
       2:8
    },
-   'continent_lbl_clr': defaults['lbl_clr'],
+   'continent_lbl_clr': {
+      0:"100 100 100"
+   },
    'continent_lbl_ol_width': {
       0:"1"
    },
@@ -610,7 +699,9 @@ vars= {
       0:7,
       3:8
    },
-   'country_lbl_clr': defaults['lbl_clr'],
+   'country_lbl_clr': {
+      0: "100 100 100"
+   },
    'country_lbl_ol_width': {
       0:"1"
    },

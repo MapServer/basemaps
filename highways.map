@@ -58,7 +58,7 @@ LAYER
     CLASS
         EXPRESSION ("[type]"="motorway_link" and "[tunnel]"="1")
         STYLE
-            WIDTH _motorway_link_width
+            WIDTH _primary_width
             COLOR _motorway_clr
             OPACITY _tunnel_opacity
         END
@@ -78,7 +78,7 @@ LAYER
     CLASS
         EXPRESSION ("[type]"="trunk_link" and "[tunnel]"="1")
         STYLE
-            WIDTH _trunk_link_width
+            WIDTH _primary_width
             COLOR _trunk_clr
             OPACITY _tunnel_opacity
         END
@@ -136,14 +136,16 @@ LAYER
         END
 #if _label_motorways == 1
         LABEL
-            _default_lbl 
+            TYPE TRUETYPE
+            PARTIALS FALSE
             PRIORITY 1
-            FONT _highway_font_bold
+            FONT _motorway_font
             SIZE _motorway_lbl_size
-            MINDISTANCE 150
-            MAXLENGTH 6
+            MINDISTANCE 400
+            MINFEATURESIZE AUTO
             COLOR _motorway_lbl_clr
-            ANGLE AUTO
+            ANGLE FOLLOW
+            BUFFER 3
         END
 #endif
     END
@@ -167,13 +169,15 @@ LAYER
         END
 #if _label_trunks == 1
         LABEL
-            _default_lbl
-            FONT _highway_font_bold
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _trunk_font
             SIZE _trunk_lbl_size
-            MINDISTANCE 150
-            MAXLENGTH 6
+            MINDISTANCE 400
+            MINFEATURESIZE AUTO
             COLOR _trunk_lbl_clr
-            ANGLE AUTO
+            ANGLE FOLLOW
+            BUFFER 3
         END
 #endif
     END
@@ -196,15 +200,16 @@ LAYER
         END
 #if _label_primaries == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 4
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _primary_font
             SIZE _primary_lbl_size
-            MINDISTANCE 200
-            ANGLE FOLLOW
-            COLOR _primary_lbl_clr
-            OUTLINECOLOR _primary_clr
+            MINDISTANCE 400
             MINFEATURESIZE AUTO
+            COLOR _primary_lbl_clr
+            OUTLINECOLOR _primary_lbl_ol_clr
+            ANGLE FOLLOW
+            BUFFER 3
         END
 #endif
     END
@@ -218,15 +223,16 @@ LAYER
         END
 #if _label_secondaries == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 3
+            TYPE TRUETYPE
+            PARTIALS FALSE 
+            FONT _secondary_font
             SIZE _secondary_lbl_size 
-            MINDISTANCE 200
+            MINDISTANCE 400
             ANGLE FOLLOW
             COLOR _secondary_lbl_clr
-            OUTLINECOLOR _secondary_clr
+            OUTLINECOLOR _secondary_lbl_ol_clr
             MINFEATURESIZE AUTO
+            BUFFER 3
         END
 #endif
     END
@@ -240,15 +246,16 @@ LAYER
         END
 #if _label_tertiaries == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 2
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _tertiary_font
             SIZE _tertiary_lbl_size
-            MINDISTANCE 200
+            MINDISTANCE 400
             ANGLE FOLLOW
             COLOR _tertiary_lbl_clr
-            OUTLINECOLOR _tertiary_clr
+            OUTLINECOLOR _tertiary_lbl_ol_clr
             MINFEATURESIZE AUTO
+            BUFFER 3
         END
 #endif
     END
@@ -260,17 +267,18 @@ LAYER
             WIDTH _other_width
             COLOR _other_clr
         END
-#ifdef _label_other_roads
+#if _label_other_roads == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 1
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
             SIZE _other_lbl_size
-            MINDISTANCE 200
+            MINDISTANCE 400
             ANGLE FOLLOW
             COLOR _other_lbl_clr
-            OUTLINECOLOR _other_clr
+            OUTLINECOLOR _other_lbl_ol_clr
             MINFEATURESIZE AUTO
+            BUFFER 3
         END
 #endif
     END
