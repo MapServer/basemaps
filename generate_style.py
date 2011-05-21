@@ -205,6 +205,10 @@ vars= {
       0:0,
       12:1
    },
+   'display_highways': {
+      0:0,
+      5:1
+   },
    'display_motorways': {
       0:0,
       5:1
@@ -626,6 +630,31 @@ vars= {
    'waterways_data': {
       0:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
       10:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
+   },
+   'display_buildings': {
+      0: 0,
+      16:1
+   },
+   'building_clr': {
+      0:'"#bbbbbb"'
+   },
+   'building_ol_clr': {
+      0:'"#333333"'
+   },
+   'building_ol_width': {
+      0:0.1,
+      17:0.5
+   },
+   'building_font': defaults['font'],
+   'building_lbl_clr': defaults['lbl_clr'],
+   'building_lbl_size': {
+      0:7
+   },
+   'building_lbl_ol_clr': defaults['lbl_ol_clr'],
+   'building_lbl_ol_width': { 0: 1 },
+   'label_buildings': {
+      0: 0,
+      15: 1
    },
    'places_data': {
       0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',

@@ -30,6 +30,7 @@ LAYER
 END
 #endif
 
+#if _display_highways == 1
 LAYER
     GROUP "default"
     STATUS ON
@@ -96,7 +97,7 @@ LAYER
 #endif
 #ifdef _display_secondaries == 1
     CLASS
-        EXPRESSION (("[type]"="secondary" or "[type]"="secondary_link" and "[tunnel]"="1")
+        EXPRESSION (("[type]"="secondary" or "[type]"="secondary_link") and "[tunnel]"="1")
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -374,4 +375,4 @@ LAYER
     END
 END
 #endif
-    
+#endif    

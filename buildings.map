@@ -1,3 +1,4 @@
+#if _display_buildings == 1
 LAYER
     STATUS ON
     PROJECTION
@@ -12,167 +13,32 @@ LAYER
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 60000
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale
     CLASS
-        MAXSCALEDENOM 7000
-        STYLE
-            COLOR _building_offset_clr
-            OFFSET 2 2
-        END
-        STYLE
-            COLOR _building_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 7000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-    CLASS
-        MAXSCALEDENOM 11000
-        STYLE
-            COLOR _building_offset_clr
-            OFFSET 1 1 
-        END
-        STYLE
-            COLOR _building_clr
-        END
-    END
-    CLASS
-        STYLE
-            COLOR _building_clr
-            OUTLINECOLOR _building_offset_clr
-            WIDTH 0.5
-        END
-    END
+      STYLE
+         COLOR _building_clr
+         OPACITY 50
+      END
+      STYLE
+         OUTLINECOLOR _building_ol_clr
+         WIDTH _building_ol_width
+      END
+#if _label_buildings == 1
+      LABEL
+         TYPE TRUETYPE
+         FONT _building_font
+         PARTIALS FALSE
+         MINFEATURESIZE AUTO
+         SIZE _building_lbl_size
+         COLOR _building_lbl_clr
+         OUTLINECOLOR _building_lbl_ol_clr
+         OUTLINEWIDTH _building_lbl_ol_width
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+      END
+#endif
+   END
 END
-
-LAYER
-    STATUS ON
-    GROUP "default"
-    NAME "sports"
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "geometry from (select geometry,osm_id, name from OSM_PREFIX_landusages where type='sports_center' or type='stadium' or type='pitch') as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "name"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 60000
-    CLASS
-        STYLE
-            COLOR _sports_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 7000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-END
-
-
-LAYER
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    GROUP "default"
-    NAME "building"
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id, name from OSM_PREFIX_polygon where (building is not null and building!='no' and building!='false') or aeroway='terminal' or leisure='stadium' or amenity='library' or amenity='cinema' or amenity='place_of_worship' or amenity='townhall' or amenity='prison' or amenity='public_building' ) as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "name"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 60000
-    CLASS
-        MAXSCALEDENOM 7000
-        STYLE
-            COLOR _building_offset_clr
-            OFFSET 2 2
-        END
-        STYLE
-            COLOR _building_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 7000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-    CLASS
-        MAXSCALEDENOM 11000
-        STYLE
-            COLOR _building_offset_clr
-            OFFSET 1 1 
-        END
-        STYLE
-            COLOR _building_clr
-        END
-    END
-    CLASS
-        STYLE
-            COLOR _building_clr
-            OUTLINECOLOR _building_offset_clr
-            WIDTH 0.5
-        END
-    END
-END
-
-LAYER
-    STATUS ON
-    GROUP "default"
-    NAME "sports"
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION _db_connection
-    DATA "way from (select way,osm_id, name from OSM_PREFIX_polygon where leisure='track' or leisure='pitch') as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "name"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM 60000
-    CLASS
-        STYLE
-            COLOR _sports_clr
-        END
-        LABEL
-        _default_lbl
-        MAXSCALEDENOM 7000
-            SIZE 7
-            COLOR 0 0 0
-            OUTLINECOLOR 255 255 255
-            PRIORITY 1
-            WRAP ' '
-            MAXLENGTH 6
-            ALIGN CENTER
-        END
-    END
-END
-
-
+#endif
