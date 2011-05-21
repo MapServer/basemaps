@@ -95,7 +95,7 @@ LAYER
         END
     END
 #endif
-#ifdef _display_secondaries == 1
+#if _display_secondaries == 1
     CLASS
         EXPRESSION (("[type]"="secondary" or "[type]"="secondary_link") and "[tunnel]"="1")
         STYLE
@@ -105,7 +105,7 @@ LAYER
         END
     END
 #endif
-#ifdef _display_tertiaries == 1
+#if _display_tertiaries == 1
     CLASS
         EXPRESSION (("[type]"="tertiary" or "[type]"="tertiary_link") and "[tunnel]"="1")
         STYLE
@@ -115,7 +115,7 @@ LAYER
         END
     END
 #endif
-#ifdef _display_other_roads == 1
+#if _display_other_roads == 1
     CLASS
         EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service') and "[tunnel]"="1")
         STYLE
