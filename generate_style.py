@@ -211,7 +211,7 @@ vars= {
    },
    'display_bridges': {
       0:0,
-      12:1
+      14:1
    },
    'motorway_bridge_clr':defaults['bridge_clr'],
    'motorway_bridge_width':defaults['bridge_width'],
@@ -238,7 +238,7 @@ vars= {
    },
    'display_roads_tunnels': {
       0:0,
-      12:1
+      14:1
    },
    'display_highways': {
       0:0,
