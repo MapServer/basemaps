@@ -394,7 +394,7 @@ vars= {
    },
    'tertiary_clr': {
       0:'"#cccccc"',
-      11:'"#ffffff"'
+      13:'"#ffffff"'
    },
    'tertiary_width': {
       0:0,
@@ -430,7 +430,7 @@ vars= {
    },
    'other_clr': {
       0:'"#cccccc"',
-      12:'"#ffffff"'
+      14:'"#ffffff"'
    },
    'other_width': {
       0:0,
