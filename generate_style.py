@@ -430,7 +430,7 @@ vars= {
    },
    'other_clr': {
       0:'"#cccccc"',
-      14:'"#ffffff"'
+      15:'"#ffffff"'
    },
    'other_width': {
       0:0,
