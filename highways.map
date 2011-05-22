@@ -31,6 +31,7 @@ END
 #endif
 
 #if _display_highways == 1
+
 LAYER
     GROUP "default"
     STATUS ON
@@ -43,6 +44,144 @@ LAYER
     DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
+
+#if _display_bridges == 1
+#if _display_motorways == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and "[type]" = "motorway")
+        STYLE
+            WIDTH _motorway_width
+            OUTLINECOLOR _motorway_bridge_clr
+            OUTLINEWIDTH _motorway_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _motorway_width
+            COLOR _motorway_clr
+        END
+    END
+#endif
+#if _display_motorway_links == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and "[type]" = "motorway_link")
+        STYLE
+            WIDTH _primary_width
+            OUTLINECOLOR _motorway_bridge_clr
+            OUTLINEWIDTH _primary_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _primary_width
+            COLOR _motorway_clr
+        END
+    END
+#endif
+#if _display_trunks == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and "[type]" = "trunk")
+        STYLE
+            WIDTH _trunk_width
+            OUTLINECOLOR _trunk_bridge_clr
+            OUTLINEWIDTH _trunk_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _trunk_width
+            COLOR _trunk_clr 
+        END
+    END
+#endif
+#if _display_trunk_links == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and "[type]" = "trunk_link")
+        STYLE
+            WIDTH _primary_width
+            OUTLINECOLOR _trunk_bridge_clr
+            OUTLINEWIDTH _trunk_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _primary_width
+            COLOR _trunk_clr
+        END
+    END
+#endif
+#if _display_primaries == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and ("[type]" = "primary" or "[type]" = "tertiary_link"))
+        STYLE
+            WIDTH _primary_width
+            OUTLINECOLOR _primary_clr
+            OUTLINEWIDTH _primary_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _primary_width
+            COLOR _primary_clr 
+        END
+    END
+#endif
+#if _display_secondaries == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and ("[type]" = "secondary" or "[type]" = "tertiary_link"))
+        STYLE
+            WIDTH _secondary_width
+            OUTLINECOLOR _secondary_bridge_clr
+            OUTLINEWIDTH _secondary_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _secondary_width
+            COLOR _secondary_clr
+        END
+    END
+#endif
+#if _display_tertiaries == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and ("[type]"= "tertiary" or "[type]"="tertiary_link"))
+        STYLE
+            WIDTH _tertiary_width
+            OUTLINECOLOR _tertiary_bridge_clr
+            OUTLINEWIDTH _tertiary_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _tertiary_width
+            COLOR _tertiary_clr
+        END
+    END
+#endif
+#if _display_other_roads == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and ("[type]"="classified" or "[type]"="residential" or "[type]"="service" or "[type]"="road"))
+        STYLE
+            WIDTH _other_width
+            OUTLINECOLOR _other_bridge_clr
+            OUTLINEWIDTH _other_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _other_width
+            COLOR _other_clr
+        END
+    END
+#endif
+#if _display_pedestrian == 1
+    CLASS
+        EXPRESSION ("[bridge]"="1" and "[type]" = 'pedestrian')
+        STYLE
+            WIDTH _pedestrian_width 
+            OUTLINECOLOR _pedestrian_bridge_clr
+            OUTLINEWIDTH _pedestrian_bridge_width
+            LINECAP BUTT
+        END
+        STYLE
+            WIDTH _pedestrian_width 
+            COLOR _pedestrian_clr
+        END
+    END
+#endif
+#endif ##bridges
 
 #if _display_roads_tunnels == 1
 #if _display_motorways == 1
@@ -349,20 +488,22 @@ LAYER
     MAXSCALEDENOM _maxscale
     TYPE LINE
     NAME "aeroways"
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
     DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
       STYLE
-        COLOR _aeroway_clr
-        WIDTH _aeroway_width
+        COLOR _runway_clr
+        WIDTH _runway_width
         LINECAP BUTT
         LINEJOIN MITER
       END
       STYLE
-        COLOR _aeroway_center_clr
-        WIDTH _aeroway_center_width
-        PATTERN _aeroway_center_pattern END
+        COLOR _runway_center_clr
+        WIDTH _runway_center_width
+        PATTERN _runway_center_pattern END
         LINECAP BUTT
       END
     END

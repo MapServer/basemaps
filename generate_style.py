@@ -59,6 +59,8 @@ defaults = {
    'water_lbl_ol_clr':{0:'255 255 255'},
    'water_lbl_ol_width':{0:2},
    'road_clr':{0:'"#ffffff"'},
+   'bridge_width':{0:0.5,14:1},
+   'bridge_clr':{0:'"#888888"'}
 
 };
 
@@ -69,6 +71,13 @@ vars= {
    'ocean_clr': defaults['water_clr'],
    'land_clr': {
       0:'"#E8E6E1"'
+   },
+   'display_landusage': {
+      0:0,
+      4:1
+   },
+   'transport_clr': {
+      0:'200 200 200'
    },
    'forest_clr': {
       0:'"#C2D1B2"'
@@ -184,6 +193,13 @@ vars= {
    'cemetery_lbl_ol_clr': defaults['lbl_ol_clr'],
    'cemetery_lbl_ol_width': defaults['lbl_ol_width'],
 
+   'display_transport_lbl' : {0:0, 6:1},
+   'transport_font': defaults['font'],
+   'transport_lbl_size': defaults['lbl_size'],
+   'transport_lbl_clr': defaults['lbl_clr'],
+   'transport_lbl_ol_clr': defaults['lbl_ol_clr'],
+   'transport_lbl_ol_width': defaults['lbl_ol_width'],
+   
    'land_data': {
       0:'"data/TM_WORLD_BORDERS-0.3.shp"',
       3:'"data/shoreline_300"',
@@ -193,10 +209,29 @@ vars= {
       0:'"+init=epsg:4326"',
       3:'"+init=epsg:900913"',
    },
+   'display_bridges': {
+      0:0,
+      12:1
+   },
+   'motorway_bridge_clr':defaults['bridge_clr'],
+   'motorway_bridge_width':defaults['bridge_width'],
+   'trunk_bridge_clr':defaults['bridge_clr'],
+   'trunk_bridge_width':defaults['bridge_width'],
+   'primary_bridge_clr':defaults['bridge_clr'],
+   'primary_bridge_width':defaults['bridge_width'],
+   'secondary_bridge_clr':defaults['bridge_clr'],
+   'secondary_bridge_width':defaults['bridge_width'],
+   'tertiary_bridge_clr':defaults['bridge_clr'],
+   'tertiary_bridge_width':defaults['bridge_width'],
+   'other_bridge_clr':defaults['bridge_clr'],
+   'other_bridge_width':defaults['bridge_width'],
+   'pedestrian_bridge_clr':defaults['bridge_clr'],
+   'pedestrian_bridge_width':defaults['bridge_width'],
+
    'roads_data': {
-      0:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      0:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
    'tunnel_opacity': {
       0:40
@@ -633,7 +668,7 @@ vars= {
    },
    'display_buildings': {
       0: 0,
-      16:1
+      15:1
    },
    'building_clr': {
       0:'"#bbbbbb"'
@@ -642,7 +677,8 @@ vars= {
       0:'"#333333"'
    },
    'building_ol_width': {
-      0:0.1,
+      0:0,
+      16:0.1,
       17:0.5
    },
    'building_font': defaults['font'],
@@ -655,6 +691,48 @@ vars= {
    'label_buildings': {
       0: 0,
       15: 1
+   },
+
+   'display_aeroways': {
+      0:0,
+      10:1
+   },
+   'runway_clr': {
+      0:"180 180 180"
+   },
+   'runway_width': {
+      0:1,
+      11:2,
+      12:3,
+      13:5,
+      14:7,
+      15:11,
+      16:15,
+      17:19,
+      18:23
+   },
+   'runway_center_clr': {
+      0:'80 80 80'
+   },
+   'runway_center_width': {
+      0:0,
+      15:1
+   },
+   'runway_center_pattern' : {
+      0:'2 2'
+   },
+   'taxiway_width': {
+      0:0,
+      10:0.2,
+      13:1,
+      14:1.5,
+      15:2,
+      16:3,
+      17:4,
+      18:5
+   },
+   'taxiway_clr': {
+      0:"180 180 180"
    },
    'places_data': {
       0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',

@@ -31,6 +31,7 @@ END
 
 #include "level0.inc"
 #include "land.map"
+#include "landusage.map"
 #include "borders.map"
 #include "highways.map"
 #include "buildings.map"
@@ -38,6 +39,7 @@ END
 
 #include "level1.inc"
 #include "land.map"
+#include "landusage.map"
 #include "borders.map"
 #include "highways.map"
 #include "buildings.map"
@@ -45,6 +47,7 @@ END
 
 #include "level2.inc"
 #include "land.map"
+#include "landusage.map"
 #include "borders.map"
 #include "highways.map"
 #include "buildings.map"
@@ -52,6 +55,7 @@ END
 
 #include "level3.inc"
 #include "land.map"
+#include "landusage.map"
 #include "borders.map"
 #include "highways.map"
 #include "buildings.map"

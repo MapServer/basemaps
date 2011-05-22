@@ -1,3 +1,4 @@
+#if _display_landusage == 1
 LAYER
     TYPE POLYGON
     STATUS ON
@@ -184,6 +185,45 @@ LAYER
     END
 END
 
+
+LAYER
+   TYPE POLYGON
+   STATUS ON
+   PROJECTION
+       "init=epsg:OSM_SRID"
+   END
+   NAME "transport_areas"
+   GROUP "default"
+   CONNECTIONTYPE POSTGIS
+   CONNECTION _db_connection
+   DATA "geometry from OSM_PREFIX_transport_areas using unique osm_id using srid=OSM_SRID"
+   PROCESSING "CLOSE_CONNECTION=DEFER"
+   MAXSCALEDENOM _maxscale
+   MINSCALEDENOM _minscale
+   LABELITEM "name"
+   CLASS
+      STYLE
+         COLOR _transport_clr
+      END
+#if _display_transports_lbl==1
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        FONT _transport_font
+        SIZE _transport_lbl_size
+        COLOR _stransport_lbl_clr
+        OUTLINECOLOR _transport_lbl_ol_clr
+        OUTLINEWIDTH _transport_lbl_ol_width
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+#endif
+   END
+END
+
 LAYER
     TYPE POLYGON
     STATUS ON
@@ -313,4 +353,4 @@ LAYER
     END
 END
 #endif
-
+#endif
