@@ -56,10 +56,9 @@ LAYER
             COLOR _continent_lbl_clr
             OUTLINECOLOR _continent_lbl_ol_clr
             OUTLINEWIDTH _continent_lbl_ol_width
-            PRIORITY 9
             BUFFER 3
             PARTIALS FALSE
-            POSITION auto
+            POSITION cc
         END
     END
 #endif
@@ -77,10 +76,9 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 9
             BUFFER 3
             PARTIALS FALSE
-            POSITION auto
+            POSITION cc
         END
     END
 #endif
