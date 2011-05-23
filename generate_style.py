@@ -137,63 +137,63 @@ vars= {
    'waterarea_lbl_ol_clr': defaults['water_lbl_ol_clr'],
    'waterarea_lbl_ol_width': defaults['water_lbl_ol_width'],
 
-   'display_industrial_lbl' : {0:0, 6:1},
+   'display_industrial_lbl' : {0:0, 11:1},
    'industrial_font': defaults['font'],
    'industrial_lbl_size': defaults['lbl_size'],
    'industrial_lbl_clr': defaults['lbl_clr'],
    'industrial_lbl_ol_clr': defaults['lbl_ol_clr'],
    'industrial_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_residential_lbl' : {0:0, 6:1},
+   'display_residential_lbl' : {0:0, 12:1},
    'residential_font': defaults['font'],
    'residential_lbl_size': defaults['lbl_size'],
    'residential_lbl_clr': defaults['lbl_clr'],
    'residential_lbl_ol_clr': defaults['lbl_ol_clr'],
    'residential_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_park_lbl' : {0:0, 6:1},
+   'display_park_lbl' : {0:0, 11:1},
    'park_font': defaults['font'],
    'park_lbl_size': defaults['lbl_size'],
    'park_lbl_clr': defaults['lbl_clr'],
    'park_lbl_ol_clr': defaults['lbl_ol_clr'],
    'park_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_hospital_lbl' : {0:0, 6:1},
+   'display_hospital_lbl' : {0:0, 12:1},
    'hospital_font': defaults['font'],
    'hospital_lbl_size': defaults['lbl_size'],
    'hospital_lbl_clr': defaults['lbl_clr'],
    'hospital_lbl_ol_clr': defaults['lbl_ol_clr'],
    'hospital_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_education_lbl' : {0:0, 6:1},
+   'display_education_lbl' : {0:0, 12:1},
    'education_font': defaults['font'],
    'education_lbl_size': defaults['lbl_size'],
    'education_lbl_clr': defaults['lbl_clr'],
    'education_lbl_ol_clr': defaults['lbl_ol_clr'],
    'education_lbl_ol_width': defaults['lbl_ol_width'],
    
-   'display_sports_lbl' : {0:0, 6:1},
+   'display_sports_lbl' : {0:0, 12:1},
    'sports_font': defaults['font'],
    'sports_lbl_size': defaults['lbl_size'],
    'sports_lbl_clr': defaults['lbl_clr'],
    'sports_lbl_ol_clr': defaults['lbl_ol_clr'],
    'sports_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_pedestrian_lbl' : {0:0, 6:1},
+   'display_pedestrian_lbl' : {0:0, 12:1},
    'pedestrian_font': defaults['font'],
    'pedestrian_lbl_size': defaults['lbl_size'],
    'pedestrian_lbl_clr': defaults['lbl_clr'],
    'pedestrian_lbl_ol_clr': defaults['lbl_ol_clr'],
    'pedestrian_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_cemetery_lbl' : {0:0, 6:1},
+   'display_cemetery_lbl' : {0:0, 12:1},
    'cemetery_font': defaults['font'],
    'cemetery_lbl_size': defaults['lbl_size'],
    'cemetery_lbl_clr': defaults['lbl_clr'],
    'cemetery_lbl_ol_clr': defaults['lbl_ol_clr'],
    'cemetery_lbl_ol_width': defaults['lbl_ol_width'],
 
-   'display_transport_lbl' : {0:0, 6:1},
+   'display_transport_lbl' : {0:0, 12:1},
    'transport_font': defaults['font'],
    'transport_lbl_size': defaults['lbl_size'],
    'transport_lbl_clr': defaults['lbl_clr'],
@@ -518,12 +518,19 @@ vars= {
       0:0,
       8:1
    },
-
+   'waterarea_data': {
+      0: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
+      6: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
+      12: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
+   },
    'landusage_data': {
-      0:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      0:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen0 \
       where type in (\'forest\',\'residential\')\
       order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen1 \
+      where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
+      order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
