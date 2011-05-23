@@ -56,6 +56,7 @@ LAYER
      END
 #if _display_industrial_lbl==1
      LABEL
+       ENCODING "utf-8"
        TYPE TRUETYPE
        FONT _industrial_font
        SIZE _industrial_lbl_size
@@ -81,6 +82,7 @@ LAYER
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _cemetery_font
+       ENCODING "utf-8"
             SIZE _cemetery_lbl_size
             COLOR _cemetery_lbl_clr
             OUTLINECOLOR _cemetery_lbl_ol_clr
@@ -105,6 +107,7 @@ LAYER
           PARTIALS FALSE
           FONT _park_font
           SIZE _park_lbl_size
+       ENCODING "utf-8"
           COLOR _park_lbl_clr
           OUTLINECOLOR _park_lbl_ol_clr
           OUTLINEWIDTH _park_lbl_ol_width
@@ -130,6 +133,7 @@ LAYER
           SIZE _hospital_lbl_size
           COLOR _hospital_lbl_clr
           OUTLINECOLOR _hospital_lbl_ol_clr
+       ENCODING "utf-8"
           OUTLINEWIDTH _hospital_lbl_ol_width
           PRIORITY 1
           WRAP ' '
@@ -150,6 +154,7 @@ LAYER
           PARTIALS FALSE
           FONT _education_font
           SIZE _education_lbl_size
+       ENCODING "utf-8"
           COLOR _education_lbl_clr
           OUTLINECOLOR _education_lbl_ol_clr
           OUTLINEWIDTH _education_lbl_ol_width
@@ -174,6 +179,7 @@ LAYER
         SIZE _sports_lbl_size
         COLOR _sports_lbl_clr
         OUTLINECOLOR _sports_lbl_ol_clr
+       ENCODING "utf-8"
         OUTLINEWIDTH _sports_lbl_ol_width
         PRIORITY 1
         WRAP ' '
@@ -258,6 +264,7 @@ LAYER
           MINDISTANCE 400
           SIZE _waterarea_lbl_size
           COLOR _waterarea_lbl_clr
+       ENCODING "utf-8"
           OUTLINECOLOR _waterarea_lbl_ol_clr
           OUTLINEWIDTH _waterarea_lbl_ol_width
           WRAP ' '
@@ -301,6 +308,7 @@ LAYER
           COLOR _river_lbl_clr
           OUTLINECOLOR _river_lbl_ol_clr
           OUTLINEWIDTH _river_lbl_ol_width
+       ENCODING "utf-8"
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
           BUFFER 3
@@ -324,6 +332,7 @@ LAYER
           OUTLINECOLOR _stream_lbl_ol_clr
           OUTLINEWIDTH _stream_lbl_ol_width
           MINFEATURESIZE AUTO
+       ENCODING "utf-8"
           ANGLE FOLLOW
           BUFFER 3
         END
@@ -342,6 +351,7 @@ LAYER
           MINDISTANCE 400
           SIZE _canal_lbl_size
           COLOR _canal_lbl_clr
+       ENCODING "utf-8"
           OUTLINECOLOR _canal_lbl_ol_clr
           OUTLINEWIDTH _canal_lbl_ol_width
           MINFEATURESIZE AUTO
