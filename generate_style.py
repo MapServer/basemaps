@@ -600,7 +600,7 @@ vars= {
    },
    'border_2_inner_clr': {
       0:'"#CDCBC6"',
-      5:'"#8d8b8d"'
+      4:'"#8d8b8d"'
    },
    'border_2_inner_width': {
       0:'0.5',
