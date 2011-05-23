@@ -181,7 +181,8 @@ LAYER
         END
     END
 #endif
-#endif ##bridges
+#endif
+##(endif bridges)
 
 #if _display_roads_tunnels == 1
 #if _display_motorways == 1
