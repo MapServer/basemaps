@@ -235,7 +235,6 @@ LAYER
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
     DATA _waterarea_data
-    DATA "geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale  
     PROCESSING "CLOSE_CONNECTION=DEFER"
