@@ -477,25 +477,71 @@ vars= {
       17:3,
       18:3.5,
    },
-   'pedestrian_lbl_clr': defaults['lbl_clr'],
+   'label_pedestrian': {
+      0:0,
+      15:1
+   },
+   'pedestrian_font': defaults['font'],
+   'pedestrian_lbl_size': {
+      0:0,
+      15:7,
+   },
+   'pedestrian_lbl_clr': {
+      0:'"#333333"'
+   },
+   'pedestrian_lbl_ol_clr': {
+      0:'255 255 255'
+   },
    
+   'display_tracks': {
+      0:0,
+      12:1
+   },
+
    'track_clr': {
-      0:'"#ffffff"'
+      0:'"#cccccc"',
+      15:'"#ffffff"',
    },
    'track_width': {
-      0:'"#ffffff"'
+      0:0,
+      11:0.5,
+      12:0.75,
+      15:1,
+   },
+   'track_pattern': {
+      0: '2 2',
+      15: '2 3'
+   },
+   'label_track': {
+      0:0,
+      15:1
+   },
+   'track_font': defaults['font'],
+   'track_lbl_size': {
+      0:0,
+      15:7,
    },
    'track_lbl_clr': {
-      0:'"#ffffff"'
+      0:'"#333333"'
    },
-   'path_clr': {
-      0:'"#ffffff"'
+   'track_lbl_ol_clr': {
+      0:'255 255 255'
    },
-   'path_width': {
-      0:'"#ffffff"'
+
+   'display_footways': {
+      0:0,
+      15:1
    },
-   'path_lbl_clr': {
-      0:'"#ffffff"'
+   'footway_clr': {
+      0:'"#cccccc"',
+      15:'"#ffffff"',
+   },
+   'footway_width': {
+      0:0,
+      15:1,
+   },
+   'footway_pattern': {
+      0:'2 3'
    },
    
    'railway_clr': {

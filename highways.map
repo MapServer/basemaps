@@ -427,21 +427,22 @@ LAYER
     CLASS
         EXPRESSION "track"
         STYLE
-            PATTERN 5 5 END
+            PATTERN _track_pattern END
             WIDTH _track_width
             COLOR _track_clr
         END
-#ifdef _label_track
+#if _label_track == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 1
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _track_font
             SIZE _track_lbl_size
-            MINDISTANCE 200
+            MINDISTANCE 400
             ANGLE FOLLOW
             COLOR _track_lbl_clr
-            OUTLINECOLOR _track_clr
+            OUTLINECOLOR _track_lbl_ol_clr
             MINFEATURESIZE AUTO
+            BUFFER 3
         END
 #endif
     END
@@ -450,9 +451,9 @@ LAYER
     CLASS
         EXPRESSION 'footway'
         STYLE
-            PATTERN 1 1 END
-            WIDTH _path_width
-            COLOR _path_clr
+            PATTERN _footway_pattern END
+            WIDTH _footway_width
+            COLOR _footway_clr
         END
     END
 #endif
@@ -465,14 +466,16 @@ LAYER
         END
 #if _label_pedestrian == 1
         LABEL
-            _default_lbl
-            FONT _highway_font
-            PRIORITY 1
-            SIZE _pedestrian_lbl_size 
-            MINSIZE 6
-            MINDISTANCE 200
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _pedestrian_font
+            SIZE _pedestrian_lbl_size
+            MINDISTANCE 400
             ANGLE FOLLOW
             COLOR _pedestrian_lbl_clr
+            OUTLINECOLOR _pedestrian_lbl_ol_clr
+            MINFEATURESIZE AUTO
+            BUFFER 3
         END
 #endif
     END
