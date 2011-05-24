@@ -60,7 +60,8 @@ defaults = {
    'water_lbl_ol_width':{0:2},
    'road_clr':{0:'"#ffffff"'},
    'bridge_width':{0:0.5,14:1},
-   'bridge_clr':{0:'"#888888"'}
+   'bridge_clr':{0:'"#888888"'},
+   'road_far_clr':'"#aaaaaa"',
 
 };
 
@@ -308,7 +309,7 @@ vars= {
    },
    'primary_clr': {
       0:'-1 -1 -1',
-      8:'"#cccccc"',
+      8:defaults['road_far_clr'],
       9:'"#ffffff"'
    },
    'primary_width': {
@@ -345,7 +346,7 @@ vars= {
       9:1
    },
    'secondary_clr': {
-      0:'"#cccccc"',
+      0:defaults['road_far_clr'],
       10:'"#ffffff"'
    },
    'secondary_width': {
@@ -393,7 +394,7 @@ vars= {
       10:1
    },
    'tertiary_clr': {
-      0:'"#cccccc"',
+      0:defaults['road_far_clr'],
       13:'"#ffffff"'
    },
    'tertiary_width': {
@@ -429,7 +430,7 @@ vars= {
       11:1
    },
    'other_clr': {
-      0:'"#cccccc"',
+      0:defaults['road_far_clr'],
       15:'"#ffffff"'
    },
    'other_width': {
@@ -499,7 +500,7 @@ vars= {
    },
 
    'track_clr': {
-      0:'"#cccccc"',
+      0:defaults['road_far_clr'],
       15:'"#ffffff"',
    },
    'track_width': {
@@ -533,7 +534,7 @@ vars= {
       15:1
    },
    'footway_clr': {
-      0:'"#cccccc"',
+      0:defaults['road_far_clr'],
       15:'"#ffffff"',
    },
    'footway_width': {
