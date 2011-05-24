@@ -577,6 +577,11 @@ vars= {
       6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
       order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+      \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
+      \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
+      \'pitch\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
       12:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
