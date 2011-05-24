@@ -172,7 +172,7 @@ LAYER
 #endif
 #if _display_hamlets == 1
     CLASS
-        EXPRESSION /suburb|hamlet/
+        EXPRESSION /suburb|hamlet|locality/
         #if _display_hamlets_symbol == 1
         STYLE
             SIZE _hamlet_size
