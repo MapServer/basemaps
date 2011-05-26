@@ -45,7 +45,7 @@ minscales = {
 }
 
 defaults = {
-   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5433"'},
+   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5432"'},
    'font': {0:'"sc"'},
    'boldfont': {0:'"scb"'},
    'lbl_clr': {0:"0 0 0"},
@@ -53,7 +53,7 @@ defaults = {
    'lbl_ol_clr':{0:"255 255 255"},
    'lbl_ol_width':{0:2},
    'water_clr': {0:'"#B3C6D4"'},
-   'water_font': {0:'"sc,jp,khmer,arialuni,unifont"'},
+   'water_font': {0:'"sc"'},
    'water_lbl_size':{0:8},
    'water_lbl_clr':{0:'"#6B94B0"'},
    'water_lbl_ol_clr':{0:'255 255 255'},
