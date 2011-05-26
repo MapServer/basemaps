@@ -38,7 +38,6 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 10
             BUFFER 10
             PARTIALS FALSE
             POSITION auto
@@ -56,7 +55,7 @@ LAYER
             COLOR _continent_lbl_clr
             OUTLINECOLOR _continent_lbl_ol_clr
             OUTLINEWIDTH _continent_lbl_ol_width
-            BUFFER 3
+            BUFFER 4
             PARTIALS FALSE
             POSITION cc
         END
@@ -76,7 +75,7 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            BUFFER 3
+            BUFFER 4
             PARTIALS FALSE
             POSITION cc
         END
@@ -104,8 +103,7 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 9
-            BUFFER 10
+            BUFFER 4
             PARTIALS FALSE
             POSITION auto
         END
@@ -133,10 +131,9 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 8
             PARTIALS FALSE
             POSITION AUTO
-            BUFFER 10
+            BUFFER 4
             POSITION auto
         END
     END
@@ -163,9 +160,8 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 8
             PARTIALS FALSE
-            BUFFER 10
+            BUFFER 4
             POSITION AUTO
         END
     END
@@ -192,8 +188,7 @@ LAYER
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            BUFFER 10
-            PRIORITY 8
+            BUFFER 4
             PARTIALS FALSE
             POSITION AUTO
         END

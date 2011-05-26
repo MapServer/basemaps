@@ -1,6 +1,6 @@
-CPP=cpp-4.2
+CPP=cpp
 
-OSM_PREFIX=osm_new_
+OSM_PREFIX=osm_
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857"
@@ -22,7 +22,7 @@ here=`pwd`
 
 all:$(mapfile) boundaries.sql
 
-SED=gsed
+SED=sed
 SEDI=$(SED) -i
 #if on BSD, use
 # SED=sed -i ""

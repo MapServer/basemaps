@@ -45,16 +45,16 @@ minscales = {
 }
 
 defaults = {
-   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5432"'},
+   'dbconnection': {0:'"host=localhost dbname=osm user=osm password=osm port=5433"'},
    'font': {0:'"sc"'},
    'boldfont': {0:'"scb"'},
    'lbl_clr': {0:"0 0 0"},
-   'lbl_size': {0:7},
+   'lbl_size': {0:8},
    'lbl_ol_clr':{0:"255 255 255"},
    'lbl_ol_width':{0:2},
    'water_clr': {0:'"#B3C6D4"'},
-   'water_font': {0:'"sc"'},
-   'water_lbl_size':{0:7},
+   'water_font': {0:'"sc,jp,khmer,arialuni,unifont"'},
+   'water_lbl_size':{0:8},
    'water_lbl_clr':{0:'"#6B94B0"'},
    'water_lbl_ol_clr':{0:'255 255 255'},
    'water_lbl_ol_width':{0:2},
@@ -102,13 +102,27 @@ vars= {
       0:'"#d1d1d1"'
    },
    'park_clr': {
-      0:'"#DCDCB4"'
+      0:'"#C2D1B2"'
    },
    'waterarea_clr':defaults['water_clr'],
    'river_clr':defaults['water_clr'],
    'stream_clr':defaults['water_clr'],
    'canal_clr':defaults['water_clr'],
 
+   'display_admin': {
+      0:0,
+      7:0
+   },
+   'admin_clr': {
+      0:'"#333333"'
+   },
+   'admin_width': {
+      0:0.75
+   },
+   'admin_data': {
+      0:"data/depts",
+      11:"data/communes"
+   },
 
    'display_canal_lbl' : {0:0, 10:1},
    'canal_font': defaults['water_font'],
@@ -436,9 +450,8 @@ vars= {
    'other_width': {
       0:0,
       11:0.5,
-      12:0.75,
-      13:1,
-      14:1.5,
+      13:0.75,
+      14:1,
       15:2,
       16:4,
       17:5,
@@ -567,22 +580,19 @@ vars= {
    },
    'waterarea_data': {
       0: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
-      6: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
+      9: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
       12: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'landusage_data': {
       0:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen0 \
-      where type in (\'forest\',\'residential\')\
+      where type in (\'forest\',\'residential\',\'park\')\
       order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen1 \
-      where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
-      order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      10:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      12:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      13:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
@@ -602,18 +612,22 @@ vars= {
       0:'"#CDCBC6"'
    },
    'border_2_width': {
-      0:'5'
+      0:5,
+      10:7,
+      12:8,
+      14:9,
    },
    'border_2_inner_clr': {
       0:'"#CDCBC6"',
-      4:'"#8d8b8d"'
+      4:'"#7d7b7d"'
    },
    'border_2_inner_width': {
       0:'0.5',
       7:'1'
    },
    'border_2_inner_pattern': {
-      0:''
+      0:'',
+      6:'PATTERN 4 3 1 3 END'
    },
    #         'display_border_4': {
    #            0:0,
@@ -872,7 +886,7 @@ vars= {
       0:"1"
    },
    'country_lbl_ol_clr': {
-      0:"-1 -1 -1"
+      0:"255 255 255"
    },
    'country_font': {
       0:"scb"
@@ -889,15 +903,16 @@ vars= {
    'city_lbl_size': {
       0:0,
       3:7,
-      8:8,
-      10:9,
+      5:8,
+      7:9,
+      10:10,
       11:11,
       13:12,
       15:13
    },
    'city_size': {
-      0:5,
-      8:6
+      0:3,
+      8:4
    },
    'city_ol_clr': {
       0:'"#000000"'
@@ -934,15 +949,15 @@ vars= {
    'town_lbl_ol_width':defaults['lbl_ol_width'],
    'town_lbl_size': {
       0:0,
-      8:7,
-      10:8,
-      12:9,
-      15:10
+      8:8,
+      10:9,
+      12:10,
+      15:11
    },
    'town_size': {
       0:0,
-      8:3,
-      10:5
+      8:2,
+      10:3
    },
    'town_ol_clr': {
       0:'"#000000"'
@@ -967,14 +982,14 @@ vars= {
    },
    'village_lbl_size': {
       0:0,
-      10:7,
-      13:8,
-      15:9
+      10:8,
+      13:9,
+      15:10
    },
    'village_size': {
       0:0,
-      11:3,
-      13:4
+      11:2,
+      13:3
    },
    'village_ol_clr': {
       0:'"#000000"'
@@ -996,15 +1011,15 @@ vars= {
       13:1
    },
    'display_hamlet_symbol': {
-      0:0,
+      0:1,
    },
    'hamlet_lbl_size': {
       0:0,
-      13:7,
-      15:8,
+      13:8,
+      15:9,
    },
    'hamlet_size': {
-      0:5
+      0:3
    },
    'hamlet_ol_clr': {
       0:'"#000000"'

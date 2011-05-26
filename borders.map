@@ -1,3 +1,21 @@
+#if _display_admin == 1
+LAYER
+   GROUP "default"
+   STATUS ON
+   MAXSCALEDENOM _maxscale
+   MINSCALEDENOM _minscale
+   TYPE LINE
+   NAME "admin_fr"
+   DATA _admin_data
+   CLASS
+      STYLE
+         COLOR _admin_clr
+         WIDTH _admin_width
+      END
+   END
+END
+#endif
+
 LAYER
    GROUP "default"
    STATUS ON
