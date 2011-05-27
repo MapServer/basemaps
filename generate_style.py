@@ -431,6 +431,7 @@ vars= {
    'tertiary_lbl_size': {
       0:0,
       15:7,
+      16:8,
    },
    'tertiary_lbl_clr': {
       0:'"#333333"'
@@ -465,6 +466,7 @@ vars= {
    'other_lbl_size': {
       0:0,
       15:7,
+      16:8,
    },
    'other_lbl_clr': {
       0:'"#333333"'
@@ -499,6 +501,7 @@ vars= {
    'pedestrian_lbl_size': {
       0:0,
       15:7,
+      16:8
    },
    'pedestrian_lbl_clr': {
       0:'"#333333"'
@@ -534,6 +537,7 @@ vars= {
    'track_lbl_size': {
       0:0,
       15:7,
+      16:8
    },
    'track_lbl_clr': {
       0:'"#333333"'
@@ -757,7 +761,8 @@ vars= {
    'building_font': defaults['font'],
    'building_lbl_clr': defaults['lbl_clr'],
    'building_lbl_size': {
-      0:7
+      0:7,
+      16:8
    },
    'building_lbl_ol_clr': defaults['lbl_ol_clr'],
    'building_lbl_ol_width': { 0: 1 },
