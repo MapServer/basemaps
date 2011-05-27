@@ -124,21 +124,21 @@ vars= {
       11:"data/communes"
    },
 
-   'display_canal_lbl' : {0:0, 10:1},
+   'display_canal_lbl' : {0:0, 12:1},
    'canal_font': defaults['water_font'],
    'canal_lbl_size': defaults['water_lbl_size'],
    'canal_lbl_clr': defaults['water_lbl_clr'],
    'canal_lbl_ol_clr': defaults['water_lbl_ol_clr'],
    'canal_lbl_ol_width': defaults['water_lbl_ol_width'],
 
-   'display_stream_lbl' : {0:0, 12:1},
+   'display_stream_lbl' : {0:0, 13:1},
    'stream_font': defaults['water_font'],
    'stream_lbl_size': defaults['water_lbl_size'],
    'stream_lbl_clr': defaults['water_lbl_clr'],
    'stream_lbl_ol_clr': defaults['water_lbl_ol_clr'],
    'stream_lbl_ol_width': defaults['water_lbl_ol_width'],
 
-   'display_river_lbl' : {0:0, 6:1},
+   'display_river_lbl' : {0:0, 10:1},
    'river_font': defaults['water_font'],
    'river_lbl_size': defaults['water_lbl_size'],
    'river_lbl_clr': defaults['water_lbl_clr'],
