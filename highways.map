@@ -153,7 +153,7 @@ LAYER
 #endif
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION ("[bridge]"="1" and ("[type]"="classified" or "[type]"="residential" or "[type]"="service" or "[type]"="road"))
+        EXPRESSION ("[bridge]"="1" and ("[type]"="classified" or "[type]"="residential" or "[type]"="service" or "[type]"="road" or "[type]"="living_street"))
         STYLE
             WIDTH _other_width
             OUTLINECOLOR _other_bridge_clr
@@ -257,7 +257,7 @@ LAYER
 #endif
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service') and "[tunnel]"="1")
+        EXPRESSION (('[type]'='unclassified' or '[type]'='residential' or '[type]'='service'  or "[type]"="living_street") and "[tunnel]"="1")
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -403,7 +403,7 @@ LAYER
 #endif
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION /unclassified|residential|service|road/
+        EXPRESSION /unclassified|residential|service|road|living_street/
         STYLE
             WIDTH _other_width
             COLOR _other_clr
