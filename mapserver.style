@@ -10,7 +10,7 @@
 #define _park_clr "#DCDCB4"
 #define _park_lbl_clr _forest_lbl_clr
 #define _hospital_clr "#E6C8C3"
-#define _building_offset_clr "#AB9E89"
+#define _building_offset_clr "#000000"
 #define _building_clr "#AB9E89"
 #define _cemetery_clr _industrial_clr
 
