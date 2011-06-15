@@ -5,7 +5,7 @@ LAYER
    TYPE ANNOTATION
    CONNECTIONTYPE postgis
    CONNECTION _db_connection
-   NAME "places"
+   NAME layername(places,_layer_suffix)
    MINSCALEDENOM _minscale
    MAXSCALEDENOM _maxscale
    DATA _places_data

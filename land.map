@@ -3,7 +3,7 @@ LAYER
    STATUS ON
    GROUP "default"
    DEBUG _layerdebug
-   NAME "land"
+   NAME layername(land,_layer_suffix)
    PROJECTION
        _land_epsg
    END

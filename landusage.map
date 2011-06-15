@@ -5,7 +5,7 @@ LAYER
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    NAME "landuse_far"
+    NAME layername(landuse,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
@@ -198,7 +198,7 @@ LAYER
    PROJECTION
        "init=epsg:OSM_SRID"
    END
-   NAME "transport_areas"
+   NAME layername(transport_areas,_layer_suffix)
    GROUP "default"
    CONNECTIONTYPE POSTGIS
    CONNECTION _db_connection
@@ -236,7 +236,7 @@ LAYER
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    NAME "waterarea"
+    NAME layername(waterarea,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection
@@ -279,7 +279,7 @@ END
 #if _display_waterways == 1
 LAYER
     TYPE LINE
-    NAME "waterway"
+    NAME layername(waterways,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION _db_connection

@@ -28,6 +28,9 @@ PROJECTION
    "init=epsg:OSM_SRID"
 END
 
+#define layername(name,suffix) xstr(name,suffix)
+#define xstr(s,t) xxstr(s##t)
+#define xxstr(s) #s
 
 #include "level0.inc"
 #include "land.map"

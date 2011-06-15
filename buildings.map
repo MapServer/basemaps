@@ -5,7 +5,7 @@ LAYER
         "init=epsg:OSM_SRID"
     END
     GROUP "default"
-    NAME "building"
+    NAME layername(buildings,_layer_suffix)
     TYPE POLYGON
     CONNECTIONTYPE postgis
     CONNECTION _db_connection

@@ -5,7 +5,7 @@ LAYER
    MAXSCALEDENOM _maxscale
    MINSCALEDENOM _minscale
    TYPE LINE
-   NAME "admin_fr"
+   NAME layername(admin_fr,_layer_suffix)
    DATA _admin_data
    CLASS
       STYLE
@@ -22,7 +22,7 @@ LAYER
    MAXSCALEDENOM _maxscale
    MINSCALEDENOM _minscale
    TYPE LINE
-   NAME "borders"
+   NAME layername(borders,_layer_suffix)
    PROJECTION
      _border_epsg
    END
