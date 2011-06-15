@@ -27,6 +27,11 @@ PROJECTION
    "init=epsg:OSM_SRID"
 END
 
+
+## if you want unique layer names across zoom levels, use
+## #define layername(name,suffix) xxstr(name)
+## instead of the following macro
+
 #define layername(name,suffix) xstr(name,suffix)
 #define xstr(s,t) xxstr(s##t)
 #define xxstr(s) #s
