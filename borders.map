@@ -23,6 +23,9 @@ LAYER
    MINSCALEDENOM _minscale
    TYPE LINE
    NAME "borders"
+   PROJECTION
+     _border_epsg
+   END
    DATA _border_data
 #if _display_border_2 == 1
    CLASS

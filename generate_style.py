@@ -605,6 +605,9 @@ vars= {
    'border_data': {
       0: '"data/boundaries.shp"'
    },
+   'border_epsg': {
+      0: '"+init=epsg:4326"'
+   },
    'display_border_2': {
       0:1
    },
