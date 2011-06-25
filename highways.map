@@ -184,7 +184,7 @@ LAYER
 #endif
 ##(endif bridges)
 
-#if _display_roads_tunnels == 1
+#if _display_tunnels == 1
 #if _display_motorways == 1
     CLASS
         EXPRESSION ("[type]"="motorway" and "[tunnel]"="1")
@@ -271,6 +271,13 @@ LAYER
     CLASS
         EXPRESSION "motorway"
         TEXT ("[ref]")
+#if _display_motorway_outline
+        STYLE
+           WIDTH _motorway_width
+           OUTLINEWIDTH _motorway_ol_width
+           OUTLINECOLOR _motorway_ol_clr
+        END
+#endif
         STYLE
             WIDTH _motorway_width
             COLOR _motorway_clr
@@ -294,6 +301,13 @@ LAYER
 #if _display_motorway_links == 1
     CLASS
         EXPRESSION "motorway_link"
+#if _display_motorway_outline
+        STYLE
+           WIDTH _primary_width
+           OUTLINEWIDTH _motorway_ol_width
+           OUTLINECOLOR _motorway_ol_clr
+        END
+#endif
         STYLE
             WIDTH _primary_width
             COLOR _motorway_clr
@@ -304,6 +318,13 @@ LAYER
     CLASS
         EXPRESSION "trunk"
         TEXT ("[ref]")
+#if _display_trunk_outline
+        STYLE
+           WIDTH _trunk_width
+           OUTLINEWIDTH _trunk_ol_width
+           OUTLINECOLOR _trunk_ol_clr
+        END
+#endif
         STYLE
             WIDTH _trunk_width 
             COLOR _trunk_clr
@@ -326,6 +347,13 @@ LAYER
 #if _display_trunk_links == 1
     CLASS
         EXPRESSION "trunk_link"
+#if _display_trunk_outline
+        STYLE
+           WIDTH _primary_width
+           OUTLINEWIDTH _trunk_ol_width
+           OUTLINECOLOR _trunk_ol_clr
+        END
+#endif
         STYLE
             WIDTH _primary_width
             COLOR _trunk_clr
@@ -335,6 +363,13 @@ LAYER
 #if _display_primaries == 1
     CLASS
         EXPRESSION /primary/
+#if _display_primary_outline
+        STYLE
+           WIDTH _primary_width
+           OUTLINEWIDTH _primary_ol_width
+           OUTLINECOLOR _primary_ol_clr
+        END
+#endif
         STYLE
             WIDTH _primary_width 
             COLOR _primary_clr
@@ -349,6 +384,7 @@ LAYER
             MINFEATURESIZE AUTO
             COLOR _primary_lbl_clr
             OUTLINECOLOR _primary_lbl_ol_clr
+            OUTLINEWIDTH 2
             ANGLE FOLLOW
             BUFFER 3
         END
@@ -358,6 +394,13 @@ LAYER
 #if _display_secondaries == 1
     CLASS
         EXPRESSION /secondary/
+#if _display_secondary_outline
+        STYLE
+           WIDTH _secondary_width
+           OUTLINEWIDTH _secondary_ol_width
+           OUTLINECOLOR _secondary_ol_clr
+        END
+#endif
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -372,6 +415,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _secondary_lbl_clr
             OUTLINECOLOR _secondary_lbl_ol_clr
+            OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
         END
@@ -381,6 +425,13 @@ LAYER
 #if _display_tertiaries == 1
     CLASS
         EXPRESSION /tertiary/
+#if _display_tertiary_outline
+        STYLE
+           WIDTH _tertiary_width
+           OUTLINEWIDTH _tertiary_ol_width
+           OUTLINECOLOR _tertiary_ol_clr
+        END
+#endif
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
@@ -395,6 +446,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _tertiary_lbl_clr
             OUTLINECOLOR _tertiary_lbl_ol_clr
+            OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
         END
@@ -404,6 +456,13 @@ LAYER
 #if _display_other_roads == 1
     CLASS
         EXPRESSION /unclassified|residential|service|road|living_street/
+#if _display_other_outline
+        STYLE
+           WIDTH _other_width
+           OUTLINEWIDTH _other_ol_width
+           OUTLINECOLOR _other_ol_clr
+        END
+#endif
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -418,6 +477,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _other_lbl_clr
             OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
         END
@@ -427,6 +487,13 @@ LAYER
 #if _display_tracks == 1
     CLASS
         EXPRESSION "track"
+#if _display_track_outline
+        STYLE
+           WIDTH _track_width
+           OUTLINEWIDTH _track_ol_width
+           OUTLINECOLOR _track_ol_clr
+        END
+#endif
         STYLE
             PATTERN _track_pattern END
             WIDTH _track_width
@@ -442,6 +509,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _track_lbl_clr
             OUTLINECOLOR _track_lbl_ol_clr
+            OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
         END
@@ -451,6 +519,13 @@ LAYER
 #if _display_footways == 1
     CLASS
         EXPRESSION 'footway'
+#if _display_footway_outline
+        STYLE
+           WIDTH _footway_width
+           OUTLINEWIDTH _footway_ol_width
+           OUTLINECOLOR _footway_ol_clr
+        END
+#endif
         STYLE
             PATTERN _footway_pattern END
             WIDTH _footway_width
@@ -461,6 +536,13 @@ LAYER
 #if _display_pedestrian == 1
     CLASS
         EXPRESSION 'pedestrian'
+#if _display_pedestrian_outline
+        STYLE
+           WIDTH _pedestrian_width
+           OUTLINEWIDTH _pedestrian_ol_width
+           OUTLINECOLOR _pedestrian_ol_clr
+        END
+#endif
         STYLE
             WIDTH _pedestrian_width 
             COLOR _pedestrian_clr
@@ -475,6 +557,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _pedestrian_lbl_clr
             OUTLINECOLOR _pedestrian_lbl_ol_clr
+            OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
         END

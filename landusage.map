@@ -21,12 +21,42 @@ LAYER
        STYLE
           COLOR _forest_clr
        END
+#if _display_forest_lbl==1
+      LABEL
+         TYPE TRUETYPE
+         FONT _forest_font
+         SIZE _forest_lbl_size
+         COLOR _forest_lbl_clr
+         OUTLINECOLOR _forest_lbl_ol_clr
+         OUTLINEWIDTH _forest_lbl_ol_width
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+#endif
     END
     CLASS
        EXPRESSION 'residential'
        STYLE
           COLOR _residential_clr
        END
+#if _display_residential_lbl==1
+      LABEL
+         TYPE TRUETYPE
+         FONT _residential_font
+         SIZE _residential_lbl_size
+         COLOR _residential_lbl_clr
+         OUTLINECOLOR _residential_lbl_ol_clr
+         OUTLINEWIDTH _residential_lbl_ol_width
+         WRAP ' '
+         MAXLENGTH 6
+         ALIGN CENTER
+         MINFEATURESIZE AUTO
+         PARTIALS FALSE
+      END
+#endif
    END
    CLASS
       EXPRESSION 'pedestrian'
