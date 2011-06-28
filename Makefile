@@ -1,10 +1,10 @@
 UNAME := $(shell uname)
 
 ifeq ($(UNAME), Darwin)
-SED=gsed
+SED=sed -i ""
 CPP=cpp-4.2
 else
-SED=sed
+SED=sed -i
 CPP=cpp
 endif
 
@@ -36,11 +36,6 @@ mapfile=osm-$(STYLE).map
 here=`pwd`
 
 all:$(mapfile) boundaries.sql
-
-SEDI=$(SED) -i
-#if on BSD, use
-# SED=sed -i ""
-#
 
 style-$(STYLE).inc: generate_style.py
 	python generate_style.py -s $(STYLE) -g > $@
@@ -103,17 +98,17 @@ level18.inc: generate_style.py
 
 $(mapfile):$(template) $(includes) shapefiles
 	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -Dtheme=\"style-$(STYLE).inc\" -D_proj_lib=\"$(here)\"
-	$(SEDI) 's/##.*$$//g' $(mapfile)
-	$(SEDI) '/^ *$$/d' $(mapfile)
-	$(SEDI) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(mapfile)
-	$(SEDI) -e 's/OSM_SRID/$(OSM_SRID)/g' $(mapfile)
-	$(SEDI) -e 's/OSM_UNITS/$(OSM_UNITS)/g' $(mapfile)
-	$(SEDI) -e 's/OSM_EXTENT/$(OSM_EXTENT)/g' $(mapfile)
-	$(SEDI) -e 's/OSM_WMS_SRS/$(OSM_WMS_SRS)/g' $(mapfile)
+	$(SED) 's/##.*$$//g' $(mapfile)
+	$(SED) '/^ *$$/d' $(mapfile)
+	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(mapfile)
+	$(SED) -e 's/OSM_SRID/$(OSM_SRID)/g' $(mapfile)
+	$(SED) -e 's/OSM_UNITS/$(OSM_UNITS)/g' $(mapfile)
+	$(SED) -e 's/OSM_EXTENT/$(OSM_EXTENT)/g' $(mapfile)
+	$(SED) -e 's/OSM_WMS_SRS/$(OSM_WMS_SRS)/g' $(mapfile)
 
 boundaries.sql: boundaries.sql.in
 	cp -f $< $@
-	$(SEDI) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
 
 shapefiles:
 	cd data; $(MAKE) $(MFLAGS)
