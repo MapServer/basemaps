@@ -49,6 +49,10 @@ LAYER
 #if _display_motorways == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and "[type]" = "motorway")
+#if _display_motorway_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _motorway_width
             OUTLINECOLOR _motorway_bridge_clr
@@ -64,6 +68,10 @@ LAYER
 #if _display_motorway_links == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and "[type]" = "motorway_link")
+#if _display_motorway_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _primary_width
             OUTLINECOLOR _motorway_bridge_clr
@@ -79,6 +87,10 @@ LAYER
 #if _display_trunks == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and "[type]" = "trunk")
+#if _display_trunk_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _trunk_width
             OUTLINECOLOR _trunk_bridge_clr
@@ -94,6 +106,10 @@ LAYER
 #if _display_trunk_links == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and "[type]" = "trunk_link")
+#if _display_trunk_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _primary_width
             OUTLINECOLOR _trunk_bridge_clr
@@ -108,10 +124,14 @@ LAYER
 #endif
 #if _display_primaries == 1
     CLASS
-        EXPRESSION ("[bridge]"="1" and ("[type]" = "primary" or "[type]" = "tertiary_link"))
+        EXPRESSION ("[bridge]"="1" and ("[type]" = "primary" or "[type]" = "primary_link"))
+#if _display_primary_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _primary_width
-            OUTLINECOLOR _primary_clr
+            OUTLINECOLOR _primary_bridge_clr
             OUTLINEWIDTH _primary_bridge_width
             LINECAP BUTT
         END
@@ -123,7 +143,11 @@ LAYER
 #endif
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION ("[bridge]"="1" and ("[type]" = "secondary" or "[type]" = "tertiary_link"))
+        EXPRESSION ("[bridge]"="1" and ("[type]" = "secondary" or "[type]" = "secondary_link"))
+#if _display_secondary_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _secondary_width
             OUTLINECOLOR _secondary_bridge_clr
@@ -139,6 +163,10 @@ LAYER
 #if _display_tertiaries == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and ("[type]"= "tertiary" or "[type]"="tertiary_link"))
+#if _display_tertiary_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _tertiary_width
             OUTLINECOLOR _tertiary_bridge_clr
@@ -154,6 +182,10 @@ LAYER
 #if _display_other_roads == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and ("[type]"="classified" or "[type]"="residential" or "[type]"="service" or "[type]"="road" or "[type]"="living_street"))
+#if _display_other_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _other_width
             OUTLINECOLOR _other_bridge_clr
@@ -169,6 +201,10 @@ LAYER
 #if _display_pedestrian == 1
     CLASS
         EXPRESSION ("[bridge]"="1" and "[type]" = 'pedestrian')
+#if _display_pedestrian_outline
+        STYLE
+        END
+#endif
         STYLE
             WIDTH _pedestrian_width 
             OUTLINECOLOR _pedestrian_bridge_clr
