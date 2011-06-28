@@ -1,18 +1,17 @@
-- this package uses the c preprocessor to build a complete mapfile from a set of
-  templates and a styling file.
+- this package uses the a python script and the c preprocessor to build a
+complete mapfile from a set of templates and styling information.
 
-- we rely on the gnu version of sed for post-processing the created mapfile. if on
-  a BSD platform (e.g. MacOSX, adapt the Makefile accordingly to the inline comment)
+- we rely on the gnu version of sed for post-processing the created mapfile. if
+on a BSD platform (e.g. MacOSX) you will need the gsed program which can be installed
+e.g. with macports.
 
+- The mapfiles rely on the database schema as created by a recent version of imposm. By default
+imposm does not yet create the landusages_gen and waterareas_gen tables. You can either use a version
+of imposm that creates these tables (hint: some editing of defaultmapping.py may be required), or change
+the landusage_data and waterareas_data entries in generate_style.py so that it queries the non-generalized
+tables on the lower zoom levels (this will be slower for the lower zoom levels).
 
-- the osm data can be imported from an osm.bz2 export. The import should be done with a
-  recent version of osm2pgsql, typically one from svn.
+- the mapfiles are compatible with mapserver versions >= 6.0.
 
-  ~/src/osm2pgsql/osm2pgsql -d osm -p osm -S ~/src/osm2pgsql/default.style -H localhost -U osm -W france.osm.bz2
-
-- the osm data has to be postprocessed to allow rendering enhancements and speedups,
-  and to rename the column "natural" to "nature":
-
-  cat postprocess.sql | psql -d osm
-
+- documentation as to how to edit generate_style.py to adapt the rendering has yet to be done, but is simple.
 
