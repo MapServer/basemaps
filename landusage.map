@@ -291,7 +291,7 @@ LAYER
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _waterarea_font
-          MINDISTANCE 400
+          MINDISTANCE 200
           SIZE _waterarea_lbl_size
           COLOR _waterarea_lbl_clr
        ENCODING "utf-8"
@@ -333,12 +333,13 @@ LAYER
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _river_font
-          MINDISTANCE 400
+          MINDISTANCE 200
           SIZE _river_lbl_size
           COLOR _river_lbl_clr
           OUTLINECOLOR _river_lbl_ol_clr
           OUTLINEWIDTH _river_lbl_ol_width
-       ENCODING "utf-8"
+          REPEATDISTANCE 400
+          ENCODING "utf-8"
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
           BUFFER 3
@@ -356,7 +357,8 @@ LAYER
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _stream_font
-          MINDISTANCE 400
+          MINDISTANCE 200
+            REPEATDISTANCE 400
           SIZE _stream_lbl_size
           COLOR _stream_lbl_clr
           OUTLINECOLOR _stream_lbl_ol_clr
@@ -378,7 +380,8 @@ LAYER
         LABEL
           TYPE TRUETYPE
           FONT _canal_font
-          MINDISTANCE 400
+          MINDISTANCE 200
+            REPEATDISTANCE 400
           SIZE _canal_lbl_size
           COLOR _canal_lbl_clr
        ENCODING "utf-8"

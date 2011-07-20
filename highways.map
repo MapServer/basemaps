@@ -325,7 +325,8 @@ LAYER
             PRIORITY 1
             FONT _motorway_font
             SIZE _motorway_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             MINFEATURESIZE AUTO
             COLOR _motorway_lbl_clr
             ANGLE FOLLOW
@@ -371,7 +372,8 @@ LAYER
             PARTIALS FALSE
             FONT _trunk_font
             SIZE _trunk_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             MINFEATURESIZE AUTO
             COLOR _trunk_lbl_clr
             ANGLE FOLLOW
@@ -416,7 +418,8 @@ LAYER
             PARTIALS FALSE
             FONT _primary_font
             SIZE _primary_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             MINFEATURESIZE AUTO
             COLOR _primary_lbl_clr
             OUTLINECOLOR _primary_lbl_ol_clr
@@ -447,7 +450,8 @@ LAYER
             PARTIALS FALSE 
             FONT _secondary_font
             SIZE _secondary_lbl_size 
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _secondary_lbl_clr
             OUTLINECOLOR _secondary_lbl_ol_clr
@@ -478,7 +482,8 @@ LAYER
             PARTIALS FALSE
             FONT _tertiary_font
             SIZE _tertiary_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _tertiary_lbl_clr
             OUTLINECOLOR _tertiary_lbl_ol_clr
@@ -509,7 +514,8 @@ LAYER
             PARTIALS FALSE
             FONT _other_font
             SIZE _other_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _other_lbl_clr
             OUTLINECOLOR _other_lbl_ol_clr
@@ -541,7 +547,8 @@ LAYER
             PARTIALS FALSE
             FONT _track_font
             SIZE _track_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _track_lbl_clr
             OUTLINECOLOR _track_lbl_ol_clr
@@ -589,7 +596,8 @@ LAYER
             PARTIALS FALSE
             FONT _pedestrian_font
             SIZE _pedestrian_lbl_size
-            MINDISTANCE 400
+            MINDISTANCE 200
+            REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _pedestrian_lbl_clr
             OUTLINECOLOR _pedestrian_lbl_ol_clr

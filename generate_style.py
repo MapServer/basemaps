@@ -155,7 +155,7 @@ vars= {
    'display_river_lbl' : {0:0, 6:1},
    'river_clr': '"#B3C6D4"',
    'river_font': "sc",
-   'river_lbl_size': 8,
+   'river_lbl_size': {0:8,15:9,17:10},
    'river_lbl_clr': '"#6B94B0"',
    'river_lbl_ol_clr': "255 255 255",
    'river_lbl_ol_width': 2,
