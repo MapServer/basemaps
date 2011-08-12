@@ -967,6 +967,78 @@ vars= {
 
 styles = {
    'default': {},
+   'outlined':{
+      'display_motorway_outline': {
+         0:0,
+         7:1
+      },
+      'motorway_ol_width': {
+         0:0.5,
+         10:1
+      },
+      'motorway_ol_clr': '0 0 0',
+      'display_trunk_outline': {
+         0:0,
+         7:1,
+      },
+      'trunk_ol_width': {
+         0:0.5,
+         10:1
+      },
+      'trunk_ol_clr': '0 0 0',
+      'display_primary_outline': {
+         0:0,
+         9:1
+      },
+      'primary_ol_width': {
+         0:0.5,
+         11:1
+      },
+      'primary_ol_clr': '0 0 0',
+      'display_secondary_outline': {
+         0:0,
+         10:1
+      },
+      'secondary_ol_width': {
+         0:0.5,
+         13:1
+      },
+      'secondary_ol_clr': '0 0 0',
+      'display_tertiary_outline': {
+         0:0,
+         12:1
+      },
+      'tertiary_ol_width': {
+         0:0.5,
+         15:1
+      },
+      'tertiary_ol_clr': '0 0 0',
+      'display_other_outline': {
+         0:0,
+         14:1
+      },
+      'other_width': {
+         0:0,
+         11:0.5,
+         14:2.5,
+         15:4,
+         16:6,
+      },
+      'other_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'other_ol_clr': '0 0 0',
+      'display_pedestrian_outline': {
+         0:0,
+         13:1
+      },
+      'pedestrian_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'pedestrian_ol_clr': '0 0 0',
+   },
    'google':{
       'motorway_clr': "253 146 58",
       'trunk_clr': "255 195 69",
@@ -999,75 +1071,13 @@ styles = {
       'river_clr': '153 179 204',
       'stream_clr': '153 179 204',
       'canal_clr': '153 179 204',
-      'display_motorway_outline': {
-         0:0,
-         7:1
-      },
-      'motorway_ol_width': {
-         0:0.5,
-         10:1
-      },
+      
       'motorway_ol_clr': '186 110 39',
-      'display_trunk_outline': {
-         0:0,
-         7:1,
-      },
-      'trunk_ol_width': {
-         0:0.5,
-         10:1
-      },
       'trunk_ol_clr': '221 159 17',
-      'display_primary_outline': {
-         0:0,
-         9:1
-      },
-      'primary_ol_width': {
-         0:0.5,
-         11:1
-      },
       'primary_ol_clr': '193 181 157',
-      'display_secondary_outline': {
-         0:0,
-         10:1
-      },
-      'secondary_ol_width': {
-         0:0.5,
-         13:1
-      },
       'secondary_ol_clr': '193 181 157',
-      'display_tertiary_outline': {
-         0:0,
-         12:1
-      },
-      'tertiary_ol_width': {
-         0:0.5,
-         15:1
-      },
       'tertiary_ol_clr': '193 181 157',
-      'display_other_outline': {
-         0:0,
-         14:1
-      },
-      'other_width': {
-         0:0,
-         11:0.5,
-         14:2.5,
-         15:4,
-         16:6,
-      },
-      'other_ol_width': {
-         0:0.5,
-         17:1
-      },
       'other_ol_clr': '193 181 157',
-      'display_pedestrian_outline': {
-         0:0,
-         13:1
-      },
-      'pedestrian_ol_width': {
-         0:0.5,
-         17:1
-      },
       'pedestrian_ol_clr': '193 181 157',
       'display_buildings':0
    },
@@ -1103,68 +1113,13 @@ styles = {
       'river_clr': '"#b3c6d4"',
       'stream_clr': '"#b3c6d4"',
       'canal_clr': '"#b3c6d4"',
-      'display_motorway_outline': {
-         0:0,
-         7:1
-      },
-      'motorway_ol_width': {
-         0:0.5,
-         10:1
-      },
+      
       'motorway_ol_clr': '"#39780f"',
-      'display_trunk_outline': {
-         0:0,
-         7:1,
-      },
-      'trunk_ol_width': {
-         0:0.5,
-         10:1
-      },
       'trunk_ol_clr': '"#bf6219"',
-      'display_primary_outline': {
-         0:0,
-         9:1
-      },
-      'primary_ol_width': {
-         0:0.5,
-         11:1
-      },
       'primary_ol_clr': '"#d17f40"',
-      'display_secondary_outline': {
-         0:0,
-         10:1
-      },
-      'secondary_ol_width': {
-         0:0.5,
-         13:1
-      },
       'secondary_ol_clr': '"#bbb8b4"',
-      'display_tertiary_outline': {
-         0:0,
-         12:1
-      },
-      'tertiary_ol_width': {
-         0:0.5,
-         15:1
-      },
       'tertiary_ol_clr': '"#b7ac9a"',
-      'display_other_outline': {
-         0:0,
-         13:1
-      },
-      'other_ol_width': {
-         0:0.5,
-         17:1
-      },
       'other_ol_clr': '"#b7ac9a"',
-      'display_pedestrian_outline': {
-         0:0,
-         13:1
-      },
-      'pedestrian_ol_width': {
-         0:0.5,
-         17:1
-      },
       'pedestrian_ol_clr': '193 181 157',
       'footway_clr': '"#7f7f7f"'
    }
@@ -1180,11 +1135,15 @@ parser.add_option("-g", "--global", dest="full", action="store_true", default=Fa
                   help="generate global include file")
 parser.add_option("-s", "--style",
                   action="store", dest="style", default="default",
-                  help="which style to apply")
+                  help="comma separated list of styles to apply (order is important)")
 
 (options, args) = parser.parse_args()
 
-style = dict(vars.items()+styles[options.style].items())
+items = vars.items()
+for namedstyle in options.style.split(','):
+   items = items + styles[namedstyle].items()
+
+style = dict(items)
 
 if options.full:
    print "###### level 0 ######"
