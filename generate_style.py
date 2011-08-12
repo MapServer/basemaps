@@ -269,10 +269,15 @@ vars= {
    
    'roads_data': {
       0:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
-   
+   'roads_shield_data': {
+      0:'"geometry from (select osm_id,geometry,name,ref,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[1] as shield_class,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[2] as shield_no,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,name,ref,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[1] as shield_class,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[2] as shield_no,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select osm_id,geometry,name,ref,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[1] as shield_class,(regexp_matches(ref, \'([a-z,A-Z]+)? ?([0-9]+)[^;]*\', \'g\'))[2] as shield_no,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"'
+   },
+
    'display_tunnels': {
       0:0,
       14:1
@@ -1080,6 +1085,40 @@ styles = {
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
       'display_buildings':0
+   },
+   'usshields':{
+      # Shield labels for interstate, US hwy and Secondary roads (e.g. "I 95", "US 321", "SR 123")
+      'label_motorways': 0,
+      'label_trunks': 0,
+      'display_catchall_shields': {
+         0:0,
+         10:1
+      },
+      'display_interstate_shields': {
+         0:0,
+         8:1
+      },
+      'highway_shield_font': 'scb',
+      'interstate_shield_symbol': '"symbols/interstate-shield.png"',
+      'interstate_shield_size': 18,
+      'interstate_shield_lbl_size': 6,
+      'interstate_shield_lbl_clr': '255 255 255',
+      'display_ushwy_shields': {
+         0:0,
+         10:1
+      },
+      'ushwy_shield_symbol': '"symbols/ushwy-shield.png"',
+      'ushwy_shield_size': 18,
+      'ushwy_shield_lbl_size': 6,
+      'ushwy_shield_lbl_clr': '0 0 0',
+      'display_secondary_shields': {
+         0:0,
+         12:1
+      },
+      'secondary_shield_symbol': '"symbols/circle-shield.png"',
+      'secondary_shield_size': 18,
+      'secondary_shield_lbl_size': 6,
+      'secondary_shield_lbl_clr': '0 0 0'
    },
    'bing':{
       'motorway_clr': '"#BAC3A8"',

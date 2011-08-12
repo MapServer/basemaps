@@ -609,6 +609,107 @@ LAYER
     END
 #endif
 END
+
+#if _display_interstate_shields == 1 || _display_ushwy_shields == 1 || _display_secondary_shields == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    TYPE ANNOTATION
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    NAME layername(roads,_layer_suffix)
+    CONNECTIONTYPE postgis
+    CONNECTION _db_connection
+    DATA _roads_shield_data
+
+    CLASSITEM "shield_class"
+    LABELITEM "shield_no"
+    CLASS
+        EXPRESSION "I"
+#if _display_interstate_shields == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            FONT _highway_shield_font
+            SIZE _interstate_shield_lbl_size
+            REPEATDISTANCE 200
+            MINDISTANCE 300
+            MINFEATURESIZE AUTO
+            COLOR _interstate_shield_lbl_clr
+            BUFFER 5
+            STYLE
+              SYMBOL _interstate_shield_symbol
+              SIZE _interstate_shield_size
+            END
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION "US"
+#if _display_ushwy_shields == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            FONT _highway_shield_font
+            SIZE _ushwy_shield_lbl_size
+            REPEATDISTANCE 200
+            MINDISTANCE 300
+            MINFEATURESIZE AUTO
+            COLOR _ushwy_shield_lbl_clr
+            BUFFER 5
+            STYLE
+              SYMBOL _ushwy_shield_symbol
+              SIZE _ushwy_shield_size
+            END
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION "SR"
+#if _display_secondary_shields == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            FONT _highway_shield_font
+            SIZE _secondary_shield_lbl_size
+            REPEATDISTANCE 200
+            MINDISTANCE 300
+            MINFEATURESIZE AUTO
+            COLOR _secondary_shield_lbl_clr
+            BUFFER 5
+            STYLE
+              SYMBOL _secondary_shield_symbol
+              SIZE _secondary_shield_size
+            END
+        END
+#endif
+    END
+## Catch-all class to ensure motorways/trunks with no shields will get a regular label
+## (This can happen either outside US or inside US if prefix is unknown)
+#if _display_catchall_shields == 1
+    CLASS
+        EXPRESSION ("[type]"="motorway" or "[type]"="trunk")
+        TEXT ("[ref]")
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            PRIORITY 1
+            FONT _motorway_font
+            SIZE _motorway_lbl_size
+            REPEATDISTANCE 200
+            MINDISTANCE 300
+            MINFEATURESIZE AUTO
+            COLOR _motorway_lbl_clr
+            BUFFER 3
+            ANGLE FOLLOW
+        END
+    END
+#endif 
+END
+#endif // display shields?
     
 
 #if _display_aeroways == 1
