@@ -318,6 +318,12 @@ LAYER
             WIDTH _motorway_width
             COLOR _motorway_clr
         END
+#if _display_motorway_centerline
+        STYLE
+           WIDTH _motorway_centerline_width
+           COLOR _motorway_centerline_clr
+        END
+#endif
 #if _label_motorways == 1
         LABEL
             TYPE TRUETYPE
@@ -366,6 +372,12 @@ LAYER
             WIDTH _trunk_width 
             COLOR _trunk_clr
         END
+#if _display_trunk_centerline
+        STYLE
+           WIDTH _trunk_centerline_width
+           COLOR _trunk_centerline_clr
+        END
+#endif
 #if _label_trunks == 1
         LABEL
             TYPE TRUETYPE

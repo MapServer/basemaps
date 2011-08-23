@@ -1039,6 +1039,32 @@ styles = {
       },
       'pedestrian_ol_clr': '0 0 0',
    },
+   'centerlined': {
+      'display_motorway_centerline' : {
+         0:0,
+         10:1
+      },
+      'motorway_centerline_clr': {
+         0: '255 253 139'
+      },
+      'motorway_centerline_width': {
+         0:1,
+         12:1.5,
+         14:2
+      },
+      'display_trunk_centerline' : {
+         0:0,
+         10:1
+      },
+      'trunk_centerline_clr': {
+         0: '255 255 255'
+      },
+      'trunk_centerline_width': {
+         0:1,
+         12:1.5,
+         14:2
+      }
+   },
    'google':{
       'motorway_clr': "253 146 58",
       'trunk_clr': "255 195 69",
@@ -1080,6 +1106,56 @@ styles = {
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
       'display_buildings':0
+   },
+   'michelin':{
+      'motorway_clr': '228 24 24',
+      'trunk_clr': '228 24 24',
+      'primary_clr': {
+         0:'"#aaaaaa"',
+         9:'228 24 24'
+      },
+      'secondary_clr': {
+         0:'"#aaaaaa"',
+         10:'252 241 20'
+      },
+      'tertiary_clr': {
+         0:'"#aaaaaa"',
+         12:'252 241 20'
+      },
+      'other_clr': {
+         0:'"#aaaaaa"',
+         13:'"#ffffff"'
+      },
+
+      'motorway_ol_width': 0.5,
+      'trunk_ol_width': 0.5,
+      'primary_ol_width': 0.5,
+      'secondary_ol_width': 0.5,
+      'tertiary_ol_width': 0.5,
+      'other_ol_width': 0.5,
+
+      'pedestrian_clr': '"#fafaf5"',
+      'forest_clr': '188 220 180',
+      'industrial_clr': '"#ebe5d9"',
+      'education_clr': '"#ded1ab"',
+      'hospital_clr': '"#e6c8c3"',
+      'residential_clr': '255 234 206',
+      'land_clr': '"#ffffff"',
+      'park_clr': '"#dcdcb4"',
+      'ocean_clr': '172 220 244',
+      'waterarea_clr': '172 220 244',
+      'river_clr': '172 220 244',
+      'stream_clr': '172 220 244',
+      'canal_clr': '172 220 244',
+      
+      'motorway_ol_clr': '0 0 0',
+      'trunk_ol_clr': '0 0 0',
+      'primary_ol_clr': '0 0 0',
+      'secondary_ol_clr': '0 0 0',
+      'tertiary_ol_clr': '0 0 0',
+      'other_ol_clr': '0 0 0',
+      'pedestrian_ol_clr': '0 0 0',
+      'footway_clr': '"#7f7f7f"'
    },
    'bing':{
       'motorway_clr': '"#BAC3A8"',
@@ -1128,6 +1204,14 @@ styles = {
 import sys
 from optparse import OptionParser
 
+style_aliases = {
+   "default":"default",
+   "google":"default,outlined,google",
+   "bing":"default,outlined,bing",
+   "michelin":"default,outlined,centerlined,michelin"
+}
+
+
 parser = OptionParser()
 parser.add_option("-l", "--level", dest="level", type="int", action="store", default=-1,
                   help="generate file for level n")
@@ -1140,7 +1224,7 @@ parser.add_option("-s", "--style",
 (options, args) = parser.parse_args()
 
 items = vars.items()
-for namedstyle in options.style.split(','):
+for namedstyle in style_aliases[options.style].split(','):
    items = items + styles[namedstyle].items()
 
 style = dict(items)
