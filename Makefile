@@ -10,6 +10,7 @@ endif
 
 
 OSM_PREFIX=osm_new_
+OSM_NAME_COLUMN=name
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_EXTENT=-180 -90 180 90
@@ -105,6 +106,7 @@ $(mapfile):$(template) $(includes) shapefiles
 	$(SED) -e 's/OSM_UNITS/$(OSM_UNITS)/g' $(mapfile)
 	$(SED) -e 's/OSM_EXTENT/$(OSM_EXTENT)/g' $(mapfile)
 	$(SED) -e 's/OSM_WMS_SRS/$(OSM_WMS_SRS)/g' $(mapfile)
+	$(SED) -e 's/OSM_NAME_COLUMN/$(OSM_NAME_COLUMN)/g' $(mapfile)
 
 boundaries.sql: boundaries.sql.in
 	cp -f $< $@

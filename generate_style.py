@@ -85,9 +85,9 @@ vars= {
    
    ##### water #####
    'waterarea_data': {
-      0: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
-      6: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
-      12: '"geometry from (select geometry,osm_id ,name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
+      0: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
+      6: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
+      12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_waterarea_lbl' : {0:0, 6:1},
    'waterarea_clr': '"#B3C6D4"',
@@ -103,8 +103,8 @@ vars= {
       6:1
    },
    'waterways_data': {
-      0:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
-      10:'"geometry from (select geometry, osm_id, type, name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
+      0:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+      10:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
    },
    
    'canal_width': {
@@ -168,18 +168,18 @@ vars= {
    },
    
    'landusage_data': {
-      0:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen0 \
+      0:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0 \
       where type in (\'forest\',\'residential\')\
       order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen0 \
+      6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0 \
       where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
       order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages_gen1 \
+      9:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-      12:'"geometry from (select geometry ,osm_id, type, name from OSM_PREFIX_landusages \
+      12:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
@@ -268,9 +268,9 @@ vars= {
    ###### highways #######
    
    'roads_data': {
-      0:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select osm_id,geometry,name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      0:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      6:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
    
    'display_tunnels': {
@@ -795,11 +795,11 @@ vars= {
 
    ###### places ######
    'places_data': {
-      0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      3: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      13: '"geometry from (select * from OSM_PREFIX_places where name is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      3: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      13: '"geometry from (select * from OSM_PREFIX_places where OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
    },
    'display_capitals': 0,
    'display_capital_symbol': {
@@ -1126,13 +1126,29 @@ styles = {
          0:'"#aaaaaa"',
          13:'"#ffffff"'
       },
+      'display_primary_outline': {
+         0:0,
+         11:1
+      },
+      'display_secondary_outline': {
+         0:0,
+         12:1
+      },
+      'display_tertiary_outline': {
+         0:0,
+         13:1
+      },
+      'display_other_outline': {
+         0:0,
+         14:1
+      },
 
       'motorway_ol_width': 0.5,
       'trunk_ol_width': 0.5,
-      'primary_ol_width': 0.5,
-      'secondary_ol_width': 0.5,
-      'tertiary_ol_width': 0.5,
-      'other_ol_width': 0.5,
+      'primary_ol_width': 0.2,
+      'secondary_ol_width': 0.2,
+      'tertiary_ol_width': 0.2,
+      'other_ol_width': 0.2,
 
       'pedestrian_clr': '"#fafaf5"',
       'forest_clr': '188 220 180',
