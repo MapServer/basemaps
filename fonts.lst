@@ -1,2 +1,14 @@
+unifont fonts/unifont.ttf
+arialuni fonts/arialuni.ttf
+#sc fonts/ARIALUNI.TTF
+#scb fonts/ARIALUNI.TTF
+#sc fonts/Everson-Mono.ttf
+#scb fonts/Everson-Mono.ttf
+#sc fonts/TITUSCBZ.TTF
+#scb fonts/TITUSCBZ.TTF
 sc fonts/DejaVuSansCondensed.ttf
 scb fonts/DejaVuSansCondensed-Bold.ttf
+khmer fonts/KhmerOS.ttf
+jp fonts/ipag.ttf
+#sc fonts/Cyberbit.ttf
+#scb fonts/Cyberbit.ttf

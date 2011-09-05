@@ -1,0 +1,98 @@
+#if _display_admin == 1
+LAYER
+   GROUP "default"
+   STATUS ON
+   MAXSCALEDENOM _maxscale
+   MINSCALEDENOM _minscale
+   TYPE LINE
+   NAME layername(admin_fr,_layer_suffix)
+   DATA _admin_data
+   CLASS
+      STYLE
+         COLOR _admin_clr
+         WIDTH _admin_width
+      END
+   END
+END
+#endif
+
+LAYER
+   GROUP "default"
+   STATUS ON
+   MAXSCALEDENOM _maxscale
+   MINSCALEDENOM _minscale
+   TYPE LINE
+   NAME layername(borders,_layer_suffix)
+   PROJECTION
+     _border_epsg
+   END
+   DATA _border_data
+#if _display_border_2 == 1
+   CLASS
+#if _display_border_2_outer == 1
+      STYLE
+         WIDTH _border_2_width
+         COLOR _border_2_clr
+         OPACITY 50
+      END
+#endif
+      STYLE
+         WIDTH _border_2_inner_width
+         COLOR _border_2_inner_clr
+         _border_2_inner_pattern
+      END
+   END
+#endif
+#if _display_border_4 == 1
+   CLASS
+      EXPRESSION "4"
+#if _display_border_4_outer == 1
+      STYLE
+         WIDTH _border_4_width
+         COLOR _border_4_clr
+         OPACITY 50
+      END
+#endif
+      STYLE
+         WIDTH _border_4_inner_width
+         COLOR _border_4_inner_clr
+         _border_4_inner_pattern
+      END
+   END
+#endif
+#if _display_border_6 == 1
+   CLASS
+      EXPRESSION "6"
+#if _display_border_6_outer == 1
+      STYLE
+         WIDTH _border_6_width
+         COLOR _border_6_clr
+         OPACITY 50
+      END
+#endif
+      STYLE
+         WIDTH _border_6_inner_width
+         COLOR _border_6_inner_clr
+         _border_6_inner_pattern
+      END
+   END
+#endif
+#if _display_border_8 == 1 
+   CLASS
+      EXPRESSION "8"
+#if _display_border_8_outer == 1
+      STYLE
+         WIDTH _border_8_width
+         COLOR _border_8_clr
+         OPACITY 50
+      END
+#endif
+      STYLE
+         WIDTH _border_8_inner_width
+         COLOR _border_8_inner_clr
+         _border_8_inner_pattern
+      END
+   END
+#endif
+END
+

@@ -1,181 +1,196 @@
 
 LAYER
-    _default_layer
-    TYPE ANNOTATION
-    NAME "places"
-    DATA _places_data
-    LABELITEM 'name'
-    CLASSITEM 'place'
-#ifdef _display_capitals
-    CLASS
-        EXPRESSION ("[place]"="city" and "[capital]"="yes")
-        #ifdef _display_place_symbol
-        STYLE
-            SIZE _capital_size
+   STATUS ON
+   GROUP "default" 
+   TYPE ANNOTATION
+   CONNECTIONTYPE postgis
+   CONNECTION _db_connection
+   NAME layername(places,_layer_suffix)
+   MINSCALEDENOM _minscale
+   MAXSCALEDENOM _maxscale
+   DATA _places_data
+   LABELITEM 'name'
+   CLASSITEM 'type'
+#if _display_capitals == 1
+   CLASS
+      EXPRESSION ('[capital]'='1')
+      #if _display_capital_symbol == 1
+      STYLE
+         SIZE _capital_size
             SYMBOL "citycircle"
             COLOR _capital_clr
-            OUTLINECOLOR 0 0 0
+            OUTLINECOLOR _capital_ol_clr
         END
         STYLE
-            SIZE 2
+            SIZE _capital_fg_size
             SYMBOL "citycircle"
-            COLOR "#000000"
+            COLOR _capital_fg_clr
         END
         #endif
         LABEL
-            FONT sc
+            FONT _capital_font
             TYPE TRUETYPE
             SIZE _capital_lbl_size
+            ENCODING "utf-8"
             COLOR _capital_lbl_clr
             OUTLINECOLOR _capital_lbl_ol_clr
-            OUTLINEWIDTH 4
+            OUTLINEWIDTH _capital_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 10
+            BUFFER 10
             PARTIALS FALSE
-            #ifdef _display_place_symbol
             POSITION auto
-            #else
-            POSITION cc
-            #endif
         END
     END
 #endif
-#ifdef _display_countries
+#if _display_continents == 1
+    CLASS
+        EXPRESSION 'continents'
+        LABEL
+            FONT _continent_font
+            TYPE TRUETYPE
+            ENCODING "utf-8"
+            SIZE _continent_lbl_size
+            COLOR _continent_lbl_clr
+            OUTLINECOLOR _continent_lbl_ol_clr
+            OUTLINEWIDTH _continent_lbl_ol_width
+            BUFFER 4
+            PARTIALS FALSE
+            POSITION cc
+        END
+    END
+#endif
+#if _display_countries == 1
     CLASS
         EXPRESSION 'country'
         LABEL
-            FONT scb
+            FONT _country_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _country_lbl_size
             COLOR _country_lbl_clr
+            OUTLINECOLOR _country_lbl_ol_clr
+            OUTLINEWIDTH _country_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 9
-            BUFFER 1
+            BUFFER 4
             PARTIALS FALSE
             POSITION cc
         END
     END
 #endif
-#ifdef _display_cities
+#if _display_cities == 1
     CLASS
         EXPRESSION 'city'
-        #ifdef _display_place_symbol
+        #if _display_city_symbol == 1
         STYLE
             SIZE _city_size
             SYMBOL "citycircle"
             COLOR _city_clr
-            OUTLINECOLOR 0 0 0
+            OUTLINECOLOR _city_ol_clr
         END
         #endif
         LABEL
-            FONT sc
+            FONT _city_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _city_lbl_size
             COLOR _city_lbl_clr
             OUTLINECOLOR _city_lbl_ol_clr
-            OUTLINEWIDTH 4
+            OUTLINEWIDTH _city_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 9
+            BUFFER 4
             PARTIALS FALSE
             POSITION auto
-            #ifdef _display_place_symbol
-            POSITION auto
-            #else
-            POSITION cc
-            #endif
         END
     END
 #endif
-#ifdef _display_towns
+#if _display_towns == 1
     CLASS
         EXPRESSION 'town'
-        #ifdef _display_place_symbol
+        #if _display_town_symbol == 1
         STYLE
             SIZE _town_size
             SYMBOL "citycircle"
             COLOR _town_clr
-            OUTLINECOLOR 0 0 0
+            OUTLINECOLOR _town_ol_clr
         END
         #endif
         LABEL
-            FONT sc
+            FONT _town_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _town_lbl_size
             COLOR _town_lbl_clr
             OUTLINECOLOR _town_lbl_ol_clr
-            OUTLINEWIDTH 3
+            OUTLINEWIDTH _town_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 8
             PARTIALS FALSE
             POSITION AUTO
-            #ifdef _display_place_symbol
+            BUFFER 4
             POSITION auto
-            #else
-            POSITION cc
-            #endif
         END
     END
 #endif
-#ifdef _display_villages
+#if _display_villages == 1
     CLASS
-        EXPRESSION ('[place]'='village')
-        #ifdef _display_place_symbol
+        EXPRESSION 'village'
+        #if _display_village_symbol == 1
         STYLE
             SYMBOL "citycircle"
-            COLOR 255 255 255
-            OUTLINECOLOR 0 0 0
+            COLOR _village_clr
+            OUTLINECOLOR _village_ol_clr
             SIZE _village_size
         END
         #endif
         LABEL
-            FONT sc
+            FONT _village_font
             TYPE TRUETYPE
+            ENCODING "utf-8"
             SIZE _village_lbl_size
             COLOR _village_lbl_clr
             OUTLINECOLOR _village_lbl_ol_clr
-            OUTLINEWIDTH 3
+            OUTLINEWIDTH _village_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 8
             PARTIALS FALSE
+            BUFFER 4
             POSITION AUTO
-            #ifdef _display_place_symbol
-            POSITION auto
-            #else
-            POSITION cc
-            #endif
         END
     END
 #endif
-#ifdef _display_other_places
+#if _display_hamlets == 1
     CLASS
-        EXPRESSION ('[place]'='suburb' or '[place]'='hamlet')
-        #ifdef _display_place_symbol
+        EXPRESSION /suburb|hamlet|locality/
+        #if _display_hamlets_symbol == 1
         STYLE
-            SIZE _other_place_size
+            SIZE _hamlet_size
+            SYMBOL "citycircle"
+            COLOR _hamlet_clr
+            OUTLINECOLOR _hamlet_ol_clr
         END
         #endif
         LABEL
-            FONT sc
+            FONT _hamlet_font
             TYPE TRUETYPE
-            SIZE _other_place_lbl_size
-            COLOR _other_place_lbl_clr
-            OUTLINECOLOR _other_place_lbl_ol_clr
-            OUTLINEWIDTH 3
+            ENCODING "utf-8"
+            SIZE _hamlet_lbl_size
+            COLOR _hamlet_lbl_clr
+            OUTLINECOLOR _hamlet_lbl_ol_clr
+            OUTLINEWIDTH _hamlet_lbl_ol_width
             WRAP ' '
             MAXLENGTH 8
             ALIGN CENTER
-            PRIORITY 8
+            BUFFER 4
             PARTIALS FALSE
+            POSITION AUTO
         END
     END
 #endif

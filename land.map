@@ -1,0 +1,20 @@
+LAYER
+   TYPE POLYGON
+   STATUS ON
+   GROUP "default"
+   DEBUG _layerdebug
+   NAME layername(land,_layer_suffix)
+   PROCESSING "APPROXIMATION_SCALE=full"
+   PROJECTION
+       _land_epsg
+   END
+   MINSCALEDENOM _minscale
+   MAXSCALEDENOM _maxscale
+   DATA _land_data
+   CLASS
+       STYLE
+           COLOR _land_clr
+       END
+   END
+END
+

@@ -1,0 +1,116 @@
+drop table if exists tbt_tmp_rings;
+
+
+create table tbt_tmp_rings (id serial, admin_level smallint, geometry geometry);
+
+insert into tbt_tmp_rings(admin_level,geometry) 
+   SELECT admin_level, ST_Collect(ST_ExteriorRing(geometry)) AS geometry 
+   FROM (
+      SELECT admin_level, osm_id, (ST_Dump(geometry)).geom As geometry
+      FROM OSM_PREFIX_admin) As foo
+   GROUP BY admin_level,osm_id;
+
+
+insert into tbt_tmp_rings (admin_level,geometry) 
+   select admin_level,st_collect(geom)
+      from
+      (select osm_id,admin_level, ST_InteriorRingN(geom, generate_series(1, ST_NumInteriorRing(geom))) as geom
+         from 
+         (select admin_level,osm_id,
+            st_geometryN(geom, generate_series(1, st_numgeometries(geom))) as geom
+            from
+            (select admin_level,osm_id, geometry as geom from OSM_PREFIX_admin) as foo) as bar) as baz group by admin_level,osm_id;
+
+create index tbt_tmp_rings_idx on tbt_tmp_rings using gist(geometry);
+cluster tbt_tmp_rings_idx on tbt_tmp_rings;
+vacuum analyze;
+
+drop view if exists osm_boundaries;
+drop table if exists tom_bnd_2;
+drop table if exists tom_bnd_4;
+drop table if exists tom_bnd_6;
+drop table if exists tom_bnd_8;
+
+create table tom_bnd_2 as (
+   select c1.id::text||'_'||c2.id::text as id, st_intersection(c1.geometry,c2.geometry) as geometry
+   from tbt_tmp_rings c1, tbt_tmp_rings c2
+   where c1.geometry && c2.geometry and c1.id>c2.id and c1.admin_level=2 and c2.admin_level=2
+);
+create table tom_bnd_4 as (
+   select c1.id::text||'_'||c2.id::text as id, st_intersection(c1.geometry,c2.geometry) as geometry
+   from tbt_tmp_rings c1, tbt_tmp_rings c2
+   where c1.geometry && c2.geometry and c1.id>c2.id and c1.admin_level=4 and c2.admin_level=4
+);
+create table tom_bnd_6 as (
+   select c1.id::text||'_'||c2.id::text as id, st_intersection(c1.geometry,c2.geometry) as geometry
+   from tbt_tmp_rings c1, tbt_tmp_rings c2
+   where c1.geometry && c2.geometry and c1.id>c2.id and c1.admin_level=6 and c2.admin_level=6
+);
+create table tom_bnd_8 as (
+   select c1.id::text||'_'||c2.id::text as id, st_intersection(c1.geometry,c2.geometry) as geometry
+   from tbt_tmp_rings c1, tbt_tmp_rings c2
+   where c1.geometry && c2.geometry and c1.id>c2.id and c1.admin_level=8 and c2.admin_level=8
+);
+
+
+delete from tom_bnd_2 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
+delete from tom_bnd_4 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
+delete from tom_bnd_6 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
+delete from tom_bnd_8 WHERE st_geometrytype(geometry)!='ST_LineString' and st_geometrytype(geometry)!='ST_MultiLineString';
+
+update tom_bnd_2 set geometry = st_linemerge(geometry);
+update tom_bnd_4 set geometry = st_linemerge(geometry);
+update tom_bnd_6 set geometry = st_linemerge(geometry);
+update tom_bnd_8 set geometry = st_linemerge(geometry);
+
+
+
+create index bnd2_idx on tom_bnd_2 using gist(geometry);
+create index bnd4_idx on tom_bnd_4 using gist(geometry);
+create index bnd6_idx on tom_bnd_6 using gist(geometry);
+create index bnd8_idx on tom_bnd_8 using gist(geometry);
+
+delete from tom_bnd_8 where st_isempty(geometry);
+delete from tom_bnd_4 where st_isempty(geometry);
+delete from tom_bnd_6 where st_isempty(geometry);
+delete from tom_bnd_2 where st_isempty(geometry);
+
+
+update tom_bnd_4 set geometry = st_difference(tom_bnd_4.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_4.geometry &&t.geometry and st_relate(tom_bnd_4.geometry,t.geometry,'1********');
+delete from tom_bnd_4 where st_isempty(geometry);
+
+update tom_bnd_6 set geometry = st_difference(tom_bnd_6.geometry, t.geometry) FROM tom_bnd_4 t 
+   where tom_bnd_6.geometry &&t.geometry and st_relate(tom_bnd_6.geometry,t.geometry,'1********');
+delete from tom_bnd_6 where st_isempty(geometry);
+update tom_bnd_6 set geometry = st_difference(tom_bnd_6.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_6.geometry &&t.geometry and st_relate(tom_bnd_6.geometry,t.geometry,'1********');
+delete from tom_bnd_6 where st_isempty(geometry);
+
+
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_6 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_4 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+update tom_bnd_8 set geometry = st_difference(tom_bnd_8.geometry, t.geometry) FROM tom_bnd_2 t 
+   where tom_bnd_8.geometry &&t.geometry and st_relate(tom_bnd_8.geometry,t.geometry,'1********');
+delete from tom_bnd_8 where st_isempty(geometry);
+
+drop table if exists OSM_PREFIX_boundaries;
+create table OSM_PREFIX_boundaries as (
+   select id,geometry,2 as admin_level from tom_bnd_2
+      union all
+   select id,geometry,4 as admin_level from tom_bnd_4
+      union all
+   select id,geometry,6 as admin_level from tom_bnd_6
+      union all
+   select id,geometry,8 as admin_level from tom_bnd_8
+);
+
+
+create index boundaries_geom_idx on OSM_PREFIX_boundaries using gist(geometry);
+create index boundaries_id_idx on OSM_PREFIX_boundaries(id);
+create index boundaries_adminlevel_idx on OSM_PREFIX_boundaries(admin_level);
+
