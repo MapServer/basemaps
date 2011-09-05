@@ -1265,9 +1265,19 @@ styles = {
 import sys
 from optparse import OptionParser
 
+
+# these are the preconfigured styles that can be called when creating the final mapfile,
+# e.g. with `make STYLE=google`. This will create an osm-google.map mapfile
 style_aliases = {
+
+   # map with no road casing and few colors, suited for using as a basemap when overlaying
+   # other layers without risk of confusion between layers.
    "default":"default",
+
+   # a style resembling the google-maps theme
    "google":"default,outlined,google",
+
+   # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
    "bing":"default,outlined,bing",
    "michelin":"default,outlined,centerlined,michelin"

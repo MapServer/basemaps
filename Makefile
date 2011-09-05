@@ -26,10 +26,12 @@ STYLE=default
 template=osmbase.map
 
 includes=land.map landusage.map borders.map highways.map places.map \
-		 style-$(STYLE).inc \
-		 level0.inc level1.inc level2.inc level4.inc level3.inc level5.inc level6.inc\
-       level7.inc level8.inc level9.inc level10.inc level11.inc level12.inc\
-       level13.inc level14.inc level15.inc level16.inc level17.inc level18.inc
+		 generated/$(STYLE)style.msinc \
+		 generated/$(STYLE)level0.msinc generated/$(STYLE)level1.msinc generated/$(STYLE)level2.msinc generated/$(STYLE)level3.msinc \
+		 generated/$(STYLE)level4.msinc generated/$(STYLE)level5.msinc generated/$(STYLE)level6.msinc generated/$(STYLE)level7.msinc \
+		 generated/$(STYLE)level8.msinc generated/$(STYLE)level9.msinc generated/$(STYLE)level10.msinc generated/$(STYLE)level11.msinc \
+		 generated/$(STYLE)level12.msinc generated/$(STYLE)level13.msinc generated/$(STYLE)level14.msinc generated/$(STYLE)level15.msinc \
+		 generated/$(STYLE)level16.msinc generated/$(STYLE)level17.msinc generated/$(STYLE)level18.msinc
 
 
 
@@ -38,67 +40,68 @@ here=`pwd`
 
 all:$(mapfile) boundaries.sql
 
-style-$(STYLE).inc: generate_style.py
+generated/$(STYLE)style.msinc: generate_style.py
 	python generate_style.py -s $(STYLE) -g > $@
 
-level0.inc: generate_style.py
+generated/$(STYLE)level0.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 0 > $@ 
 
-level1.inc: generate_style.py
+generated/$(STYLE)level1.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 1 > $@ 
 
-level2.inc: generate_style.py
+generated/$(STYLE)level2.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 2 > $@ 
 
-level3.inc: generate_style.py
+generated/$(STYLE)level3.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 3 > $@ 
 
-level4.inc: generate_style.py
+generated/$(STYLE)level4.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 4 > $@ 
 
-level5.inc: generate_style.py
+generated/$(STYLE)level5.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 5 > $@ 
 
-level6.inc: generate_style.py
+generated/$(STYLE)level6.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 6 > $@ 
 
-level7.inc: generate_style.py
+generated/$(STYLE)level7.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 7 > $@ 
 
-level8.inc: generate_style.py
+generated/$(STYLE)level8.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 8 > $@ 
 
-level9.inc: generate_style.py
+generated/$(STYLE)level9.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 9 > $@ 
 
-level10.inc: generate_style.py
+generated/$(STYLE)level10.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 10 > $@
-level11.inc: generate_style.py
+
+generated/$(STYLE)level11.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 11 > $@
 
-level12.inc: generate_style.py
+generated/$(STYLE)level12.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 12 > $@
 
-level13.inc: generate_style.py
+generated/$(STYLE)level13.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 13 > $@
 
-level14.inc: generate_style.py
+generated/$(STYLE)level14.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 14 > $@
 
-level15.inc: generate_style.py
+generated/$(STYLE)level15.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 15 > $@
 
-level16.inc: generate_style.py
+generated/$(STYLE)level16.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 16 > $@
 
-level17.inc: generate_style.py
+generated/$(STYLE)level17.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 17 > $@
 
-level18.inc: generate_style.py
+generated/$(STYLE)level18.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 18 > $@
 
 $(mapfile):$(template) $(includes) shapefiles
-	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -Dtheme=\"style-$(STYLE).inc\" -D_proj_lib=\"$(here)\"
+	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -DTHEME=$(STYLE) -D_proj_lib=\"$(here)\" -Igenerated
 	$(SED) 's/##.*$$//g' $(mapfile)
 	$(SED) '/^ *$$/d' $(mapfile)
 	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $(mapfile)
@@ -111,6 +114,9 @@ $(mapfile):$(template) $(includes) shapefiles
 boundaries.sql: boundaries.sql.in
 	cp -f $< $@
 	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+
+clean:
+	rm -f generated/*
 
 shapefiles:
 	cd data; $(MAKE) $(MFLAGS)
