@@ -14,9 +14,9 @@ OSM_NAME_COLUMN=name
 OSM_SRID=4326
 OSM_UNITS=dd
 OSM_EXTENT=-180 -90 180 90
-#OSM_SRID=900913
-#OSM_UNITS=meters
-#OSM_EXTENT=-20000000 -20000000 20000000 20000000
+OSM_SRID=3857
+OSM_UNITS=meters
+OSM_EXTENT=-20000000 -20000000 20000000 20000000
 OSM_WMS_SRS="EPSG:900913 EPSG:4326 EPSG:3857 EPSG:2154 EPSG:310642901 EPSG:4171 EPSG:310024802 EPSG:310915814 EPSG:310486805 EPSG:310702807 EPSG:310700806 EPSG:310547809 EPSG:310706808 EPSG:310642810 EPSG:310642801 EPSG:310642812 EPSG:310032811 EPSG:310642813 EPSG:2986"
 DEBUG=1
 LAYERDEBUG=1
@@ -100,7 +100,7 @@ generated/$(STYLE)level17.msinc: generate_style.py
 generated/$(STYLE)level18.msinc: generate_style.py
 	python generate_style.py  -s $(STYLE) -l 18 > $@
 
-$(mapfile):$(template) $(includes) shapefiles
+$(mapfile):$(template) $(includes)
 	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -P -o $(mapfile) $(template) -DTHEME=$(STYLE) -D_proj_lib=\"$(here)\" -Igenerated
 	$(SED) 's/##.*$$//g' $(mapfile)
 	$(SED) '/^ *$$/d' $(mapfile)
@@ -118,5 +118,5 @@ boundaries.sql: boundaries.sql.in
 clean:
 	rm -f generated/*
 
-shapefiles:
+data:
 	cd data; $(MAKE) $(MFLAGS)
