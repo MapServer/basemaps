@@ -1107,6 +1107,46 @@ styles = {
       'pedestrian_ol_clr': '193 181 157',
       'display_buildings':0
    },
+   'mapserver':{
+      'motorway_clr': '"#4F719D"',
+      'trunk_clr': '"#BAC3A8"',
+      'primary_clr': {
+         0:'"#39780F"',
+         9:'"#FCFCCC"'
+      },
+      'secondary_clr': {
+         0:'"#FCFCCC"',
+      },
+      'tertiary_clr': {
+         0:'"#777777"',
+         12:'"#ffffff"'
+      },
+      'other_clr': {
+         0:'"#777777"',
+         14:'"#ffffff"'
+      },
+      'pedestrian_clr': '250 250 245',   #fixme?
+      'forest_clr': '"#DCDCB4"',
+      'industrial_clr': '"#EBE5D9"',
+      'education_clr': "222 210 172",
+      'hospital_clr': '"#E6C8C3"',
+      'residential_clr': '"#F6F1E6"',
+      'land_clr': '"#EDEBE6"',
+      'park_clr': '"#DCDCB4"',
+      'ocean_clr': '"#B3C6D4"',
+      'waterarea_clr': '"#B3C6D4"',
+      'river_clr': '"#B3C6D4"',
+      'stream_clr': '"#B3C6D4"',
+      'canal_clr': '"#B3C6D4"',
+      
+      'motorway_ol_clr': '"#24277A"',
+      'trunk_ol_clr': '"#39780F"',
+      'primary_ol_clr': '"#39780F"',
+      'secondary_ol_clr': '"#39780F"',
+      'tertiary_ol_clr': '"#978C7A"',
+      'other_ol_clr': '"#978C7A"',
+      'pedestrian_ol_clr': '"#978C7A"',  #fixme?
+   },
    'michelin':{
       'motorway_clr': '228 24 24',
       'trunk_clr': '228 24 24',
@@ -1276,6 +1316,9 @@ style_aliases = {
 
    # a style resembling the google-maps theme
    "google":"default,outlined,google",
+
+   # the "original" mapserver blue green and yellow theme
+   "mapserver":"default,outlined,mapserver",
 
    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
