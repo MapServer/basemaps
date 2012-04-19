@@ -221,7 +221,7 @@ LAYER
     END
 END
 
-
+#if _display_transport_areas == 1
 LAYER
    TYPE POLYGON
    STATUS ON
@@ -259,6 +259,8 @@ LAYER
 #endif
    END
 END
+
+#endif
 
 LAYER
     TYPE POLYGON
