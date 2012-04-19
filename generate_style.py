@@ -78,15 +78,15 @@ vars= {
       7:'"data/processed_p"'
    },
    'land_epsg': {
-      0:'"+init=epsg:4326"',
-      3:'"+init=epsg:900913"',
+      0:'"init=epsg:4326"',
+      3:'"init=epsg:3857"',
    },
    
    
    ##### water #####
    'waterarea_data': {
       0: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
-      6: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
+      9: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
       12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_waterarea_lbl' : {0:0, 6:1},
@@ -103,8 +103,9 @@ vars= {
       6:1
    },
    'waterways_data': {
-      0:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
-      10:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
+      0:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen0 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen1 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
    },
    
    'canal_width': {
@@ -168,13 +169,13 @@ vars= {
    },
    
    'landusage_data': {
-      0:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0 \
-      where type in (\'forest\',\'residential\')\
-      order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0 \
-      where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
-      order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
+      0:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen00)\
+            as foo using unique osm_id using srid=OSM_SRID"',
+      6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0)\
+            as foo using unique osm_id using srid=OSM_SRID"',
       9:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
+      where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')) as foo using unique osm_id using srid=OSM_SRID"',
+      10:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
@@ -256,7 +257,8 @@ vars= {
    'forest_lbl_clr': '0 0 0',
    'forest_lbl_ol_clr': "255 255 255",
    'forest_lbl_ol_width': 2,
-   
+
+   'display_transport_areas' : {0:0,11:1},
    'transport_clr': '200 200 200',
    'display_transport_lbl' : {0:0, 12:1},
    'transport_font': "sc",
@@ -268,9 +270,12 @@ vars= {
    ###### highways #######
    
    'roads_data': {
-      0:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen0 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads_gen1 order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      0:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen0 where type in (\'trunk\',\'motorway\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      8:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where type in (\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where type in (\'secondary\',\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      10:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 ) as foo using unique osm_id using srid=OSM_SRID"',
+      11:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type,tunnel,bridge from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
    
    'display_tunnels': {
@@ -629,7 +634,7 @@ vars= {
    ##### borders ######
    'border_data': '"data/boundaries.shp"',
    'border_epsg': {
-      0: '"+init=epsg:4326"'
+      0: '"init=epsg:4326"'
    },
    
    'display_border_2': {
@@ -1107,46 +1112,6 @@ styles = {
       'pedestrian_ol_clr': '193 181 157',
       'display_buildings':0
    },
-   'mapserver':{
-      'motorway_clr': '"#4F719D"',
-      'trunk_clr': '"#BAC3A8"',
-      'primary_clr': {
-         0:'"#39780F"',
-         9:'"#FCFCCC"'
-      },
-      'secondary_clr': {
-         0:'"#FCFCCC"',
-      },
-      'tertiary_clr': {
-         0:'"#777777"',
-         12:'"#ffffff"'
-      },
-      'other_clr': {
-         0:'"#777777"',
-         14:'"#ffffff"'
-      },
-      'pedestrian_clr': '250 250 245',   #fixme?
-      'forest_clr': '"#DCDCB4"',
-      'industrial_clr': '"#EBE5D9"',
-      'education_clr': "222 210 172",
-      'hospital_clr': '"#E6C8C3"',
-      'residential_clr': '"#F6F1E6"',
-      'land_clr': '"#EDEBE6"',
-      'park_clr': '"#DCDCB4"',
-      'ocean_clr': '"#B3C6D4"',
-      'waterarea_clr': '"#B3C6D4"',
-      'river_clr': '"#B3C6D4"',
-      'stream_clr': '"#B3C6D4"',
-      'canal_clr': '"#B3C6D4"',
-      
-      'motorway_ol_clr': '"#24277A"',
-      'trunk_ol_clr': '"#39780F"',
-      'primary_ol_clr': '"#39780F"',
-      'secondary_ol_clr': '"#39780F"',
-      'tertiary_ol_clr': '"#978C7A"',
-      'other_ol_clr': '"#978C7A"',
-      'pedestrian_ol_clr': '"#978C7A"',  #fixme?
-   },
    'michelin':{
       'motorway_clr': '228 24 24',
       'trunk_clr': '228 24 24',
@@ -1316,9 +1281,6 @@ style_aliases = {
 
    # a style resembling the google-maps theme
    "google":"default,outlined,google",
-
-   # the "original" mapserver blue green and yellow theme
-   "mapserver":"default,outlined,mapserver",
 
    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
