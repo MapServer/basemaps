@@ -1,8 +1,7 @@
-
 LAYER
  STATUS ON
  GROUP "default" 
- TYPE POINT
+ TYPE ANNOTATION
  CONNECTIONTYPE postgis
  CONNECTION _db_connection
  NAME layername(places,_layer_suffix)
