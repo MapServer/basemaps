@@ -8,7 +8,7 @@ LAYER
     NAME layername(buildings,_layer_suffix)
     TYPE POLYGON
     CONNECTIONTYPE postgis
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA "geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"

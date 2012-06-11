@@ -3,7 +3,7 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     MINSCALEDENOM _minscale
     MAXSCALEDENOM _maxscale
     TYPE LINE
@@ -40,7 +40,7 @@ LAYER
     MAXSCALEDENOM _maxscale
     NAME layername(roads,_layer_suffix)
     CONNECTIONTYPE postgis
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
@@ -857,7 +857,7 @@ LAYER
     TYPE LINE
     NAME layername(aeroways,_layer_suffix)
     CONNECTIONTYPE postgis
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
     CLASS

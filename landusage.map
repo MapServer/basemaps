@@ -8,7 +8,7 @@ LAYER
     NAME layername(landuse,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA _landusage_data
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -231,7 +231,7 @@ LAYER
    NAME layername(transport_areas,_layer_suffix)
    GROUP "default"
    CONNECTIONTYPE POSTGIS
-   CONNECTION _db_connection
+   CONNECTION "OSM_DB_CONNECTION"
    DATA "geometry from OSM_PREFIX_transport_areas using unique osm_id using srid=OSM_SRID"
    PROCESSING "CLOSE_CONNECTION=DEFER"
    MAXSCALEDENOM _maxscale
@@ -271,7 +271,7 @@ LAYER
     NAME layername(waterarea,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA _waterarea_data
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale  
@@ -314,7 +314,7 @@ LAYER
     NAME layername(waterways,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
-    CONNECTION _db_connection
+    CONNECTION "OSM_DB_CONNECTION"
     DATA _waterways_data
     CLASSITEM "type"
     MAXSCALEDENOM _maxscale

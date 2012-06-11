@@ -4,7 +4,7 @@ LAYER
  GROUP "default" 
  TYPE POINT
  CONNECTIONTYPE postgis
- CONNECTION _db_connection
+ CONNECTION "OSM_DB_CONNECTION"
  NAME layername(places,_layer_suffix)
  MINSCALEDENOM _minscale
  MAXSCALEDENOM _maxscale

@@ -69,7 +69,6 @@ vars= {
    'layer_suffix':layer_suffixes,
    'maxscale':maxscales,
    'minscale':minscales,
-   'db_connection': '"host=localhost dbname=osm user=osm password=osm port=5432"',
    
    'land_clr': '"#E8E6E1"',
    'land_data': {
