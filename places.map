@@ -3,7 +3,7 @@ LAYER
  STATUS ON
  GROUP "default" 
  TYPE POINT
- CONNECTIONTYPE postgis
+ CONNECTIONTYPE _connection_type
  CONNECTION "OSM_DB_CONNECTION"
  NAME layername(places,_layer_suffix)
  MINSCALEDENOM _minscale

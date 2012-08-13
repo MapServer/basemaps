@@ -69,6 +69,7 @@ vars= {
    'layer_suffix':layer_suffixes,
    'maxscale':maxscales,
    'minscale':minscales,
+   'connection_type':"postgis",
    
    'land_clr': '"#E8E6E1"',
    'land_data': {
@@ -258,6 +259,7 @@ vars= {
    'forest_lbl_ol_width': 2,
 
    'display_transport_areas' : {0:0,11:1},
+   'transport_areas_data': '"geometry from OSM_PREFIX_transport_areas using unique osm_id using srid=OSM_SRID"',
    'transport_clr': '200 200 200',
    'display_transport_lbl' : {0:0, 12:1},
    'transport_font': "sc",
@@ -274,7 +276,7 @@ vars= {
       9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where type in (\'secondary\',\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
       10:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 ) as foo using unique osm_id using srid=OSM_SRID"',
       11:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
    
    'tunnel_opacity': 40,
@@ -740,6 +742,7 @@ vars= {
       0: 0,
       15:1
    },
+   'buildings_data':'"geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"',
    'building_clr': '"#bbbbbb"',
    'building_ol_clr': '"#333333"',
    'building_ol_width': {
@@ -763,6 +766,7 @@ vars= {
       0:0,
       10:1
    },
+   'aeroways_data':'"geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"',
    'runway_clr': "180 180 180",
    'runway_width': {
       0:1,
@@ -1105,7 +1109,7 @@ styles = {
       'tertiary_ol_clr': '193 181 157',
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
-      'display_buildings':0
+      #'display_buildings':0
    },
    'michelin':{
       'motorway_clr': '228 24 24',
@@ -1259,6 +1263,57 @@ styles = {
          14:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, (case when tunnel=\'yes\' then 1 else 0 end) as tunnel,(case when bridge=\'yes\' then 1 else 0 end) as bridge from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
       },
           
+   },
+   'spatialite': {
+      'connection_type': 'spatialite\
+      PROCESSING "UID_COLUMN=OGC_FID"\
+      PROCESSING "GEOM_COLUMN=Geometry"',
+      'places_data': {
+         0:  '"select * from OSM_PREFIX_places where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_places_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL order by population asc"',
+         3:  '"select * from OSM_PREFIX_places where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_places_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL order by population asc"',
+         8:  '"select * from OSM_PREFIX_places where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_places_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL order by population asc"',
+         11: '"select * from OSM_PREFIX_places where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_places_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL order by population asc"',
+         13: '"select * from OSM_PREFIX_places where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_places_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and OSM_NAME_COLUMN is not NULL order by population asc"',
+      },
+      'waterarea_data': {
+         0:  '"select geometry,OGC_FID ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen0 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterareas_gen0_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+         9:  '"select geometry,OGC_FID ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterareas_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+         12: '"select geometry,OGC_FID ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterareas_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"'
+      },
+      'waterways_data': {
+         0: '"select geometry, OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen0 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterways_gen0_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type=\'river\'"',
+         9: '"select geometry, OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterways_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type=\'river\'"',
+         12:'"select geometry, OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_waterways_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"'
+      },
+      'landusage_data': {
+         0: '"select geometry ,OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen00 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_landusages_gen00_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+         6: '"select geometry ,OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_landusages_gen0_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+         9: '"select geometry ,OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_landusages_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'forest\',\'industrial\',\'commercial\',\'residential\')"',
+         10:'"select geometry ,OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_landusages_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\'brownfield\',\'residential\',\'school\',\'college\',\'university\',\'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\'pitch\') order by area desc"',
+         12:'"select geometry ,OGC_FID, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_landusages_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\'brownfield\',\'residential\',\'school\',\'college\',\'university\',\'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\'pitch\') order by area desc"'
+      },
+      'roads_data': {
+         0: '"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen0 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_gen0_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'trunk\',\'motorway\') order by z_order asc"',
+         8: '"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'trunk\',\'motorway\',\'primary\') order by z_order asc"',
+         9: '"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type in (\'secondary\',\'trunk\',\'motorway\',\'primary\') order by z_order asc"',
+         10:'"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) order by z_order asc"',
+         11:'"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) order by z_order asc"',
+         14:'"select OGC_FID,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_PREFIX_roads where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_roads_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) order by z_order asc"',
+      },
+      'railways_data': {
+         0: '"select geometry, OGC_FID, tunnel from OSM_PREFIX_railways_gen0 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_railways_gen0_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type=\'rail\'"',
+         6: '"select geometry, OGC_FID, tunnel from OSM_PREFIX_railways_gen1 where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_railways_gen1_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type=\'rail\'"',
+         12:'"select geometry, OGC_FID, tunnel from OSM_PREFIX_railways where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_railways_geometry WHERE pkid MATCH RTreeIntersects(!BOX!)) and type=\'rail\'"'
+      },
+      'aeroways_data': {
+         0: '"select geometry, OGC_FID, type from OSM_PREFIX_aeroways where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_aeroways_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+      },
+      'transport_areas_data': {
+         0: '"select geometry, OGC_FID, type from OSM_PREFIX_transport_areas where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_transport_areas_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+      },
+      'buildings_data': {
+         0: '"select geometry,OSM_NAME_COLUMN as name, OGC_FID from OSM_PREFIX_buildings where ROWID in (SELECT pkid FROM idx_OSM_PREFIX_buildings_geometry WHERE pkid MATCH RTreeIntersects(!BOX!))"',
+      },
    }
 }
 
@@ -1280,7 +1335,8 @@ style_aliases = {
    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
    "bing":"default,outlined,bing",
-   "michelin":"default,outlined,centerlined,michelin"
+   "michelin":"default,outlined,centerlined,michelin",
+   "googlesp":"default,outlined,google,spatialite"
 }
 
 
