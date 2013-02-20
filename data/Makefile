@@ -28,7 +28,8 @@ processed_p.tar.bz2:
 	wget http://tile.openstreetmap.org/processed_p.tar.bz2
 
 10m-admin-0-boundary-lines-land.zip:
-	wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/10m-admin-0-boundary-lines-land.zip
+       wget http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_boundary_lines_land.zip
+       mv ne_10m_admin_0_boundary_lines_land.zip 10m-admin-0-boundary-lines-land.zip
 
 shoreline_300.tar.bz2:
 	wget http://tile.openstreetmap.org/shoreline_300.tar.bz2
