@@ -2,11 +2,12 @@ UNAME := $(shell uname)
 
 ifeq ($(UNAME), Darwin)
 SED=sed -i ""
-CPP=cpp-4.2
 else
 SED=sed -i
-CPP=cpp
 endif
+
+CPP=gcc -E -x c
+#if the preprocessor fails for some reason, try replacing this with "cpp" on linux, or "cpp-4.2" on darwin (not available starting with mountain lion)
 
 
 OSM_PREFIX=osm_new_
