@@ -79,6 +79,7 @@ LAYER
             COLOR _other_lbl_clr
             OUTLINECOLOR _other_lbl_ol_clr
             OUTLINEWIDTH 2
+            ENCODING "UTF-8"
             MINFEATURESIZE AUTO
             BUFFER 3
         END
@@ -127,6 +128,7 @@ LAYER
             OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -172,6 +174,7 @@ LAYER
             OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -217,6 +220,7 @@ LAYER
             OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -291,6 +295,7 @@ LAYER
             OUTLINEWIDTH 2
             ANGLE FOLLOW
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -335,6 +340,7 @@ LAYER
             OUTLINEWIDTH 2
             MINFEATURESIZE AUTO
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -386,6 +392,7 @@ LAYER
             COLOR _motorway_lbl_clr
             ANGLE FOLLOW
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
@@ -463,6 +470,7 @@ LAYER
             COLOR _trunk_lbl_clr
             ANGLE FOLLOW
             BUFFER 3
+            ENCODING "UTF-8"
         END
 #endif
     END
