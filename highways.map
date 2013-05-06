@@ -9,8 +9,9 @@ LAYER
     TYPE LINE
     NAME layername(railways,_layer_suffix)
     DATA _railways_data
+    CLASSITEM "tunnel"
     CLASS
-      EXPRESSION ([tunnel]=0)
+      EXPRESSION "0"
         STYLE
          WIDTH _railway_width
          COLOR _railway_clr
@@ -52,9 +53,9 @@ LAYER
 #if _display_other_roads == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION /unclassified00|residential00|service00|road00|living_street00/
+        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
 #else
-        EXPRESSION /unclassified|residential|service|road|living_street/
+        EXPRESSION {unclassified,residential,service,road,living_street}
 #endif
 #if _display_other_outline
         STYLE
@@ -145,9 +146,9 @@ LAYER
 #if _display_tertiaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION /tertiary00|tertiary_link00/
+        EXPRESSION {tertiary00,tertiary_link00}
 #else
-        EXPRESSION /tertiary/
+        EXPRESSION {tertiary,tertiary_link}
 #endif
 #if _display_tertiary_outline
         STYLE
@@ -191,9 +192,9 @@ LAYER
 #if _display_secondaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION /secondary00|secondary_link00/
+        EXPRESSION {secondary00,secondary_link00}
 #else
-        EXPRESSION /secondary/
+        EXPRESSION {secondary,secondary_link}
 #endif
 #if _display_secondary_outline
         STYLE
@@ -237,9 +238,9 @@ LAYER
 #if _display_footways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION /footway00|path00/
+        EXPRESSION {footway00,path00}
 #else
-        EXPRESSION /footway|path/
+        EXPRESSION {footway,path}
 #endif
 #if _display_footway_outline
         STYLE
@@ -266,9 +267,9 @@ LAYER
 #if _display_primaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION /primary00|primary_link00/
+        EXPRESSION {primary00,primary_link00}
 #else
-        EXPRESSION /primary/
+        EXPRESSION {primary,primary_link}
 #endif
 #if _display_primary_outline
         STYLE
@@ -520,7 +521,7 @@ LAYER
 ##########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION /unclassified10|residential10|service10|road10|living_street10/
+        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
 #if _display_other_outline
         STYLE
         END
@@ -544,7 +545,7 @@ LAYER
 ##########################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION /tertiary10|tertiary_link10/
+        EXPRESSION {tertiary10,tertiary_link10}
 #if _display_tertiary_outline
         STYLE
         END
@@ -569,7 +570,7 @@ LAYER
 ###########################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION /secondary10|secondary_link10/
+        EXPRESSION {secondary10,secondary_link10}
 #if _display_secondary_outline
         STYLE
         END
@@ -594,7 +595,7 @@ LAYER
 ########################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION /primary10|primary_link10/
+        EXPRESSION {primary10,primary_link10}
 #if _display_primary_outline
         STYLE
         END
@@ -618,7 +619,7 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION /pedestrian10|footway10|path10/
+        EXPRESSION {pedestrian10,footway10,path10}
 #if _display_pedestrian_outline
         STYLE
         END
@@ -732,7 +733,7 @@ LAYER
 ########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION /unclassified01|residential01|service01|living_street01/
+        EXPRESSION {unclassified01,residential01,service01,living_street01}
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -746,7 +747,7 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION /pedestrian01|footway01|path01/
+        EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH _pedestrian_width 
             COLOR _pedestrian_clr
@@ -763,7 +764,7 @@ LAYER
 ######################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION /tertiary01|tertiary_link01/
+        EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
@@ -777,7 +778,7 @@ LAYER
 #######################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION /secondary01|secondary_link01/
+        EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -792,7 +793,7 @@ LAYER
 #####################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION /primary01|primary_link01/
+        EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH _primary_width
             COLOR _primary_clr
