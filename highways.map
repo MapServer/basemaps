@@ -14,6 +14,8 @@ LAYER
         STYLE
          WIDTH _railway_width
          COLOR _railway_clr
+         OUTLINEWIDTH _railway_ol_width
+         OUTLINECOLOR _railway_ol_clr
          PATTERN _railway_pattern END
          LINECAP BUTT
         END
@@ -78,7 +80,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _other_lbl_clr
             OUTLINECOLOR _other_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _other_lbl_ol_width
             ENCODING "UTF-8"
             MINFEATURESIZE AUTO
             BUFFER 3
@@ -125,7 +127,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _track_lbl_clr
             OUTLINECOLOR _track_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _track_lbl_ol_width
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -171,7 +173,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _tertiary_lbl_clr
             OUTLINECOLOR _tertiary_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _tertiary_lbl_ol_width
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -217,7 +219,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _secondary_lbl_clr
             OUTLINECOLOR _secondary_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _secondary_lbl_ol_width
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -292,7 +294,7 @@ LAYER
             MINFEATURESIZE AUTO
             COLOR _primary_lbl_clr
             OUTLINECOLOR _primary_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _primary_lbl_ol_width
             ANGLE FOLLOW
             BUFFER 3
             ENCODING "UTF-8"
@@ -337,7 +339,7 @@ LAYER
             ANGLE FOLLOW
             COLOR _pedestrian_lbl_clr
             OUTLINECOLOR _pedestrian_lbl_ol_clr
-            OUTLINEWIDTH 2
+            OUTLINEWIDTH _pedestrian_lbl_ol_width
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"

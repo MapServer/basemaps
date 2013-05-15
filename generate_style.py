@@ -90,6 +90,8 @@ vars= {
    },
    'display_waterarea_lbl' : {0:0, 6:1},
    'waterarea_clr': '"#B3C6D4"',
+   'waterarea_ol_clr': '"#B3C6D4"',
+   'waterarea_ol_width': 0,
    'waterarea_font': "sc",
    'waterarea_lbl_size': 8,
    'waterarea_lbl_clr': '"#6B94B0"',
@@ -187,6 +189,8 @@ vars= {
    },
 
    'industrial_clr': '"#d1d1d1"',
+   'industrial_ol_clr': '"#d1d1d1"',
+   'industrial_ol_width': 0,
    'display_industrial_lbl' : {0:0, 11:1},
    'industrial_font': "sc",
    'industrial_lbl_size': 8,
@@ -195,6 +199,8 @@ vars= {
    'industrial_lbl_ol_width': 2,
 
    'residential_clr': '"#E3DED4"',
+   'residential_ol_clr': '"#E3DED4"',
+   'residential_ol_width': 0,
    'display_residential_lbl' : {0:0, 12:1},
    'residential_font': "sc",
    'residential_lbl_size': 8,
@@ -417,6 +423,7 @@ vars= {
    'primary_lbl_ol_clr': {
       0:'255 255 255'
    },
+   'primary_lbl_ol_width': 2,
    'primary_ol_width': 1,
    'primary_ol_clr': "0 0 0",
 
@@ -454,6 +461,7 @@ vars= {
    },
    'secondary_lbl_clr': '"#333333"',
    'secondary_lbl_ol_clr': '255 255 255',
+   'secondary_lbl_ol_width': 2,
    'secondary_ol_width': 1,
    'secondary_ol_clr': "0 0 0",
    
@@ -489,6 +497,7 @@ vars= {
    },
    'tertiary_lbl_clr': '"#333333"',
    'tertiary_lbl_ol_clr': '255 255 255',
+   'tertiary_lbl_ol_width': 2,
    'tertiary_ol_width': 1,
    'tertiary_ol_clr': "0 0 0",
 
@@ -523,6 +532,7 @@ vars= {
    },
    'other_lbl_clr': '"#333333"',
    'other_lbl_ol_clr': '255 255 255',
+   'other_lbl_ol_width': 2,
    'other_ol_width': 1,
    'other_ol_clr': "0 0 0",
 
@@ -554,6 +564,7 @@ vars= {
    },
    'pedestrian_lbl_clr': '"#333333"',
    'pedestrian_lbl_ol_clr': '255 255 255',
+   'pedestrian_lbl_ol_width': 2,
    'pedestrian_ol_width': 1,
    'pedestrian_ol_clr': "0 0 0",
 
@@ -587,6 +598,7 @@ vars= {
    },
    'track_lbl_clr': '"#333333"',
    'track_lbl_ol_clr': '255 255 255',
+   'track_lbl_ol_width': 2,
    'track_ol_width': 1,
    'track_ol_clr': "0 0 0",
 
@@ -617,6 +629,8 @@ vars= {
       0:0.5,
       10:1
    },
+   'railway_ol_clr': '"#777777"',
+   'railway_ol_width': 0,
    'railway_pattern': '2 2',
    'railway_tunnel_opacity': 40,
    'railways_data': {

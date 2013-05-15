@@ -41,6 +41,8 @@ LAYER
        EXPRESSION 'residential'
        STYLE
           COLOR _residential_clr
+          OUTLINECOLOR _residential_ol_clr
+          OUTLINEWIDTH _residential_ol_width
        END
 #if _display_residential_lbl==1
       LABEL
@@ -83,6 +85,8 @@ LAYER
      EXPRESSION /industrial|commercial|parking/
      STYLE
        COLOR _industrial_clr
+       OUTLINECOLOR _industrial_ol_clr
+       OUTLINEWIDTH _industrial_ol_width
      END
 #if _display_industrial_lbl==1
      LABEL
@@ -282,11 +286,15 @@ LAYER
       EXPRESSION "riverbank"
         STYLE
             COLOR _waterarea_clr
+            OUTLINECOLOR _waterarea_ol_clr
+            OUTLINEWIDTH _waterarea_ol_width
         END
     END
     CLASS
         STYLE
             COLOR _waterarea_clr
+            OUTLINECOLOR _waterarea_ol_clr
+            OUTLINEWIDTH _waterarea_ol_width
         END
 #if _display_waterarea_lbl == 1
         LABEL
