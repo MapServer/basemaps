@@ -90,6 +90,8 @@ vars= {
    },
    'display_waterarea_lbl' : {0:0, 6:1},
    'waterarea_clr': '"#B3C6D4"',
+   'waterarea_ol_clr': '"#B3C6D4"',
+   'waterarea_ol_width': 0,
    'waterarea_font': "sc",
    'waterarea_lbl_size': 8,
    'waterarea_lbl_clr': '"#6B94B0"',
@@ -187,6 +189,8 @@ vars= {
    },
 
    'industrial_clr': '"#d1d1d1"',
+   'industrial_ol_clr': '"#d1d1d1"',
+   'industrial_ol_width': 0,
    'display_industrial_lbl' : {0:0, 11:1},
    'industrial_font': "sc",
    'industrial_lbl_size': 8,
@@ -195,6 +199,8 @@ vars= {
    'industrial_lbl_ol_width': 2,
 
    'residential_clr': '"#E3DED4"',
+   'residential_ol_clr': '"#E3DED4"',
+   'residential_ol_width': 0,
    'display_residential_lbl' : {0:0, 12:1},
    'residential_font': "sc",
    'residential_lbl_size': 8,
