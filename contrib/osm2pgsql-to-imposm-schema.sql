@@ -15,7 +15,7 @@
             Michael Smith
             
    Last 
-   Updated: 2012/07/10
+   Updated: 2014/02/20
    
    Notes:   This assumes that you already ran the osm2pgsql tool with the
             '-E 3857' switch
@@ -98,7 +98,7 @@
 -- ADMIN
 ------------------------------
 
-DROP VIEW osm_new_admin_view;
+DROP VIEW if exists osm_new_admin_view;
 
 CREATE VIEW osm_new_admin_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -116,7 +116,7 @@ CREATE VIEW osm_new_admin_view AS
              '5',
              '6')) AS foo;             
   
-DROP TABLE osm_new_admin;
+DROP TABLE if exists osm_new_admin;
 
 CREATE TABLE osm_new_admin AS
   SELECT * FROM osm_new_admin_view;
@@ -130,13 +130,13 @@ CLUSTER osm_new_admin_geom ON osm_new_admin;
 ALTER TABLE osm_new_admin ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_admin ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_admin;
+
 
 ---------------------------------
 -- AEROWAYS
 ---------------------------------
 
-DROP VIEW osm_new_aeroways_view;
+DROP VIEW if exists osm_new_aeroways_view;
 
 CREATE VIEW osm_new_aeroways_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, osm_id, name, aeroway AS type, way as geometry
@@ -144,7 +144,7 @@ CREATE VIEW osm_new_aeroways_view AS
  WHERE aeroway in ('runway',
                    'taxiway');
 
-DROP TABLE osm_new_aeroways;
+DROP TABLE if exists osm_new_aeroways;
 
 CREATE TABLE osm_new_aeroways AS
   SELECT * FROM osm_new_aeroways_view;
@@ -159,13 +159,13 @@ ALTER TABLE osm_new_aeroways ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndim
 ALTER TABLE osm_new_aeroways ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_aeroways ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_aeroways;
+
 
 ----------------------------
 -- AMENITIES
 ----------------------------
 
-DROP VIEW osm_new_amenities_view;
+DROP VIEW if exists osm_new_amenities_view;
 
 CREATE VIEW osm_new_amenities_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id,  osm_id, name, amenity  as type, way as geometry
@@ -180,7 +180,7 @@ CREATE VIEW osm_new_amenities_view AS
             'police',
             'townhall') ;
             
-DROP TABLE osm_new_amenities;
+DROP TABLE if exists osm_new_amenities;
 
 CREATE TABLE osm_new_amenities AS
   SELECT * FROM osm_new_amenities_view;
@@ -195,20 +195,20 @@ ALTER TABLE osm_new_amenities ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndi
 ALTER TABLE osm_new_amenities ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'POINT'::text OR geometry IS NULL);
 ALTER TABLE osm_new_amenities ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857); 
 
-VACUUM ANALYZE osm_new_amenities;
+
 
 ------------------------------
 -- BUILDINGS
 ------------------------------
 
-DROP VIEW osm_new_buildings_view;
+DROP VIEW if exists osm_new_buildings_view;
 
 CREATE VIEW osm_new_buildings_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id, osm_id, name, building as type, way as geometry
   FROM osm_polygon
   WHERE building IS NOT NULL;           
   
-DROP TABLE osm_new_buildings;
+DROP TABLE if exists osm_new_buildings;
 
 CREATE TABLE osm_new_buildings AS
   SELECT * FROM osm_new_buildings_view;
@@ -222,13 +222,13 @@ CLUSTER osm_new_buildings_geom ON osm_new_buildings;
 ALTER TABLE osm_new_buildings ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_buildings ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_buildings;
+
 
 ----------------------------
 -- LANDUSAGES
 ----------------------------
 
-DROP VIEW osm_new_landusages_view CASCADE;
+DROP VIEW if exists osm_new_landusages_view CASCADE;
 
 CREATE VIEW osm_new_landusages_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -295,7 +295,7 @@ CREATE VIEW osm_new_landusages_view AS
             'hospital')              
   )  AS foo;   
   
-DROP TABLE osm_new_landusages;
+DROP TABLE if exists osm_new_landusages;
 
 CREATE TABLE osm_new_landusages AS
   SELECT * FROM osm_new_landusages_view;
@@ -309,20 +309,19 @@ CLUSTER osm_new_landusages_geom ON osm_new_landusages;
 ALTER TABLE osm_new_landusages ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_landusages ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857); 
 
-VACUUM ANALYZE osm_new_landusages;
 
 ----------------------------
 -- LANDUSAGES_GEN0
 ----------------------------
 
-DROP VIEW osm_new_landusages_gen0_view;
+DROP VIEW if exists osm_new_landusages_gen0_view;
 
 CREATE VIEW osm_new_landusages_gen0_view AS
   SELECT id, osm_id, name, type, area, z_order, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_landusages_view 
   WHERE ST_Area(geometry)>500000;
   
-DROP TABLE osm_new_landusages_gen0;
+DROP TABLE if exists osm_new_landusages_gen0;
 
 CREATE TABLE osm_new_landusages_gen0 AS
   SELECT * FROM osm_new_landusages_gen0_view;
@@ -336,20 +335,21 @@ CLUSTER osm_new_landusages_gen0_geom ON osm_new_landusages_gen0;
 ALTER TABLE osm_new_landusages_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_landusages_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_landusages_gen0; 
+
+
 
 ----------------------------
 -- LANDUSAGES_GEN1
 ----------------------------
 
-DROP VIEW osm_new_landusages_gen1_view;
+DROP VIEW if exists osm_new_landusages_gen1_view;
 
 CREATE VIEW osm_new_landusages_gen1_view AS
   SELECT id, osm_id, name, type, area, z_order, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_landusages_view 
   WHERE ST_Area(geometry)>50000;
   
-DROP TABLE osm_new_landusages_gen1;
+DROP TABLE if exists osm_new_landusages_gen1;
 
 CREATE TABLE osm_new_landusages_gen1 AS
   SELECT * FROM osm_new_landusages_gen1_view;
@@ -363,13 +363,14 @@ CLUSTER osm_new_landusages_gen1_geom ON osm_new_landusages_gen1;
 ALTER TABLE osm_new_landusages_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_landusages_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_landusages_gen1; 
+ 
+
 
 ---------------------------
 -- MAINROADS
 ---------------------------
 
-DROP VIEW osm_new_mainroads_view CASCADE;
+DROP VIEW if exists osm_new_mainroads_view CASCADE;
 
 CREATE VIEW osm_new_mainroads_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -392,7 +393,7 @@ CREATE VIEW osm_new_mainroads_view AS
                                   'secondary_link',
                                   'tertiary')) as foo; 
   
-DROP TABLE osm_new_mainroads;
+DROP TABLE if exists osm_new_mainroads;
 
 CREATE TABLE osm_new_mainroads AS
   SELECT * FROM osm_new_mainroads_view;
@@ -407,19 +408,19 @@ ALTER TABLE osm_new_mainroads ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndi
 ALTER TABLE osm_new_mainroads ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_mainroads ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_mainroads;
+
 
 ----------------------------
 -- MAINROADS_GEN0
 ----------------------------
 
-DROP VIEW osm_new_mainroads_gen0_view;
+DROP VIEW if exists osm_new_mainroads_gen0_view;
 
 CREATE VIEW osm_new_mainroads_gen0_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, oneway, z_order, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_mainroads_view;
   
-DROP TABLE osm_new_mainroads_gen0;
+DROP TABLE if exists osm_new_mainroads_gen0;
 
 CREATE TABLE osm_new_mainroads_gen0 AS
   SELECT * FROM osm_new_mainroads_gen0_view;
@@ -434,19 +435,18 @@ ALTER TABLE osm_new_mainroads_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (s
 ALTER TABLE osm_new_mainroads_gen0 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_mainroads_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_mainroads_gen0;
 
 ----------------------------
 -- MAINROADS_GEN1
 ----------------------------
 
-DROP VIEW osm_new_mainroads_gen1_view;
+DROP VIEW if exists osm_new_mainroads_gen1_view;
 
 CREATE VIEW osm_new_mainroads_gen1_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, oneway, z_order, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_mainroads_view;
 
-DROP TABLE osm_new_mainroads_gen1;
+DROP TABLE if exists osm_new_mainroads_gen1;
 
 CREATE TABLE osm_new_mainroads_gen1 AS
   SELECT * FROM osm_new_mainroads_gen1_view;
@@ -461,13 +461,14 @@ ALTER TABLE osm_new_mainroads_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (s
 ALTER TABLE osm_new_mainroads_gen1 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_mainroads_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_mainroads_gen1;
+
+
 
 ----------------------------
 -- MINORROADS
 ----------------------------
 
-DROP VIEW osm_new_minorroads_view;
+DROP VIEW if exists osm_new_minorroads_view;
 
 CREATE VIEW osm_new_minorroads_view AS 
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (  
@@ -498,7 +499,7 @@ CREATE VIEW osm_new_minorroads_view AS
                     'unclassified',
                     'residential')) as foo;  
 
-DROP TABLE osm_new_minorroads;
+DROP TABLE if exists osm_new_minorroads;
 
 CREATE TABLE osm_new_minorroads AS
   SELECT * FROM osm_new_minorroads_view;
@@ -513,13 +514,13 @@ ALTER TABLE osm_new_minorroads ADD CONSTRAINT enforce_dims_geometry CHECK (st_nd
 ALTER TABLE osm_new_minorroads ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_minorroads ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_minorroads;
+
 
 ----------------------------
 -- MOTORWAYS
 ----------------------------
 
-DROP VIEW osm_new_motorways_view CASCADE;
+DROP VIEW if exists osm_new_motorways_view CASCADE;
 
 CREATE VIEW osm_new_motorways_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, osm_id, name, highway AS type, 
@@ -540,7 +541,7 @@ CREATE VIEW osm_new_motorways_view AS
                                  'trunk',
                                  'trunk_link');
 
-DROP TABLE osm_new_motorways;
+DROP TABLE if exists osm_new_motorways;
 
 CREATE TABLE osm_new_motorways AS
   SELECT * FROM osm_new_motorways_view;
@@ -555,19 +556,19 @@ ALTER TABLE osm_new_motorways ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndi
 ALTER TABLE osm_new_motorways ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_motorways ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_motorways;
+
 
 ----------------------------
 -- MOTORWAYS_GEN0
 ----------------------------
 
-DROP VIEW osm_new_motorways_gen0_view;
+DROP VIEW if exists osm_new_motorways_gen0_view;
 
 CREATE VIEW osm_new_motorways_gen0_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, oneway, ref, z_order, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_motorways_view;
   
-DROP TABLE osm_new_motorways_gen0;
+DROP TABLE if exists osm_new_motorways_gen0;
 
 CREATE TABLE osm_new_motorways_gen0 AS
   SELECT * FROM osm_new_motorways_gen0_view;
@@ -582,19 +583,19 @@ ALTER TABLE osm_new_motorways_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (s
 ALTER TABLE osm_new_motorways_gen0 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_motorways_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_motorways_gen0;
+
 
 ----------------------------
 -- MOTORWAYS_GEN1
 ----------------------------
 
-DROP VIEW osm_new_motorways_gen1_view;
+DROP VIEW if exists osm_new_motorways_gen1_view;
 
 CREATE VIEW osm_new_motorways_gen1_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, oneway, ref, z_order, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_motorways_view;
   
-DROP TABLE osm_new_motorways_gen1;
+DROP TABLE if exists osm_new_motorways_gen1;
 
 CREATE TABLE osm_new_motorways_gen1 AS
   SELECT * FROM osm_new_motorways_gen1_view;
@@ -609,13 +610,13 @@ ALTER TABLE osm_new_motorways_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (s
 ALTER TABLE osm_new_motorways_gen1 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_motorways_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_motorways_gen1;
+
 
 ----------------------------
 -- PLACES
 ----------------------------
 
-DROP VIEW osm_new_places_view;
+DROP VIEW if exists osm_new_places_view;
 
 CREATE VIEW osm_new_places_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id,  osm_id, name, place as type, z_order, population, way as geometry
@@ -632,7 +633,7 @@ CREATE VIEW osm_new_places_view AS
             'suburb',
             'locality') ;
             
-DROP TABLE osm_new_places;
+DROP TABLE if exists osm_new_places;
 
 CREATE TABLE osm_new_places AS
   SELECT * FROM osm_new_places_view;
@@ -653,13 +654,13 @@ ALTER TABLE osm_new_places ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(
 ALTER TABLE osm_new_places ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'POINT'::text OR geometry IS NULL);
 ALTER TABLE osm_new_places ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857); 
 
-VACUUM ANALYZE osm_new_places;
+
 
 ---------------------------------
 -- RAILWAYS
 ---------------------------------
 
-DROP VIEW osm_new_railways_view CASCADE;
+DROP VIEW if exists osm_new_railways_view CASCADE;
 
 CREATE VIEW osm_new_railways_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, osm_id, name, railway AS type, 
@@ -680,7 +681,7 @@ CREATE VIEW osm_new_railways_view AS
                                  'funicular',
                                  'monorail');
 
-DROP TABLE osm_new_railways;
+DROP TABLE if exists osm_new_railways;
 
 CREATE TABLE osm_new_railways AS
   SELECT * FROM osm_new_railways_view;
@@ -695,19 +696,19 @@ ALTER TABLE osm_new_railways ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndim
 ALTER TABLE osm_new_railways ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_railways ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_railways;
+
 
 ----------------------------
 -- RAILWAYS_GEN0
 ----------------------------
 
-DROP VIEW osm_new_railways_gen0_view;
+DROP VIEW if exists osm_new_railways_gen0_view;
 
 CREATE VIEW osm_new_railways_gen0_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, z_order, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_railways_view;
   
-DROP TABLE osm_new_railways_gen0;
+DROP TABLE if exists osm_new_railways_gen0;
 
 CREATE TABLE osm_new_railways_gen0 AS
   SELECT * FROM osm_new_railways_gen0_view;
@@ -722,19 +723,19 @@ ALTER TABLE osm_new_railways_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (st
 ALTER TABLE osm_new_railways_gen0 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_railways_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_railways_gen0;
+
 
 ----------------------------
 -- RAILWAYS_GEN1
 ----------------------------
 
-DROP VIEW osm_new_railways_gen1_view;
+DROP VIEW if exists osm_new_railways_gen1_view;
 
 CREATE VIEW osm_new_railways_gen1_view AS
   SELECT id, osm_id, name, type, tunnel, bridge, z_order, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_railways_view;
   
-DROP TABLE osm_new_railways_gen1;
+DROP TABLE if exists osm_new_railways_gen1;
 
 CREATE TABLE osm_new_railways_gen1 AS
   SELECT * FROM osm_new_railways_gen1_view;
@@ -749,13 +750,13 @@ ALTER TABLE osm_new_railways_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (st
 ALTER TABLE osm_new_railways_gen1 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_railways_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_railways_gen1;
+
 
 ---------------------------
 -- ROADS
 ---------------------------
 
-DROP VIEW osm_new_roads_view;
+DROP VIEW if exists osm_new_roads_view;
 
 CREATE VIEW osm_new_roads_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -772,7 +773,7 @@ CREATE VIEW osm_new_roads_view AS
   FROM osm_new_railways_view 
   ) AS foo;
   
-DROP TABLE osm_new_roads;
+DROP TABLE if exists osm_new_roads;
 
 CREATE TABLE osm_new_roads AS
   SELECT * FROM osm_new_roads_view;
@@ -819,13 +820,12 @@ ALTER TABLE osm_new_roads ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(g
 ALTER TABLE osm_new_roads ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_roads ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_roads;
 
 ---------------------------
 -- ROADS_GEN0
 ---------------------------
 
-DROP VIEW osm_new_roads_gen0_view;
+DROP VIEW if exists osm_new_roads_gen0_view;
 
 CREATE VIEW osm_new_roads_gen0_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -839,7 +839,7 @@ CREATE VIEW osm_new_roads_gen0_view AS
   FROM osm_new_railways_gen0_view 
   ) AS foo;
   
-DROP TABLE osm_new_roads_gen0;
+DROP TABLE if exists osm_new_roads_gen0;
 
 CREATE TABLE osm_new_roads_gen0 AS
   SELECT * FROM osm_new_roads_gen0_view;
@@ -874,13 +874,13 @@ ALTER TABLE osm_new_roads_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (st_nd
 ALTER TABLE osm_new_roads_gen0 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_roads_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_roads_gen0;
+
 
 ---------------------------
 -- ROADS_GEN1
 ---------------------------
 
-DROP VIEW osm_new_roads_gen1_view;
+DROP VIEW if exists osm_new_roads_gen1_view;
 
 CREATE VIEW osm_new_roads_gen1_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -894,7 +894,7 @@ CREATE VIEW osm_new_roads_gen1_view AS
   FROM osm_new_railways_gen1_view 
   ) AS foo;
   
-DROP TABLE osm_new_roads_gen1;
+DROP TABLE if exists osm_new_roads_gen1;
 
 CREATE TABLE osm_new_roads_gen1 AS
   SELECT * FROM osm_new_roads_gen1_view;
@@ -929,13 +929,13 @@ ALTER TABLE osm_new_roads_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (st_nd
 ALTER TABLE osm_new_roads_gen1 ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_roads_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_roads_gen1;
+
 
 ---------------------------------
 -- TRANSPORT_AREAS
 ---------------------------------
 
-DROP VIEW osm_new_transport_areas_view;
+DROP VIEW if exists osm_new_transport_areas_view;
 
 CREATE VIEW osm_new_transport_areas_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -947,7 +947,7 @@ CREATE VIEW osm_new_transport_areas_view AS
   FROM osm_polygon 
   WHERE aeroway in ('aerodrome','terminal','helipad', 'apron')) as foo ; 
   
-DROP TABLE osm_new_transport_areas;
+DROP TABLE if exists osm_new_transport_areas;
 
 CREATE TABLE osm_new_transport_areas AS
   SELECT * FROM osm_new_transport_areas_view;
@@ -961,13 +961,13 @@ CLUSTER osm_new_transport_areas_geom ON osm_new_transport_areas;
 ALTER TABLE osm_new_transport_areas ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_transport_areas ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_transport_areas;
+
 
 ----------------------------
 -- TRANSPORT_POINTS
 ----------------------------
 
-DROP VIEW osm_new_transport_points_view;
+DROP VIEW if exists osm_new_transport_points_view;
 
 CREATE VIEW osm_new_transport_points_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id, * FROM ( 
@@ -997,7 +997,7 @@ CREATE VIEW osm_new_transport_points_view AS
             'gate') 
   ) AS foo;
             
-DROP TABLE osm_new_transport_points;
+DROP TABLE if exists osm_new_transport_points;
 
 CREATE TABLE osm_new_transport_points AS
   SELECT * FROM osm_new_transport_points_view;
@@ -1012,13 +1012,12 @@ ALTER TABLE osm_new_transport_points ADD CONSTRAINT enforce_dims_geometry CHECK 
 ALTER TABLE osm_new_transport_points ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'POINT'::text OR geometry IS NULL);
 ALTER TABLE osm_new_transport_points ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857); 
 
-VACUUM ANALYZE osm_new_transport_points;
 
 ----------------------------
 -- WATERAREAS
 ----------------------------
 
-DROP VIEW osm_new_waterareas_view CASCADE;
+DROP VIEW if exists osm_new_waterareas_view CASCADE;
 
 CREATE VIEW osm_new_waterareas_view AS
   SELECT row_number() OVER (ORDER BY osm_id) id, * FROM (
@@ -1034,7 +1033,7 @@ CREATE VIEW osm_new_waterareas_view AS
   FROM osm_polygon
   WHERE landuse IN ('basin', 'reservoir')) AS foo;
 
-DROP TABLE osm_new_waterareas;
+DROP TABLE if exists osm_new_waterareas;
 
 CREATE TABLE osm_new_waterareas AS
   SELECT * FROM osm_new_waterareas_view;
@@ -1048,19 +1047,19 @@ CLUSTER osm_new_waterareas_geom ON osm_new_waterareas;
 ALTER TABLE osm_new_waterareas ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_waterareas ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterareas; 
+
 
 ----------------------------
 -- WATERAREAS_GEN0
 ----------------------------
 
-DROP VIEW osm_new_waterareas_gen0_view;
+DROP VIEW if exists osm_new_waterareas_gen0_view;
 
 CREATE VIEW osm_new_waterareas_gen0_view AS
   SELECT id, osm_id, name, type, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_waterareas_view where ST_Area(geometry)>500000;
   
-DROP TABLE osm_new_waterareas_gen0;
+DROP TABLE if exists osm_new_waterareas_gen0;
 
 CREATE TABLE osm_new_waterareas_gen0 AS
   SELECT * FROM osm_new_waterareas_gen0_view;
@@ -1074,19 +1073,18 @@ CLUSTER osm_new_waterareas_gen0_geom ON osm_new_waterareas_gen0;
 ALTER TABLE osm_new_waterareas_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_waterareas_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterareas_gen0;
 
 ----------------------------
 -- WATERAREAS_GEN1
 ----------------------------
 
-DROP VIEW osm_new_waterareas_gen1_view;
+DROP VIEW if exists osm_new_waterareas_gen1_view;
 
 CREATE VIEW osm_new_waterareas_gen1_view AS
   SELECT id, osm_id, name, type, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_waterareas_view where ST_Area(geometry)>50000;
   
-DROP TABLE osm_new_waterareas_gen1;
+DROP TABLE if exists osm_new_waterareas_gen1;
 
 CREATE TABLE osm_new_waterareas_gen1 AS
   SELECT * FROM osm_new_waterareas_gen1_view;
@@ -1100,13 +1098,13 @@ CLUSTER osm_new_waterareas_gen1_geom ON osm_new_waterareas_gen1;
 ALTER TABLE osm_new_waterareas_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_waterareas_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterareas_gen1;
+
 
 ----------------------------
 -- WATERWAYS
 ----------------------------
 
-DROP VIEW osm_new_waterways_view;
+DROP VIEW if exists osm_new_waterways_view;
 
 CREATE VIEW osm_new_waterways_view AS
   SELECT  row_number() OVER (ORDER BY osm_id) id, osm_id, name, waterway as type, way as geometry
@@ -1117,7 +1115,7 @@ CREATE VIEW osm_new_waterways_view AS
             'canal',
             'drain');
 
-DROP TABLE osm_new_waterways;
+DROP TABLE if exists osm_new_waterways;
 
 CREATE TABLE osm_new_waterways AS
   SELECT * FROM osm_new_waterways_view;
@@ -1132,19 +1130,19 @@ ALTER TABLE osm_new_waterways ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndi
 ALTER TABLE osm_new_waterways ADD CONSTRAINT enforce_geotype_geometry CHECK (geometrytype(geometry) = 'LINESTRING'::text OR geometry IS NULL);
 ALTER TABLE osm_new_waterways ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterways;
+
 
 ----------------------------
 -- WATERWAYS_GEN0
 ----------------------------
 
-DROP VIEW osm_new_waterways_gen0_view;
+DROP VIEW if exists osm_new_waterways_gen0_view;
 
 CREATE VIEW osm_new_waterways_gen0_view AS
   SELECT id, osm_id, name, type, ST_SimplifyPreserveTopology(geometry,200) AS geometry
   FROM osm_new_waterways_view;
   
-DROP TABLE osm_new_waterways_gen0;
+DROP TABLE if exists osm_new_waterways_gen0;
 
 CREATE TABLE osm_new_waterways_gen0 AS
   SELECT * FROM osm_new_waterways_gen0_view;
@@ -1158,19 +1156,18 @@ CLUSTER osm_new_waterways_gen0_geom ON osm_new_waterways_gen0;
 ALTER TABLE osm_new_waterways_gen0 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_waterways_gen0 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterways_gen0;
 
 ----------------------------
 -- WATERWAYS_GEN1
 ----------------------------
 
-DROP VIEW osm_new_waterways_gen1_view;
+DROP VIEW if exists osm_new_waterways_gen1_view;
 
 CREATE VIEW osm_new_waterways_gen1_view AS
   SELECT id, osm_id, name, type, ST_SimplifyPreserveTopology(geometry,50) AS geometry
   FROM osm_new_waterways_view;
   
-DROP TABLE osm_new_waterways_gen1;
+DROP TABLE if exists osm_new_waterways_gen1;
 
 CREATE TABLE osm_new_waterways_gen1 AS
   SELECT * FROM osm_new_waterways_gen1_view;
@@ -1184,4 +1181,36 @@ CLUSTER osm_new_waterways_gen1_geom ON osm_new_waterways_gen1;
 ALTER TABLE osm_new_waterways_gen1 ADD CONSTRAINT enforce_dims_geometry CHECK (st_ndims(geometry) = 2);
 ALTER TABLE osm_new_waterways_gen1 ADD CONSTRAINT enforce_srid_geometry CHECK (st_srid(geometry) = 3857);
 
-VACUUM ANALYZE osm_new_waterways_gen1;
+/*
+--VACUUM cannot be executed from a function or multi-command string
+--Run one by one...or let autovacuum manage it if it is ON
+VACUUM ANALYZE osm_new_admin;
+VACUUM ANALYZE osm_new_aeroways;
+VACUUM ANALYZE osm_new_amenities;
+VACUUM ANALYZE osm_new_buildings;
+VACUUM ANALYZE osm_new_landusages;
+VACUUM ANALYZE osm_new_landusages_gen0; 
+VACUUM ANALYZE osm_new_landusages_gen1;
+VACUUM ANALYZE osm_new_mainroads;
+VACUUM ANALYZE osm_new_mainroads_gen0;
+VACUUM ANALYZE osm_new_mainroads_gen1;
+VACUUM ANALYZE osm_new_minorroads;
+VACUUM ANALYZE osm_new_motorways;
+VACUUM ANALYZE osm_new_motorways_gen0;
+VACUUM ANALYZE osm_new_motorways_gen1;
+VACUUM ANALYZE osm_new_places;
+VACUUM ANALYZE osm_new_railways;
+VACUUM ANALYZE osm_new_railways_gen0;
+VACUUM ANALYZE osm_new_railways_gen1;
+VACUUM ANALYZE osm_new_roads;
+VACUUM ANALYZE osm_new_roads_gen0;
+VACUUM ANALYZE osm_new_roads_gen1;
+VACUUM ANALYZE osm_new_transport_areas;
+VACUUM ANALYZE osm_new_transport_points;
+VACUUM ANALYZE osm_new_waterareas; 
+VACUUM ANALYZE osm_new_waterareas_gen0;
+VACUUM ANALYZE osm_new_waterways;
+VACUUM ANALYZE osm_new_waterways_gen0;
+VACUUM ANALYZE osm_new_waterareas_gen1;
+
+*/
