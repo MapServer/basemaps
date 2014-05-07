@@ -320,6 +320,7 @@ END
 LAYER
     TYPE LINE
     NAME layername(waterways,_layer_suffix)
+    STATUS ON
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
