@@ -43,7 +43,7 @@ PROJECTION
 END
 
 OUTPUTFORMAT
-  NAME "png"
+  NAME "png_bw"
   DRIVER AGG/PNG8
   MIMETYPE "image/png;mode=8bit,grayscale"
   IMAGEMODE RGB
