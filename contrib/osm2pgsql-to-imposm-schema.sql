@@ -15,10 +15,13 @@
             Michael Smith
             
    Last 
-   Updated: 2014/02/20
+   Updated: 2016/11/03
    
    Notes:   This assumes that you already ran the osm2pgsql tool with the
-            '-E 3857' switch
+            '-E 3857' and '-p osm' switches.
+            '-p osm' switch is important as it creates table name with osm_
+            prefix instead of planet_osm. This SQL file won't work with 
+            planet_osm prefix.
 
    Execute: psql -U postgres -d osm -f osm2pgsql-to-imposm-schema.sql
    
