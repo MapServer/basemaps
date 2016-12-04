@@ -31,18 +31,18 @@
     </source>
 
     <cache name="disk" type="disk" layout="template">
-        <base>/data/Documents/geodata/caches/mapcache</base>
+        <base>/mnt/data_ssd1/caches/mapcache</base>
         <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
 
         <!--<template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>-->
-        <template>/data/Documents/geodata/caches/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
+        <template>/mnt/data_ssd1/caches/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
 
         <!--no symlink for template (only for defautl layout)-->
         <!--<symlink_blank/>-->
     </cache>
     <cache name="sqlite" type="sqlite3">
         <!--<dbfile>/Volumes/GROSSD/tmp/mapcache/{tileset}-{z}-{grid}.db</dbfile>-->
-        <dbfile>/data/Documents/geodata/caches/mapcache/{tileset}-{z}-{grid}.db</dbfile>
+        <dbfile>/mnt/data_ssd1/caches/mapcache/{tileset}-{z}-{grid}.db</dbfile>
         <detect_blank/>
     </cache>
 
