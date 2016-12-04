@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ Efficity Mapcache tile server conf:
+ to use when pure cache mode is needed: no source configured => only the cache is hit
+
+see the accompanying mapcache.xml.sample for a fully commented configuration file
+
+-->
+
+<mapcache>
+   <metadata>
+      <title>Efficity OSM Mapcache Tile Service</title>
+      <abstract>Configured with no source, to hit only cache</abstract>
+   </metadata>
+
+   <cache name="disk" type="disk">
+      <base>/Volumes/GROSSD/tmp/mapcache</base>
+      <symlink_blank/>
+   </cache>
+   <cache name="sqlite" type="sqlite3">
+     <dbfile>/Volumes/GROSSD/tmp/mapcache/{tileset}-{z}-{grid}.db</dbfile>
+      <detect_blank/>
+   </cache>
+
+   <tileset name="osm_google_style_ts">
+      <cache>disk</cache>
+      <grid>GoogleMapsCompatible</grid>
+      <format>PNG</format>
+      <metatile>8 8</metatile>
+      <metabuffer>10</metabuffer>
+      <expires>3600</expires>
+   </tileset>
+
+   <service type="wms" enabled="true">
+      <full_wms>assemble</full_wms>
+      <resample_mode>bilinear</resample_mode>
+      <format>PNG</format>
+      <maxsize>4096</maxsize>
+   </service>
+   <service type="wmts" enabled="true"/>
+   <service type="tms" enabled="true"/>
+   <service type="kml" enabled="true"/>
+   <service type="gmaps" enabled="true"/>
+   <service type="ve" enabled="true"/>
+   <service type="mapguide" enabled="true"/>
+   <service type="demo" enabled="true"/>
+
+   <errors>report</errors>
+   <locker type="disk">
+     <directory>/Volumes/GROSSD/tmp/mapcache</directory>
+     <timeout>300</timeout>
+    </locker>
+
+</mapcache>

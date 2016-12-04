@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Efficity Tile Server Mapcache configuration file.
+    File to use with the seeder to generate tiles.
+
+
+    see the accompanying mapcache.xml.sample for a fully commented configuration file
+-->
+
+<mapcache>
+   <metadata>
+      <title>Efficity OSM Mapcache Tile Service</title>
+      <abstract>OSM FR data tile service backed by MapServer/Mapcache with google-style styling</abstract>
+   </metadata>
+
+   <source name="osm_google_style_src" type="wms">
+      <getmap>
+         <params>
+            <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google.map</MAP>
+            <LAYERS>default</LAYERS>
+            <FORMAT>image/png</FORMAT>
+            <TRANSPARENT>true</TRANSPARENT>
+         </params>
+      </getmap>
+
+      <http>
+         <url>http://localhost/cgi-bin/mapserv.fcgi</url>
+      </http>
+   </source>
+
+   <cache name="disk" type="disk" layout="template">
+      <base>/Volumes/GROSSD/tmp/mapcache</base>
+      <template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
+      <!--no symlink for template (only for defautl layout)-->
+      <!--<symlink_blank/>-->
+   </cache>
+   <cache name="sqlite" type="sqlite3">
+     <dbfile>/Volumes/GROSSD/tmp/mapcache/{tileset}-{z}-{grid}.db</dbfile>
+      <detect_blank/>
+   </cache>
+
+   <tileset name="osm_google_style_ts">
+      <source>osm_google_style_src</source>
+      <cache>disk</cache>
+      <!--<cache>sqlite</cache>-->
+      <grid>GoogleMapsCompatible</grid>
+      <format>PNGQ_FAST</format>
+      <metabuffer>10</metabuffer>
+      <expires>3600</expires>
+   </tileset>
+
+   <service type="wms" enabled="true">
+      <full_wms>assemble</full_wms>
+      <resample_mode>bilinear</resample_mode>
+      <FORMAT>image/png</FORMAT>
+      <maxsize>4096</maxsize>
+   </service>
+   <service type="wmts" enabled="true"/>
+   <service type="tms" enabled="true"/>
+   <service type="kml" enabled="true"/>
+   <service type="gmaps" enabled="true"/>
+   <service type="ve" enabled="true"/>
+   <service type="mapguide" enabled="true"/>
+   <service type="demo" enabled="true"/>
+
+   <format name="PNGQ_FAST" type ="PNG">
+
+      <!-- compression
+
+           PNG compression: best or fast
+
+           Note that "best" compression is CPU intensive for little gain over
+           the default default compression obtained by leaving out this tag.
+      -->
+      <compression>fast</compression>
+
+      <!-- colors
+
+           If supplied, this enables PNG quantization which reduces the number
+           of colors in an image to attain higher compression. This operation is
+           destructive, and can cause artifacts in the stored image.
+
+           The number of colors can be between 2 and 256.
+     -->
+      <colors>256</colors>
+   </format>
+   <format name="myjpeg" type ="JPEG">
+
+      <!-- quality
+
+           JPEG compression quality, ranging from 0 to 100.
+
+           95 produces high quality images with few visual artifacts. Values
+           under around 80 produce small images but with visible artifacts.
+           YMMV.
+      -->
+      <quality>75</quality>
+
+      <!-- photometric
+
+          Photometric interpretation of the bands created in the JPEG image.
+
+          Default is "ycbcr", which produces the smallest images. Can also be
+          "rgb", which usually results in x2 or x3 image sizes.
+      -->
+      <photometric>ycbcr</photometric>
+
+   </format>
+
+   <format name="PNG_BEST" type ="PNG">
+      <compression>best</compression>
+   </format>
+
+   <format name="mixed" type="MIXED">
+      <transparent>PNG_BEST</transparent>
+      <opaque>JPEG</opaque>
+   </format>
+
+   <errors>report</errors>
+   <locker type="disk">
+     <directory>/Volumes/GROSSD/tmp/mapcache</directory>
+     <timeout>300</timeout>
+    </locker>
+
+</mapcache>
