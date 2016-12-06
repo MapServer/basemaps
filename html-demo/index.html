@@ -21,30 +21,30 @@
 <div id="mapid"></div>
 <script language="JavaScript">
     
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
 //    server:
-    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+//    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
-    var bingSource = L.WMS.source(url + "osm-bing.map", {
-        'transparent': true,
-        'tiled': true
-
-    });
-
-    var michelinSource = L.WMS.source(url + "osm-michelin.map", {
-        'transparent': true,
-        'tiled': false
-    });
-
-    var googleSource = L.WMS.source(url + "osm-google.map", {
-        'transparent': true,
-        'tiled': false
-    });
-
-    var defaultSource = L.WMS.source(url + "osm-default.map", {
-        'transparent': true,
-        'tiled': false
-    });
+//    var bingSource = L.WMS.source(url + "osm-bing.map", {
+//        'transparent': true,
+//        'tiled': true
+//
+//    });
+//
+//    var michelinSource = L.WMS.source(url + "osm-michelin.map", {
+//        'transparent': true,
+//        'tiled': false
+//    });
+//
+//    var googleSource = L.WMS.source(url + "osm-google.map", {
+//        'transparent': true,
+//        'tiled': false
+//    });
+//
+//    var defaultSource = L.WMS.source(url + "osm-default.map", {
+//        'transparent': true,
+//        'tiled': false
+//    });
 
     var map = L.map('mapid').setView([43.604, 1.40], 8);
 
@@ -73,41 +73,43 @@
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        attribution: "Nico test ms maps"
-    }).addTo(map);
-
-    var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        attribution: "Nico test ms maps"
-    }).addTo(map);
-
-    var googleNOLabelsLayer = L.tileLayer.wms.grayscale(url + "osm-google-no-labels.map", {
-        layers: 'default',
-        format: 'png_bw',
-        transparent: false,
-        attribution: "Nico test ms maps"
-    }).addTo(map);
+//    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
+//        layers: 'default',
+//        format: 'image/png',
+//        transparent: true,
+//        attribution: "Nico test ms maps"
+//    }).addTo(map);
+//
+//    var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
+//        layers: 'default',
+//        format: 'image/png',
+//        transparent: true,
+//        attribution: "Nico test ms maps"
+//    }).addTo(map);
+//
+//    var googleNOLabelsLayer = L.tileLayer.wms.grayscale(url + "osm-google-no-labels.map", {
+//        layers: 'default',
+//        format: 'png_bw',
+//        transparent: false,
+//        attribution: "Nico test ms maps"
+//    }).addTo(map);
 
     //    defaultSource.getLayer("default").addTo(map);
     //    bingSource.getLayer("default").addTo(map);
     //    googleSource.getLayer("default").addTo(map);
     //    michelinSource.getLayer("default").addTo(map);
-
+    var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
-        "OSM b&w ": osmBWLayer,
-        "Google ": googleLayer,
-        "Google labels": googleLabelsLayer,
-        "Bing": bingLayer,
-        "Michelin": michelinLayer,
-        "Google NO labels": googleNOLabelsLayer
+        'empty': emptyLayer,
+        "OSM b&w ": osmBWLayer
     };
-    var overlays = {};
+    var overlays = {
+        "Google ": googleLayer,
+        "Google labels": googleLabelsLayer
+//        ,"Bing": bingLayer,
+//        "Michelin": michelinLayer,
+//        "Google NO labels": googleNOLabelsLayer
+    };
 
     L.control.layers(baseLayers, overlays).addTo(map);
 

@@ -508,8 +508,8 @@ LAYER
             ENCODING "UTF-8"
         END
 #endif
-    END
 #endif
+    END
 
 
 

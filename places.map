@@ -29,6 +29,7 @@ LAYER
    BUFFER 10
    PARTIALS FALSE
    POSITION auto
+   #if _display_geometries == 1
    #if _display_capital_symbol == 1
    STYLE
     SIZE _capital_size
@@ -41,6 +42,7 @@ LAYER
     SYMBOL "citycircle"
     COLOR _capital_fg_clr
    END
+   #endif
    #endif
   END
 #endif
@@ -105,6 +107,7 @@ LAYER
    BUFFER 4
    PARTIALS FALSE
    POSITION auto
+   #if _display_geometries == 1
    #if _display_city_symbol == 1
    STYLE
     SIZE _city_size
@@ -112,6 +115,7 @@ LAYER
     COLOR _city_clr
     OUTLINECOLOR _city_ol_clr
    END
+   #endif
    #endif
   END
 #endif
@@ -136,6 +140,7 @@ LAYER
    POSITION AUTO
    BUFFER 4
    POSITION auto
+   #if _display_geometries == 1
    #if _display_town_symbol == 1
    STYLE
     SIZE _town_size
@@ -143,6 +148,7 @@ LAYER
     COLOR _town_clr
     OUTLINECOLOR _town_ol_clr
    END
+   #endif
    #endif
   END
 #endif
@@ -166,6 +172,7 @@ LAYER
    PARTIALS FALSE
    BUFFER 4
    POSITION AUTO
+   #if _display_geometries == 1
    #if _display_village_symbol == 1
    STYLE
        SYMBOL "citycircle"
@@ -173,6 +180,7 @@ LAYER
        OUTLINECOLOR _village_ol_clr
        SIZE _village_size
    END
+   #endif
    #endif
   END
 #endif
@@ -196,6 +204,7 @@ LAYER
    BUFFER 4
    PARTIALS FALSE
    POSITION AUTO
+   #if _display_geometries == 1
    #if _display_hamlets_symbol == 1
    STYLE
        SIZE _hamlet_size
@@ -203,6 +212,7 @@ LAYER
        COLOR _hamlet_clr
        OUTLINECOLOR _hamlet_ol_clr
    END
+   #endif
    #endif
   END
 #endif

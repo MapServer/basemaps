@@ -1284,6 +1284,9 @@ styles = {
     'geoms_only': {
         'display_geometries': 1,
         'display_labels': 0
+    },
+    'buildings': {
+        'display_buildings': 1
     }
 }
 
