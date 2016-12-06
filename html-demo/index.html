@@ -1,9 +1,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+    <link rel="stylesheet" href="leaflet.zoomdisplay.css"/>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="leaflet.wms.js"></script>
     <script src="TileLayer.Grayscale.js"></script>
+    <script src="leaflet.zoomdisplay-src.js"></script>
 
     <style>
         #mapid {
@@ -21,9 +23,9 @@
 <div id="mapid"></div>
 <script language="JavaScript">
     
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
 //    server:
-    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+//    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
 //    var bingSource = L.WMS.source(url + "osm-bing.map", {
 //        'transparent': true,
