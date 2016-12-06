@@ -21,30 +21,30 @@
 <div id="mapid"></div>
 <script language="JavaScript">
 
-    var bingSource = L.WMS.source("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-bing.map", {
+    var bingSource = L.WMS.source("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-bing.map", {
         'transparent': true,
         'tiled': true
 
     });
 
-    var michelinSource = L.WMS.source("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-michelin.map", {
+    var michelinSource = L.WMS.source("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-michelin.map", {
         'transparent': true,
         'tiled': false
     });
 
-    var googleSource = L.WMS.source("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/osm-google.map", {
+    var googleSource = L.WMS.source("/cgi-bin/mapserv?map=/Users/nicolas/bin/osm-google.map", {
         'transparent': true,
         'tiled': false
     });
 
-    var defaultSource = L.WMS.source("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/osm-default.map", {
+    var defaultSource = L.WMS.source("/cgi-bin/mapserv?map=/Users/nicolas/bin/osm-default.map", {
         'transparent': true,
         'tiled': false
     });
 
     var map = L.map('mapid').setView([43.604, 1.40], 8);
 
-    //    var defaultLayer = L.tileLayer.wms("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-default.map", {
+    //    var defaultLayer = L.tileLayer.wms("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-default.map", {
     //        layers: 'default',
     //        format: 'image/png',
     //        transparent: true,
@@ -55,35 +55,35 @@
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
-    var googleLayer = L.tileLayer.wms("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google.map", {
+    var googleLayer = L.tileLayer.wms("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var googleLabelsLayer = L.tileLayer.wms("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map", {
+    var googleLabelsLayer = L.tileLayer.wms("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var bingLayer = L.tileLayer.wms("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-bing.map", {
+    var bingLayer = L.tileLayer.wms("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-bing.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var michelinLayer = L.tileLayer.wms("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-michelin.map", {
+    var michelinLayer = L.tileLayer.wms("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-michelin.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var googleNOLabelsLayer = L.tileLayer.wms.grayscale("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map", {
+    var googleNOLabelsLayer = L.tileLayer.wms.grayscale("/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map", {
         layers: 'default',
         format: 'png_bw',
         transparent: false,
