@@ -1,4 +1,5 @@
 #if _display_railways == 1
+#if _display_geometries == 1
 LAYER
     GROUP "default"
     STATUS ON
@@ -32,6 +33,7 @@ LAYER
     END
 END
 #endif
+#endif
 
 #if _display_highways == 1
 
@@ -59,6 +61,7 @@ LAYER
 #else
         EXPRESSION {unclassified,residential,service,road,living_street}
 #endif
+#if _display_geometries == 1
 #if _display_other_outline
         STYLE
            WIDTH _other_width
@@ -70,7 +73,9 @@ LAYER
             WIDTH _other_width
             COLOR _other_clr
         END
+#endif
 #if _label_other_roads == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -86,6 +91,7 @@ LAYER
             MINFEATURESIZE AUTO
             BUFFER 3
         END
+#endif
 #endif
     END
 #endif
@@ -105,6 +111,7 @@ LAYER
 #else
         EXPRESSION "track"
 #endif
+#if _display_geometries == 1
 #if _display_track_outline
         STYLE
            WIDTH _track_width
@@ -117,7 +124,9 @@ LAYER
             WIDTH _track_width
             COLOR _track_clr
         END
+#endif
 #if _label_track == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -133,6 +142,7 @@ LAYER
             BUFFER 3
             ENCODING "UTF-8"
         END
+#endif
 #endif
     END
 #endif
@@ -152,6 +162,7 @@ LAYER
 #else
         EXPRESSION {tertiary,tertiary_link}
 #endif
+#if _display_geometries == 1
 #if _display_tertiary_outline
         STYLE
            WIDTH _tertiary_width
@@ -163,7 +174,9 @@ LAYER
             WIDTH _tertiary_width
             COLOR _tertiary_clr
         END
+#endif
 #if _label_tertiaries == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -179,6 +192,7 @@ LAYER
             BUFFER 3
             ENCODING "UTF-8"
         END
+#endif
 #endif
     END
 #endif
@@ -198,6 +212,7 @@ LAYER
 #else
         EXPRESSION {secondary,secondary_link}
 #endif
+#if _display_geometries == 1
 #if _display_secondary_outline
         STYLE
            WIDTH _secondary_width
@@ -209,7 +224,9 @@ LAYER
             WIDTH _secondary_width
             COLOR _secondary_clr
         END
+#endif
 #if _label_secondaries == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE 
@@ -226,6 +243,7 @@ LAYER
             ENCODING "UTF-8"
         END
 #endif
+#endif
     END
 #endif
 
@@ -237,6 +255,7 @@ LAYER
 ## footways                                     ##
 ##################################################
 
+#if _display_geometries == 1
 #if _display_footways == 1
     CLASS
 #if _display_bridges == 1
@@ -258,16 +277,14 @@ LAYER
         END
     END
 #endif
-
-
-
-
+#endif
 
 ##################################################
 ## primary roads, simple                        ##
 ##################################################
 #if _display_primaries == 1
     CLASS
+#if _display_geometries == 1
 #if _display_bridges == 1
         EXPRESSION {primary00,primary_link00}
 #else
@@ -284,7 +301,9 @@ LAYER
             WIDTH _primary_width 
             COLOR _primary_clr
         END
+#endif
 #if _label_primaries == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -300,6 +319,7 @@ LAYER
             BUFFER 3
             ENCODING "UTF-8"
         END
+#endif
 #endif
     END
 #endif
@@ -318,6 +338,7 @@ LAYER
 #else
         EXPRESSION 'pedestrian'
 #endif
+#if _display_geometries == 1
 #if _display_pedestrian_outline
         STYLE
            WIDTH _pedestrian_width
@@ -329,7 +350,9 @@ LAYER
             WIDTH _pedestrian_width 
             COLOR _pedestrian_clr
         END
+#endif
 #if _label_pedestrian == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -346,6 +369,7 @@ LAYER
             ENCODING "UTF-8"
         END
 #endif
+#endif
     END
 #endif
 
@@ -359,6 +383,7 @@ LAYER
 
 #if _display_motorways == 1
     CLASS
+#if _display_geometries == 1
 #if _display_bridges == 1
         EXPRESSION "motorway00"
 #else
@@ -382,7 +407,9 @@ LAYER
            COLOR _motorway_centerline_clr
         END
 #endif
+#endif
 #if _label_motorways == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -398,6 +425,7 @@ LAYER
             ENCODING "UTF-8"
         END
 #endif
+#endif
     END
 #endif
 
@@ -407,7 +435,7 @@ LAYER
 ##################################################
 ## motorway links, simple                       ##
 ##################################################
-
+#if _display_geometries == 1
 #if _display_motorway_links == 1
     CLASS
 #if _display_bridges == 1
@@ -428,6 +456,7 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
@@ -444,6 +473,7 @@ LAYER
         EXPRESSION "trunk"
 #endif
         TEXT ("[ref]")
+#if _display_geometries == 1
 #if _display_trunk_outline
         STYLE
            WIDTH _trunk_width
@@ -461,7 +491,9 @@ LAYER
            COLOR _trunk_centerline_clr
         END
 #endif
+#endif
 #if _label_trunks == 1
+#if _display_labels == 1
         LABEL
             TYPE TRUETYPE
             PARTIALS FALSE
@@ -486,6 +518,7 @@ LAYER
 ## trunk links, simple                          ##
 ##################################################
 
+#if _display_geometries == 1
 #if _display_trunk_links == 1
     CLASS
 #if _display_bridges == 1
@@ -506,6 +539,7 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
@@ -515,6 +549,7 @@ LAYER
 ##                                                       ##
 ###########################################################
 
+#if _display_geometries == 1
 #if _display_bridges == 1
 
 
@@ -540,11 +575,13 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 ##########################
 ## tertiaries, bridges  ##
 ##########################
+#if _display_geometries == 1
 #if _display_tertiaries == 1
     CLASS
         EXPRESSION {tertiary10,tertiary_link10}
@@ -564,12 +601,14 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
 ###########################
 ## secondaries, bridges  ##
 ###########################
+#if _display_geometries == 1
 #if _display_secondaries == 1
     CLASS
         EXPRESSION {secondary10,secondary_link10}
@@ -589,12 +628,14 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
 ########################
 ## primaries, bridges ##
 ########################
+#if _display_geometries == 1
 #if _display_primaries == 1
     CLASS
         EXPRESSION {primary10,primary_link10}
@@ -614,11 +655,13 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 ########################
 ## pedestrian bridges ##
 ########################
+#if _display_geometries == 1
 #if _display_pedestrian == 1
     CLASS
         EXPRESSION {pedestrian10,footway10,path10}
@@ -638,10 +681,12 @@ LAYER
         END
     END
 #endif
+#endif
 
 ########################
 ## motorways, bridges ##
 ########################
+#if _display_geometries == 1
 #if _display_motorways == 1
     CLASS
         EXPRESSION "motorway10"
@@ -680,12 +725,14 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
 ####################
 ## trunk, bridges ##
 ####################
+#if _display_geometries == 1
 #if _display_trunks == 1
     CLASS
         EXPRESSION "trunk10"
@@ -724,6 +771,7 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
@@ -733,6 +781,7 @@ LAYER
 ########################
 ## small road tunnels ##
 ########################
+#if _display_geometries == 1
 #if _display_other_roads == 1
     CLASS
         EXPRESSION {unclassified01,residential01,service01,living_street01}
@@ -743,10 +792,12 @@ LAYER
         END
     END
 #endif
+#endif
 
 ########################
 ## pedestrian tunnels ##
 ########################
+#if _display_geometries == 1
 #if _display_pedestrian == 1
     CLASS
         EXPRESSION {pedestrian01,footway01,path01}
@@ -757,6 +808,7 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 
@@ -764,6 +816,7 @@ LAYER
 ######################
 ## tertiary tunnels ##
 ######################
+#if _display_geometries == 1
 #if _display_tertiaries == 1
     CLASS
         EXPRESSION {tertiary01,tertiary_link01}
@@ -774,10 +827,12 @@ LAYER
         END
     END
 #endif
+#endif
 
 #######################
 ## secondary tunnels ##
 #######################
+#if _display_geometries == 1
 #if _display_secondaries == 1
     CLASS
         EXPRESSION {secondary01,secondary_link01}
@@ -788,11 +843,13 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 #####################
 ## primary tunnels ##
 #####################
+#if _display_geometries == 1
 #if _display_primaries == 1
     CLASS
         EXPRESSION {primary01,primary_link01}
@@ -803,11 +860,13 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 ######################
 ## motorway tunnels ##
 ######################
+#if _display_geometries == 1
 #if _display_motorways == 1
     CLASS
         EXPRESSION "motorway01"
@@ -828,11 +887,13 @@ LAYER
         END
     END
 #endif
+#endif
 
 
 ###################
 ## trunk tunnels ##
 ###################
+#if _display_geometries == 1
 #if _display_trunks == 1
     CLASS
         EXPRESSION "trunk01"
@@ -853,12 +914,14 @@ LAYER
         END
     END
 #endif
+#endif
 
 #endif
 ##(display_roads_tunnels)
 END
     
 
+#if _display_geometries == 1
 #if _display_aeroways == 1
 LAYER
     GROUP "default"
@@ -896,3 +959,5 @@ LAYER
 END
 #endif
 #endif    
+#endif
+#endif

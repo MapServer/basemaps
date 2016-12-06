@@ -18,10 +18,13 @@ LAYER
     LABELITEM "name"
     CLASS
        EXPRESSION {forest,wood}
+#if _display_geometries == 1
        STYLE
           COLOR _forest_clr
        END
+#endif
 #if _display_forest_lbl==1
+#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _forest_font
@@ -36,15 +39,19 @@ LAYER
          PARTIALS FALSE
       END
 #endif
+#endif
     END
     CLASS
        EXPRESSION 'residential'
+#if _display_geometries == 1
        STYLE
           COLOR _residential_clr
           OUTLINECOLOR _residential_ol_clr
           OUTLINEWIDTH _residential_ol_width
        END
+#endif
 #if _display_residential_lbl==1
+#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _residential_font
@@ -59,15 +66,19 @@ LAYER
          PARTIALS FALSE
       END
 #endif
+#endif
    END
    CLASS
      EXPRESSION {industrial,commercial,parking}
+#if _display_geometries == 1
      STYLE
        COLOR _industrial_clr
        OUTLINECOLOR _industrial_ol_clr
        OUTLINEWIDTH _industrial_ol_width
      END
+#endif
 #if _display_industrial_lbl==1
+#if _display_labels == 1
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
@@ -84,13 +95,17 @@ LAYER
        PARTIALS FALSE
      END
 #endif
+#endif
     END
     CLASS
         EXPRESSION {park,golf_course}
+#if _display_geometries == 1
         STYLE
             COLOR _park_clr
         END
+#endif
 #if _display_park_lbl==1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -108,13 +123,17 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
+#endif
     END
     CLASS
         EXPRESSION 'cemetery'
+#if _display_geometries == 1
         STYLE
           COLOR _cemetery_clr
         END
+#endif
 #if _display_cemetery_lbl==1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -131,13 +150,17 @@ LAYER
             MINFEATURESIZE AUTO
         END
 #endif
+#endif
     END
    CLASS
       EXPRESSION 'pedestrian'
+#if _display_geometries == 1
       STYLE
          COLOR _pedestrian_clr
       END
+#endif
 #if _display_pedestrian_lbl==1
+#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _pedestrian_font
@@ -152,14 +175,18 @@ LAYER
          PARTIALS FALSE
       END
 #endif
+#endif
    END
  
     CLASS
         EXPRESSION 'hospital'
+#if _display_geometries == 1
         STYLE
             COLOR _hospital_clr
         END
+#endif
 #if _display_hospital_lbl==1
+#if _display_labels == 1
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -176,13 +203,17 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
+#endif
     END
     CLASS
         EXPRESSION {school,college,university}
+#if _display_geometries == 1
         STYLE
             COLOR _education_clr
         END
+#endif
 #if _display_education_lbl==1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -199,13 +230,17 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
+#endif
     END
     CLASS
       EXPRESSION {sports_center,stadium,pitch}
+#if _display_geometries == 1
       STYLE
           COLOR _sports_clr
       END
+#endif
 #if _display_sports_lbl==1
+#if _display_labels == 1
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
@@ -221,6 +256,7 @@ LAYER
         ALIGN CENTER
         MINFEATURESIZE AUTO
       END
+#endif
 #endif
     END
 END
@@ -242,10 +278,13 @@ LAYER
    MINSCALEDENOM _minscale
    LABELITEM "name"
    CLASS
+#if _display_geometries == 1
       STYLE
          COLOR _transport_clr
       END
+#endif
 #if _display_transports_lbl==1
+#if _display_labels == 1
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
@@ -260,6 +299,7 @@ LAYER
         ALIGN CENTER
         MINFEATURESIZE AUTO
       END
+#endif
 #endif
    END
 END
@@ -282,6 +322,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASSITEM "type"
+#if _display_geometries == 1
     CLASS
       EXPRESSION "riverbank"
         STYLE
@@ -290,13 +331,17 @@ LAYER
             OUTLINEWIDTH _waterarea_ol_width
         END
     END
+#endif
     CLASS
+#if _display_geometries == 1
         STYLE
             COLOR _waterarea_clr
             OUTLINECOLOR _waterarea_ol_clr
             OUTLINEWIDTH _waterarea_ol_width
         END
+#endif
 #if _display_waterarea_lbl == 1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -312,6 +357,7 @@ LAYER
           ALIGN CENTER
           MINFEATURESIZE AUTO
         END
+#endif
 #endif
     END
 END
@@ -335,11 +381,14 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASS
         EXPRESSION "river"
+#if _display_geometries == 1
         STYLE
             COLOR _river_clr 
             WIDTH _river_width
         END
+#endif
 #if _display_river_lbl == 1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -356,14 +405,18 @@ LAYER
           BUFFER 3
         END
 #endif
+#endif
     END
     CLASS
         EXPRESSION "stream"
+#if _display_geometries == 1
         STYLE
             COLOR _stream_clr
             WIDTH _stream_width
         END
+#endif
 #if _display_stream_lbl == 1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -380,14 +433,18 @@ LAYER
           BUFFER 3
         END
 #endif
+#endif
     END
     CLASS
         EXPRESSION "canal"
+#if _display_geometries == 1
         STYLE
             COLOR _canal_clr
             WIDTH _canal_width
         END
+#endif
 #if _display_canal_lbl == 1
+#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           FONT _canal_font
@@ -403,6 +460,7 @@ LAYER
           BUFFER 3
           PARTIALS FALSE
         END
+#endif
 #endif
     END
 END

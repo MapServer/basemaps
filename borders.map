@@ -7,12 +7,14 @@ LAYER
    TYPE LINE
    NAME layername(admin_fr,_layer_suffix)
    DATA _admin_data
+#if _display_geometries == 1
    CLASS
       STYLE
          COLOR _admin_clr
          WIDTH _admin_width
       END
    END
+#endif
 END
 #endif
 
@@ -27,6 +29,7 @@ LAYER
      _border_epsg
    END
    DATA _border_data
+#if _display_geometries == 1
 #if _display_border_2 == 1
    CLASS
 #if _display_border_2_outer == 1
@@ -93,6 +96,7 @@ LAYER
          _border_8_inner_pattern
       END
    END
+#endif
 #endif
 END
 
