@@ -68,12 +68,12 @@
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-    var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        attribution: "Nico test ms maps"
-    }).addTo(map);
+//    var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
+//        layers: 'default',
+//        format: 'image/png',
+//        transparent: true,
+//        attribution: "Nico test ms maps"
+//    }).addTo(map);
 
 //    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
 //        layers: 'default',
@@ -90,11 +90,12 @@
 //    }).addTo(map);
 //
 //    var googleNOLabelsLayer = L.tileLayer.wms.grayscale(url + "osm-google-no-labels.map", {
-//        layers: 'default',
-//        format: 'png_bw',
-//        transparent: false,
-//        attribution: "Nico test ms maps"
-//    }).addTo(map);
+    var googleNOLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
+        layers: 'default',
+        format: 'png',
+        transparent: true,
+        attribution: "Nico test ms maps"
+    }).addTo(map);
 
     //    defaultSource.getLayer("default").addTo(map);
     //    bingSource.getLayer("default").addTo(map);
@@ -107,7 +108,7 @@
     };
     var overlays = {
         "Google ": googleLayer,
-        "Google labels": googleLabelsLayer
+        "Google NO labels": googleNOLabelsLayer
 //        ,"Bing": bingLayer,
 //        "Michelin": michelinLayer,
 //        "Google NO labels": googleNOLabelsLayer

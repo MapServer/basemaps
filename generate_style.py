@@ -1309,7 +1309,7 @@ style_aliases = {
     "bing": "default,outlined,bing",
     "michelin": "default,outlined,centerlined,michelin",
     # Nico Ribot: new aliases for labels-only and no-labels styles
-    "google-no-labels": "default,outlined,google,geoms_only",
+    "google-no-labels": "default,outlined,google,geoms_only,buildings",
     "google-labels-only": "default,outlined,google,labels_only"
 }
 
