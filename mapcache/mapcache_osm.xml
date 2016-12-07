@@ -79,8 +79,8 @@
    </cache>
 
 <!--____________ tilesets ___________________-->
-   <tileset name="osm_google_style_ts">
-      <source>osm_google_style_src</source>
+   <tileset name="osm_google_no_labels_ts">
+      <source>osm_google_no_labels_src</source>
       <cache>disk</cache>
       <grid>GoogleMapsCompatible</grid>
       <format>PNG</format>
