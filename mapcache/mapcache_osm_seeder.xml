@@ -14,11 +14,11 @@
         <abstract>OSM FR data tile service backed by MapServer/Mapcache with google-style styling</abstract>
     </metadata>
 
-    <source name="osm_google_style_src" type="wms">
+    <source name="osm_google_no_labels_src" type="wms">
         <getmap>
             <params>
                 <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google.map</MAP>-->
-                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google.map</MAP>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
                 <LAYERS>default</LAYERS>
                 <FORMAT>image/png</FORMAT>
                 <TRANSPARENT>true</TRANSPARENT>
@@ -31,23 +31,23 @@
     </source>
 
     <cache name="disk" type="disk" layout="template">
-        <base>/mnt/data_ssd1/caches/mapcache</base>
+        <base>/data/Documents/geodata/caches/mapcache</base>
         <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
 
         <!--<template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>-->
-        <template>/mnt/data_ssd1/caches/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
+        <template>/data/Documents/geodata/caches/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
 
         <!--no symlink for template (only for defautl layout)-->
         <!--<symlink_blank/>-->
     </cache>
     <cache name="sqlite" type="sqlite3">
         <!--<dbfile>/Volumes/GROSSD/tmp/mapcache/{tileset}-{z}-{grid}.db</dbfile>-->
-        <dbfile>/mnt/data_ssd1/caches/mapcache/{tileset}-{z}-{grid}.db</dbfile>
+        <dbfile>/data/Documents/geodata/caches/mapcache/{tileset}-{z}-{grid}.db</dbfile>
         <detect_blank/>
     </cache>
 
-    <tileset name="osm_google_style_ts">
-        <source>osm_google_style_src</source>
+    <tileset name="osm_google_no_label_ts">
+        <source>osm_google_no_labels_src</source>
         <cache>disk</cache>
         <!--<cache>sqlite</cache>-->
         <grid>GoogleMapsCompatible</grid>
