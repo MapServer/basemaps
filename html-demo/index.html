@@ -72,27 +72,27 @@
         attribution: "Nico test ms maps"
     }).addTo(map);
 
-//    var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
-//        layers: 'default',
-//        format: 'image/png',
-//        transparent: true,
-//        attribution: "Nico test ms maps"
-//    }).addTo(map);
+    var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Nico test ms maps"
+    }).addTo(map);
 
-//    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
-//        layers: 'default',
-//        format: 'image/png',
-//        transparent: true,
-//        attribution: "Nico test ms maps"
-//    }).addTo(map);
-//
-//    var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
-//        layers: 'default',
-//        format: 'image/png',
-//        transparent: true,
-//        attribution: "Nico test ms maps"
-//    }).addTo(map);
-//
+    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Nico test ms maps"
+    }).addTo(map);
+
+    var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Nico test ms maps"
+    }).addTo(map);
+
     var googleNOLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
         layers: 'default',
         format: 'png',
@@ -118,10 +118,10 @@
     var overlays = {
         "Google MS": googleLayer,
         "Google NO labels MS": googleNOLabelsLayer,
-        "Google NO labels Mapcache": googleNOLabelsMapcacheLayer
-//        ,"Bing": bingLayer,
-//        "Michelin": michelinLayer,
-//        "Google NO labels": googleNOLabelsLayer
+        "Google NO labels Mapcache": googleNOLabelsMapcacheLayer,
+        "Bing": bingLayer,
+        "Michelin": michelinLayer,
+        "Google labels only": googleLabelsLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
