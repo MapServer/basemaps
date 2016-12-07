@@ -13,8 +13,8 @@
    <source name="osm_google_no_labels_src" type="wms">
       <getmap>
          <params>
-            <!--<MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
-             <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>
+            <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
+             <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
             <LAYERS>default</LAYERS>
             <FORMAT>image/png</FORMAT>
             <TRANSPARENT>true</TRANSPARENT>
