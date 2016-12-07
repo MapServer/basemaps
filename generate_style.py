@@ -1286,7 +1286,10 @@ styles = {
         'display_labels': 0
     },
     'buildings': {
-        'display_buildings': 1
+        'display_buildings': {
+            0: 0,
+            15: 1
+        }
     }
 }
 

@@ -9,10 +9,12 @@
    </metadata>
 
 <!--____________ sources___________________-->
+
    <source name="osm_google_no_labels_src" type="wms">
       <getmap>
          <params>
-            <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
+            <!--<MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
+             <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>
             <LAYERS>default</LAYERS>
             <FORMAT>image/png</FORMAT>
             <TRANSPARENT>true</TRANSPARENT>
@@ -66,21 +68,25 @@
    </source>
 
 <!--____________ caches___________________-->
-   <cache name="disk" type="disk">
-      <base>/data/Documents/geodata/caches/mapcache</base>
-     <template>/data/Documents/geodata/caches/mapcache/{tileset}/{z}/{x}/{y}.{ext}</template>
 
-     <!--no symlink for template (only for default layout)-->
-     <!--<symlink_blank/>-->
-   </cache>
-   <cache name="sqlite" type="sqlite3">
-     <dbfile>/data/Documents/geodata/caches/mapcache/{tileset}-{z}-{grid}.db</dbfile>
-      <detect_blank/>
+   <cache name="disk" type="disk" layout="template">
+        <base>/data/Documents/geodata/caches/mapcache</base>
+        <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
+
+        <!--<template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>-->
+        <template>/data/Documents/geodata/caches/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
+
+        <!--no symlink for template (only for defautl layout)-->
+        <!--<symlink_blank/>-->
    </cache>
 
 <!--____________ tilesets ___________________-->
-   <tileset name="osm_google_no_labels_ts">
+
+   <!--No src tileset: pure cache acces, to test cache   -->
+  <tileset name="osm_google_no_labels_ts">
+      <!--comment out to use a readonly cache => pure cache access: no tile generation-->
       <source>osm_google_no_labels_src</source>
+
       <cache>disk</cache>
       <grid>GoogleMapsCompatible</grid>
       <format>PNG</format>
@@ -138,6 +144,7 @@
    <errors>report</errors>
 
    <locker type="disk">
+     <!--<directory>/Volumes/GROSSD/tmp/mapcache</directory>-->
      <directory>/data/Documents/geodata/caches/mapcache</directory>
      <timeout>300</timeout>
     </locker>

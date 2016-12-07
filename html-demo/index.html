@@ -24,8 +24,12 @@
 <script language="JavaScript">
     
 //    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+//    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
+//    var urlMapcache = '/mapcache-cache/{z}/{x}/{y}.png';
+
 //    server:
     var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
 
 //    var bingSource = L.WMS.source(url + "osm-bing.map", {
 //        'transparent': true,
@@ -89,12 +93,17 @@
 //        attribution: "Nico test ms maps"
 //    }).addTo(map);
 //
-//    var googleNOLabelsLayer = L.tileLayer.wms.grayscale(url + "osm-google-no-labels.map", {
     var googleNOLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
         layers: 'default',
         format: 'png',
         transparent: true,
-        attribution: "Nico test ms maps"
+        attribution: "Efficity maps, based on OSM data"
+    }).addTo(map);
+
+
+    var googleNOLabelsMapcacheLayer = new L.TileLayer( urlMapcache , {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     }).addTo(map);
 
     //    defaultSource.getLayer("default").addTo(map);
@@ -107,8 +116,9 @@
         "OSM b&w ": osmBWLayer
     };
     var overlays = {
-        "Google ": googleLayer,
-        "Google NO labels": googleNOLabelsLayer
+        "Google MS": googleLayer,
+        "Google NO labels MS": googleNOLabelsLayer,
+        "Google NO labels Mapcache": googleNOLabelsMapcacheLayer
 //        ,"Bing": bingLayer,
 //        "Michelin": michelinLayer,
 //        "Google NO labels": googleNOLabelsLayer
@@ -119,3 +129,6 @@
 </script>
 </body>
 </html>
+
+http://localhost/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/15/16518/20800.png
+http://localhost/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/13/4131/2990.png
