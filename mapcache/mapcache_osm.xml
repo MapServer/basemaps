@@ -85,7 +85,7 @@
    <!--No src tileset: pure cache acces, to test cache   -->
   <tileset name="osm_google_no_labels_ts">
       <!--comment out to use a readonly cache => pure cache access: no tile generation-->
-      <source>osm_google_no_labels_src</source>
+      <!--<source>osm_google_no_labels_src</source>-->
 
       <cache>disk</cache>
       <grid>GoogleMapsCompatible</grid>
