@@ -70,11 +70,11 @@
 <!--____________ caches___________________-->
 
    <cache name="disk" type="disk" layout="template">
-        <base>/data/Documents/geodata/caches/mapcache</base>
+        <base>/data_big/Documents/geodata/caches/mapcache</base>
         <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
 
         <!--<template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>-->
-        <template>/data/Documents/geodata/caches/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
+        <template>/data_big/Documents/geodata/caches/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
 
         <!--no symlink for template (only for defautl layout)-->
         <!--<symlink_blank/>-->
@@ -145,7 +145,7 @@
 
    <locker type="disk">
      <!--<directory>/Volumes/GROSSD/tmp/mapcache</directory>-->
-     <directory>/data/Documents/geodata/caches/mapcache</directory>
+     <directory>/data_big/Documents/geodata/caches/mapcache</directory>
      <timeout>300</timeout>
     </locker>
 
