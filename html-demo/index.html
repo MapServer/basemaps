@@ -37,9 +37,9 @@
 
 //    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
     //    server:
-      var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
-    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
+    var urlMapcache = '/mapcache-osm/tms/1.0.0/LAYER@GoogleMapsCompatible/{z}/{x}/{y}.png';
 //    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_default_sym_style_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
     //    var urlMapcache = '/mapcache-cache/{z}/{x}/{y}.png';
 
@@ -73,66 +73,70 @@
     //        layers: 'default',
     //        format: 'image/png',
     //        transparent: true,
-    //        attribution: "Nico test ms maps"
+    //        attribution: "Efficity"
     //    }).addTo(map);
 
-    var osmBWLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
+    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
+
+    ////////////// Mapcache layers for Efficity Application ////////////////////////////////////////////////////////////
+    // forces B&W by Leaflet plugin
+    var googleNoLabelsMapcacheLayer = new L.TileLayer.grayscale(urlMapcache.replace('LAYER', 'osm_google_no_labels_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    }).addTo(map);
+
+    var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('LAYER', 'osm_google_labels_only_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    });
+
+    ////////////// MapServer layers to test Mapserver available styles ////////////////////////////////////////////////////
     var googleLayer = L.tileLayer.wms(url + "/osm-google.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Nico test ms maps"
+        attribution: "Efficity"
     });
 
     var defaultSymLayer = L.tileLayer.wms(url + "/osm-default-symbols.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Nico test ms maps",
+        attribution: "Efficity",
         singleTile: true
     });
 
-    var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
+    var googleLabelsOnlyLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Nico test ms maps"
+        attribution: "Efficity"
+    });
+
+    var googleNoLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Efficity"
     });
 
     var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Nico test ms maps"
+        attribution: "Efficity"
     });
 
     var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Nico test ms maps"
+        attribution: "Efficity"
     });
-
-    var googleNOLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
-        layers: 'default',
-        format: 'png',
-        transparent: true,
-        attribution: "Efficity maps, based on OSM data"
-    });
-
-
-    var googleNOLabelsMapcacheLayer = new L.TileLayer(urlMapcache, {
-        'tms': true,
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    }).addTo(map);
-
-    //    var defaultSymMapcacheLayer = new L.TileLayer(urlMapcache, {
-    //        'tms': true,
-    //        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    //    }).addTo(map);
 
     //    defaultSource.getLayer("default").addTo(map);
     //    bingSource.getLayer("default").addTo(map);
@@ -141,17 +145,17 @@
     var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
         'empty': emptyLayer,
-        "OSM b&w ": osmBWLayer
+        "OSM b&w ": osmLayer
     };
     var overlays = {
-        "Default+Symbols MS": defaultSymLayer,
-        "Google MS": googleLayer,
-        "Google NO labels MS": googleNOLabelsLayer,
-        "Google NO labels Mapcache": googleNOLabelsMapcacheLayer,
-//        "Default+Symbols labels Mapcache": defaultSymMapcacheLayer,
-        "Bing": bingLayer,
-        "Michelin": michelinLayer,
-        "Google labels only": googleLabelsLayer
+        "MC Google no labels": googleNoLabelsMapcacheLayer,
+        "MC Google labels only": googleLabelsOnlyMapcacheLayer,
+        "MS Default+Symbols": defaultSymLayer,
+        "MS Google": googleLayer,
+        "MS Bing": bingLayer,
+        "MS Michelin": michelinLayer,
+        "MS Google no labels": googleNoLabelsLayer,
+        "MS Google labels only": googleLabelsOnlyLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
