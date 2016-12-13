@@ -93,7 +93,7 @@
         transparent: true,
         attribution: "Nico test ms maps",
         singleTile: true
-    }).addTo(map);
+    });
 
     var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
         layers: 'default',
@@ -127,7 +127,7 @@
     var googleNOLabelsMapcacheLayer = new L.TileLayer(urlMapcache, {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    });
+    }).addTo(map);
 
     //    var defaultSymMapcacheLayer = new L.TileLayer(urlMapcache, {
     //        'tms': true,
