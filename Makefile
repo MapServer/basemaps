@@ -29,7 +29,7 @@ STYLE=default
 
 template=osmbase.map
 
-includes=land.map landusage.map borders.map highways.map places.map \
+includes=land.map landusage.map borders.map highways.map places.map symbols.map \
 		 generated/$(STYLE)style.msinc \
 		 generated/$(STYLE)level0.msinc generated/$(STYLE)level1.msinc generated/$(STYLE)level2.msinc generated/$(STYLE)level3.msinc \
 		 generated/$(STYLE)level4.msinc generated/$(STYLE)level5.msinc generated/$(STYLE)level6.msinc generated/$(STYLE)level7.msinc \

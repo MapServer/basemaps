@@ -1,0 +1,156 @@
+#if _display_geometries == 1
+#if _display_symbols == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symairport,_layer_suffix)
+    DATA _symairport_data
+    CLASSITEM "name"
+    CLASS
+      EXPRESSION /^Aéroport.*$/
+       STYLE
+        SYMBOL "airport"
+        SIZE _symairport_size
+       END
+    END
+END
+
+#if _display_amenities == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symamenities,_layer_suffix)
+    DATA _symamenities_data
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "school"
+       STYLE
+        SYMBOL "school"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "library"
+       STYLE
+        SYMBOL "library"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "fuel"
+       STYLE
+        SYMBOL "fuel"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "hospital"
+       STYLE
+        SYMBOL "hospital"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "police"
+       STYLE
+        SYMBOL "police"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "university"
+       STYLE
+        SYMBOL "university"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "townhall"
+       STYLE
+        SYMBOL "townhall"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "fire_station"
+       STYLE
+        SYMBOL "fire_station"
+        SIZE _symamenities_size
+       END
+    END
+
+    CLASS
+      EXPRESSION "parking"
+       STYLE
+        SYMBOL "parking"
+       END
+    END
+END
+#endif
+
+
+LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symlandusage,_layer_suffix)
+    DATA _symlandusage_data
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "school"
+       STYLE
+        SYMBOL "school"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "library"
+       STYLE
+        SYMBOL "library"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "fuel"
+       STYLE
+        SYMBOL "fuel"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "hospital"
+       STYLE
+        SYMBOL "hospital"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "university"
+       STYLE
+        SYMBOL "university"
+        SIZE _symamenities_size
+       END
+    END
+    CLASS
+      EXPRESSION "parking"
+       STYLE
+        SYMBOL "parking"
+       END
+    END
+END
+#endif
+#endif

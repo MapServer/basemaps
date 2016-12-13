@@ -1,0 +1,76 @@
+# Nicolas Ribot, 08 dec 2016:
+# adds symbols management
+# original symbol in osmbase.map
+SYMBOLSET
+    # cities
+    SYMBOL
+     name "citycircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
+
+    # transportation
+    SYMBOL
+      NAME "airport"
+      TYPE pixmap
+      IMAGE "symbols/airport.p.16.png"
+    END
+
+    #amenities
+    SYMBOL
+      NAME "school"
+      TYPE pixmap
+      IMAGE "symbols/school.png"
+    END
+
+    SYMBOL
+      NAME "library"
+      TYPE pixmap
+      IMAGE "symbols/library.p.20.png"
+    END
+
+    SYMBOL
+      NAME "fuel"
+      TYPE pixmap
+      IMAGE "symbols/fuel.p.16.png"
+    END
+
+    SYMBOL
+      NAME "hospital"
+      TYPE pixmap
+      IMAGE "symbols/hospital.p.16.png"
+    END
+
+    SYMBOL
+      NAME "university"
+      TYPE pixmap
+      IMAGE "symbols/school.png"
+    END
+
+    SYMBOL
+      NAME "townhall"
+      TYPE pixmap
+      IMAGE "symbols/fr/mairie.png"
+    END
+
+    SYMBOL
+      NAME "fire_station"
+      TYPE pixmap
+      IMAGE "symbols/firestation.p.16.png"
+    END
+
+    SYMBOL
+      NAME "police"
+      TYPE pixmap
+      IMAGE "symbols/police.p.16.png"
+    END
+
+    # landusage
+    SYMBOL
+      NAME "parking"
+      TYPE pixmap
+      IMAGE "symbols/parking.p.16.png"
+    END
+
+END

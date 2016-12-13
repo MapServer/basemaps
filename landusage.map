@@ -138,7 +138,7 @@ LAYER
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _cemetery_font
-       ENCODING "utf-8"
+            ENCODING "utf-8"
             SIZE _cemetery_lbl_size
             COLOR _cemetery_lbl_clr
             OUTLINECOLOR _cemetery_lbl_ol_clr

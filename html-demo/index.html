@@ -2,10 +2,16 @@
 <head>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="leaflet.zoomdisplay.css"/>
+    <link rel="stylesheet" href="Leaflet.Coordinates.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
     <script src="leaflet.wms.js"></script>
     <script src="TileLayer.Grayscale.js"></script>
     <script src="leaflet.zoomdisplay-src.js"></script>
+    <script src="Leaflet.Coordinates.js"></script>
+    <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
 
     <style>
         #mapid {
@@ -13,46 +19,55 @@
             width: 100%;
         }
 
-        img {
-            -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-            filter: grayscale(100%);
+        .leaflet-tile-border {
+            border: solid black 1px;
         }
+
+        .img-trans {
+            opacity: 0.5;
+            display: inline-block;
+        }
+
+
     </style>
 </head>
 <body>
 <div id="mapid"></div>
 <script language="JavaScript">
-    
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
-//    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
-//    var urlMapcache = '/mapcache-cache/{z}/{x}/{y}.png';
 
-//    server:
-    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    //    server:
+    //    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+
     var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
+//    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_default_sym_style_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
+    //    var urlMapcache = '/mapcache-cache/{z}/{x}/{y}.png';
 
-//    var bingSource = L.WMS.source(url + "osm-bing.map", {
-//        'transparent': true,
-//        'tiled': true
-//
-//    });
-//
-//    var michelinSource = L.WMS.source(url + "osm-michelin.map", {
-//        'transparent': true,
-//        'tiled': false
-//    });
-//
-//    var googleSource = L.WMS.source(url + "osm-google.map", {
-//        'transparent': true,
-//        'tiled': false
-//    });
-//
-//    var defaultSource = L.WMS.source(url + "osm-default.map", {
-//        'transparent': true,
-//        'tiled': false
-//    });
+    //    var bingSource = L.WMS.source(url + "osm-bing.map", {
+    //        'transparent': true,
+    //        'tiled': true
+    //
+    //    });
+    //
+    //    var michelinSource = L.WMS.source(url + "osm-michelin.map", {
+    //        'transparent': true,
+    //        'tiled': false
+    //    });
+    //
+    //    var googleSource = L.WMS.source(url + "osm-google.map", {
+    //        'transparent': true,
+    //        'tiled': false
+    //    });
+    //
+    //    var defaultSource = L.WMS.source(url + "osm-default.map", {
+    //        'transparent': true,
+    //        'tiled': false
+    //    });
 
-    var map = L.map('mapid').setView([43.604, 1.40], 8);
+    var map = L.map('mapid').setView(
+//        [43.604, 1.40], 8
+        [43.6447, 1.4557], 11
+    );
 
     //    var defaultLayer = L.tileLayer.wms(url + "/osm-default.map", {
     //        layers: 'default',
@@ -70,6 +85,14 @@
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
+    });
+
+    var defaultSymLayer = L.tileLayer.wms(url + "/osm-default-symbols.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Nico test ms maps",
+        singleTile: true
     }).addTo(map);
 
     var googleLabelsLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
@@ -77,34 +100,39 @@
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
-    }).addTo(map);
+    });
 
     var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
-    }).addTo(map);
+    });
 
     var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         attribution: "Nico test ms maps"
-    }).addTo(map);
+    });
 
     var googleNOLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
         layers: 'default',
         format: 'png',
         transparent: true,
         attribution: "Efficity maps, based on OSM data"
-    }).addTo(map);
+    });
 
 
-    var googleNOLabelsMapcacheLayer = new L.TileLayer( urlMapcache , {
+    var googleNOLabelsMapcacheLayer = new L.TileLayer(urlMapcache, {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    }).addTo(map);
+    });
+
+    //    var defaultSymMapcacheLayer = new L.TileLayer(urlMapcache, {
+    //        'tms': true,
+    //        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    //    }).addTo(map);
 
     //    defaultSource.getLayer("default").addTo(map);
     //    bingSource.getLayer("default").addTo(map);
@@ -116,9 +144,11 @@
         "OSM b&w ": osmBWLayer
     };
     var overlays = {
+        "Default+Symbols MS": defaultSymLayer,
         "Google MS": googleLayer,
         "Google NO labels MS": googleNOLabelsLayer,
         "Google NO labels Mapcache": googleNOLabelsMapcacheLayer,
+//        "Default+Symbols labels Mapcache": defaultSymMapcacheLayer,
         "Bing": bingLayer,
         "Michelin": michelinLayer,
         "Google labels only": googleLabelsLayer
@@ -126,9 +156,16 @@
 
     L.control.layers(baseLayers, overlays).addTo(map);
 
+    // coordinates:
+    L.control.coordinates().addTo(map);
+
+    //custom button
+    L.easyButton('<img id="imggrid" class="img-trans" width="18" height="18" src="grid.png">', function (btn, map) {
+        $('.leaflet-tile').toggleClass('leaflet-tile-border');
+        $('#imggrid').toggleClass('img-trans');
+    }).addTo(map);
+
 </script>
 </body>
 </html>
 
-http://localhost/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/15/16518/20800.png
-http://localhost/mapcache-osm/tms/1.0.0/osm_google_no_labels_ts@GoogleMapsCompatible/13/4131/2990.png

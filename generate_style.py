@@ -4,6 +4,7 @@
 # default values that will be overloaded by choosen style
 display_labels = 1
 display_geometries = 1
+display_symbols = 1
 
 layer_suffixes = {
     0: 0,
@@ -985,6 +986,39 @@ vars = {
 
 styles = {
     'default': {},
+    'symbols': {
+        'display_symbols': {
+            0: 0,
+            11: 1
+        },
+        'display_amenities': {
+            0: 0,
+            16: 1
+        },
+        'symairport_size': {
+            0: 0,
+            11: 16,
+            13: 32
+        },
+        'symamenities_size': {
+            0: 0,
+            11: 16,
+            17: 16
+        },
+        'symairport_data': '"geometry from (select st_centroid(geometry) as geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_transport_areas where type = \'aerodrome\') as foo using unique osm_id using srid=OSM_SRID"',
+        'symamenities_data': {
+            0: '"geometry from (select st_centroid(geometry) as geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_amenities) as foo using unique osm_id using srid=OSM_SRID"',
+            16: '"geometry from (select st_centroid(geometry) as geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_amenities) as foo using unique osm_id using srid=OSM_SRID"'
+        },
+        'symlandusage_data': {
+            0: '"geometry from (select st_pointOnSurface(geometry) as geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages where type in (\'\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
+            15: '"geometry from (select st_pointOnSurface(geometry) as geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages where type in \
+            (\'cemetery\',\'industrial\',\'commercial\',\'school\',\'college\',\'university\',\
+            \'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
+            \'cinema\', \'retail\', \'recreation_ground\', \'playground\', \'library\',\
+             \'fuel\', \'theatre\', \'sports_centre\', \'zoo\')) as foo using unique osm_id using srid=OSM_SRID"'
+        }
+    },
     'outlined': {
         'display_motorway_outline': {
             0: 0,
@@ -1304,6 +1338,9 @@ style_aliases = {
     # other layers without risk of confusion between layers.
     "default": "default",
 
+    #default with transport and amenities symbols
+    "default-symbols": "default,symbols",
+
     # a style resembling the google-maps theme
     "google": "default,outlined,google",
 
@@ -1360,3 +1397,6 @@ if options.level != -1:
 
     for k, v in style.iteritems():
         print "#define _%s _%s%s" % (k, k, level)
+
+# TODO symbols: change imposm conf to include info for railway stations: gare, metro, rer, etc?
+# TODO symbols: labels
