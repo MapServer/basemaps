@@ -84,7 +84,7 @@
 
     ////////////// Mapcache layers for Efficity Application ////////////////////////////////////////////////////////////
     // forces B&W by Leaflet plugin
-    var googleNoLabelsMapcacheLayer = new L.TileLayer.grayscale(urlMapcache.replace('LAYER', 'osm_google_no_labels_ts'), {
+    var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('LAYER', 'osm_google_no_labels_ts'), {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     }).addTo(map);
