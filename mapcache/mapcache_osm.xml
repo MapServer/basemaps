@@ -99,5 +99,4 @@
      <directory>/data_big2/Documents/geodata/caches/mapcache</directory>
      <timeout>300</timeout>
     </locker>
-
 </mapcache>
