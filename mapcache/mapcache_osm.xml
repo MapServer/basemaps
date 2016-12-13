@@ -67,7 +67,7 @@
    </tileset>
 
   <tileset name="osm_google_labels_only_ts">
-      <source>osm_google_no_labels_src</source>
+      <source>osm_google_labels_only_src</source>
       <cache>disk</cache>
       <grid>GoogleMapsCompatible</grid>
       <format>PNG</format>
