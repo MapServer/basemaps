@@ -12,3 +12,10 @@ khmer fonts/KhmerOS.ttf
 jp fonts/ipag.ttf
 #sc fonts/Cyberbit.ttf
 #scb fonts/Cyberbit.ttf
+
+# for symbols/POI names:
+NotoSansUIBold fonts/NotoSansUI-Bold.ttf
+NotoSansUIRegular fonts/NotoSansUI-Regular.ttf
+NotoSansSymbolsRegular fonts/NotoSansSymbols-Regular.ttf
+NotoEmojiRegular fonts/NotoEmoji-Regular.ttf
+DejaVuSansBook fonts/DejaVuSans.ttf

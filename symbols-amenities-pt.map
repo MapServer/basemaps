@@ -1,0 +1,2379 @@
+#if _display_geometries == 1
+#if _display_symbols == 1
+  LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symamenities,_layer_suffix)
+    DATA _symamenities_data
+
+    #if _display_symamenities_z17
+    CLASS
+      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_motorcycle_parking') )
+      LABEL
+        STYLE
+        OPACITY 0.33
+          SYMBOL "symbols-motorcycle-parking-16-svg"
+        END
+      END
+    END
+    CLASS
+      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_bicycle_parking') )
+      LABEL
+        STYLE
+        OPACITY 0.33
+          SYMBOL "symbols-bicycle-parking-16-svg"
+        END
+      END
+    END
+    CLASS
+      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_parking') )
+      LABEL
+        STYLE
+        OPACITY 0.33
+          SYMBOL "symbols-parking-svg"
+        END
+      END
+    END
+
+    CLASS
+     EXPRESSION (('[access]' != '') AND ('[access]' != 'yes') AND ('[feature]' = 'leisure_playground'))
+      LABEL
+        STYLE
+        OPACITY 0.33
+          SYMBOL "symbols-playground-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[access]' != '') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_recycling'))
+      LABEL
+        STYLE
+        OPACITY 0.33
+          SYMBOL "symbols-recycling-16-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z16
+    CLASS
+     EXPRESSION (('[denomination]' = 'jehovahs_witness') AND ('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'christian'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-place-of-worship-16-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z18
+    CLASS
+     EXPRESSION (('[access]' = 'yes') AND ('[feature]' = 'highway_elevator'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-elevator-12-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (([access] = null) AND ('[feature]' = 'highway_elevator'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-elevator-12-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z16
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'taoist'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-taoist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'shinto'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-shintoist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'buddhist'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-buddhist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'hindu'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-hinduist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'jewish'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-jewish-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'sikh'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-sikhist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'muslim'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-muslim-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'christian'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-christian-16-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z15
+    CLASS
+     EXPRESSION (('[feature]' = 'power_generator') AND ('[generator_source]' = 'wind') AND ('[power_source]' = 'wind'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-power-wind-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'power_generator') AND ('[power_source]' = 'wind'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-power-wind-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION (('[feature]' = 'power_generator') AND ('[generator_source]' = 'wind'))
+      LABEL
+        STYLE
+          SYMBOL "symbols-power-wind-16-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z17
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_slipway')
+      LABEL
+        STYLE
+          SYMBOL "symbols-transport-slipway-p-20-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_picnic_table')
+      LABEL
+        STYLE
+          SYMBOL "symbols-picnic-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_miniature_golf')
+      LABEL
+        STYLE
+          SYMBOL "symbols-miniature-golf-p-20-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_playground')
+      LABEL
+        STYLE
+          SYMBOL "symbols-playground-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_dog_park')
+      LABEL
+        STYLE
+          SYMBOL "symbols-shop-pet-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_water_park')
+      LABEL
+        STYLE
+          SYMBOL "symbols-water-park-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_variety_store')
+      LABEL
+        STYLE
+          SYMBOL "symbols-variety-store-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_tea')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-tea-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_tobacco')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-tobacco-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_stationery')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-stationery-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_sports')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-sports-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_travel_agency')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-travel-agency-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_toys')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-toys-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_jewellery')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-jewelry-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_jewelry')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-jewelry-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_newsagent')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-newsagent-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_kiosk')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-newsagent-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_musical_instrument')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-musical-instrument-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_motorcycle')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-motorcycle-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_mobile_phone')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-mobile-phone-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_furniture')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-furniture-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_outdoor')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-outdoor-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_optician')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-optician-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_wine')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-alcohol-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_alcohol')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-alcohol-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_electronics')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-electronics-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_gift')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-gift-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_shoes')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+         #endif
+
+       STYLE
+          SYMBOL "symbols-shop-shoes-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_photography')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-photo-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_photo_studio')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-photo-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_photo')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-photo-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_pet')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-pet-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_bicycle')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-bicycle-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_car_repair')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shopping-car-repair-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_car_parts')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-car-parts-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_car')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-car-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_ice_cream')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-ice-cream-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_hifi')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-hifi-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_hairdresser')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-hairdresser-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_farm')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-greengrocer-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_greengrocer')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-greengrocer-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_garden_centre')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-garden-centre-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_florist')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-florist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_seafood')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-seafood-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_fishmonger')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-seafood-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_laundry')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-laundry-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_dry_cleaning')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-laundry-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_hardware')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-diy-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_doityourself')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-diy-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_deli')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+         #endif
+
+       STYLE
+          SYMBOL "symbols-deli-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_perfumery')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-perfumery-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_cosmetics')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+         #endif
+
+       STYLE
+          SYMBOL "symbols-perfumery-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_copyshop')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-copyshop-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_confectionery')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-confectionery-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_convenience')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-convenience-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_computer')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-computer-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_fashion')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-clothes-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_clothes')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-clothes-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_chemist')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-chemist-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_butcher')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-butcher-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_books')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-library-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_beverages')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-beverages-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_beauty')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-beauty-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_bakery')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-shop-bakery-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_bag')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-bag-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_art')
+      LABEL
+        #if _display_symamenities_z18
+        SIZE 7.4
+        COLOR "#8E198F"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+        STYLE
+          SYMBOL "symbols-art-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'historic_memorial')
+      LABEL
+        STYLE
+          SYMBOL "symbols-tourist-memorial-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_water_tower')
+      LABEL
+        STYLE
+          SYMBOL "symbols-water-tower-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_prison')
+      LABEL
+        STYLE
+          SYMBOL "symbols-prison-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_drinking_water')
+      LABEL
+        STYLE
+          SYMBOL "symbols-drinking-water-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_toilets')
+      LABEL
+        STYLE
+          SYMBOL "symbols-toilets-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_emergency_phone')
+      LABEL
+        STYLE
+          SYMBOL "symbols-emergency-phone-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_telephone')
+      LABEL
+        STYLE
+          SYMBOL "symbols-telephone-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_fast_food')
+      LABEL
+        STYLE
+          SYMBOL "symbols-fast-food-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_food_court')
+      LABEL
+        STYLE
+          SYMBOL "symbols-restaurant-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_restaurant')
+      LABEL
+        SIZE 7.4
+        COLOR "#6C4810"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-restaurant-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_recycling')
+      LABEL
+        STYLE
+          SYMBOL "symbols-recycling-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_biergarten')
+      LABEL
+        STYLE
+          SYMBOL "symbols-biergarten-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_pub')
+      LABEL
+        STYLE
+          SYMBOL "symbols-pub-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_post_office')
+      LABEL
+        STYLE
+          SYMBOL "symbols-post-office-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_post_box')
+      LABEL
+        STYLE
+          SYMBOL "symbols-post-box-12-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'historic_wayside_cross')
+      LABEL
+        STYLE
+          SYMBOL "symbols-christian-9-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_cross')
+      LABEL
+        STYLE
+          SYMBOL "symbols-christian-9-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_veterinary')
+      LABEL
+        STYLE
+          SYMBOL "symbols-veterinary-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_dentist')
+      LABEL
+        STYLE
+          SYMBOL "symbols-dentist-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_doctors')
+      LABEL
+        STYLE
+          SYMBOL "symbols-doctors-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_pharmacy')
+      LABEL
+        SIZE 7.4
+        COLOR "#DA0090"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-pharmacy-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_mast')
+      LABEL
+        STYLE
+          SYMBOL "symbols-communications-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_social_facility')
+      LABEL
+        STYLE
+          SYMBOL "symbols-social-facility-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_community_centre')
+      LABEL
+        STYLE
+          SYMBOL "symbols-community-centre-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_embassy')
+      LABEL
+        STYLE
+          SYMBOL "symbols-embassy-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_information')
+      LABEL
+        STYLE
+          SYMBOL "symbols-information-12-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_ice_cream')
+      LABEL
+        STYLE
+          SYMBOL "symbols-ice-cream-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_motel')
+      LABEL
+        SIZE 7.4
+        COLOR "#0E4EFF"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-motel-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_hotel')
+      LABEL
+        SIZE 7.4
+        COLOR "#0E4EFF"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-hotel-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_hostel')
+      LABEL
+        SIZE 7.4
+        COLOR "#0E4EFF"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-hostel-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_guest_house')
+      LABEL
+        STYLE
+          SYMBOL "symbols-guest-house-p-16-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_fuel')
+      LABEL
+        STYLE
+          SYMBOL "symbols-fuel-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_charging_station')
+      LABEL
+        STYLE
+          SYMBOL "symbols-charging-station-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_nightclub')
+      LABEL
+        STYLE
+          SYMBOL "symbols-nightclub-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_chalet')
+      LABEL
+        STYLE
+          SYMBOL "symbols-chalet-p-16-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_car_wash')
+      LABEL
+        STYLE
+          SYMBOL "symbols-car-wash-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_car_rental')
+      LABEL
+        STYLE
+          SYMBOL "symbols-rental-car-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_artwork')
+      LABEL
+        STYLE
+          SYMBOL "symbols-artwork-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_cafe')
+      LABEL
+        STYLE
+          SYMBOL "symbols-cafe-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'highway_traffic_signals')
+      LABEL
+        STYLE
+          SYMBOL "symbols-traffic-light-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_taxi')
+      LABEL
+        STYLE
+          SYMBOL "symbols-taxi-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'highway_bus_stop')
+      LABEL
+        partials false
+        SIZE 7.4
+        COLOR "#094AFF"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-bus-stop-12-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_bicycle_rental')
+      LABEL
+        STYLE
+          SYMBOL "symbols-rental-bicycle-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_bar')
+      LABEL
+        STYLE
+          SYMBOL "symbols-bar-16-svg"
+        END
+      END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_bank')
+      LABEL
+        STYLE
+          SYMBOL "symbols-bank-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_atm')
+      LABEL
+        STYLE
+          SYMBOL "symbols-atm-16-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z16
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_hunting_stand')
+      LABEL
+        STYLE
+          SYMBOL "symbols-hunting-stand-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_windmill')
+      LABEL
+        STYLE
+          SYMBOL "symbols-windmill-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'aeroway_helipad')
+      LABEL
+        STYLE
+          SYMBOL "symbols-helipad-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_picnic_site')
+      LABEL
+        STYLE
+          SYMBOL "symbols-picnic-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_department_store')
+      LABEL
+        partials false
+        SIZE 7.4
+        COLOR "#9C399C"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 2
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-department-store-p-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'shop_supermarket')
+      LABEL
+        partials false
+        SIZE 7.4
+        COLOR "#9C399C"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 2
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+          SYMBOL "symbols-shop-supermarket-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'historic_archaeological_site')
+      LABEL
+        STYLE
+          SYMBOL "symbols-archaeological-site-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'historic_monument')
+      LABEL
+        STYLE
+          SYMBOL "symbols-monument-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_obelisk')
+      LABEL
+        STYLE
+          SYMBOL "symbols-monument-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_viewpoint')
+      LABEL
+        STYLE
+          SYMBOL "symbols-viewpoint-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_theatre')
+        STYLE
+          SYMBOL "symbols-theatre-16-svg"
+        END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_police')
+      LABEL
+        STYLE
+          SYMBOL "symbols-police-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_place_of_worship')
+      LABEL
+        STYLE
+          SYMBOL "symbols-place-of-worship-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_clinic')
+      LABEL
+        STYLE
+          SYMBOL "symbols-doctors-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_museum')
+      LABEL
+        STYLE
+          SYMBOL "symbols-museum-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_townhall')
+      LABEL
+        STYLE
+          SYMBOL "symbols-town-hall-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_courthouse')
+      LABEL
+        STYLE
+          SYMBOL "symbols-courthouse-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_library')
+      LABEL
+        STYLE
+          SYMBOL "symbols-library-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_fire_station')
+      LABEL
+        STYLE
+          SYMBOL "symbols-firestation-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_cinema')
+      LABEL
+        STYLE
+          SYMBOL "symbols-cinema-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_caravan_site')
+      LABEL
+        STYLE
+          SYMBOL "symbols-caravan-park-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'highway_ford')
+      LABEL
+        STYLE
+          SYMBOL "symbols-ford-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_camp_site')
+      LABEL
+        STYLE
+          SYMBOL "symbols-camping-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_bus_station')
+      LABEL
+        STYLE
+          SYMBOL "symbols-bus-station-n-16-png"
+          size 14
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'highway_bus_stop')
+        STYLE
+          SYMBOL "symbols-square-bus-svg"
+          size 5
+        END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_shelter')
+      LABEL
+        STYLE
+          SYMBOL "symbols-shelter-14-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z15
+    CLASS
+     EXPRESSION ('[feature]' = 'natural_cave_entrance')
+      LABEL
+        STYLE
+          SYMBOL "symbols-cave-14-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'natural_saddle')
+      LABEL
+        STYLE
+          SYMBOL "symbols-saddle-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'man_made_lighthouse')
+      LABEL
+        STYLE
+          SYMBOL "symbols-lighthouse-16-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'leisure_golf_course')
+      LABEL
+        STYLE
+          SYMBOL "symbols-golf-p-20-png"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_hospital')
+      LABEL
+        #if _display_symamenities_z16
+        partials false
+        SIZE 7.4
+        COLOR "#DA008D"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 0
+        POSITION lc
+        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        #endif
+
+         STYLE
+          SYMBOL "symbols-hospital-16-svg"
+         end
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z14
+    CLASS
+     EXPRESSION ('[feature]' = 'natural_spring')
+      LABEL
+        STYLE
+          SYMBOL "symbols-spring-svg"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z13
+    CLASS
+     EXPRESSION ('[feature]' = 'tourism_alpine_hut')
+      LABEL
+        STYLE
+          SYMBOL "symbols-alpinehut-p-16-png"
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z11
+    CLASS
+     EXPRESSION ('[feature]' = 'natural_volcano')
+      LABEL
+        STYLE
+          SYMBOL "symbols-peak-svg"
+        END
+      END
+    END
+    CLASS
+     EXPRESSION ('[feature]' = 'natural_peak')
+      LABEL
+        STYLE
+          SYMBOL "symbols-peak-svg"
+        END
+      END
+    END
+    #endif
+  END
+#endif
+#endif

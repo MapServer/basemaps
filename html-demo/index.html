@@ -35,9 +35,9 @@
 <div id="mapid"></div>
 <script language="JavaScript">
 
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps';
     //    server:
-    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+//    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/LAYER@GoogleMapsCompatible/{z}/{x}/{y}.png';
 //    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_default_sym_style_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
@@ -87,7 +87,7 @@
     var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('LAYER', 'osm_google_no_labels_ts'), {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    }).addTo(map);
+    });
 
     var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('LAYER', 'osm_google_labels_only_ts'), {
         'tms': true,
@@ -102,12 +102,18 @@
         attribution: "Efficity"
     });
 
+    var googleSymLayer = L.tileLayer.wms(url + "/osm-google-buildings-symbols.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Efficity"
+    }).addTo(map);
+
     var defaultSymLayer = L.tileLayer.wms(url + "/osm-default-symbols.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
-        attribution: "Efficity",
-        singleTile: true
+        attribution: "Efficity"
     });
 
     var googleLabelsOnlyLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
@@ -138,6 +144,13 @@
         attribution: "Efficity"
     });
 
+    var blackWhiteLayer = L.tileLayer.wms(url + "osm-black-white.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Nicolas Ribot for MapServer project"
+    });
+
     //    defaultSource.getLayer("default").addTo(map);
     //    bingSource.getLayer("default").addTo(map);
     //    googleSource.getLayer("default").addTo(map);
@@ -152,10 +165,12 @@
         "MC Google labels only": googleLabelsOnlyMapcacheLayer,
         "MS Default+Symbols": defaultSymLayer,
         "MS Google": googleLayer,
+        "MS Google+symbols": googleSymLayer,
         "MS Bing": bingLayer,
         "MS Michelin": michelinLayer,
         "MS Google no labels": googleNoLabelsLayer,
-        "MS Google labels only": googleLabelsOnlyLayer
+        "MS Google labels only": googleLabelsOnlyLayer,
+        "MS default B&W": blackWhiteLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);

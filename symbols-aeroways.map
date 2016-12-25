@@ -1,0 +1,25 @@
+#if _display_geometries == 1
+#if _display_symbols == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symairport,_layer_suffix)
+    DATA _symairport_data
+    CLASSITEM "name"
+    CLASS
+      EXPRESSION /^Aéroport.*$/
+      LABEL
+        PARTIALS false
+        STYLE
+          SYMBOL "airport"
+        END
+      END
+    END
+END
+#endif
+#endif

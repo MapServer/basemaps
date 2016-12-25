@@ -1,0 +1,175 @@
+#if _display_geometries == 1
+#if _display_symbols == 1
+  LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symstations,_layer_suffix)
+    DATA _symstations_data
+
+    #if _display_symamenities_z18
+    CLASS
+      EXPRESSION ('[railway]' = 'subway_entrance')
+      LABEL
+        PARTIALS false
+        STYLE
+            SYMBOL "symbols-entrance-10-svg"
+            size 5
+        END
+    END
+    #endif
+
+    #if _display_symamenities_z16
+    CLASS
+      EXPRESSION ('[railway]' = 'tram_stop')
+      LABEL
+        SIZE 7.438257993384785
+        COLOR "#4957ad"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 5
+        POSITION lc
+        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 5
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z15
+    CLASS
+      EXPRESSION ('[railway]' = 'tram_stop')
+      LABEL
+        PARTIALS false
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 7
+      END
+    END
+    CLASS
+      EXPRESSION ('[railway]' = 'halt')
+      LABEL
+        SIZE 7.438257993384785
+        COLOR "#4957ad"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 5
+        POSITION lc
+        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 7
+        END
+      END
+    END
+    CLASS
+      EXPRESSION ('[railway]' = 'station')
+      LABEL
+        SIZE 8.232083792723264
+        COLOR "#4957ad"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 5
+        POSITION lc
+        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 7
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z14
+    CLASS
+      EXPRESSION ('[railway]' = 'station')
+      LABEL
+        SIZE 7.438257993384785
+        COLOR "#4957ad"
+        TEXT '[name]'
+        OUTLINECOLOR "#ffffff99"
+        OUTLINEWIDTH 2.3814773980154356
+        OFFSET 0 9
+        POSITION lc
+        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 5
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z13
+    CLASS
+      EXPRESSION ('[railway]' = 'tram_stop')
+      LABEL
+        PARTIALS false
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 5
+        END
+      END
+    END
+    CLASS
+      EXPRESSION ('[railway]' = 'halt')
+      LABEL
+        PARTIALS false
+        STYLE
+         SYMBOL "symbols-square-svg"
+         size 5
+        END
+      END
+    END
+    CLASS
+      EXPRESSION ('[railway]' = 'station')
+      LABEL
+        PARTIALS false
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 5
+        END
+      END
+    END
+    #endif
+
+    #if _display_symamenities_z12
+    CLASS
+      EXPRESSION ('[railway]' = 'station')
+      LABEL
+        PARTIALS false
+        STYLE
+            SYMBOL "symbols-square-svg"
+            size 3
+        END
+      END
+    END
+    #endif
+  END
+#endif
+#endif
