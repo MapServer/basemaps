@@ -1,0 +1,353 @@
+tags:
+  load_all: true
+  exclude:
+  - created_by
+  - source
+  - "tiger:*"
+
+tables:
+  admin:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: admin_level
+      name: admin_level
+      type: integer
+    - name: tags
+      type: hstore_tags
+    mapping:
+      boundary:
+      - administrative
+    type: polygon
+  airports:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - key: alt_name
+      name: alt_name
+      type: string
+    - key: int_name
+      name: int_name
+      type: string
+    - key: ele
+      name: elevation
+      type: integer
+    - key: iata
+      name: iata
+      type: string
+    - key: icao
+      name: icao
+      type: string
+    - key: website
+      name: website
+      type: string
+    - key: wikipedia
+      name: wikipedia
+      type: string
+    - key: ifr
+      name: ifr
+      type: string
+    - key: vfr
+      name: vfr
+      type: string
+    mapping:
+      aeroway:
+      - aerodrome
+      - terminal
+      - helipad
+    type: point
+  amenities:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: addr:street
+      name: address
+      type: string
+    - key: addr:housenumber
+      name: housenumber
+      type: string
+    - key: addr:postcode
+      name: postcode
+      type: string
+    - key: addr:city
+      name: city
+      type: string
+    - key: addr:housename
+      name: housename
+      type: string
+    - key: opening_hours
+      name: opening_hours
+      type: string
+    - key: phone
+      name: phone
+      type: string
+    - key: website
+      name: website
+      type: string
+    - name: tags
+      type: hstore_tags
+    mapping:
+      amenity:
+      - __any__
+    type: point
+  shops:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: addr:street
+      name: address
+      type: string
+    - key: addr:postcode
+      name: postcode
+      type: string
+    - key: addr:housenumber
+      name: housenumber
+      type: string
+    - key: addr:housename
+      name: housename
+      type: string
+    - key: addr:city
+      name: city
+      type: string
+    - key: opening_hours
+      name: opening_hours
+      type: string
+    - key: phone
+      name: phone
+      type: string
+    - key: cuisine
+      name: cuisine
+      type: string
+    - key: website
+      name: website
+      type: string
+    - key: service
+      name: service
+      type: string
+    - key: shop
+      name: shop
+      type: string
+    - key: brand
+      name: brand
+      type: string
+    - key: operator
+      name: operator
+      type: string
+    - key: wheelchair
+      name: wheelchair
+      type: string
+    - name: tags
+      type: hstore_tags
+    mapping:
+      shop:
+      - __any__
+    type: point
+  places:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: wikipedia
+      name: wikipedia
+      type: string
+    - key: postal_code
+      name: postal_code
+      type: string
+    - name: tags
+      type: hstore_tags
+    - args:
+        values:
+        - locality
+        - suburb
+        - hamlet
+        - village
+        - town
+        - city
+        - county
+        - region
+        - state
+        - country
+      name: z_order
+      type: enumerate
+    - key: population
+      name: population
+      type: integer
+    mapping:
+      place:
+      - country
+      - state
+      - region
+      - county
+      - city
+      - town
+      - village
+      - hamlet
+      - suburb
+      - locality
+    type: point
+  roads:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - name: type
+      type: mapping_value
+    - key: name
+      name: name
+      type: string
+    - key: tunnel
+      name: tunnel
+      type: boolint
+    - key: bridge
+      name: bridge
+      type: boolint
+    - key: oneway
+      name: oneway
+      type: direction
+    - key: ref
+      name: ref
+      type: string
+    - key: layer
+      name: z_order
+      type: wayzorder
+    - key: access
+      name: access
+      type: string
+    - key: service
+      name: service
+      type: string
+    - name: class
+      type: mapping_key
+    filters:
+      exclude_tags:
+      - - area
+        - 'yes'
+    mappings:
+      railway:
+        mapping:
+          railway:
+          - rail
+          - tram
+          - light_rail
+          - subway
+          - narrow_gauge
+          - preserved
+          - funicular
+          - monorail
+          - disused
+      roads:
+        mapping:
+          highway:
+          - motorway
+          - motorway_link
+          - trunk
+          - trunk_link
+          - primary
+          - primary_link
+          - secondary
+          - secondary_link
+          - tertiary
+          - tertiary_link
+          - road
+          - path
+          - track
+          - service
+          - footway
+          - bridleway
+          - cycleway
+          - steps
+          - pedestrian
+          - living_street
+          - unclassified
+          - residential
+          - raceway
+          man_made:
+          - pier
+          - groyne
+    type: linestring
+  transport_areas:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    mapping:
+      aeroway:
+      - aerodrome
+      - terminal
+      - helipad
+      - apron
+      railway:
+      - station
+      - platform
+    type: polygon
+  transport_points:
+    fields:
+    - name: osm_id
+      type: id
+    - name: geometry
+      type: geometry
+    - key: name
+      name: name
+      type: string
+    - name: type
+      type: mapping_value
+    - key: ref
+      name: ref
+      type: string
+    mapping:
+      aeroway:
+      - aerodrome
+      - terminal
+      - helipad
+      - gate
+      highway:
+      - motorway_junction
+      - turning_circle
+      - bus_stop
+      railway:
+      - station
+      - halt
+      - tram_stop
+      - crossing
+      - level_crossing
+      - subway_entrance
+    type: point
