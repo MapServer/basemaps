@@ -986,6 +986,49 @@ vars = {
 
 styles = {
     'default': {},
+    'grayscale': {
+        'motorway_clr': "167 167 167",
+        'trunk_clr': "198 198 198",
+        'primary_clr': {
+            0: "180 180 180",
+            9: "240 240 240"
+        },
+        'secondary_clr': {
+            0: "180 180 180",
+            10: "240 240 240"
+        },
+        'tertiary_clr': {
+            0: "180 180 180",
+            12: "240 240 240"
+        },
+        'other_clr': {
+            0: "180 180 180",
+            14: "254 254 254"
+        },
+        'pedestrian_clr': "248 248 248",
+        'forest_clr': "208 208 208",
+        'industrial_clr': "206 206 206",
+        'education_clr': "207 207 207",
+        'hospital_clr': "205 205 205",
+        'residential_clr': "238 238 238",
+        'land_clr': "238 238 238",
+        'park_clr': "194 194 194",
+        'ocean_clr': "172 172 172",
+        'waterarea_clr': "172 172 172",
+        'river_clr': "172 172 172",
+        'stream_clr': "172 172 172",
+        'canal_clr': "172 172 172",
+
+        'motorway_ol_clr': "123 123 123",
+        'trunk_ol_clr': "160 160 160",
+        'primary_ol_clr': "180 180 180",
+        'secondary_ol_clr': "180 180 180",
+        'tertiary_ol_clr': "180 180 180",
+        'other_ol_clr': "180 180 180",
+        'pedestrian_ol_clr': "180 180 180",
+        'test_clr': "27 27 27",
+        'display_buildings': 0
+    },
     'symbols': {
         'display_symbols': {
             0: 0,
@@ -1386,7 +1429,7 @@ style_aliases = {
     "michelin": "default,outlined,centerlined,michelin",
 
     # TODO: Near B&W style based on default colors
-    # "black-white": "default,black_white"
+    "grayscale": "default,grayscale",
 
     # Nico Ribot: new aliases for labels-only and no-labels styles
     "google-no-labels": "default,outlined,google,geoms_only,buildings",
