@@ -1429,11 +1429,13 @@ style_aliases = {
     "michelin": "default,outlined,centerlined,michelin",
 
     # TODO: Near B&W style based on default colors
-    "grayscale": "default,grayscale",
+    "grayscale": "default,outlined,grayscale",
 
     # Nico Ribot: new aliases for labels-only and no-labels styles
     "google-no-labels": "default,outlined,google,geoms_only,buildings",
     "google-labels-only": "default,outlined,google,labels_only",
+    "google-grayscale": "default,google_grayscale",
+
 
     #Styles with sympbols
     #default with transport and amenities symbols
