@@ -1353,6 +1353,11 @@ styles = {
         'display_geometries': 1,
         'display_labels': 0
     },
+    'symbols_only': {
+        'display_geometries': 0,
+        'display_symbols': 1,
+        'display_labels': 0
+    },
     'buildings': {
         'display_buildings': {
             0: 0,
@@ -1372,24 +1377,32 @@ style_aliases = {
     # other layers without risk of confusion between layers.
     "default": "default",
 
-    #default with transport and amenities symbols
-    "default-symbols": "default,symbols",
-
     # a style resembling the google-maps theme
     "google": "default,outlined,google",
-    # a style resembling the google-maps theme, with OSM symbols
-    "google-buildings-symbols": "default,outlined,google,symbols,buildings",
 
     # same style as above, but using data coming from an osm2pgsql schema rather than imposm
     "googleosm2pgsql": "default,outlined,google,osm2pgsql",
     "bing": "default,outlined,bing",
     "michelin": "default,outlined,centerlined,michelin",
+
+    # TODO: Near B&W style based on default colors
+    # "black-white": "default,black_white"
+
     # Nico Ribot: new aliases for labels-only and no-labels styles
     "google-no-labels": "default,outlined,google,geoms_only,buildings",
     "google-labels-only": "default,outlined,google,labels_only",
 
-    # Near B&W style based on default colors
-    # "black-white": "default,black_white"
+    #Styles with sympbols
+    #default with transport and amenities symbols
+    "default-symbols": "default,symbols",
+
+    # a style resembling the google-maps theme, with OSM symbols
+    "google-buildings-symbols": "default,outlined,google,symbols,buildings",
+    "bing-buildings-symbols": "default,outlined,bing,symbols,buildings",
+
+    "michelin-buildings-symbols": "default,outlined,michelin,symbols,buildings",
+
+    "symbols-only": "symbols,symbols_only"
 }
 
 parser = OptionParser()

@@ -1,4 +1,3 @@
-#if _display_geometries == 1
 #if _display_symbols == 1
 #if _display_amenities == 1
   LAYER
@@ -1391,9 +1390,5 @@
     END
     #endif
   END
-
-
-
-#endif
 #endif
 #endif

@@ -1,4 +1,3 @@
-#if _display_geometries == 1
 #if _display_symbols == 1
   LAYER
     GROUP "default"
@@ -2375,5 +2374,4 @@
     END
     #endif
   END
-#endif
 #endif

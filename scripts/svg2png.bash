@@ -8,7 +8,7 @@ DIR=""
 ICON_SIZE=14
 ICON_DECREMENT=2
 #Prod: big quality, time consuming
-DENSITY=20000
+DENSITY=2000
 #Dev: more blury, fast to generate
 #DENSITY=800
 COLOR_BLACK="rgb(0,0,0)"

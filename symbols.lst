@@ -470,7 +470,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-department-store-p-16-svg
-    IMAGE symbols/png/department_store.p.16.png
+    IMAGE symbols/png/department_store2.png
     TYPE pixmap
   END
   SYMBOL

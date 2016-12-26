@@ -107,7 +107,28 @@
         format: 'image/png',
         transparent: true,
         attribution: "Efficity"
+    });
+
+    var symOnlyLayer = L.tileLayer.wms(url + "/osm-symbols-only.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Efficity"
     }).addTo(map);
+
+    var bingSymLayer = L.tileLayer.wms(url + "/osm-bing-buildings-symbols.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Efficity"
+    });
+
+    var michelinSymLayer = L.tileLayer.wms(url + "/osm-michelin-buildings-symbols.map", {
+        layers: 'default',
+        format: 'image/png',
+        transparent: true,
+        attribution: "Efficity"
+    });
 
     var defaultSymLayer = L.tileLayer.wms(url + "/osm-default-symbols.map", {
         layers: 'default',
@@ -164,10 +185,13 @@
         "MC Google no labels": googleNoLabelsMapcacheLayer,
         "MC Google labels only": googleLabelsOnlyMapcacheLayer,
         "MS Default+Symbols": defaultSymLayer,
+        "Symbols": symOnlyLayer,
         "MS Google": googleLayer,
         "MS Google+symbols": googleSymLayer,
         "MS Bing": bingLayer,
+        "MS Bing+symbols": bingSymLayer,
         "MS Michelin": michelinLayer,
+        "MS Micheling+symbols": michelinSymLayer,
         "MS Google no labels": googleNoLabelsLayer,
         "MS Google labels only": googleLabelsOnlyLayer,
         "MS default B&W": blackWhiteLayer
