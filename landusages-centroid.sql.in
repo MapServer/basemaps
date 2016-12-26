@@ -1,0 +1,13 @@
+-- Adds a new geometry column on landusages based on pointOnSurface,
+-- for efficient symbols rendering
+
+ALTER TABLE OSM_PREFIX_landusages
+  ADD COLUMN geometry_pt GEOMETRY(POINT, OSM_SRID);
+  
+UPDATE OSM_PREFIX_landusages
+    SET geometry_pt = st_pointOnSurface(geometry);
+
+CREATE INDEX OSM_PREFIX_landusages_geometry_pt_gist
+  ON OSM_PREFIX_landusages USING GIST (geometry_pt);
+
+VACUUM ANALYSE OSM_PREFIX_landusages;

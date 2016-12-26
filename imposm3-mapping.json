@@ -150,6 +150,16 @@
           "name": "power_source"
         },
         {
+          "type": "string",
+          "key": "power",
+          "name": "power"
+        },
+        {
+          "type": "string",
+          "key": "access",
+          "name": "access"
+        },
+        {
           "args": {
             "ranks": [
               "pedestrian",
@@ -346,7 +356,7 @@
         "generator:source": [
           "wind"
         ],
-        "power_source": [
+        "power:source": [
           "wind"
         ]
       }
@@ -768,6 +778,16 @@
           "type": "string",
           "key": "power:source",
           "name": "power_source"
+        },
+        {
+          "type": "string",
+          "key": "access",
+          "name": "access"
+        },
+        {
+          "type": "string",
+          "key": "power",
+          "name": "power"
         }
       ],
       "type": "point",
@@ -911,7 +931,7 @@
         "generator:source": [
           "wind"
         ],
-        "power_source": [
+        "power:source": [
           "wind"
         ]
       }

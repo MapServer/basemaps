@@ -43,7 +43,7 @@ includes=land.map landusage.map borders.map highways.map places.map symbols-aero
 mapfile=osm-$(STYLE).map
 here=`pwd`
 
-all:$(mapfile) boundaries.sql
+all:$(mapfile) boundaries.sql landusages-centroid.sql
 
 generated/$(STYLE)style.msinc: generate_style.py
 	python generate_style.py -s $(STYLE) -g > $@
@@ -120,6 +120,11 @@ $(mapfile):$(template) $(includes)
 boundaries.sql: boundaries.sql.in
 	cp -f $< $@
 	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+
+landusages-centroid.sql: landusages-centroid.sql.in
+	cp -f $< $@
+	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+	$(SED) -e 's/OSM_SRID/$(OSM_SRID)/g' $@
 
 clean:
 	rm -f generated/*
