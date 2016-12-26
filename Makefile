@@ -16,6 +16,7 @@ OSM_NAME_COLUMN=name
 #OSM_UNITS=dd
 #OSM_EXTENT=-180 -90 180 90
 
+
 OSM_SRID=3857
 OSM_UNITS=meters
 OSM_DB_CONNECTION=host=localhost dbname=osm user=ubuntu password=osm port=5436
