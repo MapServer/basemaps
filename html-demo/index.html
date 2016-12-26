@@ -35,7 +35,7 @@
 <div id="mapid"></div>
 <script language="JavaScript">
 
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps';
+//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
     //    server:
     var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
@@ -165,7 +165,7 @@
         attribution: "Efficity"
     });
 
-    var blackWhiteLayer = L.tileLayer.wms(url + "osm-black-white.map", {
+    var blackWhiteLayer = L.tileLayer.wms(url + "osm-grayscale.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
