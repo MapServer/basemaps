@@ -44,6 +44,7 @@
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
     var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
+        'errorTileUrl': 'tileerror.png',
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
@@ -51,16 +52,19 @@
     // forces B&W by Leaflet plugin
     var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('[LAYER]', 'osm_google_no_labels_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
     var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
     var symbolsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
@@ -69,6 +73,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -76,6 +81,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -83,6 +89,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     }).addTo(map);
 
@@ -90,6 +97,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -97,6 +105,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -104,6 +113,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -111,6 +121,7 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
@@ -118,12 +129,14 @@
         layers: 'default',
         format: 'image/png',
         transparent: true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "Efficity"
     });
 
     var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
         layers: 'default',
         format: 'image/png',
+        'errorTileUrl': 'tileerror.png',
         transparent: true,
         attribution: "Efficity"
     });
@@ -131,6 +144,7 @@
     var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
         layers: 'default',
         format: 'image/png',
+        'errorTileUrl': 'tileerror.png',
         transparent: true,
         attribution: "Efficity"
     });
@@ -138,6 +152,7 @@
     var blackWhiteLayer = L.tileLayer.wms(url + "osm-grayscale.map", {
         layers: 'default',
         format: 'image/png',
+        'errorTileUrl': 'tileerror.png',
         transparent: true,
         attribution: "Nicolas Ribot for MapServer project"
     });
@@ -146,16 +161,19 @@
     // forces B&W by Leaflet plugin
     var googleNoLabelsS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
     });
 
     var googleLabelsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
     });
 
     var symbolsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), {
         'tms': true,
+        'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
     });
 
@@ -166,22 +184,22 @@
     };
     var overlays = {
         "S3 Google no labels": googleNoLabelsS3Layer,
-        "S3 Google labels only": googleLabelsOnlyS3Layer,
-        "S3 OSM Symbols only": symbolsOnlyS3Layer,
         "MC Google no labels": googleNoLabelsMapcacheLayer,
-        "MC Google labels only": googleLabelsOnlyMapcacheLayer,
-        "MC OSM Symbols only": symbolsOnlyMapcacheLayer,
         "MS Default+Symbols": defaultSymLayer,
-        "Symbols": symOnlyLayer,
         "MS Google": googleLayer,
+        "MS Google no labels": googleNoLabelsLayer,
         "MS Google+symbols": googleSymLayer,
         "MS Bing": bingLayer,
         "MS Bing+symbols": bingSymLayer,
         "MS Michelin": michelinLayer,
         "MS Micheling+symbols": michelinSymLayer,
-        "MS Google no labels": googleNoLabelsLayer,
+        "MS Google Grayscale": blackWhiteLayer,
         "MS Google labels only": googleLabelsOnlyLayer,
-        "MS Google Grayscale": blackWhiteLayer
+        "MS OSM Symbols only": symOnlyLayer,
+        "MC Google labels only": googleLabelsOnlyMapcacheLayer,
+        "MC OSM Symbols only": symbolsOnlyMapcacheLayer,
+        "S3 Google labels only": googleLabelsOnlyS3Layer,
+        "S3 OSM Symbols only": symbolsOnlyS3Layer,
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
