@@ -70,7 +70,7 @@
     </cache>
 
     <cache name="s3" type="s3">
-        <url>https://efficity-basemap.s3.amazonaws.com/mapcache/{tileset}/{grid}/{z}/{x}/{y}/{ext}</url>
+        <url>https://efficity-basemap.s3.amazonaws.com/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</url>
         <headers>
             <Host>efficity-basemap.s3.amazonaws.com</Host>
         </headers>
