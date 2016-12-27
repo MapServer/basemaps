@@ -12,23 +12,18 @@
     <script src="leaflet.zoomdisplay-src.js"></script>
     <script src="Leaflet.Coordinates.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
-
     <style>
         #mapid {
             height: 100%;
             width: 100%;
         }
-
         .leaflet-tile-border {
             border: solid black 1px;
         }
-
         .img-trans {
             opacity: 0.5;
             display: inline-block;
         }
-
-
     </style>
 </head>
 <body>
@@ -36,45 +31,15 @@
 <script language="JavaScript">
 
 //    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
-    //    server:
     var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
-    var urlMapcache = '/mapcache-osm/tms/1.0.0/LAYER@GoogleMapsCompatible/{z}/{x}/{y}.png';
-//    var urlMapcache = '/mapcache-osm/tms/1.0.0/osm_default_sym_style_ts@GoogleMapsCompatible/{z}/{x}/{y}.png';
-    //    var urlMapcache = '/mapcache-cache/{z}/{x}/{y}.png';
-
-    //    var bingSource = L.WMS.source(url + "osm-bing.map", {
-    //        'transparent': true,
-    //        'tiled': true
-    //
-    //    });
-    //
-    //    var michelinSource = L.WMS.source(url + "osm-michelin.map", {
-    //        'transparent': true,
-    //        'tiled': false
-    //    });
-    //
-    //    var googleSource = L.WMS.source(url + "osm-google.map", {
-    //        'transparent': true,
-    //        'tiled': false
-    //    });
-    //
-    //    var defaultSource = L.WMS.source(url + "osm-default.map", {
-    //        'transparent': true,
-    //        'tiled': false
-    //    });
+    var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
+    var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
 //        [43.604, 1.40], 8
         [43.6447, 1.4557], 11
     );
-
-    //    var defaultLayer = L.tileLayer.wms(url + "/osm-default.map", {
-    //        layers: 'default',
-    //        format: 'image/png',
-    //        transparent: true,
-    //        attribution: "Efficity"
-    //    }).addTo(map);
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
     var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -84,17 +49,17 @@
 
     ////////////// Mapcache layers for Efficity Application ////////////////////////////////////////////////////////////
     // forces B&W by Leaflet plugin
-    var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('LAYER', 'osm_google_no_labels_ts'), {
+    var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('[LAYER]', 'osm_google_no_labels_ts'), {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
-    var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('LAYER', 'osm_google_labels_only_ts'), {
+    var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
-    var symbolsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('LAYER', 'osm_symbols_only_ts'), {
+    var symbolsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), {
         'tms': true,
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
@@ -177,16 +142,32 @@
         attribution: "Nicolas Ribot for MapServer project"
     });
 
-    //    defaultSource.getLayer("default").addTo(map);
-    //    bingSource.getLayer("default").addTo(map);
-    //    googleSource.getLayer("default").addTo(map);
-    //    michelinSource.getLayer("default").addTo(map);
+    ////////////// S3 pure rest layers for Efficity Application ////////////////////////////////////////////////////////////
+    // forces B&W by Leaflet plugin
+    var googleNoLabelsS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
+    });
+
+    var googleLabelsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
+    });
+
+    var symbolsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
+    });
+
     var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
         'empty': emptyLayer,
         "OSM b&w ": osmLayer
     };
     var overlays = {
+        "S3 Google no labels": googleNoLabelsS3Layer,
+        "S3 Google labels only": googleLabelsOnlyS3Layer,
+        "S3 OSM Symbols only": symbolsOnlyS3Layer,
         "MC Google no labels": googleNoLabelsMapcacheLayer,
         "MC Google labels only": googleLabelsOnlyMapcacheLayer,
         "MC OSM Symbols only": symbolsOnlyMapcacheLayer,
