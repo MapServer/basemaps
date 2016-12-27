@@ -94,6 +94,11 @@
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
+    var symbolsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('LAYER', 'osm_symbols_only_ts'), {
+        'tms': true,
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    });
+
     ////////////// MapServer layers to test Mapserver available styles ////////////////////////////////////////////////////
     var googleLayer = L.tileLayer.wms(url + "/osm-google.map", {
         layers: 'default',
@@ -184,6 +189,7 @@
     var overlays = {
         "MC Google no labels": googleNoLabelsMapcacheLayer,
         "MC Google labels only": googleLabelsOnlyMapcacheLayer,
+        "MC OSM Symbols only": symbolsOnlyMapcacheLayer,
         "MS Default+Symbols": defaultSymLayer,
         "Symbols": symOnlyLayer,
         "MS Google": googleLayer,
