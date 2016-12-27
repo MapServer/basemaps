@@ -3,47 +3,62 @@
 <!-- see the accompanying mapcache.xml.sample for a fully commented configuration file -->
 
 <mapcache>
-   <metadata>
-      <title>Efficity OSM Mapcache Tile Service</title>
-      <abstract>OSM FR data tile service backed by MapServer/Mapcache with google-style styling</abstract>
-   </metadata>
+    <metadata>
+        <title>Efficity OSM Mapcache Tile Service</title>
+        <abstract>OSM FR data tile service backed by MapServer/Mapcache with google-style styling</abstract>
+    </metadata>
 
-<!--____________ sources___________________-->
+    <!--____________ sources___________________-->
 
-   <source name="osm_google_no_labels_src" type="wms">
-      <getmap>
-         <params>
-            <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
-             <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
-            <LAYERS>default</LAYERS>
-            <FORMAT>image/png</FORMAT>
-            <TRANSPARENT>true</TRANSPARENT>
-         </params>
-      </getmap>
-      <http>
-         <url>http://localhost/cgi-bin/mapserv</url>
-      </http>
-   </source>
+    <source name="osm_google_no_labels_src" type="wms">
+        <getmap>
+            <params>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
+                <LAYERS>default</LAYERS>
+                <FORMAT>image/png</FORMAT>
+                <TRANSPARENT>true</TRANSPARENT>
+            </params>
+        </getmap>
+        <http>
+            <url>http://localhost/cgi-bin/mapserv</url>
+        </http>
+    </source>
 
-   <source name="osm_google_labels_only_src" type="wms">
-      <getmap>
-         <params>
-            <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-labels-only.map</MAP>
-             <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map</MAP>-->
-            <LAYERS>default</LAYERS>
-            <FORMAT>image/png</FORMAT>
-            <TRANSPARENT>true</TRANSPARENT>
-         </params>
-      </getmap>
-      <http>
-         <url>http://localhost/cgi-bin/mapserv</url>
-      </http>
-   </source>
+    <source name="osm_google_labels_only_src" type="wms">
+        <getmap>
+            <params>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-labels-only.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map</MAP>-->
+                <LAYERS>default</LAYERS>
+                <FORMAT>image/png</FORMAT>
+                <TRANSPARENT>true</TRANSPARENT>
+            </params>
+        </getmap>
+        <http>
+            <url>http://localhost/cgi-bin/mapserv</url>
+        </http>
+    </source>
+
+    <source name="osm_symbols_only_src" type="wms">
+        <getmap>
+            <params>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-symbols-only.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-symbols-only.map</MAP>-->
+                <LAYERS>default</LAYERS>
+                <FORMAT>image/png</FORMAT>
+                <TRANSPARENT>true</TRANSPARENT>
+            </params>
+        </getmap>
+        <http>
+            <url>http://localhost/cgi-bin/mapserv</url>
+        </http>
+    </source>
 
 
-<!--____________ caches___________________-->
+    <!--____________ caches___________________-->
 
-   <cache name="disk" type="disk" layout="template">
+    <cache name="disk" type="disk" layout="template">
         <base>/data_big2/Documents/geodata/caches/mapcache</base>
         <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
 
@@ -52,51 +67,77 @@
 
         <!--no symlink for template (only for defautl layout)-->
         <!--<symlink_blank/>-->
-   </cache>
+    </cache>
 
-<!--____________ tilesets ___________________-->
+    <cache name="s3" type="s3">
+        <url>https:///efficity-basemap.s3.amazonaws.com/mapcache/{tileset}/{grid}/{z}/{x}/{y}/{ext}</url>
+        <headers>
+            <Host>efficity-basemap.s3.amazonaws.com</Host>
+        </headers>
+        <id>AKIAIFAKQ3HXVU4NRVYQ</id>
+        <secret>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</secret>
+        <region>us-east-1</region>
+        <operation type="put">
+            <headers>
+                <x-amz-storage-class>REDUCED_REDUNDANCY</x-amz-storage-class>
+                <x-amz-acl>public-read</x-amz-acl>
+            </headers>
+        </operation>
+    </cache>
 
-  <tileset name="osm_google_no_labels_ts">
-      <source>osm_google_no_labels_src</source>
-      <cache>disk</cache>
-      <grid>GoogleMapsCompatible</grid>
-      <format>PNG</format>
-      <metatile>8 8</metatile>
-      <metabuffer>10</metabuffer>
-      <expires>3600</expires>
-   </tileset>
+    <!--____________ tilesets ___________________-->
 
-  <tileset name="osm_google_labels_only_ts">
-      <source>osm_google_labels_only_src</source>
-      <cache>disk</cache>
-      <grid>GoogleMapsCompatible</grid>
-      <format>PNG</format>
-      <metatile>8 8</metatile>
-      <metabuffer>10</metabuffer>
-      <expires>3600</expires>
-   </tileset>
+    <tileset name="osm_google_no_labels_ts">
+        <source>osm_google_no_labels_src</source>
+        <cache>disk</cache>
+        <grid>GoogleMapsCompatible</grid>
+        <format>PNG</format>
+        <metatile>8 8</metatile>
+        <metabuffer>10</metabuffer>
+        <expires>3600</expires>
+    </tileset>
 
-<!--____________ services ___________________-->
-   <service type="wms" enabled="true">
-      <full_wms>assemble</full_wms>
-      <resample_mode>bilinear</resample_mode>
-      <format>PNG</format>
-      <maxsize>4096</maxsize>
-   </service>
-   <service type="wmts" enabled="true"/>
-   <service type="tms" enabled="true"/>
-   <service type="kml" enabled="true"/>
-   <service type="gmaps" enabled="true"/>
-   <service type="ve" enabled="true"/>
-   <service type="mapguide" enabled="true"/>
-   <service type="demo" enabled="true"/>
+    <tileset name="osm_google_labels_only_ts">
+        <source>osm_google_labels_only_src</source>
+        <cache>disk</cache>
+        <grid>GoogleMapsCompatible</grid>
+        <format>PNG</format>
+        <metatile>8 8</metatile>
+        <metabuffer>10</metabuffer>
+        <expires>3600</expires>
+    </tileset>
 
-<!--____________ conf ___________________-->
-   <errors>report</errors>
+    <tileset name="osm_symbols_only_ts">
+        <source>osm_symbols_only_src</source>
+        <cache>s3</cache>
+        <grid>GoogleMapsCompatible</grid>
+        <format>PNG</format>
+        <metatile>8 8</metatile>
+        <metabuffer>10</metabuffer>
+        <expires>3600</expires>
+    </tileset>
 
-   <locker type="disk">
-     <!--<directory>/Volumes/GROSSD/tmp/mapcache</directory>-->
-     <directory>/data_big2/Documents/geodata/caches/mapcache</directory>
-     <timeout>300</timeout>
+    <!--____________ services ___________________-->
+    <service type="wms" enabled="true">
+        <full_wms>assemble</full_wms>
+        <resample_mode>bilinear</resample_mode>
+        <format>PNG</format>
+        <maxsize>4096</maxsize>
+    </service>
+    <service type="wmts" enabled="true"/>
+    <service type="tms" enabled="true"/>
+    <service type="kml" enabled="true"/>
+    <service type="gmaps" enabled="true"/>
+    <service type="ve" enabled="true"/>
+    <service type="mapguide" enabled="true"/>
+    <service type="demo" enabled="true"/>
+
+    <!--____________ conf ___________________-->
+    <errors>report</errors>
+
+    <locker type="disk">
+        <!--<directory>/Volumes/GROSSD/tmp/mapcache</directory>-->
+        <directory>/data_big2/Documents/geodata/caches/mapcache</directory>
+        <timeout>300</timeout>
     </locker>
 </mapcache>
