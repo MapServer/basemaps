@@ -9,165 +9,39 @@
     TYPE POINT
     NAME layername(symstations,_layer_suffix)
     DATA _symstations_data
+    CLASSITEM "railway"
 
-    #if _display_symamenities_z18
+    CLASS
+      EXPRESSION {station,halt,tram_stop}
+      LABEL
+        SIZE _symstation_lbl_size
+        COLOR _symstation_lbl_clr
+        TEXT _sym_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 5
+        POSITION lc
+        FONT _symstation_lbl_font
+        TYPE truetype
+        MAXLENGTH 0
+        WRAP " "
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_symbol
+            size _symstation_size
+        END
+      END
+    END
+
     CLASS
       EXPRESSION ('[railway]' = 'subway_entrance')
       LABEL
         PARTIALS false
         STYLE
-            SYMBOL "symbols-entrance-10-svg"
-            size 5
-        END
-    END
-    #endif
-
-    #if _display_symamenities_z16
-    CLASS
-      EXPRESSION ('[railway]' = 'tram_stop')
-      LABEL
-        SIZE 7.438257993384785
-        COLOR "#4957ad"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 5
-        POSITION lc
-        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 5
+            SYMBOL _symsubway_entrance_symbol
+            size _symsubway_entrance_size
         END
       END
-    END
-    #endif
-
-    #if _display_symamenities_z15
-    CLASS
-      EXPRESSION ('[railway]' = 'tram_stop')
-      LABEL
-        PARTIALS false
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 7
-      END
-    END
-    CLASS
-      EXPRESSION ('[railway]' = 'halt')
-      LABEL
-        SIZE 7.438257993384785
-        COLOR "#4957ad"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 5
-        POSITION lc
-        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 7
-        END
-      END
-    END
-    CLASS
-      EXPRESSION ('[railway]' = 'station')
-      LABEL
-        SIZE 8.232083792723264
-        COLOR "#4957ad"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 5
-        POSITION lc
-        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 7
-        END
-      END
-    END
-    #endif
-
-    #if _display_symamenities_z14
-    CLASS
-      EXPRESSION ('[railway]' = 'station')
-      LABEL
-        SIZE 7.438257993384785
-        COLOR "#4957ad"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 9
-        POSITION lc
-        FONT "NotoSansUIBold,NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 5
-        END
-      END
-    END
-    #endif
-
-    #if _display_symamenities_z13
-    CLASS
-      EXPRESSION ('[railway]' = 'tram_stop')
-      LABEL
-        PARTIALS false
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 5
-        END
-      END
-    END
-    CLASS
-      EXPRESSION ('[railway]' = 'halt')
-      LABEL
-        PARTIALS false
-        STYLE
-         SYMBOL "symbols-square-svg"
-         size 5
-        END
-      END
-    END
-    CLASS
-      EXPRESSION ('[railway]' = 'station')
-      LABEL
-        PARTIALS false
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 5
-        END
-      END
-    END
-    #endif
-
-    #if _display_symamenities_z12
-    CLASS
-      EXPRESSION ('[railway]' = 'station')
-      LABEL
-        PARTIALS false
-        STYLE
-            SYMBOL "symbols-square-svg"
-            size 3
-        END
-      END
-    END
-    #endif
+    end
   END
 #endif

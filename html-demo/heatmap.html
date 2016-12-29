@@ -1,0 +1,100 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
+    <link rel="stylesheet" href="leaflet.zoomdisplay.css"/>
+    <link rel="stylesheet" href="Leaflet.Coordinates.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="leaflet.wms.js"></script>
+    <script src="TileLayer.Grayscale.js"></script>
+    <script src="leaflet.zoomdisplay-src.js"></script>
+    <script src="Leaflet.Coordinates.js"></script>
+    <script src="leaflet-heat.js"></script>
+    <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+
+    <!--todo: json from WS-->
+    <script src="data/streets_json.js"></script>
+    <script src="data/prices_json.js"></script>
+    <style>
+        #mapid {
+            height: 100%;
+            width: 100%;
+        }
+
+        .leaflet-tile-border {
+            border: solid black 1px;
+        }
+
+        .img-trans {
+            opacity: 0.5;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div id="mapid"></div>
+<script language="JavaScript">
+    var vecStyle = {
+        fillColor: "#FF0000",
+        weight: 2,
+        opacity: 1,
+        color: '#000000',
+        dashArray: '3',
+        fillOpacity: 0.5
+    };
+
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    //    var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+
+    var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
+    var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
+
+    var map = L.map('mapid').setView(
+        [48.868, 2.445], 14
+    );
+
+    ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
+    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        'errorTileUrl': 'tileerror.png',
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+
+    // vector streets: todo: ws
+    var vectorStreetLayer = L.geoJson(streets_json, {
+        style: vecStyle
+    }).addTo(map);
+
+
+    // heatmap:
+    //TODO: data from WS
+    var heatmapStreetLayer = L.heatLayer(price_points,
+        {radius: 25}).addTo(map);
+
+    var emptyLayer = L.tileLayer('').addTo(map);
+    var baseLayers = {
+        'empty': emptyLayer,
+        "OSM b&w ": osmLayer
+    };
+    var overlays = {
+        "Rues vector": vectorStreetLayer,
+        "HeatMap Leaflet": heatmapStreetLayer
+//        "GDAL raster": gdalStreetLayer,
+    };
+
+    L.control.layers(baseLayers, overlays).addTo(map);
+
+    // coordinates:
+    L.control.coordinates().addTo(map);
+
+    //custom button
+    L.easyButton('<img id="imggrid" class="img-trans" width="18" height="18" src="grid.png">', function (btn, map) {
+        $('.leaflet-tile').toggleClass('leaflet-tile-border');
+        $('#imggrid').toggleClass('img-trans');
+    }).addTo(map);
+
+</script>
+</body>
+</html>

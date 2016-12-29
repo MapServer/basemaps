@@ -2,6 +2,14 @@
 # adds symbols management
 # original symbol in osmbase.map
 SYMBOLSET
+    #empty symbol
+    SYMBOL
+     name "nosymbol"
+     type ellipse
+     points 0 0 end
+     filled false
+    END
+
     # cities
     SYMBOL
      name "citycircle"
@@ -270,7 +278,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-hospital-16-svg
-    IMAGE symbols/png/hospital.16.png
+    IMAGE symbols/png/hopital.16.png
     TYPE pixmap
   END
   SYMBOL
@@ -335,7 +343,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-post-box-12-svg
-    IMAGE symbols/png/post_box-12.png
+    IMAGE symbols/png/LaPoste-BAL.png
     TYPE pixmap
   END
   SYMBOL
@@ -859,6 +867,11 @@ SYMBOLSET
     TYPE pixmap
   END
   SYMBOL
+    NAME symbols-metro-png
+    IMAGE symbols/png/logo-metro-16.png
+    TYPE pixmap
+  END
+  SYMBOL
     NAME symbols-square-bus-svg
     IMAGE symbols/png/square-bus.png
     TYPE pixmap
@@ -895,7 +908,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-recycling-16-svg
-    IMAGE symbols/png/recycling.16.png
+    IMAGE symbols/png/recycling.png
     TYPE pixmap
   END
   SYMBOL
@@ -915,7 +928,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-post-office-14-svg
-    IMAGE symbols/png/post_office-14.png
+    IMAGE symbols/png/laposte.png
     TYPE pixmap
   END
   SYMBOL
@@ -925,7 +938,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-pharmacy-16-svg
-    IMAGE symbols/png/pharmacy.16.png
+    IMAGE symbols/png/pharmacy.png
     TYPE pixmap
   END
   SYMBOL

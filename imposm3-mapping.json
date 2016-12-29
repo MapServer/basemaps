@@ -672,6 +672,36 @@
           "type": "string",
           "name": "aerialway",
           "key": "aerialway"
+        },
+        {
+          "type": "string",
+          "name": "operator",
+          "key": "operator"
+        },
+        {
+          "type": "string",
+          "name": "usage",
+          "key": "usage"
+        },
+        {
+          "type": "string",
+          "name": "type_ratp",
+          "key": "type:RATP"
+        },
+        {
+          "type": "string",
+          "name": "network",
+          "key": "network"
+        },
+        {
+          "type": "string",
+          "name": "highway",
+          "key": "highway"
+        },
+        {
+          "type": "string",
+          "name": "amenity",
+          "key": "amenity"
         }
       ],
       "type": "point",
@@ -694,6 +724,9 @@
           "motorway_junction",
           "turning_circle",
           "bus_stop"
+        ],
+        "amenity": [
+          "bus_station"
         ]
       }
     },

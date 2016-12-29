@@ -10,13 +10,81 @@
     TYPE POINT
     NAME layername(symamenities_pg,_layer_suffix)
     DATA _symamenities_pg_data
-    #if _display_symamenities_z17
+
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_pharmacy')
+      LABEL
+        TYPE TRUETYPE
+        SIZE _sym_lbl_size
+        COLOR _sympharmacy_lbl_clr
+        TEXT _sym_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 0
+        PRIORITY 2
+        FONT _sympharmacy_lbl_font
+        POSITION lc
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+        ALIGN CENTER
+        STYLE
+          SYMBOL _sympharmacy_symbol
+        END
+      END
+    END
+
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_hospital')
+      LABEL
+        partials false
+        SIZE _symhospital_lbl_size
+        COLOR _symhospital_lbl_clr
+        TEXT _symhospital_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 0
+        POSITION lc
+        FONT _symhospital_lbl_font
+        TYPE TRUETYPE
+        POSITION lc
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+        ALIGN CENTER
+         STYLE
+          SYMBOL _symhospital_symbol
+         end
+      END
+    END
+
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_post_office')
+      LABEL
+        STYLE
+          SYMBOL _sympost_symbol
+          size _sympost_size
+        END
+      END
+    END
+
+    CLASS
+     EXPRESSION ('[feature]' = 'amenity_post_box')
+      LABEL
+        STYLE
+          SYMBOL _sympostbox_symbol
+        END
+      END
+    END
+
     CLASS
       EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_motorcycle_parking') )
       LABEL
         STYLE
         OPACITY 0.33
-          SYMBOL "symbols-motorcycle-parking-16-svg"
+          SYMBOL _symmotorparking_symbol
         END
       END
     END
@@ -25,7 +93,7 @@
       LABEL
         STYLE
         OPACITY 0.33
-          SYMBOL "symbols-bicycle-parking-16-svg"
+          SYMBOL _symbikeparking_symbol
         END
       END
     END
@@ -34,11 +102,12 @@
       LABEL
         STYLE
         OPACITY 0.33
-          SYMBOL "symbols-parking-svg"
+          SYMBOL _symparking_symbol
         END
       END
     END
 
+    #if _display_symamenities_z17
     CLASS
      EXPRESSION (('[access]' != '') AND ('[access]' != 'yes') AND ('[feature]' = 'leisure_playground'))
       LABEL
@@ -871,14 +940,6 @@
       END
     END
     CLASS
-     EXPRESSION ('[feature]' = 'amenity_pharmacy')
-      LABEL
-        STYLE
-          SYMBOL "symbols-pharmacy-16-svg"
-        END
-      END
-    END
-    CLASS
      EXPRESSION ('[feature]' = 'man_made_mast')
       LABEL
         STYLE
@@ -1320,30 +1381,6 @@
       LABEL
         STYLE
           SYMBOL "symbols-golf-p-20-png"
-        END
-      END
-    END
-    CLASS
-     EXPRESSION ('[feature]' = 'amenity_hospital')
-      LABEL
-        #if _display_symamenities_z16
-        partials false
-        SIZE 7.4
-        COLOR "#DA008D"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 0
-        POSITION lc
-        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        #endif
-
-        STYLE
-          SYMBOL "symbols-hospital-16-svg"
         END
       END
     END

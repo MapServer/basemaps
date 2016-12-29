@@ -1,39 +1,3 @@
-# 16 dec 2016:
-# Prepare a symbols-only style based on "official" OSM style
-#
-
-Mapfile generated from magnacarto: osm-carto-master
-
-Symbols put in symbols.lst.
-
--- launch test with:
-/Users/nicolas/bin/go/bin/imposm3 import -appendcache -config imposm3-conf.json -read /Volumes/TISSD/geodata/OSM/limousin-latest.osm.pbf -write -diff
-
--- relaunch for tlse city with prefix newosm.
-
--- prepare mapfile:
--- scale-dependant values to put into variables
-
-TODO: list of categories + zoom level
- => name of amenities => regex from mapnik config
- => new imposm conf to take data from osm
- => MS symbols and labels.
-
- List of new tables if any,
- List of new columns in tables
- => new conf
-
--- TODO: fonts from mapnik
-
--- 20 dec 2016:
-/Users/nicolas/bin/go/bin/imposm3 import -appendcache -config imposm3-conf.json -read /Volumes/TISSD/geodata/OSM/Toulouse.osm.pbf -write -diff
-
--- TODO: column pointOnSurface for landusage, with spatial index
-
--- 25 dec:
-TODO: access field for parkings.
-
-
     'google': {
         'motorway_clr': "253 146 58",
         'trunk_clr': "255 195 69",
@@ -74,5 +38,8 @@ TODO: access field for parkings.
         'tertiary_ol_clr': '193 181 157',
         'other_ol_clr': '193 181 157',
         'pedestrian_ol_clr': '193 181 157',
+        'test_clr': '1 18 157',
         'display_buildings': 0
     },
+
+

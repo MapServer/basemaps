@@ -1060,7 +1060,7 @@ styles = {
         },
         'symstations_data': {
             0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway,  CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
-            15: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway,  CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
+            15: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway,  CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' or highway = \'bus_stop\' or amenity = \'bus_station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
         },
         'display_symamenities_z18': {
             0: 0,
@@ -1094,6 +1094,94 @@ styles = {
             0: 0,
             11: 1
         },
+
+        # Stations properties
+        'symstation_lbl_size': {
+            0: 0,
+            15: 8.23
+        },
+        'symstation_lbl_clr': "73 87 173",
+        'symstation_lbl_font': "NotoSansUIBold",
+        'symstation_symbol': {
+            0: "nosymbol",
+            # 12: "symbols-square-svg"
+            12: "symbols-post-office-14-svg"
+        },
+        'symstation_size': {
+            0: 0,
+            12: 13,
+            13: 15,
+            15: 77
+        },
+        'symsubway_entrance_symbol': "symbols-entrance-10-svg",
+        'symsubway_entrance_size': {
+            0: 0,
+            18: 5
+        },
+
+        # amenities point properties
+
+        'sym_lbl_size': {
+            0: 0,
+            16: 7.4
+        },
+        'sym_lbl_txt': {
+            0: "''",
+            16: "'[name]'"
+        },
+        'sympharmacy_symbol': {
+            0: "nosymbol",
+            16: "symbols-pharmacy-16-svg"
+        },
+        'sym_lbl_ol_width': 2.3814773980154356,
+        'sympharmacy_lbl_clr': "0 133 48",
+        'sym_lbl_ol_clr': "255 255 255",
+        'sympharmacy_lbl_font': "NotoSansUIRegular",
+
+        'symmotorparking_symbol': {
+            0: "nosymbol",
+            16: "symbols-motorcycle-parking-16-svg"
+        },
+        'symbikeparking_symbol': {
+            0: "nosymbol",
+            16: "symbols-bicycle-parking-16-svg"
+        },
+        'symparking_symbol': {
+            0: "nosymbol",
+            15: "symbols-parking-svg"
+        },
+        'sympost_symbol': {
+            0: "nosymbol",
+            16: "symbols-post-office-14-svg"
+        },
+        'sympost_size': {
+            0: 0,
+            16: 14
+        },
+        'sympostbox_symbol': {
+            0: "nosymbol",
+            17: "symbols-post-box-12-svg"
+        },
+        'sympostbox_size': {
+            0: 0,
+            17: 12,
+        },
+        'symhospital_lbl_clr': "16 82 188",
+        'symhospital_lbl_font': "NotoSansUIRegular",
+        'symhospital_symbol': {
+            0: "nosymbol",
+            15: "symbols-hospital-16-svg"
+        },
+        'symhospital_lbl_txt': {
+            0: "''",
+            15: "'[name]'"
+        },
+        'symhospital_lbl_size': {
+            0: 0,
+            15: 7.4
+        },
+        # amenities polygon properties
+        # aeroways properties
 
     },
     'outlined': {
