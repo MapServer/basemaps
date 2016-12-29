@@ -54,11 +54,18 @@
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
-    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
+//    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//        maxZoom: 18,
+//        'errorTileUrl': 'tileerror.png',
+//        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+//    });
+
+    var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), {
+        'tms': true,
         'errorTileUrl': 'tileerror.png',
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    });
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    }).addTo(map);
+
 
     // vector streets: todo: ws
     var vectorStreetLayer = L.geoJson(streets_json, {
@@ -71,10 +78,11 @@
     var heatmapStreetLayer = L.heatLayer(price_points,
         {radius: 25}).addTo(map);
 
-    var emptyLayer = L.tileLayer('').addTo(map);
+//    var emptyLayer = L.tileLayer('').addTo(map);
+    var emptyLayer = L.tileLayer('');
     var baseLayers = {
-        'empty': emptyLayer,
-        "OSM b&w ": osmLayer
+        "OSM b&w ": googleNoLabelsMapcacheLayer,
+        'empty': emptyLayer
     };
     var overlays = {
         "Rues vector": vectorStreetLayer,
