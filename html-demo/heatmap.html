@@ -1,9 +1,13 @@
 <html>
 <head>
+    <link rel="stylesheet" href="js/lib/jquery/jquery-ui-1.10.3.custom.min.css" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="leaflet.zoomdisplay.css"/>
+    <link rel="stylesheet" href="leaflet.rasterctrl.css"/>
     <link rel="stylesheet" href="Leaflet.Coordinates.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+    <link rel="stylesheet" href="js/lib/opacity/Control.Opacity.css" />
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
@@ -11,8 +15,13 @@
     <script src="TileLayer.Grayscale.js"></script>
     <script src="leaflet.zoomdisplay-src.js"></script>
     <script src="Leaflet.Coordinates.js"></script>
+    <script src="leaflet.rasterctrl-src.js"></script>
     <script src="leaflet-heat.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+
+    <script src="js/lib/opacity/Control.Opacity.js"></script>
+    <script src="js/lib/jquery/jquery-1.9.1.js"></script>
+    <script src="js/lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
 
     <!--todo: json from WS-->
     <script src="data/points.json"></script>
@@ -35,8 +44,6 @@
 </head>
 <body>
 <div id="mapid"></div>
-<!--todo: leaflet plugin for heatmap layer-->
-<div id="ctrl">minOpacity: <input type="text"/> maxZoom: <input type="text"/></div>
 <script language="JavaScript">
     var vecStyle = {
         fillColor: "#FF0000",
@@ -92,13 +99,13 @@
 
     // raster:
     //TODO: data from WS
-    var rasterStreetLayer = L.tileLayer.wms(url + "raster.map", {
+    var rasterObsLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'price',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
         attribution: "Efficity Prices",
-        opacity: 0.6
+        opacity: 0.5
     }).addTo(map);
 
 
@@ -110,7 +117,7 @@
     };
     var overlays = {
         "HeatMap Leaflet": heatmapStreetLayer,
-        "GDAL raster": rasterStreetLayer,
+        "GDAL raster": rasterObsLayer,
         "Observations": pointLayer
     };
 
@@ -125,7 +132,11 @@
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
 
-    heatmapStreetLayer.redraw();
+    var opacitySlider = new L.Control.opacitySlider();
+    opacitySlider.setOpacityLayer(rasterObsLayer);
+    map.addControl(opacitySlider);
+
+//    heatmapStreetLayer.redraw();
 
 </script>
 </body>
