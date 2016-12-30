@@ -35,6 +35,8 @@
 </head>
 <body>
 <div id="mapid"></div>
+<!--todo: leaflet plugin for heatmap layer-->
+<div id="ctrl">minOpacity: <input type="text"/> maxZoom: <input type="text"/></div>
 <script language="JavaScript">
     var vecStyle = {
         fillColor: "#FF0000",
@@ -50,7 +52,7 @@
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
-        [48.868, 2.445], 14
+        [48.4041, 2.6704], 11
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
@@ -75,8 +77,20 @@
 
     // heatmap:
     //TODO: data from WS
-    var heatmapStreetLayer = L.heatLayer(price_points,
-        {radius: 25}).addTo(map);
+    var heatmapStreetLayer = L.heatLayer(price_points, {
+        radius: 25,
+//        maxZoom: 17
+    });
+
+    // raster:
+    //TODO: data from WS
+    var rasterStreetLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'price',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'tileerror.png',
+        attribution: "Efficity Prices"
+    }).addTo(map);
 
 //    var emptyLayer = L.tileLayer('').addTo(map);
     var emptyLayer = L.tileLayer('');
@@ -86,8 +100,8 @@
     };
     var overlays = {
         "Rues vector": vectorStreetLayer,
-        "HeatMap Leaflet": heatmapStreetLayer
-//        "GDAL raster": gdalStreetLayer,
+        "HeatMap Leaflet": heatmapStreetLayer,
+        "GDAL raster": rasterStreetLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
