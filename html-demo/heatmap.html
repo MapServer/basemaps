@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
 
     <!--todo: json from WS-->
-    <script src="data/streets_json.js"></script>
+    <script src="data/points.json"></script>
     <script src="data/prices_json.js"></script>
     <style>
         #mapid {
@@ -45,8 +45,8 @@
         color: '#000000'
     };
 
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
-        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+//        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
@@ -70,9 +70,9 @@
 
 
     // vector streets: todo: ws
-    var vectorStreetLayer = L.geoJson(streets_json, {
-        style: vecStyle
-    }).addTo(map);
+//    var vectorPointLayer = L.geoJson(points_json, {
+//        style: vecStyle
+//    }).addTo(map);
 
 
     // heatmap:
@@ -82,6 +82,14 @@
 //        maxZoom: 17
     });
 
+    var pointLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'obs_pts',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'tileerror.png',
+        attribution: "Efficity Prices"
+    }).addTo(map);
+
     // raster:
     //TODO: data from WS
     var rasterStreetLayer = L.tileLayer.wms(url + "raster.map", {
@@ -89,8 +97,10 @@
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices"
+        attribution: "Efficity Prices",
+        opacity: 0.6
     }).addTo(map);
+
 
 //    var emptyLayer = L.tileLayer('').addTo(map);
     var emptyLayer = L.tileLayer('');
@@ -99,9 +109,9 @@
         'empty': emptyLayer
     };
     var overlays = {
-        "Rues vector": vectorStreetLayer,
         "HeatMap Leaflet": heatmapStreetLayer,
-        "GDAL raster": rasterStreetLayer
+        "GDAL raster": rasterStreetLayer,
+        "Observations": pointLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);

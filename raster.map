@@ -2,6 +2,7 @@ MAP
 IMAGETYPE png
 MAXSIZE 4000
 SIZE 800 800
+SYMBOLSET "symbols.lst"
 EXTENT -36387 5247099 384161 5628555
 UNITS meters
 WEB
@@ -33,7 +34,7 @@ END
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
-         OPACITY 70
+         OPACITY 100
        END
 
        PROJECTION
@@ -41,4 +42,24 @@ END
        END
        DATA "html-demo/data/price_grid1_clr_mask.tif"
     END
+
+    layer
+        type point
+        status on
+        name "obs_pts"
+        #CONNECTIONTYPE postgis
+        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        #data "geom from (select geom, id, (price/surface::float) as price_m2 from price_font) as t using unique id using srid=3857"
+        data "html-demo/data/points.shp"
+        CLASS
+            style
+                color 34 34 34
+                size 3
+                symbol "citycircle"
+            end
+        end
+    end
 END
