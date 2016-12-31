@@ -5,9 +5,11 @@
     height: auto;
     /*line-height: 26px;*/
     display: block;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     color: black;
     padding-top: 0.3em;
-    font: bold 12px/20px Tahoma, Verdana, sans-serif;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font: 12px/20px Tahoma, Verdana, sans-serif;
 }

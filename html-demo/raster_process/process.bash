@@ -5,6 +5,9 @@
 # TODO: unify conn params
 DBCON="-h localhost -p 5438 -U nicolas -d osm"
 
+GDALDIR=/Library/Frameworks/GDAL.framework/Versions/Current/Programs/
+PGDIR=/usr/local/pgsql-9.6/bin
+
 #-- TODO: test several band types...
 #-- TODO: test several algorithms...
 
@@ -16,20 +19,32 @@ DBCON="-h localhost -p 5438 -U nicolas -d osm"
 #pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
 #pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
 
-echo "generating raster grid from points observations..."
-gdal_grid -l points  \
+${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
+${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
+
+
+METH="invdist:power=3:smoothing=20:radius1=200:radius2=200"
+
+echo "generating raster grid from points observations... $1"
+${GDALDIR}/gdal_grid -l points  -a "$1" \
     ../data/points.shp \
     ../data/price_grid1.tif
-
+#
 #    PG:"dbname=osm user=nicolas host=localhost port=5438" \
+
+# gdal rasterize:
+#gdal_rasterize -3d -l points ../data/points.shp ../data/price_grid1.tif
+
 
 # color relief:
 echo "producing color-relief image based on ramp..."
-gdaldem color-relief ../data/price_grid1.tif color_relief.txt ../data/price_grid1_clr.tif
+#gdaldem color-relief ../data/price_grid1.tif color_relief2.txt ../data/price_grid1_clr.tif
+${GDALDIR}/gdaldem color-relief ../data/price_grid1.tif tmpramp.txt ../data/price_grid1_clr.tif
 
 # line cut
 echo "masking and smoothing image by commune pg..."
-gdalwarp -s_srs EPSG:3857 -t_srs EPSG:3857 \
+${GDALDIR}/gdalwarp \
+    -s_srs EPSG:3857 -t_srs EPSG:3857 \
    -cutline ../data/mask.shp -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr.tif \

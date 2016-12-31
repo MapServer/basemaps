@@ -27,6 +27,10 @@ OUTPUTFORMAT
   EXTENSION "png"
   TRANSPARENT FALSE
 END
+
+### Roads as google style
+    include "roads_inc.map"
+
     LAYER
        TYPE raster
        STATUS ON

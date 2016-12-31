@@ -1,13 +1,13 @@
 <html>
 <head>
-    <link rel="stylesheet" href="js/lib/jquery/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" href="js/lib/jquery/jquery-ui-1.10.3.custom.min.css"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="leaflet.zoomdisplay.css"/>
     <link rel="stylesheet" href="leaflet.rasterctrl.css"/>
     <link rel="stylesheet" href="Leaflet.Coordinates.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
-    <link rel="stylesheet" href="js/lib/opacity/Control.Opacity.css" />
+    <link rel="stylesheet" href="js/lib/opacity/Control.Opacity.css"/>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
@@ -22,6 +22,7 @@
     <script src="js/lib/opacity/Control.Opacity.js"></script>
     <script src="js/lib/jquery/jquery-1.9.1.js"></script>
     <script src="js/lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
 
     <!--todo: json from WS-->
     <script src="data/points.json"></script>
@@ -41,6 +42,60 @@
             display: inline-block;
         }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            var presets = {
+                preset1: {
+                    method: "invdist",
+                    ramp: [
+                        [251, "#c63640"],
+                        [224, "#fbff80"],
+                        [122, "#c63640"],
+                        [255, "#c63640"],
+                        [403, "#c63640"],
+                    ],
+
+
+                },
+                preset2: {},
+            };
+
+            var options = {
+                //            target: '#divToUpdate',
+                url: 'php/runraster.php',
+                success: function (responseText, statusText, xhr, $form) {
+                    console.log(responseText);
+                    rasterObsLayer.setParams({ts: Date.now()}).redraw();
+                },
+                error: function (responseText, statusText, xhr, $form) {
+                    alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+                        '\n\nThe output div should have already been updated with the responseText.');
+                }
+            };
+
+            $('#form1').ajaxForm(options);
+
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "php/readramp.php", //Relative or absolute path to response.php file
+                success: function (effGgdalRamp) {
+                    // sets ramp values
+                    for (var i = 0; i < effGgdalRamp.length; i++) {
+                        if ((effGgdalRamp[i][0].length > 0)) {
+                            $('#rval' + (i+1)).val(effGgdalRamp[i][0]);
+                            $('#clr' +(i+1)).val(effGgdalRamp[i][1]);
+                        }
+                    }
+                },
+                error: function (data) {
+                    console.dir(data.responseText);
+                }
+            });
+
+        });
+    </script>
 </head>
 <body>
 <div id="mapid"></div>
@@ -52,34 +107,34 @@
         color: '#000000'
     };
 
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
-        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+    //        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
-        [48.4041, 2.6704], 11
+        [48.3841, 2.6644], 13
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
-//    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//        maxZoom: 18,
-//        'errorTileUrl': 'tileerror.png',
-//        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-//    });
+    //    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //        maxZoom: 18,
+    //        'errorTileUrl': 'tileerror.png',
+    //        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    //    });
 
     var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), {
         'tms': true,
         'errorTileUrl': 'tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    }).addTo(map);
+    });
 
 
     // vector streets: todo: ws
-//    var vectorPointLayer = L.geoJson(points_json, {
-//        style: vecStyle
-//    }).addTo(map);
+    //    var vectorPointLayer = L.geoJson(points_json, {
+    //        style: vecStyle
+    //    }).addTo(map);
 
 
     // heatmap:
@@ -109,8 +164,8 @@
     }).addTo(map);
 
 
-//    var emptyLayer = L.tileLayer('').addTo(map);
-    var emptyLayer = L.tileLayer('');
+    //    var emptyLayer = L.tileLayer('').addTo(map);
+    var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
         "OSM b&w ": googleNoLabelsMapcacheLayer,
         'empty': emptyLayer
@@ -136,8 +191,10 @@
     opacitySlider.setOpacityLayer(rasterObsLayer);
     map.addControl(opacitySlider);
 
-//    heatmapStreetLayer.redraw();
+    //    heatmapStreetLayer.redraw();
 
 </script>
 </body>
 </html>
+
+<!--http://localhost/basemap/php/runraster.php?method=invdist&smoothing=0&rval1=213&clr1=%232e9a58&rval2=250&clr2=%23b8ff85&rval3=300&clr3=%23f2ff0d&rval4=350&clr4=%23ffab4c&rval5=403&clr5=%23ff0000-->
