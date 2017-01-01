@@ -63,7 +63,7 @@ ${GDALDIR}/gdaldem color-relief ../data/price_grid1.tif tmpramp.txt ../data/pric
 # line cut
 echo "masking and smoothing image by commune pg..."
 ${GDALDIR}/gdalwarp \
-    -r bilinear  \
+    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
    -cutline ../data/mask.shp -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr.tif \
