@@ -15,12 +15,12 @@ PGDIR=/usr/local/pgsql-9.6/bin
 #psql $DBCON -f create_struct.sql
 
 # exports points as shapefile
-#echo "dumping pts/mask as shp"
-#pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
-#pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
+echo "dumping pts/mask as shp"
+pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
+pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
 
-${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
-${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
+#${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
+#${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
 
 
 METH="invdist:power=3:smoothing=20:radius1=200:radius2=200"

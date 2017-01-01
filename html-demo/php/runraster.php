@@ -28,10 +28,25 @@ for ($x = 1; $x <= 5; $x++) {
 }
 
 fwrite($ramp, $rampTxt);
-fclose(ramp);
+fclose($ramp);
+chmod($ramp, 0777);
+
+# params according to method
+if ($_GET["method"] == 'invdist') {
+    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"]) .
+        ':radius2='. htmlspecialchars($_GET["radius2"]) . ':smoothing='. htmlspecialchars($_GET["smoothing"]) .
+        ':angle='. htmlspecialchars($_GET["angle"]) ;
+} elseif ($_GET["method"] == 'linear') {
+    $method = htmlspecialchars($_GET["method"]) . ':radius='. htmlspecialchars($_GET["radius1"]);
+} elseif ($_GET["method"] == 'nearest') {
+    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
+        . ':radius2='. htmlspecialchars($_GET["radius2"]) .
+        ':angle='. htmlspecialchars($_GET["angle"]) ;
+} else {
+
+}
 
 //read params and relaunch script
-$method = htmlspecialchars($_GET["method"]) . ':radius='. htmlspecialchars($_GET["radius"]);
 $cmd = './process.bash ' . $method;
 $output = shell_exec($cmd);
 echo "$output";

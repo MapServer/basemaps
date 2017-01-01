@@ -56,13 +56,32 @@ END
         PROJECTION
            "init=epsg:3857"
         END
-        #data "geom from (select geom, id, (price/surface::float) as price_m2 from price_font) as t using unique id using srid=3857"
+        #data "geom from (select geom, id, from price_font) as t using unique id using srid=3857"
         data "html-demo/data/points.shp"
         CLASS
             style
                 color 34 34 34
                 size 3
                 symbol "citycircle"
+            end
+        end
+    end
+    layer
+        type point
+        status on
+        name "obs_pts_lbl"
+        #CONNECTIONTYPE postgis
+        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        #data "geom from (select geom, id, price_m2 from price_font) as t using unique id using srid=3857"
+        data "html-demo/data/points.shp"
+        labelitem "PRICE_M2"
+        CLASS
+            label
+                size small
+                color 0 0 0
             end
         end
     end

@@ -25,8 +25,8 @@
     <script src="http://malsup.github.com/jquery.form.js"></script>
 
     <!--todo: json from WS-->
-    <script src="data/points.json"></script>
-    <script src="data/prices_json.js"></script>
+    <!--<script src="data/points.json"></script>-->
+    <!--<script src="data/prices_json.js"></script>-->
     <style>
         #mapid {
             height: 100%;
@@ -107,14 +107,14 @@
         color: '#000000'
     };
 
-//    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
-            var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+    var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+//            var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
-        [48.3841, 2.6644], 13
+        [48.4248, 2.6937], 12
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
@@ -130,28 +130,12 @@
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
-
-    // vector streets: todo: ws
-    //    var vectorPointLayer = L.geoJson(points_json, {
-    //        style: vecStyle
-    //    }).addTo(map);
-
-
     // heatmap:
     //TODO: data from WS
-    var heatmapStreetLayer = L.heatLayer(price_points, {
-        radius: 25,
-//        maxZoom: 17
-    });
-
-    // obs point
-    var pointLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'obs_pts',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices"
-    }).addTo(map);
+//    var heatmapStreetLayer = L.heatLayer(price_points, {
+//        radius: 25,
+////        maxZoom: 17
+//    });
 
     // raster:
     //TODO: data from WS
@@ -163,6 +147,24 @@
         attribution: "Efficity Prices",
         opacity: 0.5
     }).addTo(map);
+
+    // obs point
+    var pointLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'obs_pts',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'tileerror.png',
+        attribution: "Efficity Prices"
+    }).addTo(map);
+
+    // obs point lables
+    var pointLblLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'obs_pts_lbl',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'tileerror.png',
+        attribution: "Efficity Prices"
+    });
 
     // streets
     var streetLayer = L.tileLayer.wms(url + "raster.map", {
@@ -181,10 +183,11 @@
         'empty': emptyLayer
     };
     var overlays = {
-        "HeatMap Leaflet": heatmapStreetLayer,
+//        "HeatMap Leaflet": heatmapStreetLayer,
         "GDAL raster": rasterObsLayer,
+        "Streets": streetLayer,
         "Observations": pointLayer,
-        "Streets": streetLayer
+        "Observations prices": pointLblLayer,
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
