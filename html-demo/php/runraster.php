@@ -47,7 +47,7 @@ if ($_GET["method"] == 'invdist') {
 }
 
 //read params and relaunch script
-$cmd = './process.bash ' . $method;
+$cmd = './process.bash ' . $method . ' 2>&1';
 $output = shell_exec($cmd);
 echo "$output";
 

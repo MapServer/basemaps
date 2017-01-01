@@ -2,11 +2,29 @@
 # 29 dec 2016:
 # shell cmds to generate raster/heatmap from prices:
 
+# plateform detection:
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+   platform='freebsd'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   platform='osx'
+fi
+
 # TODO: unify conn params
 DBCON="-h localhost -p 5438 -U nicolas -d osm"
 
-GDALDIR=/Library/Frameworks/GDAL.framework/Versions/Current/Programs/
-PGDIR=/usr/local/pgsql-9.6/bin
+if [[ "$platform" == 'osx' ]]; then
+    GDALDIR=/Library/Frameworks/GDAL.framework/Versions/Current/Programs/
+    PGDIR=/usr/local/pgsql-9.6/bin
+elif [[ "$platform" == 'linux' ]]; then
+    GDALDIR=/usr/bin
+    PGDIR=/usr/bin
+fi
+
+echo "script running on: $platform"
 
 #-- TODO: test several band types...
 #-- TODO: test several algorithms...
@@ -15,9 +33,9 @@ PGDIR=/usr/local/pgsql-9.6/bin
 #psql $DBCON -f create_struct.sql
 
 # exports points as shapefile
-echo "dumping pts/mask as shp"
-pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
-pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
+#echo "dumping pts/mask as shp"
+#pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
+#pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
 
 #${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
 #${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
