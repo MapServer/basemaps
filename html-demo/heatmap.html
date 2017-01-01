@@ -41,6 +41,10 @@
             opacity: 0.5;
             display: inline-block;
         }
+
+        input:disabled {
+            background: #dddddd;
+        }
     </style>
 
     <script>
@@ -92,6 +96,43 @@
                 error: function (data) {
                     console.dir(data.responseText);
                 }
+            });
+
+            // disable ui according to method:
+            $('#selmethod').change(function() {
+               if ($( "select option:selected" ).val() == 'linear') {
+                   $( "#radius1" ).prop( "disabled", false );
+                   $( "#power" ).prop( "disabled", true );
+                   $( "#smoothing" ).prop( "disabled", true );
+                   $( "#radius2" ).prop( "disabled", true );
+                   $( "#angle" ).prop( "disabled", true );
+               } else if ($( "select option:selected" ).val() == 'invdist') {
+                   $( "#power" ).prop( "disabled", false );
+                   $( "#smoothing" ).prop( "disabled", false );
+                   $( "#radius1" ).prop( "disabled", false );
+                   $( "#radius2" ).prop( "disabled", false );
+                   $( "#angle" ).prop( "disabled", false );
+               } else if ($( "select option:selected" ).val() == 'invdistnn') {
+                   $( "#power" ).prop( "disabled", false );
+                   $( "#radius1" ).prop( "disabled", false );
+                   $( "#smoothing" ).prop( "disabled", true );
+                   $( "#radius2" ).prop( "disabled", true );
+                   $( "#angle" ).prop( "disabled", true );
+               } else if ($( "select option:selected" ).val() == 'average') {
+                   $( "#radius1" ).prop( "disabled", false );
+                   $( "#radius2" ).prop( "disabled", false );
+                   $( "#angle" ).prop( "disabled", false );
+                   $( "#power" ).prop( "disabled", true );
+                   $( "#smoothing" ).prop( "disabled", true );
+               } else if ($( "select option:selected" ).val() == 'nearest') {
+                   $( "#radius1" ).prop( "disabled", false );
+                   $( "#radius2" ).prop( "disabled", false );
+                   $( "#angle" ).prop( "disabled", false );
+                   $( "#power" ).prop( "disabled", true );
+                   $( "#smoothing" ).prop( "disabled", true );
+               } else {
+
+               }
             });
 
         });

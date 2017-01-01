@@ -14,16 +14,17 @@ L.Control.RasterCtrl = L.Control.extend({
     "<option default>nearest</option>" +
     "<option default>linear</option>" +
     "</select><br/>" +
-    "Power: <input type='number' name='power' min='0' max='100000' step='1' value='2'><br/>" +
-    "Smoothing: <input type='number' name='smoothing' min='0' max='10000' step='2' value='0'><br/>" +
-    "Radius1: <input type='number' name='radius1' min='-1' max='10000' step='1' value='0'><br/>" +
-    "Radius2: <input type='number' name='radius2' min='-1' max='10000' step='1' value='0'><br/>" +
-    "Angle: <input type='number' name='angle' min='-1' max='10000' step='1' value='0'><br/>" +
+    "Power: <input type='number' name='power'  id='power' min='0' max='100000' step='1' value='2'><br/>" +
+    "Smoothing: <input type='number' name='smoothing' id='smoothing' min='0' max='10000' step='2' value='0'><br/>" +
+    "Radius1: <input type='number' name='radius1' id='radius1' min='-1' max='10000' step='1' value='0'><br/>" +
+    "Radius2: <input type='number' name='radius2' id='radius2' min='-1' max='10000' step='1' value='0'><br/>" +
+    "Angle: <input type='number' name='angle' id='angle' min='-1' max='10000' step='1' value='0'><br/>" +
     "<input type='text' id='rval1' name='rval1' value='213'/> <input type='color' id='clr1' name='clr1' value='#2E9A58'><br/>" +
     "<input type='text' id='rval2' name='rval2' value='250'/> <input type='color' id='clr2' name='clr2' value='#FBFF80'><br/>" +
     "<input type='text' id='rval3' name='rval3' value='300'/> <input type='color' id='clr3' name='clr3' value='#E06C1F'><br/>" +
     "<input type='text' id='rval4' name='rval4' value='350'/> <input type='color' id='clr4' name='clr4' value='#C83737'><br/>" +
     "<input type='text' id='rval5' name='rval5' value='403'/> <input type='color' id='clr5' name='clr5' value='#FF0000'><br/>" +
+    "<input type='checkbox' id='slope' name='slope'/> Ombrages relief + alti ramp<br/>" +
     // "Presets:<br/>" +
     // "<input type='radio' id='presets1' name='presets'><label for='presets1'>Invidist default</label><br/>" +
     // "<input type='radio' id='presets2' name='presets'><label for='presets2'>Linear default</label><br/>" +

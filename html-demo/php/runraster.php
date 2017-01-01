@@ -54,8 +54,10 @@ if ($_GET["method"] == 'invdist') {
     // todo...
 }
 
+// relief asked ?
+$relief = $_GET["slope"] == 'on' ? 'relief' : '';
 //read params and relaunch script
-$cmd = './process.bash ' . $method . ' 2>&1';
+$cmd = './process.bash ' . $method . ' ' . $relief . ' 2>&1';
 $output = shell_exec($cmd);
 echo "$output";
 

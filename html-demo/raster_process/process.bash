@@ -60,6 +60,14 @@ echo "producing color-relief image based on ramp..."
 #gdaldem color-relief ../data/price_grid1.tif color_relief2.txt ../data/price_grid1_clr.tif
 ${GDALDIR}/gdaldem color-relief ../data/price_grid1.tif tmpramp.txt ../data/price_grid1_clr.tif
 
+# slope ?
+if [[ "$2" == 'slope' ]]; then
+    echo "slope generation..."
+    ${GDALDIR}/gdaldem slope ../data/price_grid1.tif ../data/price_grid1_slope.tif
+    echo "slopeshade generation..."
+    ${GDALDIR}/gdaldem color-relief ../data/price_grid1_slope.tif color_slope.txt ../data/price_grid1_slopeshade.tif
+fi
+
 # line cut
 echo "masking and smoothing image by commune pg..."
 ${GDALDIR}/gdalwarp \
