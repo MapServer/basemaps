@@ -44,7 +44,7 @@ echo "script running on: $platform"
 
 METH="invdist:power=3:smoothing=20:radius1=200:radius2=200"
 
-echo "generating raster grid from points observations... $1"
+echo "•••generating raster grid from points observations... $1"
 ${GDALDIR}/gdal_grid -l points  -a "$1" \
     ../data/points.shp \
     ../data/price_grid1.tif
@@ -56,20 +56,22 @@ ${GDALDIR}/gdal_grid -l points  -a "$1" \
 
 
 # color relief:
-echo "producing color-relief image based on ramp..."
+echo "•••producing color-relief image based on ramp..."
 #gdaldem color-relief ../data/price_grid1.tif color_relief2.txt ../data/price_grid1_clr.tif
 ${GDALDIR}/gdaldem color-relief ../data/price_grid1.tif tmpramp.txt ../data/price_grid1_clr.tif
 
 # slope ?
 if [[ "$2" == 'slope' ]]; then
-    echo "slope generation..."
-    ${GDALDIR}/gdaldem slope ../data/price_grid1.tif ../data/price_grid1_slope.tif
-    echo "slopeshade generation..."
+    echo "•••hillshade generation..."
+    ${GDALDIR}/gdaldem hillshade -of PNG ../data/price_grid1.tif ../data/price_grid1_hillshade.png
+    echo "•••slope generation..."
+    ${GDALDIR}/gdaldem slope  -s 300 ../data/price_grid1.tif ../data/price_grid1_slope.tif
+    echo "•••slopeshade generation..."
     ${GDALDIR}/gdaldem color-relief ../data/price_grid1_slope.tif color_slope.txt ../data/price_grid1_slopeshade.tif
 fi
 
 # line cut
-echo "masking and smoothing image by commune pg..."
+echo "•••masking and smoothing image by commune pg..."
 ${GDALDIR}/gdalwarp \
     -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
    -cutline ../data/mask.shp -crop_to_cutline \
@@ -86,7 +88,7 @@ ${GDALDIR}/gdalwarp \
 #
 # smoothen raster:
 
-echo "process raster done"
+echo "•••process raster done•••"
 
 # TODO: order of cmds
 # TODO: vrt for process

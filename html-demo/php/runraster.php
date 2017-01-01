@@ -55,11 +55,12 @@ if ($_GET["method"] == 'invdist') {
 }
 
 // relief asked ?
-$relief = $_GET["slope"] == 'on' ? 'relief' : '';
+$relief = $_GET["slope"] == 'on' ? 'slope' : '';
 //read params and relaunch script
 $cmd = './process.bash ' . $method . ' ' . $relief . ' 2>&1';
 $output = shell_exec($cmd);
-echo "$output";
+echo "$output" . " " . $cmd
+;
 
 chdir($old_path);
 

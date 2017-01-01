@@ -31,6 +31,7 @@ END
 ### Roads as google style
     include "roads_inc.map"
 
+
     LAYER
        TYPE raster
        group "slope"
@@ -52,17 +53,17 @@ END
        TYPE raster
        STATUS ON
        group "slope"
-       name "slopeslope"
+       name "hillshade"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
-         OPACITY 80
+         OPACITY 30
        END
 
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_slope.tif"
+       DATA "html-demo/data/price_grid1_hillshade.png"
     END
 
     LAYER
@@ -73,7 +74,7 @@ END
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
-         OPACITY 80
+         OPACITY 30
        END
 
        PROJECTION
@@ -81,6 +82,7 @@ END
        END
        DATA "html-demo/data/price_grid1_slopeshade.tif"
     END
+
 
     layer
         type point
