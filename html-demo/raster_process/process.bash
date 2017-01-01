@@ -20,7 +20,8 @@ if [[ "$platform" == 'osx' ]]; then
     GDALDIR=/Library/Frameworks/GDAL.framework/Versions/Current/Programs/
     PGDIR=/usr/local/pgsql-9.6/bin
 elif [[ "$platform" == 'linux' ]]; then
-    GDALDIR=/usr/bin
+    # gdal 2.1, custom compil....
+    GDALDIR=/home/ubuntu/apps/usr/bin
     PGDIR=/usr/bin
 fi
 
@@ -62,7 +63,7 @@ ${GDALDIR}/gdaldem color-relief ../data/price_grid1.tif tmpramp.txt ../data/pric
 # line cut
 echo "masking and smoothing image by commune pg..."
 ${GDALDIR}/gdalwarp \
-    -s_srs EPSG:3857 -t_srs EPSG:3857 \
+    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
    -cutline ../data/mask.shp -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr.tif \
