@@ -14,6 +14,7 @@ L.Control.RasterCtrl = L.Control.extend({
     "<option default>nearest</option>" +
     "<option default>linear</option>" +
     "</select><br/>" +
+    "Power: <input type='number' name='power' min='0' max='100000' step='1' value='2'><br/>" +
     "Smoothing: <input type='number' name='smoothing' min='0' max='10000' step='2' value='0'><br/>" +
     "Radius1: <input type='number' name='radius1' min='-1' max='10000' step='1' value='0'><br/>" +
     "Radius2: <input type='number' name='radius2' min='-1' max='10000' step='1' value='0'><br/>" +

@@ -35,6 +35,7 @@ chmod($ramp, 0777);
 if ($_GET["method"] == 'invdist') {
     $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"]) .
         ':radius2='. htmlspecialchars($_GET["radius2"]) . ':smoothing='. htmlspecialchars($_GET["smoothing"]) .
+        ':power='. htmlspecialchars($_GET["power"]) .
         ':angle='. htmlspecialchars($_GET["angle"]) ;
 } elseif ($_GET["method"] == 'linear') {
     $method = htmlspecialchars($_GET["method"]) . ':radius='. htmlspecialchars($_GET["radius1"]);
@@ -42,8 +43,15 @@ if ($_GET["method"] == 'invdist') {
     $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
         . ':radius2='. htmlspecialchars($_GET["radius2"]) .
         ':angle='. htmlspecialchars($_GET["angle"]) ;
+} elseif ($_GET["method"] == 'average') {
+    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
+        . ':radius2='. htmlspecialchars($_GET["radius2"]) .
+        ':angle='. htmlspecialchars($_GET["angle"]) ;
+} elseif ($_GET["method"] == 'invdistnn') {
+    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
+        . ':power='. htmlspecialchars($_GET["power"]);
 } else {
-
+    // todo...
 }
 
 //read params and relaunch script
