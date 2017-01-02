@@ -1,0 +1,125 @@
+MAP
+IMAGETYPE png
+MAXSIZE 4000
+SIZE 800 800
+SYMBOLSET "symbols.lst"
+EXTENT -36387 5247099 384161 5628555
+UNITS meters
+WEB
+   METADATA
+      "ows_enable_request" "*"
+      "wms_srs" "EPSG:900913 EPSG:4326 EPSG:3857"
+      "labelcache_map_edge_buffer" "-10"
+      "wms_title" "efficity price raster"
+   END
+END
+DEBUG 1
+CONFIG "MS_ERRORFILE" "stderr"
+#CONFIG "PROJ_LIB" "/Users/nicolas/bin/mapserver-basemaps"
+PROJECTION
+   "init=epsg:3857"
+END
+OUTPUTFORMAT
+  NAME "png"
+  DRIVER AGG/PNG8
+  MIMETYPE "image/png"
+  IMAGEMODE RGB
+  EXTENSION "png"
+  TRANSPARENT FALSE
+END
+
+### Roads as google style
+    include "roads_inc.map"
+
+
+    LAYER
+       TYPE raster
+       group "slope"
+       STATUS ON
+       name "price"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 100
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       DATA "html-demo/data/price_grid1_clr_mask.tif"
+    END
+
+    LAYER
+       TYPE raster
+       STATUS ON
+       group "slope"
+       name "hillshade"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 30
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       DATA "html-demo/data/price_grid1_hillshade.png"
+    END
+
+    LAYER
+       TYPE raster
+       STATUS ON
+       group "slope"
+       name "slopeshade"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 30
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       DATA "html-demo/data/price_grid1_slopeshade.tif"
+    END
+
+
+    layer
+        type point
+        status on
+        name "obs_pts"
+        #CONNECTIONTYPE postgis
+        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        #data "geom from (select geom, id, from price_font) as t using unique id using srid=3857"
+        data "html-demo/data/points.shp"
+        CLASS
+            style
+                color 34 34 34
+                size 3
+                symbol "citycircle"
+            end
+        end
+    end
+    layer
+        type point
+        status on
+        name "obs_pts_lbl"
+        #CONNECTIONTYPE postgis
+        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        #data "geom from (select geom, id, price_m2 from price_font) as t using unique id using srid=3857"
+        data "html-demo/data/points.shp"
+        labelitem "PRICE_M2"
+        CLASS
+            label
+                size small
+                color 0 0 0
+            end
+        end
+    end
+END

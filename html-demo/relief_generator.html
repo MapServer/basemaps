@@ -4,7 +4,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="js/leaflet.zoomdisplay.css"/>
-    <link rel="stylesheet" href="js/leaflet.rasterctrl.css"/>
+    <link rel="stylesheet" href="js/leaflet.reliefctrl.css"/>
     <link rel="stylesheet" href="js/Leaflet.Coordinates.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
     <link rel="stylesheet" href="js/lib/opacity/Control.Opacity.css"/>
@@ -15,7 +15,7 @@
     <script src="js/TileLayer.Grayscale.js"></script>
     <script src="js/leaflet.zoomdisplay-src.js"></script>
     <script src="js/Leaflet.Coordinates.js"></script>
-    <script src="js/leaflet.rasterctrl-src.js"></script>
+    <script src="js/leaflet.reliefctrl-src.js"></script>
     <script src="js/leaflet-heat.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
 
@@ -65,7 +65,7 @@
 
             var options = {
                 //            target: '#divToUpdate',
-                url: 'php/runraster.php',
+                url: 'php/runrelief.php',
                 success: function (responseText, statusText, xhr, $form) {
                     console.log(responseText);
                     rasterObsLayer.setParams({ts: Date.now()}).redraw();

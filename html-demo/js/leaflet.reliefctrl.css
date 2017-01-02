@@ -1,0 +1,15 @@
+.leaflet-control-reliefctrl-display {
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    width: auto;
+    height: auto;
+    /*line-height: 26px;*/
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+    padding-top: 0.3em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font: 12px/20px Tahoma, Verdana, sans-serif;
+}
