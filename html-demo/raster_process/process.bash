@@ -27,7 +27,6 @@ fi
 
 echo "script running on: $platform"
 
-#-- TODO: test several band types...
 #-- TODO: test several algorithms...
 
 # todo: struct here or from file ?
