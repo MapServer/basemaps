@@ -26,4 +26,4 @@ fi
 
 #echo "script running on: $platform"
 
-${GDALDIR}/gdalinfo -hist ./dem/srtm_merged_3857.vrt | egrep "STATISTICS_MAXIMUM|STATISTICS_MINIMUM|STATISTICS_MEAN"
+${GDALDIR}/gdalinfo -hist dem/srtm_merged_3857.vrt | egrep "STATISTICS_MAXIMUM|STATISTICS_MINIMUM|STATISTICS_MEAN"
