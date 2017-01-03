@@ -55,9 +55,12 @@ if ($_GET["method"] == 'invdist') {
 }
 
 // relief asked ?
-$relief = $_GET["slope"] == 'on' ? 'slope' : '';
+//$relief = $_GET["slope"] == 'on' ? 'slope' : '';
+
+// current zone:
+$zone = $_GET["selzone"];
 //read params and relaunch script
-$cmd = './process.bash ' . $method . ' ' . $relief . ' 2>&1';
+$cmd = './process.bash ' . $method . ' ' . $zone . ' 2>&1';
 $output = shell_exec($cmd);
 echo "$output" . " " . $cmd
 ;

@@ -31,12 +31,12 @@ END
 ### Roads as google style
     include "roads_inc.map"
 
-
+###### 93048 ############
     LAYER
        TYPE raster
        group "slope"
        STATUS ON
-       name "price"
+       name "price_93048"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
@@ -46,43 +46,79 @@ END
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_clr_mask.tif"
-    END
-
+       DATA "html-demo/data/price_grid1_clr_mask_93048.tif"
+   END
+###### 06088 ############
     LAYER
        TYPE raster
-       STATUS ON
        group "slope"
-       name "hillshade"
+       STATUS ON
+       name "price_06088"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
-         OPACITY 30
+         OPACITY 100
        END
 
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_hillshade.png"
+       DATA "html-demo/data/price_grid1_clr_mask_06088.tif"
     END
 
+###### 35051 ############
     LAYER
        TYPE raster
-       STATUS ON
        group "slope"
-       name "slopeshade"
+       STATUS ON
+       name "price_35051"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
-         OPACITY 30
+         OPACITY 100
        END
 
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_slopeshade.tif"
+       DATA "html-demo/data/price_grid1_clr_mask_35051.tif"
     END
 
+#    LAYER
+#       TYPE raster
+#       STATUS ON
+#       group "slope"
+#       name "hillshade"
+#       DEBUG 1
+#       PROCESSING "APPROXIMATION_SCALE=full"
+#       COMPOSITE
+#         OPACITY 30
+#       END
+#
+#       PROJECTION
+#           "init=epsg:3857"
+#       END
+#       DATA "html-demo/data/price_grid1_hillshade_93048.png"
+#    END
+#    LAYER
+#       TYPE raster
+#       STATUS ON
+#       group "slope"
+#       name "slopeshade"
+#       DEBUG 1
+#       PROCESSING "APPROXIMATION_SCALE=full"
+#       COMPOSITE
+#         OPACITY 30
+#       END
+#       PROJECTION
+#           "init=epsg:3857"
+#       END
+#       DATA "html-demo/data/price_grid1_slopeshade_93048.tif"
+#    END
+#
+
+
+############ other layers ###################
 
     layer
         type point

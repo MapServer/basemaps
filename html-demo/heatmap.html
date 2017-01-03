@@ -48,27 +48,118 @@
     </style>
 
     <script>
+        //zones confs
+        var rasterconf = null;
+
+        function RGB2Color(r,g,b) {
+            return '#' + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
+        }
+        function byte2Hex (n) {
+            var nybHexString = "0123456789ABCDEF";
+            return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+        }
+
+        function setVals(defconf) {
+            $('#selmethod').val(defconf.method).trigger('change');
+            $('#power').val(defconf.power);
+            $('#smoothing').val(defconf.smoothing);
+            $('#raduis1').val(defconf.raduis1);
+            $('#raduis2').val(defconf.raduis2);
+            $('#angle').val(defconf.angle);
+            for (var i = 0; i < defconf.ramp.length; i++) {
+                $('#rval' + (i + 1)).val(defconf.ramp[i][0]);
+                // rgb to hex
+                var col = RGB2Color(defconf.ramp[i][1], defconf.ramp[i][2], defconf.ramp[i][3]);
+                $('#clr' + (i + 1)).val(col);
+            }
+        }
+
         $(document).ready(function () {
-            var presets = {
-                preset1: {
-                    method: "invdist",
-                    ramp: [
-                        [251, "#c63640"],
-                        [224, "#fbff80"],
-                        [122, "#c63640"],
-                        [255, "#c63640"],
-                        [403, "#c63640"]
-                    ],
+            // disable ui according to method:
+            $('#selmethod').change(function() {
+                if ($( "#selmethod option:selected" ).val() == 'linear') {
+                    $( "#radius1" ).prop( "disabled", false );
+                    $( "#power" ).prop( "disabled", true );
+                    $( "#smoothing" ).prop( "disabled", true );
+                    $( "#radius2" ).prop( "disabled", true );
+                    $( "#angle" ).prop( "disabled", true );
+                } else if ($( "#selmethod option:selected" ).val() == 'invdist') {
+                    $( "#power" ).prop( "disabled", false );
+                    $( "#smoothing" ).prop( "disabled", false );
+                    $( "#radius1" ).prop( "disabled", false );
+                    $( "#radius2" ).prop( "disabled", false );
+                    $( "#angle" ).prop( "disabled", false );
+                } else if ($( "#selmethod option:selected" ).val() == 'invdistnn') {
+                    $( "#power" ).prop( "disabled", false );
+                    $( "#radius1" ).prop( "disabled", false );
+                    $( "#smoothing" ).prop( "disabled", true );
+                    $( "#radius2" ).prop( "disabled", true );
+                    $( "#angle" ).prop( "disabled", true );
+                } else if ($( "#selmethod option:selected" ).val() == 'average') {
+                    $( "#radius1" ).prop( "disabled", false );
+                    $( "#radius2" ).prop( "disabled", false );
+                    $( "#angle" ).prop( "disabled", false );
+                    $( "#power" ).prop( "disabled", true );
+                    $( "#smoothing" ).prop( "disabled", true );
+                } else if ($( "#selmethod option:selected" ).val() == 'nearest') {
+                    $( "#radius1" ).prop( "disabled", false );
+                    $( "#radius2" ).prop( "disabled", false );
+                    $( "#angle" ).prop( "disabled", false );
+                    $( "#power" ).prop( "disabled", true );
+                    $( "#smoothing" ).prop( "disabled", true );
+                } else {
+
+                }
+            });
+
+            // change on zone: reload good conf
+            $('#selzone').change(function() {
+                var zone = $( "#selzone option:selected" ).val();
+                setVals(rasterconf[zone]);
+                // relaunch raster
+
+                // zoom to zone
+                map.setView(rasterconf[zone].latlong, rasterconf[zone].zoom);
+            });
+
+            // gets conf and initialize list
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "php/conf.php", //Relative or absolute path to response.php file
+                success: function (conf) {
+                    // sets ramp values
+                    rasterconf = conf;
+                    var options = $("#selzone");
+                    for (var property in conf) {
+                        if (conf.hasOwnProperty(property)) {
+                            // do stuff
+                            var sel = conf[property].default;
+                            options.append($("<option />").val(property).text(property).prop('selected', sel));
+
+                            // color ramp from default value:
+                            if (sel) {
+                                setVals(conf[property]);
+                            }
+
+                        }
+                    }
                 },
-                preset2: {},
-            };
+                error: function (data) {
+                    console.dir(data.responseText);
+                }
+            });
+
 
             var options = {
                 //            target: '#divToUpdate',
                 url: 'php/runraster.php',
                 success: function (responseText, statusText, xhr, $form) {
                     console.log(responseText);
-                    rasterObsLayer.setParams({ts: Date.now()}).redraw();
+                    $('#waitmsg').toggle();
+                    raster1ObsLayer.setParams({ts: Date.now()}).redraw();
+                    raster2ObsLayer.setParams({ts: Date.now()}).redraw();
+                    raster3ObsLayer.setParams({ts: Date.now()}).redraw();
                 },
                 error: function (responseText, statusText, xhr, $form) {
                     alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
@@ -78,60 +169,39 @@
 
             $('#form1').ajaxForm(options);
 
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "php/readramp.php", //Relative or absolute path to response.php file
-                success: function (effGgdalRamp) {
-                    // sets ramp values
-                    for (var i = 0; i < effGgdalRamp.length; i++) {
-                        if ((effGgdalRamp[i][0].length > 0)) {
-                            $('#rval' + (i+1)).val(effGgdalRamp[i][0]);
-                            $('#clr' +(i+1)).val(effGgdalRamp[i][1]);
-                        }
-                    }
-                },
-                error: function (data) {
-                    console.dir(data.responseText);
-                }
+//            $.ajax({
+//                type: "GET",
+//                dataType: "json",
+//                url: "php/readramp.php", //Relative or absolute path to response.php file
+//                success: function (effGgdalRamp) {
+//                    // sets ramp values
+//                    for (var i = 0; i < effGgdalRamp.length; i++) {
+//                        if ((effGgdalRamp[i][0].length > 0)) {
+//                            $('#rval' + (i+1)).val(effGgdalRamp[i][0]);
+//                            $('#clr' +(i+1)).val(effGgdalRamp[i][1]);
+//                        }
+//                    }
+//                },
+//                error: function (data) {
+//                    console.dir(data.responseText);
+//                }
+//            });
+            // wait msg
+            $('#submitbtn').on('click', function(){
+                $('#waitmsg').toggle();
             });
 
-            // disable ui according to method:
-            $('#selmethod').change(function() {
-               if ($( "select option:selected" ).val() == 'linear') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-                   $( "#radius2" ).prop( "disabled", true );
-                   $( "#angle" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'invdist') {
-                   $( "#power" ).prop( "disabled", false );
-                   $( "#smoothing" ).prop( "disabled", false );
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-               } else if ($( "select option:selected" ).val() == 'invdistnn') {
-                   $( "#power" ).prop( "disabled", false );
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#smoothing" ).prop( "disabled", true );
-                   $( "#radius2" ).prop( "disabled", true );
-                   $( "#angle" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'average') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'nearest') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-               } else {
+            // dots anime
+            var dots = window.setInterval( function() {
+                var wait = document.getElementById("dots");
+                if ( wait.innerHTML.length > 4 )
+                    wait.innerHTML = "";
+                else
+                    wait.innerHTML += " &#8226;";
+            }, 333);
 
-               }
-            });
+            // toggles slope ramp by default
+            $('#waitmsg').toggle();
 
         });
     </script>
@@ -188,8 +258,26 @@
 
     // raster:
     //TODO: data from WS
-    var rasterObsLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'price',
+    var raster1ObsLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'price_93048',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices",
+        opacity: 0.5
+    }).addTo(map);
+
+    var raster2ObsLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'price_06088',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices",
+        opacity: 0.5
+    }).addTo(map);
+
+    var raster3ObsLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'price_35051',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
@@ -233,7 +321,9 @@
     };
     var overlays = {
         "HeatMap Leaflet": heatmapStreetLayer,
-        "GDAL raster": rasterObsLayer,
+        "GDAL raster 93048": raster1ObsLayer,
+        "GDAL raster 06088": raster2ObsLayer,
+        "GDAL raster 35051": raster3ObsLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer,
@@ -250,9 +340,15 @@
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
 
-    var opacitySlider = new L.Control.opacitySlider();
-    opacitySlider.setOpacityLayer(rasterObsLayer);
-    map.addControl(opacitySlider);
+    var opacitySlider1 = new L.Control.opacitySlider();
+    opacitySlider1.setOpacityLayer(raster1ObsLayer);
+    map.addControl(opacitySlider1);
+    var opacitySlider2 = new L.Control.opacitySlider();
+    opacitySlider2.setOpacityLayer(raster2ObsLayer);
+    map.addControl(opacitySlider2);
+    var opacitySlider3 = new L.Control.opacitySlider();
+    opacitySlider3.setOpacityLayer(raster3ObsLayer);
+    map.addControl(opacitySlider3);
 
     //    heatmapStreetLayer.redraw();
 

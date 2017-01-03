@@ -7,12 +7,14 @@ L.Control.RasterCtrl = L.Control.extend({
         position: 'bottomleft'
     },
 
-    htmlLayout: "<div id='serverdiv'><b>GDAL GRID:</b><form id='form1' method='get'>interpolation method: <select id='selmethod' name='method'>" +
-    "<option default>invdist</option>" +
-    "<option default>invdistnn</option>" +
-    "<option default>average</option>" +
-    "<option default>nearest</option>" +
-    "<option default>linear</option>" +
+    htmlLayout: "<div id='serverdiv'><b>GDAL GRID:</b><form id='form1' method='get'>" +
+    "Zone: <select id='selzone' name='selzone'></select><br/>" +
+    "interpolation method: <select id='selmethod' name='method'>" +
+    "<option value='invdist'>invdist</option>" +
+    "<option value='invdistnn'>invdistnn</option>" +
+    "<option value='average'>average</option>" +
+    "<option value='nearest'>nearest</option>" +
+    "<option value='linear'>linear</option>" +
     "</select><br/>" +
     "Power: <input type='number' name='power'  id='power' min='0' max='100000' step='1' value='2'><br/>" +
     "Smoothing: <input type='number' name='smoothing' id='smoothing' min='0' max='10000' step='2' value='0'><br/>" +
@@ -30,7 +32,7 @@ L.Control.RasterCtrl = L.Control.extend({
     // "<input type='radio' id='presets2' name='presets'><label for='presets2'>Linear default</label><br/>" +
     // "<input type='radio' id='presets3' name='presets'><label for='presets3'>Invidistnn defautl</label><br/>" +
     // "<input type='radio' id='presets4' name='presets'><label for='presets4'>custom ramp</label><br/>" +
-    "<input type='submit' value='O K'/></form></div>",
+    "<input type='submit' value='O K' id='submitbtn'/><span id='waitmsg'> Terrain processing<span id='dots'></span></span></form></div>",
 
     onAdd: function (map) {
         this._map = map;
