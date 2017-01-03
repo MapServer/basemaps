@@ -45,6 +45,13 @@
         input:disabled {
             background: #dddddd;
         }
+
+        .normala {
+            display: inline!important;
+            color: #0055ff!important;;
+            height: 12px!important;;
+        }
+
     </style>
 
     <script>
@@ -68,7 +75,10 @@
                 url: 'php/runrelief.php',
                 success: function (responseText, statusText, xhr, $form) {
                     console.log(responseText);
-                    rasterObsLayer.setParams({ts: Date.now()}).redraw();
+                    $('#waitmsg').toggle();
+                    colorReliefLayer.setParams({ts: Date.now()}).redraw();
+                    hillshadeLayer.setParams({ts: Date.now()}).redraw();
+                    slopeShadeLayer.setParams({ts: Date.now()}).redraw();
                 },
                 error: function (responseText, statusText, xhr, $form) {
                     alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
@@ -86,8 +96,8 @@
                     // sets ramp values
                     for (var i = 0; i < effGgdalRamp.length; i++) {
                         if ((effGgdalRamp[i][0].length > 0)) {
-                            $('#rval' + (i+1)).val(effGgdalRamp[i][0]);
-                            $('#clr' +(i+1)).val(effGgdalRamp[i][1]);
+                            $('#rval' + (i + 1)).val(effGgdalRamp[i][0]);
+                            $('#clr' + (i + 1)).val(effGgdalRamp[i][1]);
                         }
                     }
                 },
@@ -97,41 +107,67 @@
             });
 
             // disable ui according to method:
-            $('#selmethod').change(function() {
-               if ($( "select option:selected" ).val() == 'linear') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-                   $( "#radius2" ).prop( "disabled", true );
-                   $( "#angle" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'invdist') {
-                   $( "#power" ).prop( "disabled", false );
-                   $( "#smoothing" ).prop( "disabled", false );
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-               } else if ($( "select option:selected" ).val() == 'invdistnn') {
-                   $( "#power" ).prop( "disabled", false );
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#smoothing" ).prop( "disabled", true );
-                   $( "#radius2" ).prop( "disabled", true );
-                   $( "#angle" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'average') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-               } else if ($( "select option:selected" ).val() == 'nearest') {
-                   $( "#radius1" ).prop( "disabled", false );
-                   $( "#radius2" ).prop( "disabled", false );
-                   $( "#angle" ).prop( "disabled", false );
-                   $( "#power" ).prop( "disabled", true );
-                   $( "#smoothing" ).prop( "disabled", true );
-               } else {
+            $('#selmethod').change(function () {
+                if ($("select option:selected").val() == 'linear') {
+                    $("#radius1").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
+                    $("#radius2").prop("disabled", true);
+                    $("#angle").prop("disabled", true);
+                } else if ($("select option:selected").val() == 'invdist') {
+                    $("#power").prop("disabled", false);
+                    $("#smoothing").prop("disabled", false);
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                } else if ($("select option:selected").val() == 'invdistnn') {
+                    $("#power").prop("disabled", false);
+                    $("#radius1").prop("disabled", false);
+                    $("#smoothing").prop("disabled", true);
+                    $("#radius2").prop("disabled", true);
+                    $("#angle").prop("disabled", true);
+                } else if ($("select option:selected").val() == 'average') {
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
+                } else if ($("select option:selected").val() == 'nearest') {
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
+                } else {
 
-               }
+                }
             });
+
+            $( "#clrramp1" ).tooltip({ content: '<img src="image/clrramp1.png" />' });
+            $( "#clrramp2" ).tooltip({ content: '<img src="image/clrramp2.png" />' });
+            $( "#clrramp3" ).tooltip({ content: '<img src="image/clrramp3.png" />' });
+
+            $('#sloperamplnk').on('click', function(){
+                $('#sloperampdiv').toggle();
+            });
+
+            // wait msg
+            $('#submitbtn').on('click', function(){
+                $('#waitmsg').toggle();
+            });
+
+            // dots anime
+            var dots = window.setInterval( function() {
+                var wait = document.getElementById("dots");
+                if ( wait.innerHTML.length > 3 )
+                    wait.innerHTML = "";
+                else
+                    wait.innerHTML += "•";
+            }, 100);
+
+            // toggles slope ramp by default
+            $('#sloperampdiv').toggle();
+            $('#waitmsg').toggle();
 
         });
     </script>
@@ -148,10 +184,10 @@
 
     var url = '';
     //platform-dependend url
-    jQuery.ajaxSetup({async:false});
+    jQuery.ajaxSetup({async: false});
     var os = jQuery.get('php/os.php');
     os = os.responseText;
-    jQuery.ajaxSetup({async:true});
+    jQuery.ajaxSetup({async: true});
 
     if (os === "Darwin") {
         var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
@@ -163,7 +199,7 @@
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
-        [48.4248, 2.6937], 12
+        [46.8, 3.07], 6
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
@@ -179,49 +215,43 @@
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     });
 
-    // heatmap:
-    //TODO: data from WS
-    var heatmapStreetLayer = L.heatLayer(price_points, {
-        radius: 25,
-//        maxZoom: 17
-    });
-
-    // raster:
-    //TODO: data from WS
-    var rasterObsLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'slope',
+    // 3 DEM parts to produce nice terrain:
+    // color relief
+    var colorReliefLayer = L.tileLayer.wms(url + "relief.map", {
+        layers: 'color_relief',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices",
+        attribution: "© 2017. Nicolas Ribot",
         opacity: 0.5
     }).addTo(map);
 
-    // obs point
-    var pointLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'obs_pts',
+    // hillshade
+    var hillshadeLayer = L.tileLayer.wms(url + "relief.map", {
+        layers: 'hillshade',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices"
+        attribution: "© 2017. Nicolas Ribot",
+        opacity: 0.5
     }).addTo(map);
 
-    // obs point lables
-    var pointLblLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'obs_pts_lbl',
+    var slopeShadeLayer = L.tileLayer.wms(url + "relief.map", {
+        layers: 'slopeshade',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices"
-    });
+        attribution: "© 2017. Nicolas Ribot",
+        opacity: 0.5
+    }).addTo(map);
 
     // streets
-    var streetLayer = L.tileLayer.wms(url + "raster.map", {
+    var streetLayer = L.tileLayer.wms(url + "relief.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'tileerror.png',
-        attribution: "Efficity Prices"
+        attribution: "© 2017. Nicolas Ribot",
     }).addTo(map);
 
 
@@ -232,11 +262,10 @@
         'empty': emptyLayer
     };
     var overlays = {
-        "HeatMap Leaflet": heatmapStreetLayer,
-        "GDAL raster": rasterObsLayer,
-        "Streets": streetLayer,
-        "Observations": pointLayer,
-        "Observations prices": pointLblLayer,
+        "Color Relief": colorReliefLayer,
+        "Hillshade": hillshadeLayer,
+        "Slopeshade": slopeShadeLayer,
+        "Streets": streetLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
@@ -251,8 +280,14 @@
     }).addTo(map);
 
     var opacitySlider = new L.Control.opacitySlider();
-    opacitySlider.setOpacityLayer(rasterObsLayer);
+    opacitySlider.setOpacityLayer(colorReliefLayer);
     map.addControl(opacitySlider);
+    var opacitySlider2 = new L.Control.opacitySlider();
+    opacitySlider2.setOpacityLayer(hillshadeLayer);
+    map.addControl(opacitySlider2);
+    var opacitySlider3 = new L.Control.opacitySlider();
+    opacitySlider3.setOpacityLayer(slopeShadeLayer);
+    map.addControl(opacitySlider3);
 
     //    heatmapStreetLayer.redraw();
 

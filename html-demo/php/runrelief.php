@@ -18,7 +18,7 @@ function hex2rgb($hex) {
 }
 
 $old_path = getcwd();
-chdir('../raster_process/');
+chdir('../relief_process/');
 
 // writes ramp txt
 $ramp = fopen("tmpramp.txt", "w") or die("Unable to open ramp file!");
@@ -31,41 +31,28 @@ fwrite($ramp, $rampTxt);
 fclose($ramp);
 chmod($ramp, 0777);
 
-# params according to method
-if ($_GET["method"] == 'invdist') {
-    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"]) .
-        ':radius2='. htmlspecialchars($_GET["radius2"]) . ':smoothing='. htmlspecialchars($_GET["smoothing"]) .
-        ':power='. htmlspecialchars($_GET["power"]) .
-        ':angle='. htmlspecialchars($_GET["angle"]) ;
-} elseif ($_GET["method"] == 'linear') {
-    $method = htmlspecialchars($_GET["method"]) . ':radius='. htmlspecialchars($_GET["radius1"]);
-} elseif ($_GET["method"] == 'nearest') {
-    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
-        . ':radius2='. htmlspecialchars($_GET["radius2"]) .
-        ':angle='. htmlspecialchars($_GET["angle"]) ;
-} elseif ($_GET["method"] == 'average') {
-    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
-        . ':radius2='. htmlspecialchars($_GET["radius2"]) .
-        ':angle='. htmlspecialchars($_GET["angle"]) ;
-} elseif ($_GET["method"] == 'invdistnn') {
-    $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"])
-        . ':power='. htmlspecialchars($_GET["power"]);
+$params = '';
+# params according to UI choices
+if ($_GET["reliefcb"] == 'on') {
+    $params .= 'relief=true';
 } else {
-    // todo...
+    $params .= 'relief=false';
+}
+if ($_GET["slopecb"] == 'on') {
+    $params .= ' slope=true';
+} else {
+    $params .= ' slope=false';
+}
+if ($_GET["hillshadecb"] == 'on') {
+    $params .= ' hillshade=true';
+} else {
+    $params .= ' hillshade=false';
 }
 
-// relief asked ?
-$relief = $_GET["slope"] == 'on' ? 'slope' : '';
-//read params and relaunch script
-$cmd = './process.bash ' . $method . ' ' . $relief . ' 2>&1';
+$cmd = './process_relief.bash ' . $params . ' 2>&1';
 $output = shell_exec($cmd);
-echo "$output" . " " . $cmd
-;
+echo "$output" . " " . $cmd;
 
 chdir($old_path);
-
-//echo 'Params: method: ' . htmlspecialchars($_GET["method"]) . '\n'
-//    . 'smoothing: ' . htmlspecialchars($_GET["smoothing"]);
-//
 
 ?>

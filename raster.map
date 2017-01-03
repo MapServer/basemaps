@@ -114,7 +114,7 @@ END
         END
         #data "geom from (select geom, id, price_m2 from price_font) as t using unique id using srid=3857"
         data "html-demo/data/points.shp"
-        labelitem "PRICE_M2"
+        labelitem "M2_PRICE"
         CLASS
             label
                 size small

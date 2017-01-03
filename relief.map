@@ -34,9 +34,8 @@ END
 
     LAYER
        TYPE raster
-       group "slope"
        STATUS ON
-       name "price"
+       name "color_relief"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
@@ -46,13 +45,12 @@ END
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_clr_mask.tif"
+       DATA "html-demo/relief_process/dem/color_relief.tif"
     END
 
     LAYER
        TYPE raster
        STATUS ON
-       group "slope"
        name "hillshade"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
@@ -63,13 +61,12 @@ END
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_hillshade.png"
+       DATA "html-demo/relief_process/dem/hillshade.tif"
     END
 
     LAYER
        TYPE raster
        STATUS ON
-       group "slope"
        name "slopeshade"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
@@ -80,46 +77,6 @@ END
        PROJECTION
            "init=epsg:3857"
        END
-       DATA "html-demo/data/price_grid1_slopeshade.tif"
+       DATA "html-demo/relief_process/dem/slopeshade.tif"
     END
-
-
-    layer
-        type point
-        status on
-        name "obs_pts"
-        #CONNECTIONTYPE postgis
-        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
-        PROJECTION
-           "init=epsg:3857"
-        END
-        #data "geom from (select geom, id, from price_font) as t using unique id using srid=3857"
-        data "html-demo/data/points.shp"
-        CLASS
-            style
-                color 34 34 34
-                size 3
-                symbol "citycircle"
-            end
-        end
-    end
-    layer
-        type point
-        status on
-        name "obs_pts_lbl"
-        #CONNECTIONTYPE postgis
-        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
-        PROJECTION
-           "init=epsg:3857"
-        END
-        #data "geom from (select geom, id, price_m2 from price_font) as t using unique id using srid=3857"
-        data "html-demo/data/points.shp"
-        labelitem "PRICE_M2"
-        CLASS
-            label
-                size small
-                color 0 0 0
-            end
-        end
-    end
 END

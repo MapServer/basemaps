@@ -41,6 +41,9 @@ echo "script running on: $platform"
 #${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
 #${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
 
+#${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
+#${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
+
 
 METH="invdist:power=3:smoothing=20:radius1=200:radius2=200"
 
