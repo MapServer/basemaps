@@ -38,6 +38,7 @@ END
        name "color_relief"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
+       PROCESSING "NODATA=-32768"
        COMPOSITE
          OPACITY 100
        END
@@ -54,8 +55,9 @@ END
        name "hillshade"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
+       PROCESSING "NODATA=-32768"
        COMPOSITE
-         OPACITY 30
+         OPACITY 100
        END
 
        PROJECTION
@@ -70,8 +72,9 @@ END
        name "slopeshade"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
+       PROCESSING "NODATA=-32768"
        COMPOSITE
-         OPACITY 30
+         OPACITY 100
        END
 
        PROJECTION

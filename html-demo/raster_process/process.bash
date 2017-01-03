@@ -43,8 +43,8 @@ echo "script running on: $platform"
 #${PGDIR}/pgsql2shp -f ../data/points_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
 #${PGDIR}/pgsql2shp -f ../data/mask_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
 #
-#${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088'"
-#${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
+${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
+${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
 #
 #${PGDIR}/pgsql2shp -f ../data/points_35051.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='35051'"
 #${PGDIR}/pgsql2shp -f ../data/mask_35051.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '35051'"

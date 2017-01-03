@@ -48,27 +48,60 @@
 
         .normala {
             display: inline!important;
-            color: #0055ff!important;;
-            height: 12px!important;;
+            color: #0055ff!important;
+            height: 12px!important;
+            line-height: 15px!important;
+        }
+
+        .deminfo {
+            font-weight: bold;
         }
 
     </style>
 
     <script>
+        var rasterramps = '';
+
+        function setClrRamp(ramp) {
+            var clrs = rasterramps[ramp];
+            for (var i = 0; i < clrs.length; i++) {
+                $('#clr' + (i + 1)).val(RGB2Color(clrs[i][0], clrs[i][1], clrs[i][2]));
+            }
+        }
+
+        function RGB2Color(r,g,b) {
+            return '#' + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
+        }
+        function byte2Hex (n) {
+            var nybHexString = "0123456789ABCDEF";
+            return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+        }
+
         $(document).ready(function () {
-            var presets = {
-                preset1: {
-                    method: "invdist",
-                    ramp: [
-                        [251, "#c63640"],
-                        [224, "#fbff80"],
-                        [122, "#c63640"],
-                        [255, "#c63640"],
-                        [403, "#c63640"]
-                    ],
+            // gets ramps config: // TODO: getjson()
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "php/ramps.php",
+                success: function (data) {
+                    rasterramps = data;
+                }
+            });
+
+            // gets raster info: // TODO: getjson()
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "php/rasterinfo.php",
+                success: function (demInfo) {
+                    $('#demmin').html(demInfo["min"]);
+                    $('#demmax').html(demInfo["max"]);
+                    $('#demavg').html(demInfo["avg"]);
                 },
-                preset2: {},
-            };
+                error: function (data) {
+                    console.dir(data.responseText);
+                }
+            });
 
             var options = {
                 //            target: '#divToUpdate',
@@ -91,7 +124,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "php/readramp.php", //Relative or absolute path to response.php file
+                url: "php/readrelieframp.php", //Relative or absolute path to response.php file
                 success: function (effGgdalRamp) {
                     // sets ramp values
                     for (var i = 0; i < effGgdalRamp.length; i++) {
@@ -143,9 +176,43 @@
                 }
             });
 
+            // tooltips for ramps
             $( "#clrramp1" ).tooltip({ content: '<img src="image/clrramp1.png" />' });
             $( "#clrramp2" ).tooltip({ content: '<img src="image/clrramp2.png" />' });
             $( "#clrramp3" ).tooltip({ content: '<img src="image/clrramp3.png" />' });
+            $( "#clrramp4" ).tooltip({ content: '<img src="image/clrramp4.png" />' });
+            $( "#clrramp5" ).tooltip({ content: '<img src="image/clrramp5.png" />' });
+            $( "#clrramp6" ).tooltip({ content: '<img src="image/clrramp6.png" />' });
+            $( "#clrramp7" ).tooltip({ content: '<img src="image/clrramp7.png" />' });
+            $( "#clrramp8" ).tooltip({ content: '<img src="image/clrramp8.png" />' });
+
+            // click event for ramp: fills up the current ramp
+            // TODO...
+            $('#clrramp1').on('click', function(){
+                setClrRamp('ramp1');
+            });
+            $('#clrramp2').on('click', function(){
+                setClrRamp('ramp2');
+            });
+            $('#clrramp3').on('click', function(){
+                setClrRamp('ramp3');
+            });
+            $('#clrramp4').on('click', function(){
+                setClrRamp('ramp4');
+            });
+            $('#clrramp5').on('click', function(){
+                setClrRamp('ramp5');
+            });
+            $('#clrramp6').on('click', function(){
+                setClrRamp('ramp6');
+            });
+            $('#clrramp7').on('click', function(){
+                setClrRamp('ramp7');
+            });
+            $('#clrramp8').on('click', function(){
+                setClrRamp('ramp8');
+            });
+
 
             $('#sloperamplnk').on('click', function(){
                 $('#sloperampdiv').toggle();
@@ -159,15 +226,26 @@
             // dots anime
             var dots = window.setInterval( function() {
                 var wait = document.getElementById("dots");
-                if ( wait.innerHTML.length > 3 )
+                if ( wait.innerHTML.length > 4 )
                     wait.innerHTML = "";
                 else
-                    wait.innerHTML += "•";
-            }, 100);
+                    wait.innerHTML += " &#8226;";
+            }, 333);
 
             // toggles slope ramp by default
             $('#sloperampdiv').toggle();
             $('#waitmsg').toggle();
+
+            //opacity sliders:
+            $('#clrrangeSlider').on('input', function (ev) {
+                colorReliefLayer.setOpacity(this.value/100);
+            });
+            $('#sloperangeSlider').on('input', function (ev) {
+                slopeShadeLayer.setOpacity(this.value/100);
+            });
+            $('#hillrangeSlider').on('input', function (ev) {
+                hillshadeLayer.setOpacity(this.value/100);
+            });
 
         });
     </script>
@@ -279,15 +357,17 @@
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
 
-    var opacitySlider = new L.Control.opacitySlider();
-    opacitySlider.setOpacityLayer(colorReliefLayer);
-    map.addControl(opacitySlider);
-    var opacitySlider2 = new L.Control.opacitySlider();
-    opacitySlider2.setOpacityLayer(hillshadeLayer);
-    map.addControl(opacitySlider2);
-    var opacitySlider3 = new L.Control.opacitySlider();
-    opacitySlider3.setOpacityLayer(slopeShadeLayer);
-    map.addControl(opacitySlider3);
+//    var opacitySlider2 = new L.Control.opacitySlider();
+//    opacitySlider2.setOpacityLayer(hillshadeLayer);
+//    map.addControl(opacitySlider2);
+//
+//    var opacitySlider3 = new L.Control.opacitySlider();
+//    opacitySlider3.setOpacityLayer(slopeShadeLayer);
+//    map.addControl(opacitySlider3);
+//
+//    var opacitySlider = new L.Control.opacitySlider();
+//    opacitySlider.setOpacityLayer(colorReliefLayer);
+//    map.addControl(opacitySlider);
 
     //    heatmapStreetLayer.redraw();
 

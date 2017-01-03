@@ -36,3 +36,22 @@ select min(m2_price), max(m2_price),
   avg(m2_price), min(st_z(geom)), max(st_z(geom)), code_insee
 from observations_for_carto
 group by code_insee;
+
+-- algo for quantiles, bordel !
+-- yes
+with tmp as (
+    SELECT
+      m2_price,
+      ntile(9)
+      OVER (
+        ORDER BY m2_price),
+      row_number() over () as id
+    FROM observations_for_carto o
+    WHERE code_insee = '06088' and o.is_outliers
+) select ntile, min(t.m2_price), max(t.m2_price), count(*)
+  from tmp t
+group by ntile
+order by ntile;
+
+select * from observations_for_carto
+where code_insee = '06088' and is_outliers;

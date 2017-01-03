@@ -31,16 +31,17 @@ echo "script running on: $platform"
 
 #------ merge: TODO: UI to choose dems to merge ??
 #echo "••• merging..."
-#gdalbuildvrt ./dem/srtm_merged.vrt ./dem/srtm_*.tif
-
-#------ warp:
+#${GDALDIR}/gdalbuildvrt ./dem/srtm_merged.vrt ./dem/srtm_37_04.tif
+#
+##------ warp:
 #echo "••• warping..."
-#gdalwarp -t_srs epsg:3857 -r bilinear -of VRT ./dem/srtm_merged.vrt ./dem/srtm_merged_3857.vrt
+#rm -f ./dem/srtm_merged_3857.vrt
+#${GDALDIR}/gdalwarp -t_srs epsg:3857 -r bilinear -of VRT ./dem/srtm_merged.vrt ./dem/srtm_merged_3857.vrt
 
 #------- color-relief
 if [[ "$1" == 'relief=true' ]]; then
     echo "••• color relief..."
-    ${GDALDIR}/gdaldem color-relief ./dem/srtm_merged_3857.vrt tmpramp.txt ./dem/color_relief.tif
+    ${GDALDIR}/gdaldem color-relief -alpha ./dem/srtm_merged_3857.vrt tmpramp.txt ./dem/color_relief.tif
 fi
 
 #------- slope:

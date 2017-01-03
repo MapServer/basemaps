@@ -32,7 +32,7 @@ L.Control.RasterCtrl = L.Control.extend({
     // "<input type='radio' id='presets2' name='presets'><label for='presets2'>Linear default</label><br/>" +
     // "<input type='radio' id='presets3' name='presets'><label for='presets3'>Invidistnn defautl</label><br/>" +
     // "<input type='radio' id='presets4' name='presets'><label for='presets4'>custom ramp</label><br/>" +
-    "<input type='submit' value='O K' id='submitbtn'/><span id='waitmsg'> Terrain processing<span id='dots'></span></span></form></div>",
+    "<input type='submit' value='O K' id='submitbtn'/><span id='waitmsg'> Raster processing<span id='dots'></span></span></form></div>",
 
     onAdd: function (map) {
         this._map = map;

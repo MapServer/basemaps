@@ -1,0 +1,16 @@
+<VRTDataset rasterXSize="6001" rasterYSize="6001">
+  <SRS>GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]]</SRS>
+  <GeoTransform> -4.1661826815286851e-04,  8.3333333333333339e-04,  0.0000000000000000e+00,  4.5000416908780267e+01,  0.0000000000000000e+00, -8.3333333333333339e-04</GeoTransform>
+  <VRTRasterBand dataType="Int16" band="1">
+    <NoDataValue>-32768</NoDataValue>
+    <ColorInterp>Gray</ColorInterp>
+    <ComplexSource>
+      <SourceFilename relativeToVRT="1">srtm_37_04.tif</SourceFilename>
+      <SourceBand>1</SourceBand>
+      <SourceProperties RasterXSize="6001" RasterYSize="6001" DataType="Int16" BlockXSize="6001" BlockYSize="1" />
+      <SrcRect xOff="0" yOff="0" xSize="6001" ySize="6001" />
+      <DstRect xOff="0" yOff="0" xSize="6001" ySize="6001" />
+      <NODATA>-32768</NODATA>
+    </ComplexSource>
+  </VRTRasterBand>
+</VRTDataset>
