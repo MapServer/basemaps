@@ -72,6 +72,8 @@
                 var col = RGB2Color(defconf.ramp[i][1], defconf.ramp[i][2], defconf.ramp[i][3]);
                 $('#clr' + (i + 1)).val(col);
             }
+
+            map.setView(defconf.latlong, defconf.zoom);
         }
 
         $(document).ready(function () {

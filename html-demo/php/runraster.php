@@ -20,7 +20,7 @@ function hex2rgb($hex) {
 $old_path = getcwd();
 chdir('../raster_process/');
 
-// writes ramp txt
+// writes ramp txt: TODO: cat in shell ?
 $ramp = fopen("tmpramp.txt", "w") or die("Unable to open ramp file!");
 $rampTxt = '';
 for ($x = 1; $x <= 5; $x++) {
@@ -31,7 +31,28 @@ fwrite($ramp, $rampTxt);
 fclose($ramp);
 chmod($ramp, 0777);
 
-# params according to method
+// saves current config for ran zone
+$str = file_get_contents('conf.json') or die ('unable to open conf.json file !');
+$json_a = json_decode($str, true);
+
+$json_a[$_GET["selzone"]]['default'] = true;
+$json_a[$_GET["selzone"]]['power'] = $_GET["power"];
+$json_a[$_GET["selzone"]]['smoothing'] = $_GET["smoothing"];
+$json_a[$_GET["selzone"]]['radius1'] = $_GET["radius1"];
+$json_a[$_GET["selzone"]]['radius2'] = $_GET["radius2"];
+$json_a[$_GET["selzone"]]['angle'] = $_GET["angle"];
+for ($i=0; $i < sizeof($json_a[$_GET["zone"]]["ramp"]); $i++) {
+    $json_a[$_GET["selzone"]]["ramp"][0][0] = $_GET["rval$x"];
+    $col = hex2rgb(htmlspecialchars($_GET["clr$x"]));
+    $col = explode(" ", $col);
+    $json_a[$_GET["selzone"]]["ramp"][0][1] = $col[0];
+    $json_a[$_GET["selzone"]]["ramp"][0][2] = $col[1];
+    $json_a[$_GET["selzone"]]["ramp"][0][3] = $col[2];
+}
+
+file_put_contents('conf.json', json_encode($json_a));
+
+// params according to method
 if ($_GET["method"] == 'invdist') {
     $method = htmlspecialchars($_GET["method"]) . ':radius1='. htmlspecialchars($_GET["radius1"]) .
         ':radius2='. htmlspecialchars($_GET["radius2"]) . ':smoothing='. htmlspecialchars($_GET["smoothing"]) .
