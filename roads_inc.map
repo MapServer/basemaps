@@ -15,7 +15,7 @@ LAYER
         TEXT ("[ref]")
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -23,7 +23,7 @@ LAYER
         TEXT ("[ref]")
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -36,7 +36,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -49,14 +49,14 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION "motorway01"
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -64,7 +64,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -86,7 +86,7 @@ LAYER
         TEXT ("[ref]")
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -94,7 +94,7 @@ LAYER
         TEXT ("[ref]")
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -107,7 +107,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -120,14 +120,14 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION "motorway01"
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -135,7 +135,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -158,11 +158,11 @@ LAYER
         STYLE
            WIDTH 0.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -171,11 +171,11 @@ LAYER
         STYLE
            WIDTH 0.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -190,7 +190,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -205,14 +205,14 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION "motorway01"
         STYLE
             WIDTH 0.5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -220,7 +220,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 0.5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -241,7 +241,7 @@ LAYER
         EXPRESSION {primary,primary_link}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -250,11 +250,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -263,11 +263,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -280,7 +280,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -295,7 +295,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -310,14 +310,14 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -325,7 +325,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -333,7 +333,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -354,7 +354,7 @@ LAYER
         EXPRESSION {secondary,secondary_link}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -362,11 +362,11 @@ LAYER
         STYLE
            WIDTH 0.75
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -375,11 +375,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -387,11 +387,11 @@ LAYER
         STYLE
            WIDTH 0.75
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 0.75
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -400,11 +400,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -412,11 +412,11 @@ LAYER
         STYLE
            WIDTH 0.75
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -429,7 +429,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -444,7 +444,7 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -459,7 +459,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -474,7 +474,7 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -489,7 +489,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -504,14 +504,14 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -519,7 +519,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -527,7 +527,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -535,7 +535,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 0.75
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -543,7 +543,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -551,7 +551,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 0.75
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -572,7 +572,7 @@ LAYER
         EXPRESSION {tertiary,tertiary_link}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -580,11 +580,11 @@ LAYER
         STYLE
            WIDTH 0.75
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -592,11 +592,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -605,11 +605,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -617,11 +617,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -630,11 +630,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -642,11 +642,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -659,7 +659,7 @@ LAYER
         END
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -674,7 +674,7 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -689,7 +689,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -704,7 +704,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -719,7 +719,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -734,7 +734,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -749,14 +749,14 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -764,7 +764,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 0.75
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -772,7 +772,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -780,7 +780,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -788,7 +788,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 1
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -796,7 +796,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -804,7 +804,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 1
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -825,14 +825,14 @@ LAYER
         EXPRESSION {unclassified,residential,service,road,living_street}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
         EXPRESSION {tertiary,tertiary_link}
         STYLE
             WIDTH 0.75
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -840,11 +840,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -852,11 +852,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -865,11 +865,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -877,11 +877,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 1.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -890,11 +890,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -902,11 +902,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -919,7 +919,7 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -934,7 +934,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -949,7 +949,7 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -964,7 +964,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -979,7 +979,7 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -994,7 +994,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1009,14 +1009,14 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {unclassified01,residential01,service01,living_street01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -1024,7 +1024,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 0.75
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -1032,7 +1032,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1040,7 +1040,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1048,7 +1048,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1056,7 +1056,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 1.5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1064,7 +1064,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1072,7 +1072,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 1.5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1093,7 +1093,7 @@ LAYER
         EXPRESSION {unclassified,residential,service,road,living_street}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -1109,11 +1109,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1121,11 +1121,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1133,18 +1133,18 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
         EXPRESSION 'pedestrian'
         STYLE
             WIDTH 0.75
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1153,11 +1153,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1165,11 +1165,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1178,11 +1178,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1190,11 +1190,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1209,7 +1209,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1224,7 +1224,7 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1239,7 +1239,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1252,7 +1252,7 @@ LAYER
         END
         STYLE
             WIDTH 0.75
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1267,7 +1267,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1282,7 +1282,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1297,7 +1297,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1312,14 +1312,14 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {unclassified01,residential01,service01,living_street01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -1327,7 +1327,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 0.75
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -1335,7 +1335,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 1
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1343,7 +1343,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1351,7 +1351,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1359,7 +1359,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1367,7 +1367,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 2
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1375,7 +1375,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1383,7 +1383,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 2
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1404,7 +1404,7 @@ LAYER
         EXPRESSION {unclassified,residential,service,road,living_street}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
         END
     END
     CLASS
@@ -1420,11 +1420,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1432,11 +1432,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1444,11 +1444,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1456,11 +1456,11 @@ LAYER
         STYLE
            WIDTH 1
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1469,11 +1469,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1481,11 +1481,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 2.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1494,11 +1494,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1506,11 +1506,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1525,7 +1525,7 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1540,7 +1540,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1555,7 +1555,7 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1570,7 +1570,7 @@ LAYER
         END
         STYLE
             WIDTH 1
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1585,7 +1585,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1600,7 +1600,7 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1615,7 +1615,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1630,14 +1630,14 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
         EXPRESSION {unclassified01,residential01,service01,living_street01}
         STYLE
             WIDTH 0.5
-            COLOR 193 181 157
+            COLOR 177 177 177
             OPACITY 40
         END
     END
@@ -1645,7 +1645,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 1
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -1653,7 +1653,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 1.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1661,7 +1661,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1669,7 +1669,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1677,7 +1677,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1685,7 +1685,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 2.5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -1693,7 +1693,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1701,7 +1701,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 2.5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -1723,7 +1723,7 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2.5
@@ -1743,11 +1743,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1755,11 +1755,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1767,11 +1767,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 3
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1779,11 +1779,11 @@ LAYER
         STYLE
            WIDTH 1.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 1.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1792,11 +1792,11 @@ LAYER
         STYLE
            WIDTH 5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1804,11 +1804,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1817,11 +1817,11 @@ LAYER
         STYLE
            WIDTH 5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1829,11 +1829,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1863,7 +1863,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1878,7 +1878,7 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1893,7 +1893,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -1908,7 +1908,7 @@ LAYER
         END
         STYLE
             WIDTH 1.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -1923,7 +1923,7 @@ LAYER
         END
         STYLE
             WIDTH 5
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1938,7 +1938,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -1953,7 +1953,7 @@ LAYER
         END
         STYLE
             WIDTH 5
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1968,7 +1968,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -1983,7 +1983,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 1.5
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -1991,7 +1991,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 2
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -1999,7 +1999,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2007,7 +2007,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 3
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2015,7 +2015,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 5
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2023,7 +2023,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 3
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2031,7 +2031,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 5
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2039,7 +2039,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 3
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2061,7 +2061,7 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 4
@@ -2081,11 +2081,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2093,11 +2093,11 @@ LAYER
         STYLE
            WIDTH 3.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 3.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2113,11 +2113,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 4
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2125,11 +2125,11 @@ LAYER
         STYLE
            WIDTH 2
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2138,11 +2138,11 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 6
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2150,11 +2150,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2163,11 +2163,11 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 6
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2175,11 +2175,11 @@ LAYER
         STYLE
            WIDTH 4
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2209,7 +2209,7 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2224,7 +2224,7 @@ LAYER
         END
         STYLE
             WIDTH 3.5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2239,7 +2239,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2254,7 +2254,7 @@ LAYER
         END
         STYLE
             WIDTH 2
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2269,7 +2269,7 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2284,7 +2284,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2299,7 +2299,7 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2314,7 +2314,7 @@ LAYER
         END
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2329,7 +2329,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 2
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -2337,7 +2337,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 2.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2345,7 +2345,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 3.5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2353,7 +2353,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 4
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2361,7 +2361,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 6
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2369,7 +2369,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 4
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2377,7 +2377,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 6
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2385,7 +2385,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 4
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2407,7 +2407,7 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 6
@@ -2427,11 +2427,11 @@ LAYER
         STYLE
            WIDTH 5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2439,11 +2439,11 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2459,11 +2459,11 @@ LAYER
         STYLE
            WIDTH 7
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2471,11 +2471,11 @@ LAYER
         STYLE
            WIDTH 2.5
            OUTLINEWIDTH 0.5
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 2.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2484,11 +2484,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2496,11 +2496,11 @@ LAYER
         STYLE
            WIDTH 7
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 7
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2509,11 +2509,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2521,11 +2521,11 @@ LAYER
         STYLE
            WIDTH 7
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 7
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2555,7 +2555,7 @@ LAYER
         END
         STYLE
             WIDTH 5
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2570,7 +2570,7 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2585,7 +2585,7 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2600,7 +2600,7 @@ LAYER
         END
         STYLE
             WIDTH 2.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2615,7 +2615,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2630,7 +2630,7 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2645,7 +2645,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2660,7 +2660,7 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2675,7 +2675,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 2.5
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -2683,7 +2683,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 5
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2691,7 +2691,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2699,7 +2699,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -2707,7 +2707,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2715,7 +2715,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 7
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -2723,7 +2723,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2731,7 +2731,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 7
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -2753,7 +2753,7 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 6
@@ -2773,11 +2773,11 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2785,11 +2785,11 @@ LAYER
         STYLE
            WIDTH 7
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2805,11 +2805,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2817,11 +2817,11 @@ LAYER
         STYLE
            WIDTH 3
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 3
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2830,11 +2830,11 @@ LAYER
         STYLE
            WIDTH 9
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2842,11 +2842,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2855,11 +2855,11 @@ LAYER
         STYLE
            WIDTH 9
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2867,11 +2867,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -2901,7 +2901,7 @@ LAYER
         END
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2916,7 +2916,7 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2931,7 +2931,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -2946,7 +2946,7 @@ LAYER
         END
         STYLE
             WIDTH 3
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -2961,7 +2961,7 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2976,7 +2976,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -2991,7 +2991,7 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3006,7 +3006,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3021,7 +3021,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 3
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -3029,7 +3029,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 6
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3037,7 +3037,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3045,7 +3045,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3053,7 +3053,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -3061,7 +3061,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 8
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -3069,7 +3069,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -3077,7 +3077,7 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 8
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -3099,7 +3099,7 @@ LAYER
         STYLE
            WIDTH 6
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 6
@@ -3119,11 +3119,11 @@ LAYER
         STYLE
            WIDTH 7
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3131,11 +3131,11 @@ LAYER
         STYLE
            WIDTH 8
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3151,11 +3151,11 @@ LAYER
         STYLE
            WIDTH 9
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 9
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3163,11 +3163,11 @@ LAYER
         STYLE
            WIDTH 3.5
            OUTLINEWIDTH 1
-           OUTLINECOLOR 193 181 157
+           OUTLINECOLOR 177 177 177
         END
         STYLE
             WIDTH 3.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -3176,11 +3176,11 @@ LAYER
         STYLE
            WIDTH 10
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 10
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -3188,11 +3188,11 @@ LAYER
         STYLE
            WIDTH 9
            OUTLINEWIDTH 1
-           OUTLINECOLOR 186 110 39
+           OUTLINECOLOR 111 111 111
         END
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -3201,11 +3201,11 @@ LAYER
         STYLE
            WIDTH 10
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 10
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3213,11 +3213,11 @@ LAYER
         STYLE
            WIDTH 9
            OUTLINEWIDTH 1
-           OUTLINECOLOR 221 159 17
+           OUTLINECOLOR 132 132 132
         END
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3247,7 +3247,7 @@ LAYER
         END
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3262,7 +3262,7 @@ LAYER
         END
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3277,7 +3277,7 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR 255 253 139
+            COLOR 215 215 215
         END
     END
     CLASS
@@ -3292,7 +3292,7 @@ LAYER
         END
         STYLE
             WIDTH 3.5
-            COLOR 250 250 245
+            COLOR 248 248 248
         END
     END
     CLASS
@@ -3307,7 +3307,7 @@ LAYER
         END
         STYLE
             WIDTH 10
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -3322,7 +3322,7 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
         END
     END
     CLASS
@@ -3337,7 +3337,7 @@ LAYER
         END
         STYLE
             WIDTH 10
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3352,7 +3352,7 @@ LAYER
         END
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
         END
     END
     CLASS
@@ -3367,7 +3367,7 @@ LAYER
         EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH 3.5
-            COLOR 250 250 245
+            COLOR 248 248 248
             OPACITY 40
         END
     END
@@ -3375,7 +3375,7 @@ LAYER
         EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH 7
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3383,7 +3383,7 @@ LAYER
         EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH 8
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3391,7 +3391,7 @@ LAYER
         EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH 9
-            COLOR 255 253 139
+            COLOR 215 215 215
             OPACITY 40
         END
     END
@@ -3399,7 +3399,7 @@ LAYER
         EXPRESSION "motorway01"
         STYLE
             WIDTH 10
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -3407,7 +3407,7 @@ LAYER
         EXPRESSION "motorway_link01"
         STYLE
             WIDTH 9
-            COLOR 253 146 58
+            COLOR 152 152 152
             OPACITY 40
         END
     END
@@ -3415,7 +3415,7 @@ LAYER
         EXPRESSION "trunk01"
         STYLE
             WIDTH 10
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
@@ -3423,8 +3423,9 @@ LAYER
         EXPRESSION "trunk_link01"
         STYLE
             WIDTH 9
-            COLOR 255 195 69
+            COLOR 173 173 173
             OPACITY 40
         END
     END
 END
+
