@@ -84,6 +84,24 @@ END
        DATA "html-demo/data/price_grid1_clr_mask_35051.tif"
     END
 
+###### masks ############
+    LAYER
+       TYPE raster
+       group "slope"
+       STATUS ON
+       name "maskstr_93048"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 100
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       DATA "html-demo/data/price_grid1_clr_maskstr_93048.tif"
+    END
+
 #    LAYER
 #       TYPE raster
 #       STATUS ON

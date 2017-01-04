@@ -87,6 +87,15 @@ ${GDALDIR}/gdalwarp \
    ../data/price_grid1_clr_$2.tif \
    ../data/price_grid1_clr_mask_$2.tif
 
+if [[ "$2" == 'mask' ]]; then
+    ${GDALDIR}/gdalwarp \
+        -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
+       -cutline ../data/maskstr_$2.shp -crop_to_cutline \
+       -overwrite -dstalpha  \
+       ../data/price_grid1_clr_$2.tif \
+       ../data/price_grid1_clr_mask_$2.tif
+fi
+
 #gdalwarp -s_srs EPSG:3857 -t_srs EPSG:3857 \
 #   -cutline PG:"host=localhost dbname=osm port=5438 user=nicolas" \
 #   -cl administrative_boundaries -cwhere "code_insee = '77186'" -crop_to_cutline \

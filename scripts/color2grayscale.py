@@ -8,13 +8,13 @@ from random import randint
 
 f = open(sys.argv[1], 'r')
 
-gray_color = re.compile(r'[\'|"](\d+) (\d+) (\d+)[\'|"]')
+gray_color = re.compile(r'COLOR (\d+) (\d+) (\d+)$')
 
 def replace(match):
-    ret = '"%s %s %s"' % (match.group(1), match.group(2), match.group(3))
+    ret = 'COLOR %s %s %s' % (match.group(1), match.group(2), match.group(3))
     if sys.argv[2] == 'grayscale':
         val1 = val2 = val3 = (int(match.group(1)) + int(match.group(2)) + int(match.group(3))) / 3
-        ret = '"%s %s %s"' % (val1, val2, val3)
+        ret = 'COLOR %s %s %s' % (val1, val2, val3)
     elif sys.argv[2] == 'random':
         ret = '"%s %s %s"' % (randint(1,255), randint(1,255), randint(1,255))
     elif sys.argv[2] == 'invert':

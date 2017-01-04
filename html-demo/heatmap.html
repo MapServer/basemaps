@@ -287,6 +287,17 @@
         opacity: 0.5
     }).addTo(map);
 
+    // masks
+    var maskstr1ObsLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'maskstr_93048',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices",
+        opacity: 0.5
+    }).addTo(map);
+
+
     // obs point
     var pointLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'obs_pts',
@@ -326,6 +337,7 @@
         "GDAL raster 93048": raster1ObsLayer,
         "GDAL raster 06088": raster2ObsLayer,
         "GDAL raster 35051": raster3ObsLayer,
+        "mask street": maskstr1ObsLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer,
