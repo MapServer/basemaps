@@ -207,8 +207,14 @@
             // toggles slope ramp by default
             $('#waitmsg').toggle();
 
-            $('#clrrangeSlider').on('input', function (ev) {
+            $('#clrrangeSlider1').on('input', function (ev) {
                 raster1ObsLayer.setOpacity(this.value/100);
+            });
+            $('#clrrangeSlider2').on('input', function (ev) {
+                raster2ObsLayer.setOpacity(this.value/100);
+            });
+            $('#clrrangeSlider3').on('input', function (ev) {
+                raster3ObsLayer.setOpacity(this.value/100);
             });
 
 
@@ -282,7 +288,7 @@
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
-        opacity: 0.5
+        opacity: 0.75
     }).addTo(map);
 
     var raster3ObsLayer = L.tileLayer.wms(url + "raster.map", {
@@ -291,7 +297,7 @@
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
-        opacity: 0.5
+        opacity: 0.75
     }).addTo(map);
 
     // obs point
@@ -322,7 +328,10 @@
     });
 
 //    commune mask
-    L.mask(zone_93048).addTo(map);
+    var mask1Layer = null;
+    $.getJSON('php/mask.php', function(data) {
+        mask1Layer = L.mask(data).addTo(map);
+    });
 
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
@@ -338,7 +347,7 @@
         "GDAL raster 35051": raster3ObsLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
-        "Observations prices": pointLblLayer,
+        "Observations prices": pointLblLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);

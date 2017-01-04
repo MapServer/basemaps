@@ -35,6 +35,11 @@ chmod($ramp, 0777);
 $str = file_get_contents('conf.json') or die ('unable to open conf.json file !');
 $json_a = json_decode($str, true);
 
+// default value
+//for ($i = 0; $i < sizeof($json_a); $i++) {
+//    $json_a[$i]['default'] = true;
+//}
+
 $json_a[$_GET["selzone"]]['default'] = true;
 $json_a[$_GET["selzone"]]['power'] = $_GET["power"];
 $json_a[$_GET["selzone"]]['smoothing'] = $_GET["smoothing"];
@@ -42,13 +47,14 @@ $json_a[$_GET["selzone"]]['radius1'] = $_GET["radius1"];
 $json_a[$_GET["selzone"]]['radius2'] = $_GET["radius2"];
 $json_a[$_GET["selzone"]]['angle'] = $_GET["angle"];
 for ($i=0; $i < sizeof($json_a[$_GET["selzone"]]["ramp"]); $i++) {
-    $json_a[$_GET["selzone"]]["ramp"][0][0] = $_GET["rval$i"];
+    $json_a[$_GET["selzone"]]["ramp"][0][0] = intval($_GET["rval$i"]);
     $col = hex2rgb(htmlspecialchars($_GET["clr$i"]));
     $col = explode(" ", $col);
-    $json_a[$_GET["selzone"]]["ramp"][0][1] = $col[0];
-    $json_a[$_GET["selzone"]]["ramp"][0][2] = $col[1];
-    $json_a[$_GET["selzone"]]["ramp"][0][3] = $col[2];
+    $json_a[$_GET["selzone"]]["ramp"][0][1] = intval($col[0]);
+    $json_a[$_GET["selzone"]]["ramp"][0][2] = intval($col[1]);
+    $json_a[$_GET["selzone"]]["ramp"][0][3] = intval($col[2]);
 }
+
 
 file_put_contents('conf.json', json_encode($json_a));
 
@@ -94,5 +100,3 @@ chdir($old_path);
 //echo 'Params: method: ' . htmlspecialchars($_GET["method"]) . '\n'
 //    . 'smoothing: ' . htmlspecialchars($_GET["smoothing"]);
 //
-
-?>

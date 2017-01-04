@@ -93,7 +93,8 @@ echo "•••masking image by commune pg or mask..."
 echo "${3}_${2}"
 
 ${GDALDIR}/gdalwarp \
-   -cutline PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" -cl mask_$2 -cwhere "name = '${3}'" -crop_to_cutline \
+   -cutline PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
+   -cl mask -cwhere "name = '${3}' and code_insee = '${2}'" -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr_mask_$2.vrt \
    ../data/price_grid1_clr_mask_$2.tif
