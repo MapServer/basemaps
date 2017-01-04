@@ -43,7 +43,7 @@ echo "script running on: $platform"
 #${PGDIR}/pgsql2shp -f ../data/points_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
 #${PGDIR}/pgsql2shp -f ../data/maskcom_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
 #${PGDIR}/pgsql2shp -f ../data/maskstr_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_street_93048"
-${PGDIR}/pgsql2shp -f ../data/maskbat_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_bat_93048"
+#${PGDIR}/pgsql2shp -f ../data/maskbat_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_bat_93048"
 #${PGDIR}/pgsql2shp -f ../data/maskfull_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_full_93048"
 #
 #${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
