@@ -81,7 +81,10 @@ if ($_GET["method"] == 'invdist') {
 // current zone:
 $zone = $_GET["selzone"];
 //read params and relaunch script
-$cmd = './process.bash ' . $method . ' ' . $zone . ' 2>&1';
+// current mask:
+$mask = $_GET["selmask"];
+
+$cmd = './process.bash ' . $method . ' ' . $zone . ' ' . $mask . ' 2>&1';
 $output = shell_exec($cmd);
 echo "$output" . " " . $cmd
 ;

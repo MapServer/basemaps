@@ -8,7 +8,8 @@ L.Control.RasterCtrl = L.Control.extend({
     },
 
     htmlLayout: "<div id='serverdiv'><b>GDAL GRID:</b><form id='form1' method='get'>" +
-    "Zone: <select id='selzone' name='selzone'></select><br/>" +
+    "Zone: <select id='selzone' name='selzone'></select> Masque: <select id='selmask' name='selmask'>" +
+    "<option value='maskcom'>commune</option><option value='maskstr'>street</option><option value='maskbat'>batiments</option><option value='maskfull'>str+bat</option></select><br/>" +
     "interpolation method: <select id='selmethod' name='method'>" +
     "<option value='invdist'>invdist</option>" +
     "<option value='invdistnn'>invdistnn</option>" +

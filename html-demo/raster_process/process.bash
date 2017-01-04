@@ -41,9 +41,10 @@ echo "script running on: $platform"
 #${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
 
 #${PGDIR}/pgsql2shp -f ../data/points_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
-#${PGDIR}/pgsql2shp -f ../data/mask_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
+#${PGDIR}/pgsql2shp -f ../data/maskcom_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
 #${PGDIR}/pgsql2shp -f ../data/maskstr_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_street_93048"
-#${PGDIR}/pgsql2shp -f ../data/maskbat_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_bat_93048"
+${PGDIR}/pgsql2shp -f ../data/maskbat_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_bat_93048"
+#${PGDIR}/pgsql2shp -f ../data/maskfull_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_full_93048"
 #
 #${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
 #${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
@@ -84,12 +85,15 @@ ${GDALDIR}/gdalwarp -of VRT \
    ../data/price_grid1_clr_mask_$2.vrt
 
 #CURMASK=maskstr_$2.shp
-CURMASK=maskbat_$2.shp
+#CURMASK=maskbat_$2.shp
+#CURMASK=maskfull_$2.shp
 
 echo "•••masking image by commune pg or mask..."
 # and cutline on precise raster.
+echo "${3}_${2}"
+
 ${GDALDIR}/gdalwarp \
-   -cutline PG:"dbname=osm port=5438 host=localhost user=nicolas password=aimelerafting" -cl mask_bat_93048 -crop_to_cutline \
+   -cutline ../data/${3}_${2}.shp -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr_mask_$2.vrt \
    ../data/price_grid1_clr_mask_$2.tif

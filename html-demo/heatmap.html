@@ -17,6 +17,7 @@
     <script src="js/Leaflet.Coordinates.js"></script>
     <script src="js/leaflet.rasterctrl-src.js"></script>
     <script src="js/leaflet-heat.js"></script>
+    <script src="js/leaflet.mask.effi.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
 
     <script src="js/lib/opacity/Control.Opacity.js"></script>
@@ -27,6 +28,7 @@
     <!--todo: json from WS-->
     <!--<script src="data/points.json"></script>-->
     <script src="data/prices_json.js"></script>
+    <script src="data/zone_93048_json.js"></script>
     <style>
         #mapid {
             height: 100%;
@@ -318,6 +320,9 @@
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices"
     });
+
+//    commune mask
+    L.mask(zone_93048).addTo(map);
 
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
