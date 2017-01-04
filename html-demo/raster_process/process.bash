@@ -43,6 +43,7 @@ echo "script running on: $platform"
 #${PGDIR}/pgsql2shp -f ../data/points_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
 #${PGDIR}/pgsql2shp -f ../data/mask_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
 #${PGDIR}/pgsql2shp -f ../data/maskstr_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_street_93048"
+#${PGDIR}/pgsql2shp -f ../data/maskbat_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_bat_93048"
 #
 #${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
 #${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
@@ -74,46 +75,29 @@ if [[ "$2" == 'slope' ]]; then
 fi
 
 # line cut
-echo "•••masking and smoothing image by commune pg..."
-#${GDALDIR}/gdalwarp \
-#    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
-#   -cutline ../data/mask_$2.shp -crop_to_cutline \
-#   -overwrite -dstalpha  \
-#   ../data/price_grid1_clr_$2.tif \
-#   ../data/price_grid1_clr_mask_$2.tif
-
+echo "•••resampling image 10 times ..."
 # resample: cutline here.
 rm -f ../data/price_grid1_clr_mask_$2.vrt
-${GDALDIR}/gdalwarp -of VRT -tr 2.917 1.96 \
-    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
+${GDALDIR}/gdalwarp -of VRT \
+    -r bilinear -tr 2.917 1.96 \
    ../data/price_grid1_clr_$2.tif \
    ../data/price_grid1_clr_mask_$2.vrt
 
+#CURMASK=maskstr_$2.shp
+CURMASK=maskbat_$2.shp
+
+echo "•••masking image by commune pg or mask..."
 # and cutline on precise raster.
-${GDALDIR}/gdalwarp -tr 2.917 1.96 \
-    -s_srs EPSG:3857 -t_srs EPSG:3857 \
-   -cutline ../data/maskstr_$2.shp -crop_to_cutline \
+${GDALDIR}/gdalwarp \
+   -cutline PG:"dbname=osm port=5438 host=localhost user=nicolas password=aimelerafting" -cl mask_bat_93048 -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr_mask_$2.vrt \
    ../data/price_grid1_clr_mask_$2.tif
 
-#
-#${GDALDIR}/gdalwarp \
-#    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
-#   -cutline ../data/maskstr_$2.shp -crop_to_cutline \
-#   -overwrite -dstalpha  \
-#   ../data/price_grid1_clr_$2.tif \
-#   ../data/price_grid1_clr_mask_$2.tif
+#   -cutline ../data/maskbat_$2.shp -crop_to_cutline \
 
-#gdalwarp -s_srs EPSG:3857 -t_srs EPSG:3857 \
-#   -cutline PG:"host=localhost dbname=osm port=5438 user=nicolas" \
-#   -cl administrative_boundaries -cwhere "code_insee = '77186'" -crop_to_cutline \
-#   -overwrite -dstalpha  \
-#   ../data/price_grid1_clr.tif \
-#   ../data/price_grid1_clr_mask.tif
-#
-# smoothen raster:
 
+#
 echo "•••process raster done•••"
 
 # TODO: order of cmds
