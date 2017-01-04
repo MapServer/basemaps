@@ -27,6 +27,7 @@ L.Control.RasterCtrl = L.Control.extend({
     "<input type='text' id='rval4' name='rval4' value='350'/> <input type='color' id='clr4' name='clr4' value='#C83737'><br/>" +
     "<input type='text' id='rval5' name='rval5' value='403'/> <input type='color' id='clr5' name='clr5' value='#FF0000'><br/>" +
     "<input type='checkbox' id='slope' name='slope'/> Ombrages relief + alti ramp<br/>" +
+    "raster: 0%<input type='range' value='75' id='clrrangeSlider' min='0' max='100' step='2'>100%<br/>" +
     // "Presets:<br/>" +
     // "<input type='radio' id='presets1' name='presets'><label for='presets1'>Invidist default</label><br/>" +
     // "<input type='radio' id='presets2' name='presets'><label for='presets2'>Linear default</label><br/>" +

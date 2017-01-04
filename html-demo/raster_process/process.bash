@@ -37,14 +37,15 @@ echo "script running on: $platform"
 #pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm price_font
 #pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select id, code_insee, geom from administrative_boundaries where code_insee = '77186'"
 
-#${PGDIR}/pgsql2shp -f ../data/points.shp -p 5438 -h localhost osm samplept
+#${PGDIR}/pgsql2shp -f ../data/po≤ints.shp -p 5438 -h localhost osm samplept
 #${PGDIR}/pgsql2shp -f ../data/mask.shp -p 5438 -h localhost osm "select 1::int as id, geom from samplepg"
 
 #${PGDIR}/pgsql2shp -f ../data/points_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='93048'"
 #${PGDIR}/pgsql2shp -f ../data/mask_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '93048'"
+#${PGDIR}/pgsql2shp -f ../data/maskstr_93048.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from mask_street_93048"
 #
-${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
-${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
+#${PGDIR}/pgsql2shp -f ../data/points_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='06088' and is_outliers"
+#${PGDIR}/pgsql2shp -f ../data/mask_06088.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '06088'"
 #
 #${PGDIR}/pgsql2shp -f ../data/points_35051.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select * from observations_for_carto where code_insee='35051'"
 #${PGDIR}/pgsql2shp -f ../data/mask_35051.shp -p 5438 -h localhost -u nicolas -P aimelerafting osm "select id, code_insee, geom from administrative_boundaries where code_insee = '35051'"
@@ -56,12 +57,6 @@ echo "•••generating raster grid from points observations... $1"
 ${GDALDIR}/gdal_grid -l points_$2  -a "$1" \
     ../data/points_$2.shp \
     ../data/price_grid1_$2.tif
-#
-#    PG:"dbname=osm user=nicolas host=localhost port=5438" \
-
-# gdal rasterize:
-#gdal_rasterize -3d -l points ../data/points.shp ../data/price_grid1.tif
-
 
 # color relief:
 echo "•••producing color-relief image based on ramp..."
@@ -80,21 +75,35 @@ fi
 
 # line cut
 echo "•••masking and smoothing image by commune pg..."
-${GDALDIR}/gdalwarp \
+#${GDALDIR}/gdalwarp \
+#    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
+#   -cutline ../data/mask_$2.shp -crop_to_cutline \
+#   -overwrite -dstalpha  \
+#   ../data/price_grid1_clr_$2.tif \
+#   ../data/price_grid1_clr_mask_$2.tif
+
+# resample: cutline here.
+rm -f ../data/price_grid1_clr_mask_$2.vrt
+${GDALDIR}/gdalwarp -of VRT -tr 2.917 1.96 \
     -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
-   -cutline ../data/mask_$2.shp -crop_to_cutline \
-   -overwrite -dstalpha  \
    ../data/price_grid1_clr_$2.tif \
+   ../data/price_grid1_clr_mask_$2.vrt
+
+# and cutline on precise raster.
+${GDALDIR}/gdalwarp -tr 2.917 1.96 \
+    -s_srs EPSG:3857 -t_srs EPSG:3857 \
+   -cutline ../data/maskstr_$2.shp -crop_to_cutline \
+   -overwrite -dstalpha  \
+   ../data/price_grid1_clr_mask_$2.vrt \
    ../data/price_grid1_clr_mask_$2.tif
 
-if [[ "$2" == 'mask' ]]; then
-    ${GDALDIR}/gdalwarp \
-        -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
-       -cutline ../data/maskstr_$2.shp -crop_to_cutline \
-       -overwrite -dstalpha  \
-       ../data/price_grid1_clr_$2.tif \
-       ../data/price_grid1_clr_mask_$2.tif
-fi
+#
+#${GDALDIR}/gdalwarp \
+#    -r bilinear -s_srs EPSG:3857 -t_srs EPSG:3857 \
+#   -cutline ../data/maskstr_$2.shp -crop_to_cutline \
+#   -overwrite -dstalpha  \
+#   ../data/price_grid1_clr_$2.tif \
+#   ../data/price_grid1_clr_mask_$2.tif
 
 #gdalwarp -s_srs EPSG:3857 -t_srs EPSG:3857 \
 #   -cutline PG:"host=localhost dbname=osm port=5438 user=nicolas" \

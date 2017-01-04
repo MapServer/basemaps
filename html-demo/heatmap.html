@@ -205,6 +205,11 @@
             // toggles slope ramp by default
             $('#waitmsg').toggle();
 
+            $('#clrrangeSlider').on('input', function (ev) {
+                raster1ObsLayer.setOpacity(this.value/100);
+            });
+
+
         });
     </script>
 </head>
@@ -266,7 +271,7 @@
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
-        opacity: 0.5
+        opacity: 0.75
     }).addTo(map);
 
     var raster2ObsLayer = L.tileLayer.wms(url + "raster.map", {
@@ -287,17 +292,6 @@
         opacity: 0.5
     }).addTo(map);
 
-    // masks
-    var maskstr1ObsLayer = L.tileLayer.wms(url + "raster.map", {
-        layers: 'maskstr_93048',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity Prices",
-        opacity: 0.5
-    }).addTo(map);
-
-
     // obs point
     var pointLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'obs_pts',
@@ -305,7 +299,7 @@
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices"
-    }).addTo(map);
+    });
 
     // obs point lables
     var pointLblLayer = L.tileLayer.wms(url + "raster.map", {
@@ -323,7 +317,7 @@
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices"
-    }).addTo(map);
+    });
 
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
@@ -337,7 +331,6 @@
         "GDAL raster 93048": raster1ObsLayer,
         "GDAL raster 06088": raster2ObsLayer,
         "GDAL raster 35051": raster3ObsLayer,
-        "mask street": maskstr1ObsLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer,
@@ -353,16 +346,6 @@
         $('.leaflet-tile').toggleClass('leaflet-tile-border');
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
-
-    var opacitySlider1 = new L.Control.opacitySlider();
-    opacitySlider1.setOpacityLayer(raster1ObsLayer);
-    map.addControl(opacitySlider1);
-    var opacitySlider2 = new L.Control.opacitySlider();
-    opacitySlider2.setOpacityLayer(raster2ObsLayer);
-    map.addControl(opacitySlider2);
-    var opacitySlider3 = new L.Control.opacitySlider();
-    opacitySlider3.setOpacityLayer(raster3ObsLayer);
-    map.addControl(opacitySlider3);
 
     //    heatmapStreetLayer.redraw();
 
