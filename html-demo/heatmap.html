@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="js/Leaflet.Coordinates.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
     <link rel="stylesheet" href="js/lib/opacity/Control.Opacity.css"/>
+    <link rel="stylesheet" href="js/leaflet-info-control.css"/>
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
@@ -18,12 +19,17 @@
     <script src="js/leaflet.rasterctrl-src.js"></script>
     <script src="js/leaflet-heat.js"></script>
     <script src="js/leaflet.mask.effi.js"></script>
+    <script src="js/leaflet-info-control.js"></script>
+    <script src="js/leaflet-ajax-plugin.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
 
     <script src="js/lib/opacity/Control.Opacity.js"></script>
     <script src="js/lib/jquery/jquery-1.9.1.js"></script>
     <script src="js/lib/jquery/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <script src="js/heatmap.min.js"></script>
+    <script src="js/leaflet-heatmap.js"></script>
 
     <!--todo: json from WS-->
     <!--<script src="data/points.json"></script>-->
@@ -75,7 +81,7 @@
                 $('#clr' + (i + 1)).val(col);
             }
 
-            map.setView(defconf.latlong, defconf.zoom);
+            //map.setView(defconf.latlong, defconf.zoom);
         }
 
         $(document).ready(function () {
@@ -231,7 +237,48 @@
         color: '#000000'
     };
 
+    var styleVectorDefault= {
+        weight: 1,
+            color: '#000033',
+            fillOpacity: 0,
+            opacity: 0
+
+    };
+    var styleVectorOver= {
+        weight: 2,
+            color: '#000033',
+            fillColor: '#A0A0A0',
+            opacity: 1,
+            fillOpacity: 0.5
+    };
+
     var url = '';
+
+    var rootNodePath='0';
+
+    function getChildZones(nodepath, neigh) {
+        console.log('getting child zones for nodepath: ' + nodepath)
+        L.Util.ajax('php/childzones.php?neigh=' + neigh + '&nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
+            vectorLayer.clearLayers();
+            vectorLayer.addData(data);
+            // TODO: remove in prod
+            // console.log('zones loaded: ' + EffiTileZone.vectorLayer.getLayers().length);
+        });
+    }
+
+    function getMaskLayer(nodepath) {
+        console.log('getting mask pg for nodepath: ' + nodepath)
+        L.Util.ajax('php/mask.php?nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
+            if (mask1Layer) {
+                mask1Layer.removeFrom(map);
+            }
+            mask1Layer = L.mask(data).addTo(map);
+            // TODO: remove in prod
+            // console.log('zones loaded: ' + EffiTileZone.vectorLayer.getLayers().length);
+        });
+    }
+
+
     //platform-dependend url
     jQuery.ajaxSetup({async:false});
     var os = jQuery.get('php/os.php');
@@ -248,7 +295,8 @@
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
-        [48.863, 2.4477], 14
+//        [48.863, 2.4477], 14
+        [46.7850, 2.8784], 6 // france
     );
 
     ////////////// OSM live TMS ////////////////////////////////////////////////////////////////////////////////////////
@@ -265,11 +313,10 @@
     });
 
     // heatmap:
-    //TODO: data from WS
     var heatmapStreetLayer = L.heatLayer(price_points, {
-        radius: 25,
-//        maxZoom: 17
-    });
+        radius: 50,
+        max: 60294
+    }).addTo(map);
 
     // raster:
     //TODO: data from WS
@@ -327,12 +374,39 @@
         attribution: "Efficity Prices"
     });
 
-//    commune mask
+    //    zone mask
     var mask1Layer = null;
-    $.getJSON('php/mask.php', function(data) {
-        mask1Layer = L.mask(data).addTo(map);
-    });
+    getMaskLayer(rootNodePath);
+    getChildZones(rootNodePath, false);
 
+    //    childzones
+    vectorLayer = L.geoJson(null, {
+        style: styleVectorDefault,
+        onEachFeature: function (feature, layer) {
+            layer.on({
+                click: function (e) {
+                    // loads zone or streets if terminal leaf, in a new page
+                    map.fitBounds(layer.getBounds());
+                    console.log(feature.properties.node_path);
+                    getMaskLayer(feature.properties.node_path);
+                    var isNeigh = (feature.properties.admin_level >= 8);
+                    getChildZones(feature.properties.node_path, isNeigh);
+                },
+                mouseover: function (e) {
+                    var layer = e.target;
+                    layer.setStyle(styleVectorOver);
+                    if (!L.Browser.ie && !L.Browser.opera) {
+                        layer.bringToFront();
+                    }
+                    zoneInfoCtrl.update(feature.properties);
+                },
+                mouseout: function (e) {
+                    vectorLayer.resetStyle(e.target);
+                    zoneInfoCtrl.update();
+                }
+            });
+        }
+    }).addTo(map);
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
     var emptyLayer = L.tileLayer('').addTo(map);
@@ -361,7 +435,15 @@
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
 
-    //    heatmapStreetLayer.redraw();
+    // info ctrl
+    zoneInfoCtrl = new L.control.featureinfo({
+        position: 'topright',
+        // htmlTemplate: '%name% (%code_insee%)',
+        // defaultText: 'Survoler une zone'
+    }).addTo(map);
+
+
+    heatmapStreetLayer.redraw();
 
 </script>
 </body>

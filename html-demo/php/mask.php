@@ -12,9 +12,10 @@ if (!$conn) {
     exit;
 }
 
-$query = "select st_asgeojson(st_transform(st_union(geom), 4326), 5) as json
-from administrative_boundaries
-where code_insee in ('93048', '35051', '06088')";
+$nodePath = htmlspecialchars($_GET["nodepath"]);
+$query = "select st_asgeojson(a.geomsimple_4326, 5) as geojson
+          from administrative_boundaries a
+          where a.node_path = '" . $nodePath . "'";
 
 $result = pg_query($conn, $query);
 if (!$result) {
@@ -23,7 +24,5 @@ if (!$result) {
 }
 
 while ($data = pg_fetch_object($result)) {
-    echo $data->json;
+    echo $data->geojson;
 }
-
-//echo "coucou";
