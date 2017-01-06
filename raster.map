@@ -198,7 +198,8 @@ END
            "init=epsg:3857"
        END
        #DATA "html-demo/data/price_dem.tif"
-       DATA "/Volumes/GROSSD/tmp/price_dem.tif"
+       #DATA "/Volumes/GROSSD/tmp/price_dem.tif"
+       DATA "/data_big2/Documents/geodata/price_dem.tif"
     END
 
 #    LAYER
