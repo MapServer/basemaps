@@ -13,9 +13,15 @@ if (!$conn) {
 }
 
 $nodePath = htmlspecialchars($_GET["nodepath"]);
-$query = "select st_asgeojson(a.geomsimple_4326, 5) as geojson
-          from administrative_boundaries a
-          where a.node_path = '" . $nodePath . "'";
+$query = "with tmp as (
+    SELECT
+      'Feature'                        AS type,
+      ST_AsGeoJSON(a.geomsimple_4326, 5) :: JSON AS geometry,
+      row_to_json((SELECT l FROM (SELECT node_path, values) AS l)) AS properties
+    FROM administrative_boundaries a
+    where a.node_path = '" . $nodePath . "'
+) select row_to_json(t) as json
+  from tmp t";
 
 $result = pg_query($conn, $query);
 if (!$result) {
@@ -24,5 +30,5 @@ if (!$result) {
 }
 
 while ($data = pg_fetch_object($result)) {
-    echo $data->geojson;
+    echo $data->json;
 }

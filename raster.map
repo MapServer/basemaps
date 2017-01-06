@@ -102,6 +102,105 @@ END
        DATA "html-demo/data/price_grid1_clr_maskstr_93048.tif"
     END
 
+    LAYER
+       TYPE raster
+       group "test"
+       STATUS ON
+       name "test"
+       #MASK "testmask"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 100
+       END
+       validation
+            val1 ".*"
+            val2 ".*"
+            val3 ".*"
+            val4 ".*"
+            val5 ".*"
+            val6 ".*"
+            val7 ".*"
+            val8 ".*"
+            val9 ".*"
+            val10 ".*"
+            val11 ".*"
+        end
+        CLASSITEM "[pixel]"
+        CLASS
+          EXPRESSION ([pixel] <= %val1%)
+          STYLE
+            color 0 104 55
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val1% AND [pixel] < %val2%)
+          STYLE
+            color 26 152 80
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val2% AND [pixel] < %val3%)
+          STYLE
+            color 102 189 99
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val3% AND [pixel] < %val4%)
+          STYLE
+            color 166 217 106
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val4% AND [pixel] < %val5%)
+          STYLE
+            color 217 239 139
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val5% AND [pixel] < %val6%)
+          STYLE
+            color 255 255 191
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val6% AND [pixel] < %val7%)
+          STYLE
+            color 254 224 139
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val7% AND [pixel] < %val8%)
+          STYLE
+            color 253 174 97
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val8% AND [pixel] < %val9%)
+          STYLE
+            color 244 109 67
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val9% AND [pixel] < %val10%)
+          STYLE
+            color 215 48 39
+          END
+        END
+        CLASS
+          EXPRESSION ([pixel] >= %val10% )
+          STYLE
+            color 165 0 38
+          END
+        END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       #DATA "html-demo/data/price_dem.tif"
+       DATA "/Volumes/GROSSD/tmp/price_dem.tif"
+    END
+
 #    LAYER
 #       TYPE raster
 #       STATUS ON
@@ -175,5 +274,16 @@ END
                 color 0 0 0
             end
         end
+    end
+    layer
+        type polygon
+        status off
+        name "testmask"
+        CONNECTIONTYPE postgis
+        connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        data "geom from (select id, geom from administrative_boundaries where code_insee='44' and admin_level = 4) as t using unique id using srid=3857"
     end
 END

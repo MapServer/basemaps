@@ -56,14 +56,17 @@ echo "script running on: $platform"
 METH="invdist:power=3:smoothing=20:radius1=200:radius2=200"
 
 echo "•••generating raster grid from points observations... $1"
-${GDALDIR}/gdal_grid -l points_$2  -a "$1" \
-    ../data/points_$2.shp \
+${GDALDIR}/gdal_grid -a_srs EPSG:3857 --config GDAL_NUM_THREADS ALL_CPUS -a "$1" \
+    -sql "SELECT st_setSRID(st_makePoint(st_X(st_centroid(b.point)), st_Y(st_centroid(b.point)), m2_price),3857) AS geom FROM observations_for_carto b WHERE b.code_insee = '44' and not is_outlier" \
+    PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
     ../data/price_grid1_$2.tif
+
+#    -sql "select st_setSRID(st_makePoint(st_X(st_centroid(b.geometry)), st_Y(st_centroid(b.geometry)), median_price_m2), 3857) as geom from baro3_osmbarodata b where b.admin_level = 8" \
 
 # color relief:
 echo "•••producing color-relief image based on ramp..."
 #gdaldem color-relief ../data/price_grid1.tif color_relief2.txt ../data/price_grid1_clr.tif
-${GDALDIR}/gdaldem color-relief ../data/price_grid1_$2.tif tmpramp.txt ../data/price_grid1_clr_$2.tif
+${GDALDIR}/gdaldem --config GDAL_NUM_THREADS ALL_CPUS color-relief ../data/price_grid1_$2.tif tmpramp.txt ../data/price_grid1_clr_$2.tif
 
 # slope ?
 if [[ "$2" == 'slope' ]]; then
@@ -76,11 +79,11 @@ if [[ "$2" == 'slope' ]]; then
 fi
 
 # line cut
-echo "•••resampling image 10 times ..."
-# resample: cutline here.
+#echo "•••resampling image 10 times ..."
+## resample: cutline here.
 rm -f ../data/price_grid1_clr_mask_$2.vrt
 ${GDALDIR}/gdalwarp -of VRT \
-    -r bilinear -tr 2.917 1.96 \
+    -r bilinear -tr 635 608 \
    ../data/price_grid1_clr_$2.tif \
    ../data/price_grid1_clr_mask_$2.vrt
 
@@ -94,11 +97,20 @@ echo "${3}_${2}"
 
 ${GDALDIR}/gdalwarp \
    -cutline PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
-   -cl mask -cwhere "name = '${3}' and code_insee = '${2}'" -crop_to_cutline \
+   -csql "select st_simplifyPreserveTopology(geom, 100) from administrative_boundaries where code_insee='44'" -crop_to_cutline \
    -overwrite -dstalpha  \
    ../data/price_grid1_clr_mask_$2.vrt \
    ../data/price_grid1_clr_mask_$2.tif
 
+#   -csql "select geom from tmpmask" \
+
+#${GDALDIR}/gdalwarp \
+#   -cutline PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
+#   -cl mask -cwhere "name = '${3}' and code_insee = '${2}'" -crop_to_cutline \
+#   -overwrite -dstalpha  \
+#   ../data/price_grid1_clr_mask_$2.vrt \
+#   ../data/price_grid1_clr_mask_$2.tif
+#
 #   -cutline ../data/maskbat_$2.shp -crop_to_cutline \
 
 

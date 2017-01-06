@@ -253,6 +253,7 @@
     };
 
     var url = '';
+    var demVals = 'val1=756&val2=978&val3=1158&val4=1324&val5=1484&val6=1643&val7=1807&val8=1992&val9=2228&val10=2584&val11=2584';
 
     var rootNodePath='0';
 
@@ -261,20 +262,21 @@
         L.Util.ajax('php/childzones.php?neigh=' + neigh + '&nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
             vectorLayer.clearLayers();
             vectorLayer.addData(data);
-            // TODO: remove in prod
-            // console.log('zones loaded: ' + EffiTileZone.vectorLayer.getLayers().length);
         });
     }
 
     function getMaskLayer(nodepath) {
+        // also returns values for raster classification
         console.log('getting mask pg for nodepath: ' + nodepath)
         L.Util.ajax('php/mask.php?nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
             if (mask1Layer) {
                 mask1Layer.removeFrom(map);
             }
-            mask1Layer = L.mask(data).addTo(map);
-            // TODO: remove in prod
-            // console.log('zones loaded: ' + EffiTileZone.vectorLayer.getLayers().length);
+            console.dir(data);
+            mask1Layer = L.mask(data.geometry).addTo(map);
+
+            // loads dem with dynamic values:
+            testLayer.setUrl(url.replace('[demvals]', data.properties.values))
         });
     }
 
@@ -286,9 +288,9 @@
     jQuery.ajaxSetup({async:true});
 
     if (os === "Darwin") {
-        var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+        var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/raster.map&[demvals]';
     } else if (os === "Linux") {
-        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/raster.map&[demvals]';
     }
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
@@ -316,7 +318,7 @@
     var heatmapStreetLayer = L.heatLayer(price_points, {
         radius: 50,
         max: 60294
-    }).addTo(map);
+    });
 
     // raster:
     //TODO: data from WS
@@ -327,7 +329,7 @@
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
         opacity: 0.75
-    }).addTo(map);
+    });
 
     var raster2ObsLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'price_06088',
@@ -336,7 +338,7 @@
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
         opacity: 0.75
-    }).addTo(map);
+    });
 
     var raster3ObsLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'price_35051',
@@ -345,7 +347,7 @@
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices",
         opacity: 0.75
-    }).addTo(map);
+    });
 
     // obs point
     var pointLayer = L.tileLayer.wms(url + "raster.map", {
@@ -373,6 +375,15 @@
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices"
     });
+
+    // test
+    var testLayer = L.tileLayer.wms(url.replace('[demvals]', demVals), {
+        layers: 'test',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices"
+    }).addTo(map);
 
     //    zone mask
     var mask1Layer = null;
@@ -421,7 +432,8 @@
         "GDAL raster 35051": raster3ObsLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
-        "Observations prices": pointLblLayer
+        "Observations prices": pointLblLayer,
+        "test": testLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
