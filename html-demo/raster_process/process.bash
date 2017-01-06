@@ -78,9 +78,7 @@ if [[ "$2" == 'slope' ]]; then
     ${GDALDIR}/gdaldem color-relief ../data/price_grid1_slope_$2.tif color_slope.txt ../data/price_grid1_slopeshade_$2.tif
 fi
 
-# line cut
-#echo "•••resampling image 10 times ..."
-## resample: cutline here.
+echo "•••resampling image 10 times ..."
 rm -f ../data/price_grid1_clr_mask_$2.vrt
 ${GDALDIR}/gdalwarp -of VRT \
     -r bilinear -tr 635 608 \

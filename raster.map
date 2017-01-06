@@ -285,7 +285,10 @@ END
         PROJECTION
            "init=epsg:3857"
         END
-        data "geom from (select id, geom from administrative_boundaries where code_insee='44' and admin_level = 4) as t using unique id using srid=3857"
+        validation
+            node_path ".*"
+        end
+        data "geom from (select id, st_transform(geomsimple_4326, 3857) as geom from administrative_boundaries where node_path='%node_path%') as t using unique id using srid=3857"
         class
             style
                 color 0 0 0

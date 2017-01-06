@@ -276,7 +276,9 @@
             mask1Layer = L.mask(data.geometry).addTo(map);
 
             // loads dem with dynamic values:
-            testLayer.setUrl(url.replace('[demvals]', data.properties.values))
+            testLayer.setUrl(
+                url.replace('[demvals]', data.properties.values).replace('[nodepath]', data.properties.node_path)
+            )
         });
     }
 
@@ -288,9 +290,9 @@
     jQuery.ajaxSetup({async:true});
 
     if (os === "Darwin") {
-        var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/raster.map&[demvals]';
+        var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/raster.map&[demvals]&node_path=[nodepath]';
     } else if (os === "Linux") {
-        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/raster.map&[demvals]';
+        var url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/raster.map&[demvals]&node_path=[nodepath]';
     }
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
@@ -367,6 +369,15 @@
         attribution: "Efficity Prices"
     });
 
+    // test
+    var testLayer = L.tileLayer.wms(
+        url.replace('[demvals]', demVals).replace('[nodepath]', '0'), {
+        layers: 'test',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices"
+    }).addTo(map);
     // streets
     var streetLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'default',
@@ -376,14 +387,6 @@
         attribution: "Efficity Prices"
     });
 
-    // test
-    var testLayer = L.tileLayer.wms(url.replace('[demvals]', demVals), {
-        layers: 'test',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity Prices"
-    }).addTo(map);
 
     //    zone mask
     var mask1Layer = null;
@@ -430,10 +433,10 @@
         "GDAL raster 93048": raster1ObsLayer,
         "GDAL raster 06088": raster2ObsLayer,
         "GDAL raster 35051": raster3ObsLayer,
+        "test": testLayer,
         "Streets": streetLayer,
         "Observations": pointLayer,
-        "Observations prices": pointLblLayer,
-        "test": testLayer
+        "Observations prices": pointLblLayer
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
