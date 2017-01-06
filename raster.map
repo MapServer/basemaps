@@ -202,6 +202,28 @@ END
        DATA "/data_big2/Documents/geodata/price_dem.tif"
     END
 
+    LAYER
+       TYPE raster
+       group "test2"
+       STATUS ON
+       name "test2"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 100
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       validation
+           node_path ".*"
+       end
+       #DATA "/Volumes/GROSSD/tmp/effiprice/rasterprice_%node_path%.tif"
+       DATA "/data_big2/Documents/geodata/effiprice/rasterprice_%node_path%.tif"
+    END
+
+
 #    LAYER
 #       TYPE raster
 #       STATUS ON

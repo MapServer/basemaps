@@ -222,6 +222,12 @@
             $('#clrrangeSlider3').on('input', function (ev) {
                 raster3ObsLayer.setOpacity(this.value/100);
             });
+            $('#clrrangeSlider4').on('input', function (ev) {
+                testLayer.setOpacity(this.value/100);
+            });
+            $('#clrrangeSlider5').on('input', function (ev) {
+                test2Layer.setOpacity(this.value/100);
+            });
 
 
         });
@@ -278,7 +284,11 @@
             // loads dem with dynamic values:
             testLayer.setUrl(
                 url.replace('[demvals]', data.properties.values).replace('[nodepath]', data.properties.node_path)
-            )
+            );
+            // loads pre generated tif image (static file:
+            test2Layer.setUrl(
+                url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
+            );
         });
     }
 
@@ -376,8 +386,21 @@
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity Prices"
+        attribution: "Efficity Prices",
+        opacity: 0.75
+    });
+    // test
+
+    var test2Layer = L.tileLayer.wms(
+        url.replace('[nodepath]', '0.44'), {
+        layers: 'test2',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices",
+        opacity: 0.75
     }).addTo(map);
+
     // streets
     var streetLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'default',
@@ -433,7 +456,8 @@
         "GDAL raster 93048": raster1ObsLayer,
         "GDAL raster 06088": raster2ObsLayer,
         "GDAL raster 35051": raster3ObsLayer,
-        "test": testLayer,
+        "Live MS classif": testLayer,
+        "Pre-gen gdal classif": test2Layer,
         "Streets": streetLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer
