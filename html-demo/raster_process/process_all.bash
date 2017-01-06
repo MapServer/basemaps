@@ -17,7 +17,7 @@ DB_NAME="osm"
 OUTSIZE="256 256"
 
 # query to get list of maps to generate
-QUERY="select node_path, nlevel(node_path) as nlevel, ramp from admin_bound_values ORDER BY nlevel(node_path)"
+QUERY="select node_path, nlevel(node_path) as nlevel, ramp from admin_bound_values where valid ORDER BY nlevel(node_path), node_path desc"
 
 # plateform detection:
 platform='unknown'
@@ -72,6 +72,7 @@ psql \
     if [ -f /Volumes/GROSSD/tmp/effiprice/rasterprice_${node_path}.tif ] ; then
         echo "[ERROR] file rasterprice_${node_path}.tif exists, skipping"
     else
+        echo ""
         echo "•••generating raster grid (${OUTSIZE}) from points observations for $node_path..."
         ${GDALDIR}/gdal_grid -a_srs EPSG:3857 --config GDAL_NUM_THREADS ALL_CPUS -a invdist:power=2:smoothin=50 \
             -outsize ${OUTSIZE} \

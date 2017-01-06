@@ -264,13 +264,13 @@ END
         type point
         status on
         name "obs_pts"
-        #CONNECTIONTYPE postgis
-        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        CONNECTIONTYPE postgis
+        connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
         PROJECTION
            "init=epsg:3857"
         END
-        #data "geom from (select geom, id, from price_font) as t using unique id using srid=3857"
-        data "html-demo/data/points.shp"
+        data "geom from (select point as geom, node_path::text, m2_price from observations_for_carto where not is_outlier) as t using unique node_path using srid=3857"
+        #data "html-demo/data/points.shp"
         CLASS
             style
                 color 34 34 34
@@ -283,13 +283,13 @@ END
         type point
         status on
         name "obs_pts_lbl"
-        #CONNECTIONTYPE postgis
-        #connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        CONNECTIONTYPE postgis
+        connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
         PROJECTION
            "init=epsg:3857"
         END
-        #data "geom from (select geom, id, price_m2 from price_font) as t using unique id using srid=3857"
-        data "html-demo/data/points.shp"
+        data "geom from (select point as geom, node_path::text, m2_price from observations_for_carto where not is_outlier) as t using unique node_path using srid=3857"
+        #data "html-demo/data/points.shp"
         labelitem "M2_PRICE"
         CLASS
             label
@@ -314,6 +314,23 @@ END
         class
             style
                 color 0 0 0
+            end
+        end
+    end
+    # invalid communes
+    layer
+        type polygon
+        status on
+        name "invalidcom"
+        CONNECTIONTYPE postgis
+        connection "dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting"
+        PROJECTION
+           "init=epsg:3857"
+        END
+        data "geom from (select id, st_transform(geomsimple_4326, 3857) as geom from administrative_boundaries a join admin_bound_values aa on a.node_path = aa.node_path where a.admin_level in (8,9) and not aa.valid) as t using unique id using srid=3857"
+        class
+            style
+                color 200 200 180
             end
         end
     end

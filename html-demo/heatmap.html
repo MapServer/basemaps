@@ -402,13 +402,23 @@
     }).addTo(map);
 
     // streets
+    var invalidcomLayer = L.tileLayer.wms(url + "raster.map", {
+        layers: 'invalidcom',
+        format: 'image/png',
+        transparent: true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "Efficity Prices",
+        opacity: 0.75
+    });
+
+    // streets
     var streetLayer = L.tileLayer.wms(url + "raster.map", {
         layers: 'default',
         format: 'image/png',
         transparent: true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "Efficity Prices"
-    });
+    }).addTo(map);
 
 
     //    zone mask
@@ -459,6 +469,7 @@
         "Live MS classif": testLayer,
         "Pre-gen gdal classif": test2Layer,
         "Streets": streetLayer,
+        "Invalid comms": invalidcomLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer
     };
@@ -476,7 +487,7 @@
 
     // info ctrl
     zoneInfoCtrl = new L.control.featureinfo({
-        position: 'topright',
+        position: 'bottomright',
         // htmlTemplate: '%name% (%code_insee%)',
         // defaultText: 'Survoler une zone'
     }).addTo(map);
