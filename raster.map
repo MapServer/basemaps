@@ -107,7 +107,7 @@ END
        group "test"
        STATUS ON
        name "test"
-       #MASK "testmask"
+       MASK "testmask"
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
@@ -286,5 +286,10 @@ END
            "init=epsg:3857"
         END
         data "geom from (select id, geom from administrative_boundaries where code_insee='44' and admin_level = 4) as t using unique id using srid=3857"
+        class
+            style
+                color 0 0 0
+            end
+        end
     end
 END
