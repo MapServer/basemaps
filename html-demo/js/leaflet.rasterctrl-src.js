@@ -31,7 +31,7 @@ L.Control.RasterCtrl = L.Control.extend({
     "93048: 0%<input type='range' value='75' id='clrrangeSlider1' min='0' max='100' step='2'>100%<br/>" +
     "06088: 0%<input type='range' value='75' id='clrrangeSlider2' min='0' max='100' step='2'>100%<br/>" +
     "35051: 0%<input type='range' value='75' id='clrrangeSlider3' min='0' max='100' step='2'>100%<br/>" +
-    "Live MS<input type='range' value='75' id='clrrangeSlider4' min='0' max='100' step='2'>100%<br/>" +
+    "Live MS: 0%<input type='range' value='75' id='clrrangeSlider4' min='0' max='100' step='2'>100%<br/>" +
     "Pregen: 0%<input type='range' value='75' id='clrrangeSlider5' min='0' max='100' step='2'>100%<br/>" +
     // "Presets:<br/>" +
     // "<input type='radio' id='presets1' name='presets'><label for='presets1'>Invidist default</label><br/>" +

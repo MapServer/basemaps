@@ -111,7 +111,9 @@ END
        DEBUG 1
        PROCESSING "APPROXIMATION_SCALE=full"
        COMPOSITE
+         COMPOP "multiply"
          OPACITY 100
+         COMPFILTER "difference"
        END
        validation
             val1 ".*"
@@ -219,9 +221,32 @@ END
        validation
            node_path ".*"
        end
-       #DATA "/Volumes/GROSSD/tmp/effiprice/rasterprice_%node_path%.tif"
-       DATA "/data_big2/Documents/geodata/effiprice/rasterprice_%node_path%.tif"
+       #DATA "/Volumes/GROSSD/tmp/priceeffi/rasterprice_%node_path%.tif"
+       DATA "/data_big2/Documents/geodata/priceeffi/rasterprice_%node_path%.tif"
     END
+
+    LAYER
+        NAME "heatmap"
+        TYPE raster
+        CONNECTIONTYPE kerneldensity
+        CONNECTION "obs_pts"
+        STATUS on
+        PROCESSING "RANGE_COLORSPACE=HSL"
+        PROCESSING "KERNELDENSITY_RADIUS=20"
+        PROCESSING "KERNELDENSITY_COMPUTE_BORDERS=ON"
+        PROCESSING "KERNELDENSITY_NORMALIZATION=auto"
+        # good
+        #PROCESSING "KERNELDENSITY_NORMALIZATION=0.00015"
+        OFFSITE 0 0 0
+        CLASS
+          STYLE
+            #COLORRANGE  "#2D712Bff"  "#85262Aff"
+            COLORRANGE  "#00FF00ff"  "#ff0000ff"
+            DATARANGE 0 255
+          END # STYLE
+        END # CLASS
+      END # LAYER
+
 
 
 #    LAYER
@@ -269,13 +294,17 @@ END
         PROJECTION
            "init=epsg:3857"
         END
-        data "geom from (select point as geom, node_path::text, m2_price from observations_for_carto where not is_outlier) as t using unique node_path using srid=3857"
+        data "geom from (select point as geom, node_path::text, m2_price, mspixel from observations_for_carto where not is_outlier and node_path <@ '%node_path%' and code_insee = '44') as t using unique node_path using srid=3857"
         #data "html-demo/data/points.shp"
+        validation
+           node_path ".*"
+        end
+
         CLASS
             style
-                color 34 34 34
-                size 3
-                symbol "citycircle"
+                #color 34 34 34
+                size [mspixel]
+                #symbol "citycircle"
             end
         end
     end
@@ -331,6 +360,7 @@ END
         class
             style
                 color 200 200 180
+                outlinecolor 80 80 60
             end
         end
     end

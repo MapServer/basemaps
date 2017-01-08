@@ -461,7 +461,7 @@ WITH tmp AS (
       JOIN colorramp c ON t.ntile = c.id + 1
     WHERE ntile NOT IN (1, 7)
     GROUP BY ntile, node_path, c.clr
-    ORDER BY ntile
+    ORDER BY node_path, ntile
 ), tmp2 AS (
     SELECT
       node_path,
@@ -496,7 +496,7 @@ WITH tmp AS (
       JOIN colorramp c ON t.ntile = c.id + 1
     WHERE ntile NOT IN (1, 7)
     GROUP BY ntile, node_path, c.clr
-    ORDER BY ntile
+    ORDER BY node_path, ntile
 ), tmp2 AS (
     SELECT
       node_path,

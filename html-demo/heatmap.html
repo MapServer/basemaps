@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="js/lib/jquery/jquery-ui-1.10.3.custom.min.css"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
@@ -59,12 +60,12 @@
         //zones confs
         var rasterconf = null;
 
-        function RGB2Color(r,g,b) {
+        function RGB2Color(r, g, b) {
             return '#' + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
         }
-        function byte2Hex (n) {
+        function byte2Hex(n) {
             var nybHexString = "0123456789ABCDEF";
-            return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
+            return String(nybHexString.substr((n >> 4) & 0x0F, 1)) + nybHexString.substr(n & 0x0F, 1);
         }
 
         function setVals(defconf) {
@@ -86,45 +87,45 @@
 
         $(document).ready(function () {
             // disable ui according to method:
-            $('#selmethod').change(function() {
-                if ($( "#selmethod option:selected" ).val() == 'linear') {
-                    $( "#radius1" ).prop( "disabled", false );
-                    $( "#power" ).prop( "disabled", true );
-                    $( "#smoothing" ).prop( "disabled", true );
-                    $( "#radius2" ).prop( "disabled", true );
-                    $( "#angle" ).prop( "disabled", true );
-                } else if ($( "#selmethod option:selected" ).val() == 'invdist') {
-                    $( "#power" ).prop( "disabled", false );
-                    $( "#smoothing" ).prop( "disabled", false );
-                    $( "#radius1" ).prop( "disabled", false );
-                    $( "#radius2" ).prop( "disabled", false );
-                    $( "#angle" ).prop( "disabled", false );
-                } else if ($( "#selmethod option:selected" ).val() == 'invdistnn') {
-                    $( "#power" ).prop( "disabled", false );
-                    $( "#radius1" ).prop( "disabled", false );
-                    $( "#smoothing" ).prop( "disabled", true );
-                    $( "#radius2" ).prop( "disabled", true );
-                    $( "#angle" ).prop( "disabled", true );
-                } else if ($( "#selmethod option:selected" ).val() == 'average') {
-                    $( "#radius1" ).prop( "disabled", false );
-                    $( "#radius2" ).prop( "disabled", false );
-                    $( "#angle" ).prop( "disabled", false );
-                    $( "#power" ).prop( "disabled", true );
-                    $( "#smoothing" ).prop( "disabled", true );
-                } else if ($( "#selmethod option:selected" ).val() == 'nearest') {
-                    $( "#radius1" ).prop( "disabled", false );
-                    $( "#radius2" ).prop( "disabled", false );
-                    $( "#angle" ).prop( "disabled", false );
-                    $( "#power" ).prop( "disabled", true );
-                    $( "#smoothing" ).prop( "disabled", true );
+            $('#selmethod').change(function () {
+                if ($("#selmethod option:selected").val() == 'linear') {
+                    $("#radius1").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
+                    $("#radius2").prop("disabled", true);
+                    $("#angle").prop("disabled", true);
+                } else if ($("#selmethod option:selected").val() == 'invdist') {
+                    $("#power").prop("disabled", false);
+                    $("#smoothing").prop("disabled", false);
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                } else if ($("#selmethod option:selected").val() == 'invdistnn') {
+                    $("#power").prop("disabled", false);
+                    $("#radius1").prop("disabled", false);
+                    $("#smoothing").prop("disabled", true);
+                    $("#radius2").prop("disabled", true);
+                    $("#angle").prop("disabled", true);
+                } else if ($("#selmethod option:selected").val() == 'average') {
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
+                } else if ($("#selmethod option:selected").val() == 'nearest') {
+                    $("#radius1").prop("disabled", false);
+                    $("#radius2").prop("disabled", false);
+                    $("#angle").prop("disabled", false);
+                    $("#power").prop("disabled", true);
+                    $("#smoothing").prop("disabled", true);
                 } else {
 
                 }
             });
 
             // change on zone: reload good conf
-            $('#selzone').change(function() {
-                var zone = $( "#selzone option:selected" ).val();
+            $('#selzone').change(function () {
+                var zone = $("#selzone option:selected").val();
                 setVals(rasterconf[zone]);
                 // relaunch raster
 
@@ -197,14 +198,14 @@
 //                }
 //            });
             // wait msg
-            $('#submitbtn').on('click', function(){
+            $('#submitbtn').on('click', function () {
                 $('#waitmsg').toggle();
             });
 
             // dots anime
-            var dots = window.setInterval( function() {
+            var dots = window.setInterval(function () {
                 var wait = document.getElementById("dots");
-                if ( wait.innerHTML.length > 4 )
+                if (wait.innerHTML.length > 4)
                     wait.innerHTML = "";
                 else
                     wait.innerHTML += " &#8226;";
@@ -214,19 +215,19 @@
             $('#waitmsg').toggle();
 
             $('#clrrangeSlider1').on('input', function (ev) {
-                raster1ObsLayer.setOpacity(this.value/100);
+                raster1ObsLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider2').on('input', function (ev) {
-                raster2ObsLayer.setOpacity(this.value/100);
+                raster2ObsLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider3').on('input', function (ev) {
-                raster3ObsLayer.setOpacity(this.value/100);
+                raster3ObsLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider4').on('input', function (ev) {
-                testLayer.setOpacity(this.value/100);
+                testLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider5').on('input', function (ev) {
-                test2Layer.setOpacity(this.value/100);
+                test2Layer.setOpacity(this.value / 100);
             });
 
 
@@ -243,28 +244,42 @@
         color: '#000000'
     };
 
-    var styleVectorDefault= {
+    var styleVectorDefault = {
         weight: 1,
-            color: '#000033',
-            fillOpacity: 0,
-            opacity: 0
+        color: '#000033',
+        fillOpacity: 0,
+        opacity: 0
 
     };
-    var styleVectorOver= {
+    var styleVectorOver = {
         weight: 2,
-            color: '#000033',
-            fillColor: '#A0A0A0',
-            opacity: 1,
-            fillOpacity: 0.5
+        color: '#000033',
+        fillColor: '#A0A0A0',
+        opacity: 1,
+        fillOpacity: 0.5
+    };
+    var styleStreetDefault = {
+        weight: 2,
+        color: '#BBBBBB',
+        opacity: 1
+
+    };
+
+    var styleStreetOver = {
+        weight: 3,
+        color: '#FF00FF',
+        opacity: 1,
+        fillOpacity: 0.5
     };
 
     var url = '';
+    var streetsURL = 'php/streets?codeinsee=[codeinsee]';
     var demVals = 'val1=756&val2=978&val3=1158&val4=1324&val5=1484&val6=1643&val7=1807&val8=1992&val9=2228&val10=2584&val11=2584';
 
-    var rootNodePath='0';
+    var rootNodePath = '0';
 
     function getChildZones(nodepath, neigh) {
-        console.log('getting child zones for nodepath: ' + nodepath)
+//        console.log('getting child zones for nodepath: ' + nodepath);
         L.Util.ajax('php/childzones.php?neigh=' + neigh + '&nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
             vectorLayer.clearLayers();
             vectorLayer.addData(data);
@@ -273,12 +288,11 @@
 
     function getMaskLayer(nodepath) {
         // also returns values for raster classification
-        console.log('getting mask pg for nodepath: ' + nodepath)
+//        console.log('getting mask pg for nodepath: ' + nodepath);
         L.Util.ajax('php/mask.php?nodepath=<node_path>'.replace('<node_path>', nodepath)).then(function (data) {
             if (mask1Layer) {
                 mask1Layer.removeFrom(map);
             }
-            console.dir(data);
             mask1Layer = L.mask(data.geometry).addTo(map);
 
             // loads dem with dynamic values:
@@ -289,15 +303,66 @@
             test2Layer.setUrl(
                 url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
             );
+            pointLayer.setUrl(
+                url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
+            );
+            msHeatLayer.setUrl(
+                url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
+            );
         });
     }
 
+    // classify feature based on ms class
+    function classifyStreet(feature) {
+        var style = {
+            weight: 3,
+//            color: streetClasses[Number(feature.properties.ms_class)],
+            color: streetClasses[Number(feature.properties.ms_class)],
+            opacity: 1
+        };
+        return style;
+    }
+    ;
+
+    function clickOnMapStreet(feature, layer) {
+        // only for last zoom level:
+        layer.on({
+            click: function (e) {
+                if (map.getZoom() >= 17) {
+                    //// TODO: check if needed...
+                    //EffiTileZone.map.fitBounds(L.geoJson(feature).getBounds());
+                    //// TODO: hilite feature ?
+                    //layer.setStyle({weight: 9});
+                    window.location.href = STREET_PAGE_URL.replace('<id>', feature.properties.id);
+                    //var win = window.open(STREET_PAGE_URL.replace('<id>', feature.properties.id), '_blank');
+                    //win.focus();
+                } else {
+                    // TODO: remove in prod
+//                    console.log('no click, zoom to small...'); // TODO: remove in prod
+                    alert('prix de la rue: ' + feature.properties.name + ' prix: ' + feature.properties.median_price_m2 + ' €'); // TODO: remove in prod
+                }
+            },
+            mouseover: function (e) {
+                var layer = e.target;
+                zoneInfoCtrl.update(feature.properties);
+                layer.setStyle({weight: 9});
+                if (!L.Browser.ie && !L.Browser.opera) {
+                    layer.bringToFront();
+                }
+            },
+            mouseout: function (e) {
+                zoneInfoCtrl.update();
+                vectorStreetsLayer.resetStyle(e.target);
+                vectorStreetsLayer.setStyle({weight: 5});
+            }
+        });
+    };
 
     //platform-dependend url
-    jQuery.ajaxSetup({async:false});
+    jQuery.ajaxSetup({async: false});
     var os = jQuery.get('php/os.php');
     os = os.responseText;
-    jQuery.ajaxSetup({async:true});
+    jQuery.ajaxSetup({async: true});
 
     if (os === "Darwin") {
         var url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/raster.map&[demvals]&node_path=[nodepath]';
@@ -362,7 +427,7 @@
     });
 
     // obs point
-    var pointLayer = L.tileLayer.wms(url + "raster.map", {
+    var pointLayer = L.tileLayer.wms(url.replace('[nodepath]', '0.44'), {
         layers: 'obs_pts',
         format: 'image/png',
         transparent: true,
@@ -371,7 +436,7 @@
     });
 
     // obs point lables
-    var pointLblLayer = L.tileLayer.wms(url + "raster.map", {
+    var pointLblLayer = L.tileLayer.wms(url, {
         layers: 'obs_pts_lbl',
         format: 'image/png',
         transparent: true,
@@ -382,27 +447,46 @@
     // test
     var testLayer = L.tileLayer.wms(
         url.replace('[demvals]', demVals).replace('[nodepath]', '0'), {
-        layers: 'test',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity Prices",
-        opacity: 0.75
-    });
+            layers: 'test',
+            format: 'image/png',
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "Efficity Prices",
+            opacity: 0.75
+        });
     // test
 
     var test2Layer = L.tileLayer.wms(
         url.replace('[nodepath]', '0.44'), {
-        layers: 'test2',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity Prices",
-        opacity: 0.75
-    }).addTo(map);
+            layers: 'test2',
+            format: 'image/png',
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "Efficity Prices",
+            opacity: 0.75
+        });
+
+//    ms Heatmap
+    var msHeatLayer = L.tileLayer.wms(
+        url.replace('[nodepath]', '0.44'), {
+            layers: 'heatmap',
+            format: 'image/png',
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "Efficity Prices",
+            opacity: 0.75
+        }).addTo(map);
+
+//    var heatOptions = {
+//        'transparent': true,
+//        format: 'image/png',
+//        identify: false
+//    };
+//    var heatSource = L.WMS.source(url.replace('[nodepath]', '0.44'), heatOptions);
+//    var msHeatLayer = heatSource.getLayer('heatmap').addTo(map);
 
     // streets
-    var invalidcomLayer = L.tileLayer.wms(url + "raster.map", {
+    var invalidcomLayer = L.tileLayer.wms(url, {
         layers: 'invalidcom',
         format: 'image/png',
         transparent: true,
@@ -412,7 +496,7 @@
     });
 
     // streets
-    var streetLayer = L.tileLayer.wms(url + "raster.map", {
+    var streetLayer = L.tileLayer.wms(url, {
         layers: 'default',
         format: 'image/png',
         transparent: true,
@@ -427,17 +511,28 @@
     getChildZones(rootNodePath, false);
 
     //    childzones
-    vectorLayer = L.geoJson(null, {
+    var vectorLayer = L.geoJson(null, {
         style: styleVectorDefault,
         onEachFeature: function (feature, layer) {
             layer.on({
                 click: function (e) {
-                    // loads zone or streets if terminal leaf, in a new page
+                    // zooms to zone, loads neighbours and mask
                     map.fitBounds(layer.getBounds());
-                    console.log(feature.properties.node_path);
                     getMaskLayer(feature.properties.node_path);
                     var isNeigh = (feature.properties.admin_level >= 8);
                     getChildZones(feature.properties.node_path, isNeigh);
+
+                    // and streets if street level
+                    if (isNeigh) {
+                        // change default cursor:
+                        $('.leaflet-container').css('cursor','crosshair');
+                        // TODO: clean insee parsing !
+                        var code = feature.properties.node_path.split('.')[3];
+                        L.Util.ajax(streetsURL.replace('[codeinsee]', code)).then(function (data) {
+                            vectorStreetsLayer.clearLayers();
+                            vectorStreetsLayer.addData(data);
+                        });
+                    }
                 },
                 mouseover: function (e) {
                     var layer = e.target;
@@ -455,6 +550,13 @@
         }
     }).addTo(map);
 
+    // streets  with price for commune:
+    vectorStreetsLayer = L.geoJson(null, {
+//        style: classifyStreet,
+        style: styleStreetDefault,
+        onEachFeature: clickOnMapStreet
+    }).addTo(map);
+
     //    var emptyLayer = L.tileLayer('').addTo(map);
     var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
@@ -468,7 +570,9 @@
         "GDAL raster 35051": raster3ObsLayer,
         "Live MS classif": testLayer,
         "Pre-gen gdal classif": test2Layer,
+        "MS Heat": msHeatLayer,
         "Streets": streetLayer,
+        "Vec Streets": vectorStreetsLayer,
         "Invalid comms": invalidcomLayer,
         "Observations": pointLayer,
         "Observations prices": pointLblLayer
@@ -489,7 +593,7 @@
     zoneInfoCtrl = new L.control.featureinfo({
         position: 'bottomright',
         // htmlTemplate: '%name% (%code_insee%)',
-        // defaultText: 'Survoler une zone'
+        defaultText: 'Estimation ici'
     }).addTo(map);
 
 
