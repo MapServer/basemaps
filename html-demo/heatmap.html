@@ -303,6 +303,9 @@
             test2Layer.setUrl(
                 url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
             );
+            gdalGeoLayer.setUrl(
+                url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
+            );
             pointLayer.setUrl(
                 url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
             );
@@ -466,6 +469,16 @@
             opacity: 0.75
         }).addTo(map);
 
+    var gdalGeoLayer = L.tileLayer.wms(
+        url.replace('[nodepath]', '0.44'), {
+            layers: 'gdalgeo',
+            format: 'image/png',
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "Efficity Prices",
+            opacity: 0.75
+        }).addTo(map);
+
 //    ms Heatmap
     var msHeatLayer = L.tileLayer.wms(
         url.replace('[nodepath]', '0.44'), {
@@ -570,6 +583,7 @@
         "GDAL raster 35051": raster3ObsLayer,
         "Live MS classif": testLayer,
         "Pre-gen gdal classif": test2Layer,
+        "Pre-gen gdal geo": gdalGeoLayer,
         "MS Heat": msHeatLayer,
         "Streets": streetLayer,
         "Vec Streets": vectorStreetsLayer,

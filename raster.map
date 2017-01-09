@@ -226,6 +226,27 @@ END
     END
 
     LAYER
+       TYPE raster
+       group "gdalgeo"
+       STATUS ON
+       name "gdalgeo"
+       DEBUG 1
+       PROCESSING "APPROXIMATION_SCALE=full"
+       COMPOSITE
+         OPACITY 100
+       END
+
+       PROJECTION
+           "init=epsg:3857"
+       END
+       validation
+           node_path ".*"
+       end
+       #DATA "/Volumes/GROSSD/tmp/priceeffi/gcrasterprice_%node_path%.tif"
+       DATA "/data_big2/Documents/geodata/priceeffi/gcrasterprice_%node_path%.tif"
+    END
+
+    LAYER
         NAME "heatmap"
         TYPE raster
         CONNECTIONTYPE kerneldensity

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 06 janvier 2017:
 #
-# script to prepprocess prices to generate jpeg images from DEM price, with correct res and smoothing
+# script to resample rasterprice
 # .
 #
 # Etapes:
@@ -28,7 +28,7 @@ QUERY="SELECT
     st_ymin(ab.geom::box2d)::int as ymin , st_ymax(ab.geom::box2d)::int as ymax,
       a.ramp
 FROM admin_bound_values a join administrative_boundaries ab on a.node_path = ab.node_path
-WHERE geovalid
+WHERE valid and nlevel(a.node_path) > 3
 ORDER BY nlevel(a.node_path), a.node_path DESC"
 
 # plateform detection:
@@ -78,7 +78,7 @@ psql \
     echo ${json} > /tmp/mask.json
     # detect level for custom params like grid size or commune extent:
     if [ "$nlevel" = "4" ]; then
-        OUTSIZE="728 728"
+        OUTSIZE="1024 1024"
         EXTENT="-txe ${xmin} ${xmax} -tye ${ymin} ${ymax}"
     else
         OUTSIZE="512 512"
@@ -86,58 +86,11 @@ psql \
     fi
 
     # if file already exists, skips
-    if [ -f /Volumes/GROSSD/tmp/priceeffi/gcrasterprice_${node_path}.tif ] ; then
+    if [ -f /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.tif ] ; then
         echo "[ERROR] file rasterprice_${node_path}.tif exists, skipping"
     else
         echo ""
         echo "•••generating raster grid (${OUTSIZE}) from points observations for ${node_path} (forced extent:${EXTENT})..."
-        ${GDALDIR}/gdal_grid -a_srs EPSG:3857 --config GDAL_NUM_THREADS ALL_CPUS -a invdist:power=2:smoothing=0 \
-            -outsize ${OUTSIZE} ${EXTENT} \
-            -sql "SELECT  o.node_path,  o.point,  o.m2_price FROM observations_for_carto o where not o.is_outlier and node_path ~ '${node_path}.*' AND o.is_geocoded_to_address_precision" \
-            PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
-            /Volumes/GROSSD/tmp/priceeffi/grid_$node_path.tif > /tmp/gdal_grid.out
-
-        cat /tmp/gdal_grid.out
-
-        # detects empty grid to avoid gdalwarp errors
-        pix=`grep "Grid cell size = (" /tmp/gdal_grid.out`
-
-        if [ "$pix" = "Grid cell size = (0.000000 0.000000)." ]; then
-            echo "[ERROR] invalid grid size: 0x0: no observation in ${node_path} ?"
-        else
-            echo "•••generating ramp for $node_path..."
-            rm -f /tmp/tmpramp.txt
-            OIFS=$IFS
-            IFS=','
-            RAMP=$ramp
-            for x in $RAMP
-            do
-                echo "$x" >> /tmp/tmpramp.txt
-            done
-            IFS=$OIFS
-
-            cat /tmp/tmpramp.txt
-
-            echo "•••producing color-relief image based on ramp for ${node_path}..."
-            ${GDALDIR}/gdaldem color-relief \
-                -of VRT \
-                --config GDAL_NUM_THREADS ALL_CPUS \
-                /Volumes/GROSSD/tmp/priceeffi/grid_$node_path.tif \
-                /tmp/tmpramp.txt \
-                /Volumes/GROSSD/tmp/priceeffi/color_$node_path.vrt
-
-            echo "•••masking image by commune pg or mask $node_path..."
-            # TODO: less precise geoms for adminbound: simplified geom in json
-            ${GDALDIR}/gdalwarp -co COMPRESS=LZW \
-                -cutline /tmp/mask.json \
-                -crop_to_cutline \
-               -overwrite -dstalpha \
-               /Volumes/GROSSD/tmp/priceeffi/color_$node_path.vrt \
-               /Volumes/GROSSD/tmp/priceeffi/gcrasterprice_${node_path}.tif
-
-#                -cutline PG:"dbname=osm host=localhost port=5438 user=nicolas password=aimelerafting" \
-#                -csql "select geom from administrative_boundaries where node_path='${node_path}'" -crop_to_cutline \
-
 
         fi
     fi

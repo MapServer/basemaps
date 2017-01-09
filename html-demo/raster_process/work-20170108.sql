@@ -54,40 +54,83 @@ WHERE s.median_price_m2 > 0
 --
 SELECT
   a.node_path,
-  nlevel(a.node_path) AS nlevel,
+  nlevel(a.node_path)              AS nlevel,
   a.ramp,
-  st_xmin(ab.geom::box2d)::int as xmin, st_xmax(ab.geom::box2d)::int as xmax,
-    st_ymin(ab.geom::box2d)::int as ymin , st_ymax(ab.geom::box2d) as ymax,
-  st_asgeojson(ab.geom) as json
-FROM admin_bound_values a join administrative_boundaries ab on a.node_path = ab.node_path
+  st_xmin(ab.geom :: BOX2D) :: INT AS xmin,
+  st_xmax(ab.geom :: BOX2D) :: INT AS xmax,
+  st_ymin(ab.geom :: BOX2D) :: INT AS ymin,
+  st_ymax(ab.geom :: BOX2D)        AS ymax,
+  st_asgeojson(ab.geom)            AS json
+FROM admin_bound_values a
+  JOIN administrative_boundaries ab ON a.node_path = ab.node_path
 WHERE valid AND a.node_path = '0.44.68.68143'
 ORDER BY nlevel(a.node_path), a.node_path DESC;
 
 -- test MS heatmap:
 -- points query according to nodepath:
-select point as geom, node_path::text, m2_price from observations_for_carto where not is_outlier and node_path <@ '0.44.55.55502';
-
-select * from colorramp;
-
-SELECT  o.node_path,  o.point,  o.m2_price FROM observations_for_carto o where not o.is_outlier and node_path ~ '0.44.*';
-
-select min(m2_price)/255, max(m2_price)/255
+SELECT
+  point AS geom,
+  node_path :: TEXT,
+  m2_price
 FROM observations_for_carto
-where code_insee = '44' and not is_outlier;
+WHERE NOT is_outlier AND node_path <@ '0.44.55.55502';
+
+SELECT *
+FROM colorramp;
+
+SELECT
+  o.node_path,
+  o.point,
+  o.m2_price
+FROM observations_for_carto o
+WHERE NOT o.is_outlier AND node_path ~ '0.44.*';
+
+SELECT
+  min(m2_price) / 255,
+  max(m2_price) / 255
+FROM observations_for_carto
+WHERE code_insee = '44' AND NOT is_outlier;
 
 -- test classif on 255 values :))
-alter table observations_for_carto add column mspixel SMALLINT;
+ALTER TABLE observations_for_carto
+  ADD COLUMN mspixel SMALLINT;
 
 WITH tmp AS (
-    SELECT id,
+    SELECT
+      id,
       m2_price,
-      subpath(o.node_path, 0, nlevel(o.node_path) - 2) as node_path,
+      subpath(o.node_path, 0, nlevel(o.node_path) - 2) AS node_path,
       ntile(256)
       OVER (PARTITION BY subpath(o.node_path, 0, nlevel(o.node_path) - 2)
         ORDER BY m2_price)                             AS ntile
     FROM observations_for_carto o
-) update observations_for_carto o set mspixel = t.ntile -1
-from tmp t
-where o.id = t.id;
+) UPDATE observations_for_carto o
+SET mspixel = t.ntile - 1
+FROM tmp t
+WHERE o.id = t.id;
 
 VACUUM ANALYSE observations_for_carto;
+
+SELECT
+  a.node_path,
+  nlevel(a.node_path)                 AS nlevel,
+  st_asgeojson(ab.geomsimple_4326, 5) AS json,
+  st_xmin(ab.geom :: BOX2D) :: INT    AS xmin,
+  st_xmax(ab.geom :: BOX2D) :: INT    AS xmax,
+  st_ymin(ab.geom :: BOX2D) :: INT    AS ymin,
+  st_ymax(ab.geom :: BOX2D) :: INT    AS ymax,
+  a.ramp
+FROM admin_bound_values a
+  JOIN administrative_boundaries ab ON a.node_path = ab.node_path
+WHERE valid AND nlevel(a.node_path) > 3
+ORDER BY nlevel(a.node_path), a.node_path DESC;
+
+-- test query for geocoded precision
+with tmp as (
+    SELECT
+      o.node_path,
+      o.point,
+      o.m2_price
+    FROM observations_for_carto o
+    WHERE NOT o.is_outlier AND node_path ~ '0.44.*' AND o.is_geocoded_to_address_precision
+) select count(*) from tmp;
