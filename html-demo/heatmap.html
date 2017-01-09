@@ -389,7 +389,7 @@
         'tms': true,
         'errorTileUrl': 'image/tileerror.png',
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    });
+    }).addTo(map);
 
     // heatmap:
     var heatmapStreetLayer = L.heatLayer(price_points, {
@@ -558,7 +558,7 @@
     }).addTo(map);
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
-    var emptyLayer = L.tileLayer('').addTo(map);
+    var emptyLayer = L.tileLayer('');
     var baseLayers = {
         "OSM b&w ": googleNoLabelsMapcacheLayer,
         'empty': emptyLayer
