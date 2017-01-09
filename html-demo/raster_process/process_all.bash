@@ -78,7 +78,7 @@ psql \
     echo ${json} > /tmp/mask.json
     # detect level for custom params like grid size or commune extent:
     if [ "$nlevel" = "4" ]; then
-        OUTSIZE="256 256"
+        OUTSIZE="1024 1024"
         EXTENT="-txe ${xmin} ${xmax} -tye ${ymin} ${ymax}"
     else
         OUTSIZE="512 512"
