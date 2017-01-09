@@ -221,8 +221,8 @@ END
        validation
            node_path ".*"
        end
-       #DATA "/Volumes/GROSSD/tmp/priceeffi/rasterprice_%node_path%.tif"
-       DATA "/data_big2/Documents/geodata/priceeffi/rasterprice_%node_path%.tif"
+       #DATA "/Volumes/GROSSD/tmp/priceeffi/rasterprice_%node_path%.jpg.tif"
+       DATA "/data_big2/Documents/geodata/priceeffi/rasterprice_%node_path%.jpg.tif"
     END
 
     LAYER

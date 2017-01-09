@@ -28,7 +28,7 @@ QUERY="SELECT
     st_ymin(ab.geom::box2d)::int as ymin , st_ymax(ab.geom::box2d)::int as ymax,
       a.ramp
 FROM admin_bound_values a join administrative_boundaries ab on a.node_path = ab.node_path
-WHERE valid and nlevel(a.node_path) > 3
+WHERE valid
 ORDER BY nlevel(a.node_path), a.node_path DESC"
 
 # plateform detection:
@@ -86,12 +86,14 @@ psql \
     fi
 
     # if file already exists, skips
-    if [ -f /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.tif ] ; then
-        echo "[ERROR] file rasterprice_${node_path}.tif exists, skipping"
+    if [ -f /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.jpg.tif ] ; then
+        echo "[WARNING] file rasterprice_${node_path}.tif exists, skipping"
     else
         echo ""
-        echo "•••generating raster grid (${OUTSIZE}) from points observations for ${node_path} (forced extent:${EXTENT})..."
-
-        fi
+        echo "•••resampling for ${node_path}..."
+        ${GDALDIR}/gdalwarp -co COMPRESS=JPEG -co JPEG_QUALITY=10 \
+            -r bilinear -ts 1024 0 \
+           /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.tif \
+           /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.jpg.tif
     fi
 done
