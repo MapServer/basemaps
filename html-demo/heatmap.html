@@ -394,6 +394,13 @@
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     }).addTo(map);
 
+    // streets  with price for commune:
+    vectorStreetsLayer = L.geoJson(null, {
+//        style: classifyStreet,
+        style: styleStreetDefault,
+        onEachFeature: clickOnMapStreet
+    }).addTo(map);
+
     var googleabelsOnlyMapcacheLayer = new L.TileLayer.Grayscale(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), {
         'tms': true,
         'errorTileUrl': 'image/tileerror.png',
@@ -504,7 +511,7 @@
 //    var heatSource = L.WMS.source(url.replace('[nodepath]', '0.44'), heatOptions);
 //    var msHeatLayer = heatSource.getLayer('heatmap').addTo(map);
 
-    // streets
+    // communes invalides
     var invalidcomLayer = L.tileLayer.wms(url, {
         layers: 'invalidcom',
         format: 'image/png',
@@ -567,13 +574,6 @@
                 }
             });
         }
-    }).addTo(map);
-
-    // streets  with price for commune:
-    vectorStreetsLayer = L.geoJson(null, {
-//        style: classifyStreet,
-        style: styleStreetDefault,
-        onEachFeature: clickOnMapStreet
     }).addTo(map);
 
     //    var emptyLayer = L.tileLayer('').addTo(map);
