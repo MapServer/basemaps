@@ -554,12 +554,11 @@
                         });
 
                         // forces less opacity for raster layers:
-                        gdalGeoLayer.setOpacity(0.50);
-                        test2Layer.setOpacity(0.50);
+                        gdalGeoLayer.setOpacity(0.250);
+                        test2Layer.setOpacity(0.250);
                     }
                 },
                 mouseover: function (e) {
-                    var layer = e.target;
                     layer.setStyle(styleVectorOver);
                     if (!L.Browser.ie && !L.Browser.opera) {
                         layer.bringToFront();
