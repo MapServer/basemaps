@@ -547,8 +547,6 @@
 
                     // and streets if street level
                     if (isNeigh) {
-                        // change default cursor:
-                        $('.leaflet-container').css('cursor','crosshair');
                         // TODO: clean insee parsing !
                         var code = feature.properties.node_path.split('.')[3];
                         L.Util.ajax(streetsURL.replace('[codeinsee]', code)).then(function (data) {
@@ -624,6 +622,14 @@
         defaultText: 'Estimation ici'
     }).addTo(map);
 
+    // custom zoom management to change cursors
+    map.on('zoomend', function() {
+        if (map.getZoom() == 16) {
+            $('.leaflet-container').css('cursor','zoom-in');
+        } else if (map.getZoom() > 16) {
+            $('.leaflet-container').css('cursor','crosshair');
+        }
+    });
 
     heatmapStreetLayer.redraw();
 
