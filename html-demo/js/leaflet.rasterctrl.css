@@ -4,7 +4,7 @@
     width: auto;
     height: auto;
     /*line-height: 26px;*/
-    display: none;
+    display: block;
     text-align: left;
     text-decoration: none;
     color: black;
@@ -12,4 +12,8 @@
     padding-left: 0.3em;
     padding-right: 0.3em;
     font: 12px/20px Tahoma, Verdana, sans-serif;
+}
+
+#dummyDiv {
+    display: none;
 }
