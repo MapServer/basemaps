@@ -394,6 +394,12 @@
         attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
     }).addTo(map);
 
+    var googleabelsOnlyMapcacheLayer = new L.TileLayer.Grayscale(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), {
+        'tms': true,
+        'errorTileUrl': 'image/tileerror.png',
+        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
+    }).addTo(map);
+
     // heatmap:
     var heatmapStreetLayer = L.heatLayer(price_points, {
         radius: 50,
@@ -589,7 +595,8 @@
         "Vec Streets": vectorStreetsLayer,
         "Invalid comms": invalidcomLayer,
         "Observations": pointLayer,
-        "Observations prices": pointLblLayer
+        "Observations prices": pointLblLayer,
+        "Labels": googleabelsOnlyMapcacheLayer,
     };
 
     L.control.layers(baseLayers, overlays).addTo(map);
