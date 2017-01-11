@@ -255,17 +255,28 @@ END
         PROCESSING "RANGE_COLORSPACE=HSL"
         PROCESSING "KERNELDENSITY_RADIUS=20"
         PROCESSING "KERNELDENSITY_COMPUTE_BORDERS=ON"
-        PROCESSING "KERNELDENSITY_NORMALIZATION=auto"
+        #PROCESSING "KERNELDENSITY_NORMALIZATION=auto"
         # good
-        #PROCESSING "KERNELDENSITY_NORMALIZATION=0.00015"
+        PROCESSING "KERNELDENSITY_NORMALIZATION=0.00015"
         OFFSITE 0 0 0
-        CLASS
-          STYLE
-            #COLORRANGE  "#2D712Bff"  "#85262Aff"
-            COLORRANGE  "#00FF00ff"  "#ff0000ff"
-            DATARANGE 0 255
-          END # STYLE
-        END # CLASS
+#        CLASS
+#          STYLE
+#            COLORRANGE  "#2D712Bff"  "#85262Aff"
+#            #COLORRANGE  "#00FF00ff"  "#ff0000ff"
+#            DATARANGE 0 255
+#          END # STYLE
+#        END # CLASS
+    CLASS
+      STYLE
+        COLORRANGE  "#0000ff00"  "#0000ffff"
+        DATARANGE 0 32
+      END # STYLE
+      STYLE
+        COLORRANGE  "#0000ffff"  "#ff0000ff"
+        DATARANGE 32 255
+      END # STYLE
+    END # CLASS
+
       END # LAYER
 
 

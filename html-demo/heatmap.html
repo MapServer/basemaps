@@ -228,7 +228,7 @@
                 testLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider5').on('input', function (ev) {
-                test2Layer.setOpacity(this.value / 100);
+                gdalGridLayer.setOpacity(this.value / 100);
             });
             $('#clrrangeSlider6').on('input', function (ev) {
                 gdalGeoLayer.setOpacity(this.value / 100);
@@ -304,7 +304,7 @@
                 url.replace('[demvals]', data.properties.values).replace('[nodepath]', data.properties.node_path)
             );
             // loads pre generated tif image (static file:
-            test2Layer.setUrl(
+            gdalGridLayer.setUrl(
                 url.replace('[demvals]', ' ').replace('[nodepath]', data.properties.node_path)
             );
             gdalGeoLayer.setUrl(
@@ -469,7 +469,7 @@
         });
     // test
 
-    var test2Layer = L.tileLayer.wms(
+    var gdalGridLayer = L.tileLayer.wms(
         url.replace('[nodepath]', '0.44'), {
             layers: 'test2',
             format: 'image/png',
@@ -556,7 +556,7 @@
 
                         // forces less opacity for raster layers:
                         gdalGeoLayer.setOpacity(0.250);
-                        test2Layer.setOpacity(0.250);
+                        gdalGridLayer.setOpacity(0.250);
                     }
                 },
                 mouseover: function (e) {
@@ -592,10 +592,10 @@
         "GDAL raster 93048": raster1ObsLayer,
         "GDAL raster 06088": raster2ObsLayer,
         "GDAL raster 35051": raster3ObsLayer,
-        "Live MS classif": testLayer,
-        "Pre-gen gdal classif": test2Layer,
+        "MS DEM classif": testLayer,
+        "MS live Heatmap": msHeatLayer,
+        "Pre-gen gdal classif": gdalGridLayer,
         "Pre-gen gdal geo": gdalGeoLayer,
-        "MS Heat": msHeatLayer,
         "Streets": streetLayer,
         "Invalid comms": invalidcomLayer,
         "Observations": pointLayer,
