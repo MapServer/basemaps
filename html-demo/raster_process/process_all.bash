@@ -55,7 +55,6 @@ fi
 
 echo "script running on: $platform"
 
-# Execute query, loops through the result and generates mapcache_seed commands for each map to generate:
 set -e
 set -u
 

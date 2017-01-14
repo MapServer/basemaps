@@ -7,7 +7,7 @@ L.Control.RasterCtrl = L.Control.extend({
         position: 'bottomleft'
     },
 
-    htmlLayout: "<div id='serverdiv'><b>GDAL GRID:</b><form id='form1' method='get'>" +
+    htmlLayout: "<div id='serverdiv'><div id='dummydiv'><b>GDAL GRID:</b><form id='form1' method='get'>" +
     "Zone: <select id='selzone' name='selzone'></select> Masque: <select id='selmask' name='selmask'>" +
     "<option value='maskcom'>commune</option><option value='maskstr'>street</option><option value='maskbat'>batiments</option><option value='maskfull'>str+bat</option></select><br/>" +
     "interpolation method: <select id='selmethod' name='method'>" +
@@ -28,17 +28,19 @@ L.Control.RasterCtrl = L.Control.extend({
     "<input type='text' id='rval4' name='rval4' value='350'/> <input type='color' id='clr4' name='clr4' value='#C83737'><br/>" +
     "<input type='text' id='rval5' name='rval5' value='403'/> <input type='color' id='clr5' name='clr5' value='#FF0000'><br/>" +
     "<input type='checkbox' id='slope' name='slope'/> Ombrages relief + alti ramp<br/>" +
+    "</div><div style='display: none'>" +
     "93048: 0%<input type='range' value='75' id='clrrangeSlider1' min='0' max='100' step='2'>100%<br/>" +
     "06088: 0%<input type='range' value='75' id='clrrangeSlider2' min='0' max='100' step='2'>100%<br/>" +
     "35051: 0%<input type='range' value='75' id='clrrangeSlider3' min='0' max='100' step='2'>100%<br/>" +
     "Live MS: 0%<input type='range' value='75' id='clrrangeSlider4' min='0' max='100' step='2'>100%<br/>" +
     "Pregen: 0%<input type='range' value='75' id='clrrangeSlider5' min='0' max='100' step='2'>100%<br/>" +
+    "Pregen geo: 0%<input type='range' value='75' id='clrrangeSlider6' min='0' max='100' step='2'>100%<br/>" +
     // "Presets:<br/>" +
     // "<input type='radio' id='presets1' name='presets'><label for='presets1'>Invidist default</label><br/>" +
     // "<input type='radio' id='presets2' name='presets'><label for='presets2'>Linear default</label><br/>" +
     // "<input type='radio' id='presets3' name='presets'><label for='presets3'>Invidistnn defautl</label><br/>" +
     // "<input type='radio' id='presets4' name='presets'><label for='presets4'>custom ramp</label><br/>" +
-    "<input type='submit' value='O K' id='submitbtn'/><span id='waitmsg'> Raster processing<span id='dots'></span></span></form></div>",
+    "<input type='submit' value='O K' id='submitbtn'/><span id='waitmsg'> Raster processing<span id='dots'></span></span></form></div></div>",
 
     onAdd: function (map) {
         this._map = map;
