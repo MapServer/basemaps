@@ -91,7 +91,7 @@ psql \
     else
         echo ""
         echo "•••resampling for ${node_path}..."
-        ${GDALDIR}/gdalwarp -co COMPRESS=JPEG -co JPEG_QUALITY=10 \
+        ${GDALDIR}/gdalwarp -co COMPRESS=JPEG -co JPEG_QUALITY=75 \
             -r bilinear -ts 1024 0 \
            /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.tif \
            /Volumes/GROSSD/tmp/priceeffi/rasterprice_${node_path}.jpg.tif
