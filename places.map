@@ -138,6 +138,34 @@ LAYER
   END
  END
 #endif
+#if _display_suburbs == 1
+ CLASS
+  EXPRESSION 'suburb'
+  LABEL
+   FONT _suburb_font
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE _suburb_lbl_size
+   COLOR _suburb_lbl_clr
+   OUTLINECOLOR _suburb_lbl_ol_clr
+   OUTLINEWIDTH _suburb_lbl_ol_width
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+   #if _display_suburb_symbol == 1
+   STYLE
+       SIZE _suburb_size
+       SYMBOL "citycircle"
+       COLOR _suburb_clr
+       OUTLINECOLOR _suburb_ol_clr
+   END
+   #endif
+  END
+ END
+#endif
 #if _display_villages == 1
  CLASS
   EXPRESSION 'village'
@@ -168,7 +196,7 @@ LAYER
 #endif
 #if _display_hamlets == 1
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
+  EXPRESSION 'hamlet'
   LABEL
    FONT _hamlet_font
    TYPE TRUETYPE
