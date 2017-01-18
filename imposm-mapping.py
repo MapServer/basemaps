@@ -169,7 +169,7 @@ transport_points = Points(
             'subway_entrance',
         ),
         'aeroway': (
-            'aerodome',
+            'aerodrome',
             'terminal',
             'helipad',
             'gate',
@@ -235,7 +235,7 @@ transport_areas = Polygons(
             'station',
         ),
         'aeroway': (
-            'aerodome',
+            'aerodrome',
             'terminal',
             'helipad',
             'apron',
