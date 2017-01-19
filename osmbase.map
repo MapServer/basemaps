@@ -28,7 +28,7 @@ WEB
       "ows_enable_request"   "*"
       "wms_srs" "OSM_WMS_SRS"
       "labelcache_map_edge_buffer" "-10"
-      "wms_title" "osm france"
+      "wms_title" "OpenStreetMap"
    END
 END
 
