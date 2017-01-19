@@ -1064,8 +1064,8 @@ styles = {
             12: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway, case when railway = \'station\' and operator in (\'Tisséo\', \'RATP\') then \'metro\' else \'\' end as metro, CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' or highway = \'bus_stop\' or amenity = \'bus_station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
         },
         'symstations_metro_data': {
-            0:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
-            12:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
+            0:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\',\'STAR\',\'TCL\',\'Transpole\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+            12:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\',\'STAR\',\'TCL\',\'Transpole\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
         },
         'display_symamenities_z18': {
             0: 0,
