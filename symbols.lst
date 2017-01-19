@@ -867,6 +867,11 @@ SYMBOLSET
     TYPE pixmap
   END
   SYMBOL
+    NAME symbols-train-png
+    IMAGE symbols/png/logo-sncf.png
+    TYPE pixmap
+  END
+  SYMBOL
     NAME symbols-metro-png
     IMAGE symbols/png/logo-metro-16.png
     TYPE pixmap

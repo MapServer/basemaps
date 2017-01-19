@@ -12,23 +12,63 @@
     CLASSITEM "railway"
 
     CLASS
-      EXPRESSION {station,halt,tram_stop}
+      EXPRESSION {station}
       LABEL
-        SIZE _symstation_lbl_size
-        COLOR _symstation_lbl_clr
-        TEXT _sym_lbl_txt
+        SIZE _symstation_train_lbl_size
+        COLOR _symstation_train_lbl_clr
+        TEXT _symstation_train_lbl_txt
         OUTLINECOLOR _sym_lbl_ol_clr
         OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 5
+        OFFSET 0 4
         POSITION lc
-        FONT _symstation_lbl_font
+        FONT _symstation_train_lbl_font
         TYPE truetype
         MAXLENGTH 0
         WRAP " "
         ALIGN CENTER
         STYLE
-            SYMBOL _symstation_symbol
-            size _symstation_size
+            SYMBOL _symstation_train_symbol
+            size _symstation_train_size
+        END
+      END
+    END
+
+    CLASS
+      EXPRESSION {tram_stop,halt}
+      LABEL
+        SIZE _symstation_tram_lbl_size
+        COLOR _symstation_tram_lbl_clr
+        TEXT _symstation_tram_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 2
+        POSITION lc
+        FONT _symstation_tram_lbl_font
+        TYPE truetype
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_tram_symbol
+            size _symstation_tram_size
+        END
+      END
+    END
+
+    CLASS
+      EXPRESSION ('[metro]' = 'metro')
+      LABEL
+        SIZE _symstation_metro_lbl_size
+        COLOR _symstation_metro_lbl_clr
+        TEXT _symstation_metro_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 2
+        POSITION lc
+        FONT _symstation_metro_lbl_font
+        TYPE truetype
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_metro_symbol
+            size _symstation_metro_size
         END
       END
     END
@@ -43,5 +83,37 @@
         END
       END
     end
+  END
+
+  LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE POINT
+    NAME layername(symstations_metro,_layer_suffix)
+    DATA _symstations_metro_data
+
+    CLASS
+      LABEL
+        SIZE _symstation_metro_lbl_size
+        COLOR _symstation_metro_lbl_clr
+        TEXT _symstation_metro_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 2
+        POSITION lc
+        PRIORITY 5
+        FONT _symstation_metro_lbl_font
+        TYPE truetype
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_metro_symbol
+            size _symstation_metro_size
+        END
+      END
+    END
   END
 #endif

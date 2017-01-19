@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # Nico Ribot: test new styles: labels-only and no-labels
 # default values that will be overloaded by choosen style
@@ -1059,8 +1060,12 @@ styles = {
             15: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry_pt as geometry, osm_id, OSM_NAME_COLUMN as name, COALESCE(\'tourism_\' || CASE WHEN tourism IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'picnic_site\') THEN tourism ELSE NULL END, \'amenity_\' || CASE WHEN amenity IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\') THEN amenity ELSE NULL END, \'shop_\' || CASE WHEN shop IN (\'supermarket\', \'bag\', \'bakery\', \'beauty\', \'books\', \'butcher\', \'clothes\', \'computer\', \'confectionery\', \'fashion\', \'convenience\', \'department_store\', \'doityourself\', \'hardware\', \'fishmonger\', \'florist\', \'garden_centre\', \'hairdresser\', \'hifi\', \'ice_cream\', \'car\', \'car_repair\', \'bicycle\', \'mall\', \'pet\', \'photo\', \'photo_studio\', \'photography\', \'seafood\', \'shoes\', \'alcohol\', \'gift\', \'furniture\', \'kiosk\', \'mobile_phone\', \'motorcycle\', \'musical_instrument\', \'newsagent\', \'optician\', \'jewelry\', \'jewellery\', \'electronics\', \'chemist\', \'toys\', \'travel_agency\', \'car_parts\', \'greengrocer\', \'farm\', \'stationery\', \'laundry\', \'dry_cleaning\', \'beverages\', \'perfumery\', \'cosmetics\', \'variety_store\', \'wine\', \'outdoor\', \'copyshop\', \'sports\', \'deli\', \'tobacco\', \'art\', \'tea\') THEN shop ELSE NULL END , \'leisure_\' || CASE WHEN leisure IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\') THEN leisure ELSE NULL END, \'man_made_\' || CASE WHEN man_made IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\') THEN man_made ELSE NULL END, \'natural_\' || CASE WHEN natural_ IN (\'spring\') THEN natural_ ELSE NULL END, \'historic_\' || CASE WHEN historic IN (\'memorial\', \'monument\', \'archaeological_site\') THEN historic ELSE NULL END, \'highway_\'|| CASE WHEN highway IN (\'bus_stop\', \'elevator\', \'traffic_signals\') THEN highway ELSE NULL END, \'power_\' || CASE WHEN power IN (\'generator\') THEN power ELSE NULL END, \'tourism_\' || CASE WHEN tourism IN (\'viewpoint\') THEN tourism ELSE NULL END ) AS feature, ACCESS, religion, denomination, generator_source, power_source FROM OSM_PREFIX_landusages WHERE tourism IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'viewpoint\', \'picnic_site\') OR amenity IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\') OR shop IS NOT NULL OR leisure IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\') OR man_made IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\') OR natural_ IN (\'spring\') OR historic IN (\'memorial\', \'monument\', \'archaeological_site\') OR highway IN (\'bus_stop\', \'elevator\', \'traffic_signals\') OR (power = \'generator\' AND (generator_source = \'wind\' OR power_source = \'wind\'))   ) AS amenity_points_poly) as foo using unique osm_id using srid=OSM_SRID"'
         },
         'symstations_data': {
-            0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway,  CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
-            15: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway,  CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' or highway = \'bus_stop\' or amenity = \'bus_station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
+            0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway, case when railway = \'station\' and operator in (\'Tisséo\', \'RATP\') then \'metro\' else \'\' end as metro, CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+            12: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT geometry,  OSM_NAME_COLUMN as name,  osm_id, railway,  aerialway, case when railway = \'station\' and operator in (\'Tisséo\', \'RATP\') then \'metro\' else \'\' end as metro, CASE railway  WHEN \'station\'    THEN 1  WHEN \'subway_entrance\'    THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE railway IN (\'station\', \'halt\', \'tram_stop\', \'subway_entrance\') OR aerialway = \'station\' or highway = \'bus_stop\' or amenity = \'bus_station\' ORDER BY prio) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
+        },
+        'symstations_metro_data': {
+            0:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+            12:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT         geometry,         name        AS name,         osm_id       FROM osm_transport_points       WHERE railway = \'station\' AND operator IN (\'Tisséo\', \'RATP\')      ) AS stations) as foo using unique osm_id using srid=OSM_SRID"'
         },
         'display_symamenities_z18': {
             0: 0,
@@ -1095,28 +1100,75 @@ styles = {
             11: 1
         },
 
-        # Stations properties
-        'symstation_lbl_size': {
+        # Stations properties: train, tram, metro
+        # train
+        'symstation_train_lbl_size': {
             0: 0,
-            15: 8.23
+            14: 8.23
         },
-        'symstation_lbl_clr': "73 87 173",
-        'symstation_lbl_font': "NotoSansUIBold",
-        'symstation_symbol': {
+        'symstation_train_lbl_txt': {
+            0: "''",
+            14: "'[name]'"
+        },
+        'symstation_train_lbl_clr': "118 101 255",
+        'symstation_train_lbl_font': "NotoSansUIRegular",
+        'symstation_train_symbol': {
             0: "nosymbol",
-            # 12: "symbols-square-svg"
-            12: "symbols-post-office-14-svg"
+            12: "symbols-train-png"
         },
-        'symstation_size': {
+        'symstation_train_size': {
             0: 0,
-            12: 13,
-            13: 15,
-            15: 77
+            12: 8,
+            14: 10
         },
+        # metro
         'symsubway_entrance_symbol': "symbols-entrance-10-svg",
         'symsubway_entrance_size': {
             0: 0,
             18: 5
+        },
+        'symstation_metro_lbl_size': {
+            0: 0,
+            14: 7
+        },
+        'symstation_metro_lbl_txt': {
+            0: "''",
+            14: "'[name]'"
+        },
+        'symstation_metro_lbl_clr': "118 101 255",
+        'symstation_metro_lbl_font': "NotoSansUIBold",
+        'symstation_metro_symbol': {
+            0: "nosymbol",
+            13: "symbols-square-svg",
+            14: "symbols-metro-png"
+        },
+        'symstation_metro_size': {
+            0: 0,
+            13: 6,
+            14: 14,
+            16: 16
+        },
+
+        # tram
+        'symstation_tram_lbl_size': {
+            0: 0,
+            15: 6
+        },
+        'symstation_tram_lbl_txt': {
+            0: "''",
+            15: "'[name]'"
+        },
+        'symstation_tram_lbl_clr': "118 101 255",
+        'symstation_tram_lbl_font': "NotoSansUIRegular",
+        'symstation_tram_symbol': {
+            0: "nosymbol",
+            # 12: "symbols-square-svg"
+            13: "symbols-square-svg"
+        },
+        'symstation_tram_size': {
+            0: 0,
+            13: 4,
+            15: 6
         },
 
         # amenities point properties
