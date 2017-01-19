@@ -121,5 +121,6 @@ boundaries.sql: boundaries.sql.in
 clean:
 	rm -f generated/*
 
+.PHONY: data
 data:
 	cd data; $(MAKE) $(MFLAGS)
