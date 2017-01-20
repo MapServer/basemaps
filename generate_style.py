@@ -926,6 +926,27 @@ vars= {
    'town_ol_clr': "0 0 0",
    'town_clr': "200 200 200",
 
+   'display_suburbs': {
+      0:0,
+      13:1
+   },
+   'suburb_font': "sc",
+   'suburb_lbl_clr': {
+      0:'"#444444"',
+      15:'0 0 0'
+   },
+   'suburb_lbl_ol_clr': "255 255 255",
+   'suburb_lbl_ol_width': 2,
+   'display_suburb_symbol': 0,
+   'suburb_lbl_size': {
+      0:0,
+      13:8,
+      15:9,
+   },
+   'suburb_size': 5,
+   'suburb_ol_clr': "0 0 0",
+   'suburb_clr': "200 200 200",
+
    'display_villages': {
       0:0,
       11:1
@@ -975,6 +996,27 @@ vars= {
    'hamlet_size': 5,
    'hamlet_ol_clr': "0 0 0",
    'hamlet_clr': "200 200 200",
+
+   'display_localities': {
+      0:0,
+      13:1
+   },
+   'locality_font': "sc",
+   'locality_lbl_clr': {
+      0:'"#444444"',
+      15:'0 0 0'
+   },
+   'locality_lbl_ol_clr': "255 255 255",
+   'locality_lbl_ol_width': 2,
+   'display_locality_symbol': 0,
+   'locality_lbl_size': {
+      0:0,
+      13:8,
+      15:9,
+   },
+   'locality_size': 5,
+   'locality_ol_clr': "0 0 0",
+   'locality_clr': "200 200 200",
 }
 
 styles = {
