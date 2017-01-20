@@ -1,8 +1,7 @@
-
 LAYER
  STATUS ON
  GROUP "default" 
- TYPE POINT
+ TYPE ANNOTATION
  CONNECTIONTYPE postgis
  CONNECTION "OSM_DB_CONNECTION"
  NAME layername(places,_layer_suffix)
