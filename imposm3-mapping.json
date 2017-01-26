@@ -37,12 +37,12 @@
 	},
         "waterways_gen0": {
             "source": "waterways_gen1",
-            "sql_filter": null,
+            "sql_filter": "type IN ('river', 'canal')",
             "tolerance": 200
         },
         "waterways_gen1": {
             "source": "waterways",
-            "sql_filter": null,
+            "sql_filter": "type IN ('river', 'canal', 'stream')",
             "tolerance": 50.0
         },
         "landusages_gen1": {
