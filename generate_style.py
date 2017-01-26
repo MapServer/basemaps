@@ -173,14 +173,14 @@ vars= {
       6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0)\
             as foo using unique osm_id using srid=OSM_SRID"',
       9:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
-      where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')) as foo using unique osm_id using srid=OSM_SRID"',
+      where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\')) as foo using unique osm_id using srid=OSM_SRID"',
       10:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
-      where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+      where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
       12:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages \
-      where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+      where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
@@ -1288,18 +1288,18 @@ styles = {
       },
       'landusage_data': {
          0:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area, osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'residential\')\
+         where type in (\'forest\',\'wood\',\'residential\')\
          order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
          6:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'industrial\',\'commercial\',\'residential\')\
+         where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\')\
          order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
          9:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+         where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
          \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
          \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
          \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
          12:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+         where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
          \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
          \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
          \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
