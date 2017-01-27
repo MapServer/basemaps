@@ -389,14 +389,14 @@ landusages_gen00 = GeneralizedTable(
     name = 'landusages_gen00',
     tolerance = meter_to_mapunit(500.0),
     origin = landusages,
-    where = "type='forest' and ST_Area(geometry)>%f" % sqr_meter_to_mapunit(10000000),
+    where = "type IN ('forest', 'wood') AND ST_Area(geometry)>%f" % sqr_meter_to_mapunit(10000000),
 )
 
 landusages_gen0 = GeneralizedTable(
     name = 'landusages_gen0',
     tolerance = meter_to_mapunit(200.0),
     origin = landusages,
-    where = "type='forest' and ST_Area(geometry)>%f" % sqr_meter_to_mapunit(5000000),
+    where = "type IN ('forest', 'wood') AND ST_Area(geometry)>%f" % sqr_meter_to_mapunit(5000000),
 )
 
 landusages_gen1 = GeneralizedTable(

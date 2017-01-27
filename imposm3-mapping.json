@@ -17,7 +17,7 @@
         },
         "roads_gen1": {
             "source": "roads",
-            "sql_filter": "type IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link') OR class IN('railway')",
+            "sql_filter": "type IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')",
             "tolerance": 50.0
         },
         "railways": {
@@ -37,12 +37,12 @@
         },
         "waterways_gen0": {
             "source": "waterways_gen1",
-            "sql_filter": null,
+            "sql_filter": "type IN ('river', 'canal')",
             "tolerance": 200
         },
         "waterways_gen1": {
             "source": "waterways",
-            "sql_filter": null,
+            "sql_filter": "type IN ('river', 'canal', 'stream')",
             "tolerance": 50.0
         },
         "landusages_gen1": {
@@ -52,12 +52,12 @@
         },
         "landusages_gen0": {
             "source": "landusages_gen1",
-            "sql_filter": "ST_Area(geometry)>500000.000000",
+            "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>500000.000000",
             "tolerance": 200.0
         },
         "landusages_gen00": {
             "source": "landusages",
-            "sql_filter": "ST_Area(geometry)>1000000.000000",
+            "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>1000000.000000",
             "tolerance": 500.0
         }
     },
