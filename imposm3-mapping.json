@@ -20,21 +20,21 @@
             "sql_filter": "type IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')",
             "tolerance": 50.0
         },
-	"railways": {
-	    "source": "roads",
-	    "sql_filter": "type IN ('rail', 'tram', 'light_rail', 'subway', 'narrow_gauge', 'preserved', 'funicular', 'monorail')",
-	   "tolerance": 50.0
-	},
-	"railways_gen1": {
-	   "source": "railways",
-	   "sql_filter": null,
-	   "tolerance": 50.0
-	},
-	"railways_gen0": {
-	    "source": "railways_gen1",
-	    "sql_filter": null,
-	    "tolerance": 200.0
-	},
+        "railways": {
+            "source": "roads",
+            "sql_filter": "type IN ('rail', 'tram', 'light_rail', 'subway', 'narrow_gauge', 'preserved', 'funicular', 'monorail')",
+            "tolerance": 50.0
+        },
+        "railways_gen1": {
+            "source": "railways",
+            "sql_filter": null,
+            "tolerance": 50.0
+        },
+        "railways_gen0": {
+            "source": "railways_gen1",
+            "sql_filter": null,
+            "tolerance": 200.0
+        },
         "waterways_gen0": {
             "source": "waterways_gen1",
             "sql_filter": "type IN ('river', 'canal')",
@@ -55,11 +55,11 @@
             "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>500000.000000",
             "tolerance": 200.0
         },
-	"landusages_gen00": {
-	    "source": "landusages",
-	    "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>1000000.000000",
-	    "tolerance": 500.0 
-	}
+        "landusages_gen00": {
+            "source": "landusages",
+            "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>1000000.000000",
+            "tolerance": 500.0
+        }
     },
     "tables": {
         "landusages": {
@@ -91,58 +91,57 @@
                 },
                 {
                     "args": {
-                        "ranks": [
-                            "pedestrian",
-                            "footway",
-                            "playground",
-                            "park",
-                            "forest",
-                            "cemetery",
-                            "farmyard",
-                            "farm",
-                            "farmland",
-                            "wood",
-                            "meadow",
-                            "grass",
-                            "wetland",
-                            "village_green",
-                            "recreation_ground",
-                            "garden",
-                            "sports_centre",
-                            "pitch",
-                            "common",
-                            "allotments",
-                            "golf_course",
-                            "university",
-                            "school",
-                            "college",
-                            "library",
-                            "baracks",
-                            "fuel",
-                            "parking",
-                            "nature_reserve",
-                            "cinema",
-                            "theatre",
-                            "place_of_worship",
-                            "hospital",
-                            "scrub",
-                            "orchard",
-                            "vineyard",
-                            "zoo",
-                            "quarry",
-                            "residential",
-                            "retail",
-                            "commercial",
-                            "industrial",
-                            "railway",
-                            "heath",
+                        "values": [
+                            "land",
                             "island",
-                            "land"
+                            "heath",
+                            "railway",
+                            "industrial",
+                            "commercial",
+                            "retail",
+                            "residential",
+                            "quarry",
+                            "zoo",
+                            "vineyard",
+                            "orchard",
+                            "scrub",
+                            "hospital",
+                            "place_of_worship",
+                            "theatre",
+                            "cinema",
+                            "nature_reserve",
+                            "parking",
+                            "fuel",
+                            "baracks",
+                            "library",
+                            "college",
+                            "school",
+                            "university",
+                            "golf_course",
+                            "allotments",
+                            "common",
+                            "pitch",
+                            "sports_centre",
+                            "garden",
+                            "recreation_ground",
+                            "village_green",
+                            "wetland",
+                            "grass",
+                            "meadow",
+                            "wood",
+                            "farmland",
+                            "farm",
+                            "farmyard",
+                            "cemetery",
+                            "forest",
+                            "park",
+                            "playground",
+                            "footway",
+                            "pedestrian"
                         ]
                     },
-                    "type": "zorder",
-                    "name": "z_order",
-                    "key": "z_order"
+                    "type": "enumerate",
+                    "name": "z_order"
                 }
             ],
             "type": "polygon",
@@ -278,22 +277,21 @@
                 },
                 {
                     "args": {
-                        "ranks": [
-                            "country",
-                            "state",
-                            "region",
-                            "county",
-                            "city",
-                            "town",
-                            "village",
-                            "hamlet",
+                        "values": [
+                            "locality",
                             "suburb",
-                            "locality"
+                            "hamlet",
+                            "village",
+                            "town",
+                            "city",
+                            "county",
+                            "region",
+                            "state",
+                            "country"
                         ]
                     },
-                    "type": "zorder",
-                    "name": "z_order",
-                    "key": "z_order"
+                    "type": "enumerate",
+                    "name": "z_order"
                 },
                 {
                     "type": "integer",
@@ -748,7 +746,10 @@
             "type": "linestring",
             "filters": {
                 "exclude_tags": [
-                    ["area", "yes"]
+                    [
+                        "area",
+                        "yes"
+                    ]
                 ]
             },
             "mappings": {
