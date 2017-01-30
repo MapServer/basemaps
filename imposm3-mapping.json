@@ -56,7 +56,7 @@
             "tolerance": 200.0
         },
         "landusages_gen00": {
-            "source": "landusages",
+            "source": "landusages_gen0",
             "sql_filter": "type IN ('forest', 'wood') AND ST_Area(geometry)>1000000.000000",
             "tolerance": 500.0
         }
