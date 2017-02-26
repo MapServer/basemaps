@@ -1,6 +1,6 @@
 {
-    "cachedir": "/data/Documents/geodata/caches/imposm3",
-    "connection": "postgis://ubuntu:toto@localhost:5436/osm",
+    "cachedir": "/Volumes/GROSSD/imposm3_cache",
+    "connection": "postgis://nicolas:toto@localhost:5439/osm",
     "mapping": "imposm3-mapping.json",
     "srid": 3857
 }

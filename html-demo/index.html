@@ -44,8 +44,6 @@
         url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
     }
 
-
-
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
 
@@ -62,158 +60,18 @@
     });
 
     ////////////// Mapcache layers for Efficity Application ////////////////////////////////////////////////////////////
-    // forces B&W by Leaflet plugin
-    var googleNoLabelsMapcacheLayer = new L.TileLayer.Grayscale(urlMapcache.replace('[LAYER]', 'osm_google_no_labels_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    });
-
-    var googleLabelsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    });
-
-    var symbolsOnlyMapcacheLayer = new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data",
-    });
 
     ////////////// MapServer layers to test Mapserver available styles ////////////////////////////////////////////////////
-    var googleLayer = L.tileLayer.wms(url + "/osm-google.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var googleSymLayer = L.tileLayer.wms(url + "/osm-google-buildings-symbols.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    }).addTo(map);
-
-    var symOnlyLayer = L.tileLayer.wms(url + "/osm-symbols-only.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var bingSymLayer = L.tileLayer.wms(url + "/osm-bing-buildings-symbols.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var michelinSymLayer = L.tileLayer.wms(url + "/osm-michelin-buildings-symbols.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var defaultSymLayer = L.tileLayer.wms(url + "/osm-default-symbols.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var googleLabelsOnlyLayer = L.tileLayer.wms(url + "osm-google-labels-only.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var googleNoLabelsLayer = L.tileLayer.wms(url + "osm-google-no-labels.map", {
-        layers: 'default',
-        format: 'image/png',
-        transparent: true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "Efficity"
-    });
-
-    var bingLayer = L.tileLayer.wms(url + "osm-bing.map", {
-        layers: 'default',
-        format: 'image/png',
-        'errorTileUrl': 'image/tileerror.png',
-        transparent: true,
-        attribution: "Efficity"
-    });
-
-    var michelinLayer = L.tileLayer.wms(url + "osm-michelin.map", {
-        layers: 'default',
-        format: 'image/png',
-        'errorTileUrl': 'image/tileerror.png',
-        transparent: true,
-        attribution: "Efficity"
-    });
-
-    var blackWhiteLayer = L.tileLayer.wms(url + "osm-grayscale.map", {
-        layers: 'default',
-        format: 'image/png',
-        'errorTileUrl': 'image/tileerror.png',
-        transparent: true,
-        attribution: "Nicolas Ribot for MapServer project"
-    });
 
     ////////////// S3 pure rest layers for Efficity Application ////////////////////////////////////////////////////////////
     // forces B&W by Leaflet plugin
-    var googleNoLabelsS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
-    });
-
-    var googleLabelsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
-    });
-
-    var symbolsOnlyS3Layer = new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), {
-        'tms': true,
-        'errorTileUrl': 'image/tileerror.png',
-        attribution: "&copy; <a href='http://www.efficity.com'>Efficity</a> based on OSM data"
-    });
 
     var emptyLayer = L.tileLayer('').addTo(map);
     var baseLayers = {
         'empty': emptyLayer,
         "OSM b&w ": osmLayer
     };
-    var overlays = {
-        "S3 Google no labels": googleNoLabelsS3Layer,
-        "MC Google no labels": googleNoLabelsMapcacheLayer,
-        "MS Default+Symbols": defaultSymLayer,
-        "MS Google": googleLayer,
-        "MS Google no labels": googleNoLabelsLayer,
-        "MS Google+symbols": googleSymLayer,
-        "MS Bing": bingLayer,
-        "MS Bing+symbols": bingSymLayer,
-        "MS Michelin": michelinLayer,
-        "MS Micheling+symbols": michelinSymLayer,
-        "MS Google Grayscale": blackWhiteLayer,
-        "MS Google labels only": googleLabelsOnlyLayer,
-        "MS OSM Symbols only": symOnlyLayer,
-        "MC Google labels only": googleLabelsOnlyMapcacheLayer,
-        "MC OSM Symbols only": symbolsOnlyMapcacheLayer,
-        "S3 Google labels only": googleLabelsOnlyS3Layer,
-        "S3 OSM Symbols only": symbolsOnlyS3Layer,
-    };
+    var overlays = getLayers('classic');
 
     L.control.layers(baseLayers, overlays).addTo(map);
 
@@ -225,6 +83,52 @@
         $('.leaflet-tile').toggleClass('leaflet-tile-border');
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
+
+    // gets classic Leaflet wms tile layers
+    function getClassicLayers() {
+        var options = {
+            layers: 'default',
+            format: 'image/png',
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "&copy; OSM data"
+        };
+
+        var tmsOptions = {
+            'tms': true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "&copy; OSM data"
+        };
+
+        return {
+            "S3 Google no labels": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), tmsOptions),
+            "MC Google no labels": new L.TileLayer.Grayscale(urlMapcache.replace('[LAYER]', 'osm_google_no_labels_ts'), tmsOptions),
+            "MS Default+Symbols": L.tileLayer.wms(url + "osm-default-symbols.map", options),
+            "MS Google": L.tileLayer.wms(url + "osm-google.map", options),
+            "MS Google no labels": L.tileLayer.wms(url + "osm-google-no-labels.map", options),
+            "MS Google+symbols": L.tileLayer.wms(url + "osm-google-buildings-symbols.map", options),
+            "MS Bing": L.tileLayer.wms(url + "osm-bing.map", options),
+            "MS Bing+symbols": L.tileLayer.wms(url + "osm-bing-buildings-symbols.map", options),
+            "MS Michelin": L.tileLayer.wms(url + "osm-michelin.map", options),
+            "MS Micheling+symbols": L.tileLayer.wms(url + "osm-michelin-buildings-symbols.map", options),
+            "MS Google Grayscale": L.tileLayer.wms(url + "osm-grayscale.map", options),
+            "MS Google labels only": L.tileLayer.wms(url + "osm-google-labels-only.map", options),
+            "MS OSM Symbols only": L.tileLayer.wms(url + "osm-symbols-only.map", options),
+            "MC Google labels only":  new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
+            "MC OSM Symbols only": new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
+            "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
+            "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
+        };
+    }
+
+    // gets WMS.layer, single tiled
+    function getWmsLayers() {
+
+    }
+
+    function getLayers(type) {
+        return type === 'classic' ? getClassicLayers() : getWmsLayers();
+    }
 
 </script>
 </body>

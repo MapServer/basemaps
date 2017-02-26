@@ -1,0 +1,22 @@
+MAP
+IMAGETYPE png
+MAXSIZE 4000
+SIZE 800 800
+EXTENT        -752703 5017885 1244825 6685233 #France, 3857
+UNITS meters
+WEB
+   METADATA
+      "ows_enable_request" "*"
+      "wms_srs" "EPSG:900913 EPSG:4326 EPSG:3857"
+      "labelcache_map_edge_buffer" "-10"
+   END
+END
+DEBUG 1
+CONFIG "MS_ERRORFILE" "stderr"
+PROJECTION
+   "init=epsg:3857"
+END
+fontset ../fonts.lst
+INCLUDE "layers.inc"
+
+END

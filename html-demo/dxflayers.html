@@ -1,0 +1,128 @@
+<html>
+<head>
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>-->
+    <link rel="stylesheet" href="js/lib/leaflet-1.0.3/leaflet.css"/>
+    <link rel="stylesheet" href="js/leaflet.zoomdisplay.css"/>
+    <link rel="stylesheet" href="js/Leaflet.Coordinates.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <!--<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>-->
+    <script src="js/lib/leaflet-1.0.3/leaflet-src.js"></script>
+    <script src="js/leaflet.wms.js"></script>
+    <script src="js/TileLayer.Grayscale.js"></script>
+    <script src="js/leaflet.zoomdisplay-src.js"></script>
+    <script src="js/Leaflet.Coordinates.js"></script>
+    <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        #mapid {
+            height: 100%;
+            width: 100%;
+        }
+        .leaflet-tile-border {
+            border: solid black 1px;
+        }
+        .img-trans {
+            opacity: 0.5;
+            display: inline-block;
+        }
+        .big {
+            width: 40px;
+            height: 30px;
+        }
+        body {
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div id="colors"></div>
+<div id="mapid"></div>
+<script language="JavaScript">
+    // generates mapfile layers:
+    $.ajax({url: "php/layer2mapfile.php",success: function (data) {}});
+
+
+    // Returns a colored box based on layer clr, with its name added, as html element
+    // horrible hack
+    function getLayerNameAndIcon(layer) {
+        console.dir(layer);
+        var el = "<span style='width: 60px; height: 30px; background-color: "
+            + layer.clr
+            + "'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> "
+            + layer.layer
+            + " (" + layer.cnt + ")";
+        return el;
+    }
+
+    var map = L.map('mapid').setView(
+//        [43.604, 1.40], 8
+        [48.8595, 2.44], 13
+    );
+
+    var emptyLayer = L.tileLayer('').addTo(map);
+    var osmLayer = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        'errorTileUrl': 'tileerror.png',
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    // Recommended (explicit source)
+    var options = {'transparent': true, format: 'PNG'};
+    var source = L.WMS.source("http://localhost/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/html-demo/dxflayers.map", options);
+
+    var baseLayers = {
+        'empty': emptyLayer,
+        'osm': osmLayer
+    };
+    var overlays = {};
+    // builds sources from php
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "php/getlayers.php", //Relative or absolute path to response.php file
+        success: function (data) {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                // builds colored box for layer:
+//                var ln = "<img src='image/clrramp1.png' height=24> " + data[i].layer;
+                var ln = getLayerNameAndIcon(data[i]);
+                overlays[ln] = source.getLayer('layer' + data[i].id).addTo(map);
+            }
+            L.control.layers(baseLayers, overlays).addTo(map);
+        },
+        error: function (data) {
+            console.dir(data.responseText);
+        }
+    });
+
+
+//    var layer1 = source.getLayer('layer1').addTo(map);
+//    var layer2 = source.getLayer('layer2');
+
+
+    // coordinates:
+    L.control.coordinates().addTo(map);
+
+    //custom button
+    L.easyButton('<img id="imggrid" class="img-trans" width="18" height="18" src="image/grid.png">', function (btn, map) {
+        $('.leaflet-tile').toggleClass('leaflet-tile-border');
+        $('#imggrid').toggleClass('img-trans');
+    }).addTo(map);
+
+    // loads layer colors and names from PG
+    $.ajax({
+        type: "GET",
+        dataType: "text",
+        url: "php/dxfcolors.php", //Relative or absolute path to response.php file
+        success: function (data) {
+//            $('#colors').html(data);
+        },
+        error: function (data) {
+            console.dir(data.responseText);
+        }
+    });
+</script>
+</body>
+</html>
