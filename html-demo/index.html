@@ -71,7 +71,8 @@
         'empty': emptyLayer,
         "OSM b&w ": osmLayer
     };
-    var overlays = getLayers('classic');
+//    var overlays = getLayers('classic');
+    var overlays = getLayers('wms');
 
     L.control.layers(baseLayers, overlays).addTo(map);
 
@@ -123,7 +124,16 @@
 
     // gets WMS.layer, single tiled
     function getWmsLayers() {
-
+        var options = {
+            'transparent': true,
+            layers: 'default',
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "&copy; OSM data, ST"
+        };
+        return {
+            "MS Google+symbols": L.WMS.overlay(url + "osm-google-buildings-symbols.map", options),
+            "MS Bing": L.WMS.overlay(url + "osm-bing.map", options)
+        };
     }
 
     function getLayers(type) {
