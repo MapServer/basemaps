@@ -13,8 +13,8 @@
     <source name="osm_google_no_labels_src" type="wms">
         <getmap>
             <params>
-                <!--<MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
-                <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-no-labels.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels.map</MAP>-->
                 <LAYERS>default</LAYERS>
                 <FORMAT>image/png</FORMAT>
                 <TRANSPARENT>true</TRANSPARENT>
@@ -28,8 +28,8 @@
     <source name="osm_google_labels_only_src" type="wms">
         <getmap>
             <params>
-                <!--<MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-labels-only.map</MAP>-->
-                <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map</MAP>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-google-labels-only.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-labels-only.map</MAP>-->
                 <LAYERS>default</LAYERS>
                 <FORMAT>image/png</FORMAT>
                 <TRANSPARENT>true</TRANSPARENT>
@@ -43,8 +43,23 @@
     <source name="osm_symbols_only_src" type="wms">
         <getmap>
             <params>
-                <!--<MAP>/home/ubuntu/apps/mapserver-basemaps/osm-symbols-only.map</MAP>-->
-                <MAP>/Users/nicolas/bin/mapserver-basemaps/osm-symbols-only.map</MAP>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-symbols-only.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-symbols-only.map</MAP>-->
+                <LAYERS>default</LAYERS>
+                <FORMAT>image/png</FORMAT>
+                <TRANSPARENT>true</TRANSPARENT>
+            </params>
+        </getmap>
+        <http>
+            <url>http://localhost/cgi-bin/mapserv</url>
+        </http>
+    </source>
+
+    <source name="osm_google_no_labels_grayscale_src" type="wms">
+        <getmap>
+            <params>
+                <MAP>/home/ubuntu/apps/mapserver-basemaps/osm-symbols-only.map</MAP>
+                <!--<MAP>/Users/nicolas/bin/mapserver-basemaps/osm-google-no-labels-grayscale.map</MAP>-->
                 <LAYERS>default</LAYERS>
                 <FORMAT>image/png</FORMAT>
                 <TRANSPARENT>true</TRANSPARENT>
@@ -59,11 +74,11 @@
     <!--____________ caches___________________-->
 
     <cache name="disk" type="disk" layout="template">
-        <!--<base>/data_big2/Documents/geodata/caches/mapcache</base>-->
-        <base>/Volumes/GROSSD/tmp/mapcache</base>
+        <base>/data_big2/Documents/geodata/caches/mapcache</base>
+        <!--<base>/Volumes/GROSSD/tmp/mapcache</base>-->
 
-        <template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
-        <!--<template>/data_big2/Documents/geodata/caches/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>-->
+        <!--<template>/Volumes/GROSSD/tmp/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>-->
+        <template>/data_big2/Documents/geodata/caches/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</template>
 
         <!--no symlink for template (only for defautl layout)-->
         <!--<symlink_blank/>-->
@@ -90,6 +105,16 @@
     <tileset name="osm_google_no_labels_ts">
         <source>osm_google_no_labels_src</source>
         <cache>disk</cache>
+        <grid>GoogleMapsCompatible</grid>
+        <format>PNG</format>
+        <metatile>8 8</metatile>
+        <metabuffer>10</metabuffer>
+        <expires>3600</expires>
+    </tileset>
+
+    <tileset name="osm_google_no_labels_grayscale_ts">
+        <source>osm_google_no_labels_src</source>
+        <cache>s3</cache>
         <grid>GoogleMapsCompatible</grid>
         <format>PNG</format>
         <metatile>8 8</metatile>
@@ -136,8 +161,8 @@
     <errors>report</errors>
 
     <locker type="disk">
-        <directory>/Volumes/GROSSD/tmp/mapcache</directory>
-        <!--<directory>/data_big2/Documents/geodata/caches/mapcache</directory>-->
+        <!--<directory>/Volumes/GROSSD/tmp/mapcache</directory>-->
+        <directory>/data_big2/Documents/geodata/caches/mapcache</directory>
         <timeout>300</timeout>
     </locker>
 </mapcache>
