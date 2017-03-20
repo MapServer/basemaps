@@ -1560,34 +1560,33 @@ style_aliases = {
     # other layers without risk of confusion between layers.
     "default": "default",
 
+    #default with transport and amenities symbols
+    "default-symbols": "default,symbols",
+    # TODO: Near B&W style based on default colors
+    "default-grayscale": "default,outlined,grayscale",
+
+    "symbols-only": "symbols,symbols_only",
+
     # a style resembling the google-maps theme
     "google": "default,outlined,google",
 
-    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
-    "googleosm2pgsql": "default,outlined,google,osm2pgsql",
-    "bing": "default,outlined,bing",
-    "michelin": "default,outlined,centerlined,michelin",
-
-    # TODO: Near B&W style based on default colors
-    "grayscale": "default,outlined,grayscale",
-
     # Nico Ribot: new aliases for labels-only and no-labels styles
     "google-no-labels": "default,outlined,google,geoms_only,buildings",
+    "google-no-labels-grayscale": "default,outlined,google,geoms_only,buildings,grayscale",
     "google-labels-only": "default,outlined,google,labels_only",
-    "google-grayscale": "default,google_grayscale",
-
-
-    #Styles with sympbols
-    #default with transport and amenities symbols
-    "default-symbols": "default,symbols",
-
-    # a style resembling the google-maps theme, with OSM symbols
+    "google-grayscale": "default,grayscale",
     "google-buildings-symbols": "default,outlined,google,symbols,buildings",
+
+
+    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
+    "googleosm2pgsql": "default,outlined,google,osm2pgsql",
+
+    "bing": "default,outlined,bing",
     "bing-buildings-symbols": "default,outlined,bing,symbols,buildings",
 
+    "michelin": "default,outlined,centerlined,michelin",
     "michelin-buildings-symbols": "default,outlined,michelin,symbols,buildings",
 
-    "symbols-only": "symbols,symbols_only"
 }
 
 parser = OptionParser()
@@ -1636,4 +1635,4 @@ if options.level != -1:
         print "#define _%s _%s%s" % (k, k, level)
 
 # TODO symbols: change imposm conf to include info for railway stations: gare, metro, rer, etc?
-# TODO symbols: labels
+# TODO symbols: labels .
