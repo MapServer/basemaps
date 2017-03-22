@@ -149,7 +149,6 @@
 //        bingL.addTo(map);
 
         return {
-            "S3 Google no labels": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), tmsOptions),
             "MC Google no labels": new L.TileLayer.Grayscale(urlMapcache.replace('[LAYER]', 'osm_google_no_labels_ts'), tmsOptions),
             "MS Default": defaultL,
             "MS Default+Symbols": defaultSymbolsL,
@@ -166,7 +165,9 @@
             "MS OSM Symbols only": symbolsOnlyL,
             "MC Google labels only":  new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "MC OSM Symbols only": new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
+            "S3 Google no labels": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_ts'), tmsOptions),
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
+            "S3 Google no labels Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
             "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions)
         };
     }
