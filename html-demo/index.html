@@ -71,8 +71,8 @@
         'empty': emptyLayer,
         "OSM b&w ": osmLayer
     };
-//    var overlays = getLayers('classic');
-    var overlays = getLayers('wms', map);
+//    var overlays = getLayers('wms', map);
+    var overlays = getLayers('classic', map);
 
     L.control.layers(baseLayers, overlays).addTo(map);
 
