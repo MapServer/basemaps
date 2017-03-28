@@ -37,6 +37,7 @@ LAYER
       END
 #endif
     END
+#if _display_residential==1
     CLASS
        EXPRESSION 'residential'
        STYLE
@@ -60,6 +61,7 @@ LAYER
       END
 #endif
    END
+#endif
    CLASS
      EXPRESSION {industrial,commercial,parking}
      STYLE
