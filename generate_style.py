@@ -186,7 +186,6 @@ vars= {
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
    },
 
-   'display_residential': 1,
    'industrial_clr': '"#d1d1d1"',
    'industrial_ol_clr': '"#d1d1d1"',
    'industrial_ol_width': 0,
@@ -197,6 +196,7 @@ vars= {
    'industrial_lbl_ol_clr': "255 255 255",
    'industrial_lbl_ol_width': 2,
 
+   'display_residential': 1,
    'residential_clr': '"#E3DED4"',
    'residential_ol_clr': '"#E3DED4"',
    'residential_ol_width': 0,
