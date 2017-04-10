@@ -18,7 +18,8 @@
             width: 100%;
         }
         .leaflet-tile-border {
-            border: solid black 1px;
+            border-bottom: solid black 1px;
+            border-right: solid black 1px;
         }
         .img-trans {
             opacity: 0.5;
@@ -31,6 +32,7 @@
 <script language="JavaScript">
     console.log('coucou');
     var url = '';
+    var urlOrtho = '';
     //platform-dependend url
     //platform-dependend url
     jQuery.ajaxSetup({async: false});
@@ -40,8 +42,10 @@
 
     if (os === "Darwin") {
         url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
+        urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
     } else if (os === "Linux") {
         url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
+        urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
     }
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
@@ -108,7 +112,7 @@
             "MS Default+Symbols": L.tileLayer.wms(url + "osm-default-symbols.map", options),
             "MS Google": L.tileLayer.wms(url + "osm-google.map", options),
             "MS Google no labels": L.tileLayer.wms(url + "osm-google-no-labels.map", options),
-            "MS Google+symbols": L.tileLayer.wms(url + "osm-google-buildings-symbols.map", options).addTo(map),
+            "MS Google+symbols": L.tileLayer.wms(url + "osm-google-buildings-symbols.map", options),
             "MS Bing": L.tileLayer.wms(url + "osm-bing.map", options),
             "MS Bing+symbols": L.tileLayer.wms(url + "osm-bing-buildings-symbols.map", options),
             "MS Michelin": L.tileLayer.wms(url + "osm-michelin.map", options),
@@ -120,7 +124,9 @@
             "MC Google labels only":  new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "MC OSM Symbols only": new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
-            "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions)
+            "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
+            "S3 Google Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
+            "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options).addTo(map)
         };
     }
 
