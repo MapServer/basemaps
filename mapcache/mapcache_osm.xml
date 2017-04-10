@@ -134,7 +134,7 @@
 
     <tileset name="osm_symbols_only_ts">
         <source>osm_symbols_only_src</source>
-        <cache>s3</cache>
+        <cache>disk</cache>
         <grid>GoogleMapsCompatible</grid>
         <format>PNG</format>
         <metatile>8 8</metatile>
