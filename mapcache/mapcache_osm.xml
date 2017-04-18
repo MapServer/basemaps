@@ -114,7 +114,7 @@
 
     <tileset name="osm_google_no_labels_grayscale_ts">
         <source>osm_google_no_labels_grayscale_src</source>
-        <cache>s3</cache>
+        <cache>disk</cache>
         <grid>GoogleMapsCompatible</grid>
         <format>PNG</format>
         <metatile>8 8</metatile>
