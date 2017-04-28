@@ -217,16 +217,6 @@
       ],
       "type": "polygon",
       "mapping": {
-        "amenity": [
-          "university",
-          "school",
-          "library",
-          "fuel",
-          "hospital",
-          "fire_station",
-          "police",
-          "townhall"
-        ],
         "aeroway": [
           "helipad",
           "aerodrome"
@@ -247,6 +237,8 @@
           "picnic_site"
         ],
         "amenity": [
+          "university",
+          "school",
           "shelter",
           "atm",
           "bank",
@@ -298,6 +290,7 @@
           "charging_station"
         ],
         "leisure": [
+          "park",
           "water_park",
           "playground",
           "miniature_golf",

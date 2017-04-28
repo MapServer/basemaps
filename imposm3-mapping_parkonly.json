@@ -1,0 +1,203 @@
+{
+  "generalized_tables": {
+    "parklandusages_gen1": {
+      "source": "parklandusages",
+      "sql_filter": "ST_Area(geometry)>50000.000000",
+      "tolerance": 50.0
+    },
+    "parklandusages_gen0": {
+      "source": "parklandusages_gen1",
+      "sql_filter": "ST_Area(geometry)>500000.000000",
+      "tolerance": 200.0
+    },
+    "parklandusages_gen00": {
+      "source": "parklandusages",
+      "sql_filter": "ST_Area(geometry)>1000000.000000",
+      "tolerance": 500.0
+    }
+  },
+  "tables": {
+    "parklandusages": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "string",
+          "name": "name",
+          "key": "name"
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "pseudoarea",
+          "name": "area",
+          "key": null
+        },
+        {
+          "type": "string",
+          "name": "amenity",
+          "key": "amenity"
+        },
+        {
+          "type": "string",
+          "key": "tourism",
+          "name": "tourism"
+        },
+        {
+          "type": "string",
+          "key": "shop",
+          "name": "shop"
+        },
+        {
+          "type": "string",
+          "key": "leisure",
+          "name": "leisure"
+        },
+        {
+          "type": "string",
+          "key": "man_made",
+          "name": "man_made"
+        },
+        {
+          "type": "string",
+          "key": "historic",
+          "name": "historic"
+        },
+        {
+          "type": "string",
+          "key": "highway",
+          "name": "highway"
+        },
+        {
+          "type": "string",
+          "key": "natural",
+          "name": "natural_"
+        },
+        {
+          "type": "string",
+          "key": "religion",
+          "name": "religion"
+        },
+        {
+          "type": "string",
+          "key": "denomination",
+          "name": "denomination"
+        },
+        {
+          "type": "string",
+          "key": "generator:source",
+          "name": "generator_source"
+        },
+        {
+          "type": "string",
+          "key": "power:source",
+          "name": "power_source"
+        },
+        {
+          "type": "string",
+          "key": "power",
+          "name": "power"
+        },
+        {
+          "type": "string",
+          "key": "access",
+          "name": "access"
+        },
+        {
+          "args": {
+            "ranks": [
+              "pedestrian",
+              "footway",
+              "playground",
+              "park",
+              "forest",
+              "cemetery",
+              "farmyard",
+              "farm",
+              "farmland",
+              "wood",
+              "meadow",
+              "grass",
+              "wetland",
+              "village_green",
+              "recreation_ground",
+              "garden",
+              "sports_centre",
+              "pitch",
+              "common",
+              "allotments",
+              "golf_course",
+              "university",
+              "school",
+              "college",
+              "library",
+              "baracks",
+              "fuel",
+              "parking",
+              "nature_reserve",
+              "cinema",
+              "theatre",
+              "place_of_worship",
+              "hospital",
+              "scrub",
+              "orchard",
+              "vineyard",
+              "zoo",
+              "quarry",
+              "residential",
+              "retail",
+              "commercial",
+              "industrial",
+              "railway",
+              "heath",
+              "island",
+              "land"
+            ]
+          },
+          "type": "zorder",
+          "name": "z_order",
+          "key": "z_order"
+        }
+      ],
+      "type": "polygon",
+      "mapping": {
+        "aeroway": [
+        ],
+        "tourism": [
+        ],
+        "amenity": [
+        ],
+        "leisure": [
+          "park",
+        ],
+        "man_made": [
+        ],
+        "natural": [
+        ],
+        "historic": [
+        ],
+        "highway": [
+        ],
+        "shop": [
+        ],
+       "power": [
+        ],
+        "generator:source": [
+        ],
+        "power:source": [
+        ]
+      }
+    }
+  }
+}
