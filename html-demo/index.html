@@ -32,7 +32,8 @@
 <script language="JavaScript">
     console.log('coucou');
     var url = '';
-    var urlOrtho = '';
+    var urlOrtho = '/map/?map=/Users/nicolas/Projets/i3dat/demo/map/';
+    var urlTestEffi = 'http://preview.efficity.com:8101/cgi-bin/mapserv?map=/home/nicolas/labels_only_export/osm-google-labels-only.map';
     //platform-dependend url
     //platform-dependend url
     jQuery.ajaxSetup({async: false});
@@ -43,6 +44,10 @@
     if (os === "Darwin") {
         url = '/cgi-bin/mapserv?map=/Users/nicolas/bin/mapserver-basemaps/';
         urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
+
+        // nginx urls
+        url = '/map/map=/Users/nicolas/bin/mapserver-basemaps/';
+        urlOrtho = '/map/?map=/Users/nicolas/Projets/i3dat/demo/map/';
     } else if (os === "Linux") {
         url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
         urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
@@ -99,6 +104,16 @@
             attribution: "&copy; OSM data"
         };
 
+        var optionsTestEffi = {
+//            layers: 'commune_label',
+            layers: 'default',
+            format: 'image/png',
+//            tileSize: 512,
+            transparent: true,
+            'errorTileUrl': 'image/tileerror.png',
+            attribution: "&copy; OSM data"
+        };
+
         var tmsOptions = {
             'tms': true,
             'errorTileUrl': 'image/tileerror.png',
@@ -126,7 +141,8 @@
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
             "S3 Google Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
-            "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options).addTo(map)
+            "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options),
+            "MC test labels effi": new L.tileLayer.wms(urlTestEffi, optionsTestEffi).addTo(map)
         };
     }
 

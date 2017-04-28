@@ -1027,8 +1027,7 @@ styles = {
         'tertiary_ol_clr': "180 180 180",
         'other_ol_clr': "180 180 180",
         'pedestrian_ol_clr': "180 180 180",
-        'test_clr': "27 27 27",
-        'display_buildings': 0
+        'test_clr': "27 27 27"
     },
     'symbols': {
         'display_symbols': {
