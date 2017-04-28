@@ -85,6 +85,7 @@
     </cache>
 
     <cache name="s3" type="s3">
+        <creation_retry>10</creation_retry>
         <url>http://efficity-basemap.s3.amazonaws.com/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</url>
         <headers>
             <Host>efficity-basemap.s3.amazonaws.com</Host>
@@ -112,9 +113,10 @@
         <expires>3600</expires>
     </tileset>
 
-    <tileset name="osm_google_no_labels_grayscale_ts">
+    <tileset name="osm_google_no_labels_grayscale_NEW_ts">
         <source>osm_google_no_labels_grayscale_src</source>
-        <cache>disk</cache>
+        <!--<cache>disk</cache>-->
+        <cache>s3</cache>
         <grid>GoogleMapsCompatible</grid>
         <format>PNG</format>
         <metatile>8 8</metatile>

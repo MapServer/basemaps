@@ -46,8 +46,8 @@
         urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
 
         // nginx urls
-        url = '/map/map=/Users/nicolas/bin/mapserver-basemaps/';
-        urlOrtho = '/map/?map=/Users/nicolas/Projets/i3dat/demo/map/';
+//        url = '/map/map=/Users/nicolas/bin/mapserver-basemaps/';
+//        urlOrtho = '/map/?map=/Users/nicolas/Projets/i3dat/demo/map/';
     } else if (os === "Linux") {
         url = '/cgi-bin/mapserv?map=/home/ubuntu/apps/mapserver-basemaps/';
         urlOrtho = '/cgi-bin/mapserv?map=/Users/nicolas/Projets/i3dat/demo/map/';
@@ -141,6 +141,7 @@
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
             "S3 Google Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
+            "S3 Google NEW Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_NEW_ts'), tmsOptions),
             "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options),
             "MC test labels effi": new L.tileLayer.wms(urlTestEffi, optionsTestEffi).addTo(map)
         };
