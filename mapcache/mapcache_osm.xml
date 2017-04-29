@@ -68,6 +68,8 @@
         <http>
             <url>http://localhost/cgi-bin/mapserv</url>
         </http>
+        <retries>10</retries>
+        <retry_delay>0.1</retry_delay>
     </source>
 
 
