@@ -85,7 +85,8 @@
     </cache>
 
     <cache name="s3" type="s3">
-        <creation_retry>10</creation_retry>
+        <retries>10</retries>
+        <retry_delay>0.1</retry_delay>
         <url>http://efficity-basemap.s3.amazonaws.com/mapcache/{tileset}/{grid}/{z}/{x}/{y}.{ext}</url>
         <headers>
             <Host>efficity-basemap.s3.amazonaws.com</Host>
