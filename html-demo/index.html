@@ -55,6 +55,7 @@
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
+    var urlS3512 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible512/{z}/{x}/{y}.png';
 
     var map = L.map('mapid').setView(
 //        [43.604, 1.40], 8
@@ -148,7 +149,7 @@
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
             "S3 Google Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
-            "S3 Google NEW Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_NEW_ts'), tmsOptions512),
+            "S3 Google NEW Grayscale": new L.TileLayer(urlS3512.replace('[LAYER]', 'osm_google_no_labels_grayscale_NEW_ts'), tmsOptions512),
             "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options),
             "MC test labels effi": new L.tileLayer.wms(urlTestEffi, optionsTestEffi).addTo(map)
         };
