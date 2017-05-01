@@ -125,7 +125,7 @@
         <!--<grid>GoogleMapsCompatible</grid>-->
         <grid>GoogleMapsCompatible512</grid>
         <format>PNG</format>
-        <metatile>8 8</metatile>
+        <metatile>4 4</metatile>
         <metabuffer>10</metabuffer>
         <expires>3600</expires>
     </tileset>
