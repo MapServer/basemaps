@@ -1,9 +1,11 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <script src="js/lib/jquery/jquery-1.9.1.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
     <link rel="stylesheet" href="js/leaflet.zoomdisplay.css"/>
     <link rel="stylesheet" href="js/Leaflet.Coordinates.css"/>
+    <link rel="stylesheet" href="js/leaflet.bookmarks.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.css">
 
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
@@ -11,6 +13,7 @@
     <script src="js/TileLayer.Grayscale.js"></script>
     <script src="js/leaflet.zoomdisplay-src.js"></script>
     <script src="js/Leaflet.Coordinates.js"></script>
+    <script src="js/Leaflet.Bookmarks.js"></script>
     <script src="https://unpkg.com/leaflet-easybutton@2.0.0/src/easy-button.js"></script>
     <style>
         #mapid {
@@ -54,6 +57,7 @@
     }
 
     var urlMapcache = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible/{z}/{x}/{y}.png';
+    var urlMapcache512 = '/mapcache-osm/tms/1.0.0/[LAYER]@GoogleMapsCompatible512/{z}/{x}/{y}.png';
     var urlS3 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible/{z}/{x}/{y}.png';
     var urlS3512 = 'http://efficity-basemap.s3.amazonaws.com/mapcache/[LAYER]/GoogleMapsCompatible512/{z}/{x}/{y}.png';
 
@@ -94,6 +98,89 @@
         $('.leaflet-tile').toggleClass('leaflet-tile-border');
         $('#imggrid').toggleClass('img-trans');
     }).addTo(map);
+
+    // 21 juillet 2017: custom bookmarks to navigate to DROM
+    var bookmarksControl = new L.Control.Bookmarks({
+        localStorage: false // if you want to use local variable for storage
+    }).addTo(map);
+
+    // adds bookmarks: todo: smarter
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_guadeloupe',
+            name: 'Guadeloupe',
+            latlng: [16.26, -61.55],
+            zoom: 10,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_martinique',
+            name: 'Martinique',
+            latlng: [14.6361, -61.0],
+            zoom: 11,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_guyane',
+            name: 'Guyane',
+            latlng: [4.09, -53.13],
+            zoom: 8,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_reunion',
+            name: 'Réunion',
+            latlng: [-21.11, 55.53],
+            zoom: 10,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_mayotte',
+            name: 'Mayotte',
+            latlng: [-12.79, 45.16],
+            zoom: 11,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_polynesie',
+            name: 'Polynésie',
+            latlng: [-16.96,-151.6],
+            zoom: 7,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_saintpierreetmiquelon',
+            name: 'St Pierre et Miquelon',
+            latlng: [47.03, -56.31],
+            zoom: 11,
+            removable: false,
+            editable: false
+        }
+    });
+
+    // TODO: why ?
+    map.setView(
+//        [43.604, 1.40], 8
+        [43.6447, 1.4557], 12
+    );
 
     // gets classic Leaflet wms tile layers
     function getClassicLayers(map) {
@@ -146,12 +233,13 @@
             "MS OSM Symbols only": L.tileLayer.wms(url + "osm-symbols-only.map", options),
             "MC Google labels only":  new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "MC OSM Symbols only": new L.TileLayer(urlMapcache.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
+            "MC Google no labels grayscale": new L.TileLayer(urlMapcache512.replace('[LAYER]', 'osm_google_no_labels_grayscale_NEW_ts'), tmsOptions512).addTo(map),
             "S3 Google labels only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_labels_only_ts'), tmsOptions),
             "S3 OSM Symbols only": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_symbols_only_ts'), tmsOptions),
             "S3 Google Grayscale": new L.TileLayer(urlS3.replace('[LAYER]', 'osm_google_no_labels_grayscale_ts'), tmsOptions),
             "S3 Google NEW Grayscale": new L.TileLayer(urlS3512.replace('[LAYER]', 'osm_google_no_labels_grayscale_NEW_ts'), tmsOptions512),
             "MS test sqllite": new L.tileLayer.wms(urlOrtho + "ortho.map", options),
-            "MC test labels effi": new L.tileLayer.wms(urlTestEffi, optionsTestEffi).addTo(map)
+            "MC test labels effi": new L.tileLayer.wms(urlTestEffi, optionsTestEffi)
         };
     }
 
