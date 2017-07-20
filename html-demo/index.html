@@ -157,9 +157,29 @@
     });
     map.fire('bookmark:add', {
         data: {
+            id: 'bm_nouvellecaledonie',
+            name: 'Nouvelle Calédonie',
+            latlng: [-21.32, 165.5],
+            zoom: 8,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
             id: 'bm_polynesie',
             name: 'Polynésie',
             latlng: [-16.96,-151.6],
+            zoom: 7,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_wallisetfutuna',
+            name: 'Wallis et Futuna',
+            latlng: [-13.77345, -177.1532],
             zoom: 7,
             removable: false,
             editable: false
@@ -175,6 +195,27 @@
             editable: false
         }
     });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_saintmartin',
+            name: 'St Martin',
+            latlng: [18.0731, -63.0615],
+            zoom: 11,
+            removable: false,
+            editable: false
+        }
+    });
+    map.fire('bookmark:add', {
+        data: {
+            id: 'bm_saintbarthelemy',
+            name: 'St Barthelemy',
+            latlng: [17.90430, -62.8217],
+            zoom: 11,
+            removable: false,
+            editable: false
+        }
+    });
+
 
     // TODO: why ?
     map.setView(
