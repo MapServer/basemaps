@@ -46,7 +46,7 @@ from imposm.mapping import (
 
 db_conf = Options(
     # db='osm',
-    host='localhost',
+    host='docker.for.mac.localhost',
     port=5436,
     user='nicolas',
     password='osm',

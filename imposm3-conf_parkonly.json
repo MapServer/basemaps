@@ -1,6 +1,0 @@
-{
-    "cachedir": "/data_big/Documents/geodata/caches/imposm3",
-    "connection": "postgis://ubuntu:toto@localhost:5436/osm",
-    "mapping": "imposm3-mapping_parkonly.json",
-    "srid": 3857
-}
