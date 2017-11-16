@@ -10,7 +10,7 @@ CPP=gcc -E -x c
 #if the preprocessor fails for some reason, try replacing this with "cpp" on linux, or "cpp-4.2" on darwin (not available starting with mountain lion)
 
 
-OSM_PREFIX?=osm_
+OSM_PREFIX?=osm_new_
 OSM_NAME_COLUMN?=name
 #OSM_SRID?=4326
 #OSM_UNITS?=dd
