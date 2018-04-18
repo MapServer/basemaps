@@ -44,7 +44,7 @@ END
 
 OUTPUTFORMAT
   NAME "png_bw"
-  DRIVER AGG/PNG8
+  DRIVER "AGG/PNG"
   MIMETYPE "image/png;mode=8bit,grayscale"
   IMAGEMODE RGB
   EXTENSION "png"
