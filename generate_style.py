@@ -6,6 +6,7 @@
 display_labels = 1
 display_geometries = 1
 display_symbols = 1
+display_relief = 0
 
 layer_suffixes = {
     0: 0,
