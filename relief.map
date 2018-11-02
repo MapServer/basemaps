@@ -1,0 +1,130 @@
+#if _display_geometries == 1
+#if _display_relief == 1
+LAYER
+    TYPE RASTER
+    GROUP "default"
+    STATUS ON
+    DEBUG _layerdebug
+    NAME layername(relief,_layer_suffix)
+    PROCESSING "APPROXIMATION_SCALE=full"
+    PROJECTION
+        _land_epsg
+    END
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    DATA _relief_data
+    COMPOSITE
+        OPACITY _relief_opacity
+        COMPOP _relief_compop
+    END
+END
+#endif
+
+LAYER
+    TYPE RASTER
+    GROUP "default"
+    STATUS ON
+    DEBUG _layerdebug
+    NAME layername(hillshade,_layer_suffix)
+    PROCESSING "APPROXIMATION_SCALE=full"
+    PROJECTION
+        _land_epsg
+    END
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    DATA _hillshade_data
+    COMPOSITE
+        OPACITY _hillshade_opacity
+        COMPOP _relief_compop
+    END
+END
+
+LAYER
+    TYPE RASTER
+    GROUP "default"
+    STATUS ON
+    DEBUG _layerdebug
+    NAME layername(slopeshade,_layer_suffix)
+    PROCESSING "APPROXIMATION_SCALE=full"
+    PROJECTION
+        _land_epsg
+    END
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    DATA _slopeshade_data
+    COMPOSITE
+        OPACITY _slopeshade_opacity
+        COMPOP _relief_compop
+    END
+END
+
+LAYER
+    TYPE RASTER
+    GROUP "default"
+    STATUS ON
+    DEBUG _layerdebug
+    NAME layername(slopeshade,_layer_suffix)
+    PROCESSING "APPROXIMATION_SCALE=full"
+    PROJECTION
+        _land_epsg
+    END
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    DATA _slopeshade_data
+    COMPOSITE
+        OPACITY _slopeshade_opacity
+        COMPOP _relief_compop
+    END
+END
+
+#if _display_contour == 1
+LAYER
+    TYPE LINE
+    GROUP "default"
+    STATUS ON
+    DEBUG _layerdebug
+    NAME layername(contour,_layer_suffix)
+    PROCESSING "APPROXIMATION_SCALE=full"
+    PROJECTION
+        _land_epsg
+    END
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    DATA _contour_data
+    CLASSITEM "height"
+    CLASS
+      EXPRESSION "100"
+        STYLE
+         WIDTH _contour100_width
+         COLOR _contour100_clr
+        END
+      LABEL
+       FONT scb
+       TYPE TRUETYPE
+       ENCODING "utf-8"
+       SIZE 7
+       COLOR _contour_txt_clr
+       POSITION auto
+       REPEATDISTANCE 100
+      END
+    END
+    CLASS
+      EXPRESSION "50"
+        STYLE
+         WIDTH _contour50_width
+         COLOR _contour50_clr
+        END
+      LABEL
+       FONT scb
+       TYPE TRUETYPE
+       ENCODING "utf-8"
+       SIZE 7
+       COLOR _contour_txt_clr
+       POSITION auto
+       REPEATDISTANCE 100
+      END
+    END
+END
+#endif
+
+#endif

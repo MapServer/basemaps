@@ -1,0 +1,11 @@
+28 nov 2017:
+trying to define a topographic map based on opentopomap (https://github.com/der-stefan/OpenTopoMap)
+
+• @ zoom < 9: relief raster + roads
+• @zoom >= 9: vector objects + relief hiil + slope only ?
+• @zoom >= 11: contour lines
+     z= 11: 50m equi, 100m ?
+
+TODO:
+• licence
+• imposm3 conf for all features

@@ -76,6 +76,8 @@ vars = {
     # Nico ribot: new variables
     'display_labels': display_labels,
     'display_geometries': display_geometries,
+    # end new variables
+
     'layer_suffix': layer_suffixes,
     'maxscale': maxscales,
     'minscale': minscales,
@@ -1545,6 +1547,66 @@ styles = {
             0: 0,
             15: 1
         }
+    },
+    'topographic': {
+        'display_relief': {
+            0: 1,
+            9: 0
+        },
+        'relief_data': {
+            0: '"topomap/relief-700.tif"',
+            5: '"topomap/relief-500.tif"'
+        },
+        'relief_compop': 'overlay',
+        'relief_opacity': 90,
+        'hillshade_data': {
+            0: '"topomap/hillshade-5000.tif"',
+            5: '"topomap/hillshade-700.tif"',
+            8: '"topomap/hillshade-500.tif"',
+            8: '"topomap/hillshade-30m-jpeg.tif"',
+        },
+        'hillshade_opacity': {
+            0: 50,
+            9: 43
+        },
+        'slopeshade_data': {
+            0: '"topomap/slopeshade-5000.tif"',
+            5: '"topomap/slopeshade-700.tif"',
+            8: '"topomap/slopeshade-500.tif"',
+            8: '"topomap/slopeshade-30m-jpeg.tif"',
+        },
+        'slopeshade_opacity': {
+            0: 20,
+            9: 15
+        },
+    #     contour
+        'display_contour': {
+            0: 0,
+            11: 1
+        },
+        'contour_data': {
+            0: '',
+            11: '"geom from (select height, geom from contour where height in (100, 50)"',
+            12: '"geom from (select height, geom from contour where height in (100, 20)"',
+            13: '"geom from (select height, geom from contour where height in (100, 50, 10)"'
+        },
+        'contour100_width': {
+            0: 0,
+            11: 0.2,
+            12: 0.4,
+            13: 0.5,
+            14: 0.6
+        },
+        'contour100_clr': '"#d45500"',
+        'contour50_width': {
+            0: 0,
+            11: 0.2,
+            13: 0.4,
+            14: 0.4
+        },
+        'contour50_clr': '"#d45500"',
+        'contour_txt_clr': '"#bc7e55"'
+
     }
 }
 
@@ -1554,38 +1616,49 @@ from optparse import OptionParser
 # these are the preconfigured styles that can be called when creating the final mapfile,
 # e.g. with `make STYLE=google`. This will create an osm-google.map mapfile
 style_aliases = {
-
+    ####### Original styles ######
     # map with no road casing and few colors, suited for using as a basemap when overlaying
     # other layers without risk of confusion between layers.
     "default": "default",
 
-    #default with transport and amenities symbols
-    "default-symbols": "default,symbols",
-    # TODO: Near B&W style based on default colors
-    "default-grayscale": "default,outlined,grayscale",
-
-    "symbols-only": "symbols,symbols_only",
-
     # a style resembling the google-maps theme
     "google": "default,outlined,google",
 
-    # Nico Ribot: new aliases for labels-only and no-labels styles
-    "google-no-labels": "default,outlined,google,geoms_only,buildings",
-    "google-no-labels-grayscale": "default,outlined,google,geoms_only,buildings,grayscale",
-    "google-labels-only": "default,outlined,google,labels_only",
-    "google-grayscale": "default,grayscale",
-    "google-buildings-symbols": "default,outlined,google,symbols,buildings",
-
-
     # same style as above, but using data coming from an osm2pgsql schema rather than imposm
     "googleosm2pgsql": "default,outlined,google,osm2pgsql",
-
     "bing": "default,outlined,bing",
-    "bing-buildings-symbols": "default,outlined,bing,symbols,buildings",
-
     "michelin": "default,outlined,centerlined,michelin",
-    "michelin-buildings-symbols": "default,outlined,michelin,symbols,buildings",
 
+    ####### New styles: symbols, buildings, labels ######
+    #default with transport and amenities symbols
+    "default-symbols": "default,symbols",
+    # default, Black and White
+    "default-grayscale": "default,outlined,grayscale",
+
+    #Google with buildings and symbols, same grayscale
+    "google-buildings-symbols": "default,outlined,google,symbols,buildings",
+    "google-buildings-symbols-grayscale": "default,outlined,google,symbols,buildings,grayscale",
+
+    # bing with buildings and symbols, same grayscale
+    "bing-buildings-symbols": "default,outlined,bing,symbols,buildings",
+    "bing-buildings-symbols-grayscale": "default,outlined,bing,symbols,buildings,grayscale",
+
+    # Michelin with buildings and symbols, same grayscale
+    "michelin-buildings-symbols": "default,outlined,michelin,symbols,buildings",
+    "michelin-buildings-symbols-grayscale": "default,outlined,michelin,symbols,buildings,grayscale",
+
+    # custom styles:
+    # google with buildings, no symbols, no labels
+    "google-no-labels": "default,outlined,google,geoms_only,buildings",
+    #same grayscale
+    "google-no-labels-grayscale": "default,outlined,google,geoms_only,buildings,grayscale",
+    # labels only from google style
+    "google-labels-only": "default,outlined,google,labels_only",
+
+    # symbols only layer
+    "symbols-only": "symbols,symbols_only",
+
+    "topographic": "topographic"
 }
 
 parser = OptionParser()
@@ -1633,5 +1706,3 @@ if options.level != -1:
     for k, v in style.iteritems():
         print "#define _%s _%s%s" % (k, k, level)
 
-# TODO symbols: change imposm conf to include info for railway stations: gare, metro, rer, etc?
-# TODO symbols: labels .
