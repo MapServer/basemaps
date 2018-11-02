@@ -28,7 +28,8 @@ LAYERDEBUG=1
 STYLE=default
 #can also use google or bing
 
-template=osmtopobase.map
+#template=osmtopobase.map
+template=osmbase.map
 
 includes=land.map landusage.map borders.map highways.map places.map \
          symbols-aeroways.map symbols-amenities-pt.map symbols-amenities-pg.map symbols-stations.map \
