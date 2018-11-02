@@ -1550,7 +1550,7 @@ styles = {
     },
     'topographic': {
         'display_relief': {
-            0: 1,
+            0: 0,
             9: 0
         },
         'relief_data': {
