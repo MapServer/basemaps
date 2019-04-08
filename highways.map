@@ -4,6 +4,9 @@ LAYER
     STATUS ON
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     MINSCALEDENOM _minscale
     MAXSCALEDENOM _maxscale
     TYPE LINE
@@ -44,6 +47,9 @@ LAYER
     NAME layername(roads,_layer_suffix)
     CONNECTIONTYPE postgis
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
@@ -869,6 +875,9 @@ LAYER
     NAME layername(aeroways,_layer_suffix)
     CONNECTIONTYPE postgis
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
     CLASS
