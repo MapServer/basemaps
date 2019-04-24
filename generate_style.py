@@ -1318,7 +1318,7 @@ styles = {
 }
 
 import sys
-from optparse import OptionParser
+import argparse
 
 
 # these are the preconfigured styles that can be called when creating the final mapfile,
@@ -1339,24 +1339,23 @@ style_aliases = {
 }
 
 
-parser = OptionParser()
-parser.add_option("-l", "--level", dest="level", type="int", action="store", default=-1,
+parser = argparse.ArgumentParser()
+parser.add_argument("-l", "--level", dest="level", type=int, action="store", default=-1,
                   help="generate file for level n")
-parser.add_option("-g", "--global", dest="full", action="store_true", default=False,
+parser.add_argument("-g", "--global", dest="full", action="store_true", default=False,
                   help="generate global include file")
-parser.add_option("-s", "--style",
-                  action="store", dest="style", default="default",
+parser.add_argument("-s", "--style", action="store", dest="style", default="default",
                   help="comma separated list of styles to apply (order is important)")
 
-(options, args) = parser.parse_args()
+args = parser.parse_args()
 
 items = vars.items()
-for namedstyle in style_aliases[options.style].split(','):
+for namedstyle in style_aliases[args.style].split(','):
    items = items + styles[namedstyle].items()
 
 style = dict(items)
 
-if options.full:
+if args.full:
    print "###### level 0 ######"
    for k,v in style.iteritems():
       if type(v) is dict:
@@ -1377,8 +1376,8 @@ if options.full:
          else:
             print "#define _%s%d %s"%(k,i,v)
 
-if options.level != -1:
-   level = options.level
+if args.level != -1:
+   level = args.level
    for k,v in style.iteritems():
       print "#undef _%s"%(k)
 
