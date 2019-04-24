@@ -1359,27 +1359,27 @@ if args.full:
    print "###### level 0 ######"
    for k,v in style.iteritems():
       if type(v) is dict:
-         print "#define _%s0 %s"%(k,v[0])
+         print "#define _{0}0 {1}".format(k, v[0])
       else:
-         print "#define _%s0 %s"%(k,v)
+         print "#define _{0}0 {1}".format(k, v)
 
 
    for i in range(1,19):
       print
-      print "###### level %d ######"%(i)
+      print "###### level {0} ######".format(i)
       for k,v in style.iteritems():
          if type(v) is dict:
             if not v.has_key(i):
-               print "#define _%s%d _%s%d"%(k,i,k,i-1)
+               print "#define _{0}{1} _{0}{2}".format(k, i, i-1)
             else:
-               print "#define _%s%d %s"%(k,i,v[i])
+               print "#define _{0}{1} {2}".format(k, i, v[i])
          else:
-            print "#define _%s%d %s"%(k,i,v)
+            print "#define _{0}{1} {2}".format(k, i, v)
 
 if args.level != -1:
    level = args.level
    for k,v in style.iteritems():
-      print "#undef _%s"%(k)
+      print "#undef _{0}".format(k)
 
    for k,v in style.iteritems():
-      print "#define _%s _%s%s"%(k,k,level)
+      print "#define _{0} _{0}{1}".format(k, level)
