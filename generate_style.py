@@ -1357,7 +1357,7 @@ style = vars
 if args.full:
    print "###### level 0 ######"
    for k,v in style.iteritems():
-      if type(v) is dict:
+      if isinstance(v, dict):
          print "#define _{0}0 {1}".format(k, v[0])
       else:
          print "#define _{0}0 {1}".format(k, v)
@@ -1367,7 +1367,7 @@ if args.full:
       print
       print "###### level {0} ######".format(i)
       for k,v in style.iteritems():
-         if type(v) is dict:
+         if isinstance(v, dict):
             if not v.has_key(i):
                print "#define _{0}{1} _{0}{2}".format(k, i, i-1)
             else:
