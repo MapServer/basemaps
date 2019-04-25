@@ -1368,7 +1368,7 @@ if args.full:
       print "###### level {0} ######".format(i)
       for k,v in style.iteritems():
          if isinstance(v, dict):
-            if not v.has_key(i):
+            if not i in v:
                print "#define _{0}{1} _{0}{2}".format(k, i, i-1)
             else:
                print "#define _{0}{1} {2}".format(k, i, v[i])
