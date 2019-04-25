@@ -1356,7 +1356,7 @@ style = vars
 
 if args.full:
    print "###### level 0 ######"
-   for k,v in style.iteritems():
+   for k, v in style.items():
       if isinstance(v, dict):
          print "#define _{0}0 {1}".format(k, v[0])
       else:
@@ -1366,7 +1366,7 @@ if args.full:
    for i in range(1,19):
       print
       print "###### level {0} ######".format(i)
-      for k,v in style.iteritems():
+      for k, v in style.items():
          if isinstance(v, dict):
             if not i in v:
                print "#define _{0}{1} _{0}{2}".format(k, i, i-1)
@@ -1377,8 +1377,8 @@ if args.full:
 
 if args.level != -1:
    level = args.level
-   for k,v in style.iteritems():
+   for k, v in style.items():
       print "#undef _{0}".format(k)
 
-   for k,v in style.iteritems():
+   for k, v in style.items():
       print "#define _{0} _{0}{1}".format(k, level)
