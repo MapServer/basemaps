@@ -1355,30 +1355,30 @@ for namedstyle in style_aliases[args.style].split(','):
 style = vars
 
 if args.full:
-   print "###### level 0 ######"
+   print("###### level 0 ######")
    for k, v in style.items():
       if isinstance(v, dict):
-         print "#define _{0}0 {1}".format(k, v[0])
+         print("#define _{0}0 {1}".format(k, v[0]))
       else:
-         print "#define _{0}0 {1}".format(k, v)
+         print("#define _{0}0 {1}".format(k, v))
 
 
    for i in range(1,19):
-      print
-      print "###### level {0} ######".format(i)
+      print('')
+      print("###### level {0} ######".format(i))
       for k, v in style.items():
          if isinstance(v, dict):
             if not i in v:
-               print "#define _{0}{1} _{0}{2}".format(k, i, i-1)
+               print("#define _{0}{1} _{0}{2}".format(k, i, i-1))
             else:
-               print "#define _{0}{1} {2}".format(k, i, v[i])
+               print("#define _{0}{1} {2}".format(k, i, v[i]))
          else:
-            print "#define _{0}{1} {2}".format(k, i, v)
+            print("#define _{0}{1} {2}".format(k, i, v))
 
 if args.level != -1:
    level = args.level
    for k, v in style.items():
-      print "#undef _{0}".format(k)
+      print("#undef _{0}".format(k))
 
    for k, v in style.items():
-      print "#define _{0} _{0}{1}".format(k, level)
+      print("#define _{0} _{0}{1}".format(k, level))
