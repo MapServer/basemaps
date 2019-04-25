@@ -65,7 +65,7 @@ minscales = {
    18:0
 }
 
-vars= {
+style = {
    'layer_suffix':layer_suffixes,
    'maxscale':maxscales,
    'minscale':minscales,
@@ -1020,7 +1020,7 @@ vars= {
    'locality_clr': "200 200 200",
 }
 
-styles = {
+namedstyles = {
    'default': {},
    'outlined':{
       'display_motorway_outline': {
@@ -1350,9 +1350,7 @@ parser.add_argument("-s", "--style", action="store", dest="style", default="defa
 args = parser.parse_args()
 
 for namedstyle in style_aliases[args.style].split(','):
-   vars.update(styles[namedstyle].items())
-
-style = vars
+   style.update(namedstyles[namedstyle].items())
 
 if args.full:
    print("###### level 0 ######")
@@ -1363,7 +1361,7 @@ if args.full:
          print("#define _{0}0 {1}".format(k, v))
 
 
-   for i in range(1,19):
+   for i in range(1, 19):
       print('')
       print("###### level {0} ######".format(i))
       for k, v in style.items():
