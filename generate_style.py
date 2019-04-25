@@ -1349,11 +1349,10 @@ parser.add_argument("-s", "--style", action="store", dest="style", default="defa
 
 args = parser.parse_args()
 
-items = vars.items()
 for namedstyle in style_aliases[args.style].split(','):
-   items = items + styles[namedstyle].items()
+   vars.update(styles[namedstyle].items())
 
-style = dict(items)
+style = vars
 
 if args.full:
    print "###### level 0 ######"
