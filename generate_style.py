@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import argparse
+
 layer_suffixes = {
    0:0,
    1:1,
@@ -1316,10 +1318,6 @@ namedstyles = {
 
    }
 }
-
-import sys
-import argparse
-
 
 # these are the preconfigured styles that can be called when creating the final mapfile,
 # e.g. with `make STYLE=google`. This will create an osm-google.map mapfile
