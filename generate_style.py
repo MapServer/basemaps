@@ -600,7 +600,23 @@ vars= {
    'track_lbl_ol_width': 2,
    'track_ol_width': 1,
    'track_ol_clr': "0 0 0",
-
+   # cycleways
+   'display_cycleways': {
+      0:0,
+      15:1
+   },
+   'display_cycleway_outline': 0,
+   'cycleway_clr': {
+      0:'"#aaaaaa"',
+      15:'"#ffffff"',
+   },
+   'cycleway_width': {
+      0:0,
+      15:2,
+   },
+   'cycleway_pattern': '2 4',
+   'cycleway_ol_width': 1,
+   'cycleway_ol_clr': "0 0 0",
    'display_footways': {
       0:0,
       15:1
