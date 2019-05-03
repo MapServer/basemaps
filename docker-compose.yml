@@ -3,8 +3,6 @@ services:
   postgis:    
     build:
         context: docker/postgis
-    networks:
-      - default
     ports:
       - "5432:5432"
     volumes:
