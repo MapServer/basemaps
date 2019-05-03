@@ -8,14 +8,14 @@ RUN apt-get update \
 
 RUN groupadd nopwsudo \
     && echo "%nopwsudo      ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopwsudo \
-    && useradd nwl -u ${USER_ID} -G nopwsudo,sudo,adm -m
+    && useradd mapserveruser -u ${USER_ID} -G nopwsudo,sudo,adm -m
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git make build-essential python wget unzip mapserver-bin cgi-mapserver
 
 RUN mkdir /app \
-    && chown -R nwl /app    
+    && chown -R mapserveruser /app    
 
 # install imposm3
 RUN wget -O imposm3.tgz 'https://github.com/omniscale/imposm3/releases/download/v0.6.0-alpha.4/imposm-0.6.0-alpha.4-linux-x86-64.tar.gz'
