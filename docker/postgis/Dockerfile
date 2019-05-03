@@ -22,6 +22,8 @@ RUN wget -O imposm3.tgz 'https://github.com/omniscale/imposm3/releases/download/
 RUN tar --strip-components 1 -xzf imposm3.tgz -C /opt
 RUN ln -s  /opt/imposm /usr/local/bin/imposm
 
+ADD initdb.sh /docker-entrypoint-initdb.d/initdb.sh
+
 WORKDIR /app
 
 ENV POSTGRES_USER osm

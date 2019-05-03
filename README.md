@@ -35,10 +35,28 @@ This project has two [docker](https://docs.docker.com/) containers to help you g
 docker-compose up
 ```
 
-Open http://localhost/cgi-bin/mapserv?map=/app/basemaps/osm-default.map&REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.3.0 
+Open http://localhost/cgi-bin/mapserv?map=/app/osm-default.map&REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.3.0
 
-#### import data
+### import data
+
+Download a bpf file to the data dir and import
+
 
 ```
-docker-compose exec postgis imposm 
+docker-compose exec postgis bash 
+cd data
+wget  https://download.bbbike.org/osm/bbbike/Amsterdam/Amsterdam.osm.pbf
+imposm import -connection postgis://osm:osm@localhost/osm -read /app/data/Amsterdam.osm.pbf -mapping /app/imposm3-mapping.json -write -overwritecache -optimize   
+imposm import -mapping /app/imposm3-mapping.json -connection postgis://osm:osm@localhost/osm -deployproduction
+
+```
+
+
+### Generate mapfile & download shapefiles
+
+```
+docker-compose run webserver bash
+make --always-make -f docker.mk
+cd data
+make 
 ```
