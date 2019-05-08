@@ -236,7 +236,31 @@ LAYER
 #endif
 
 
+########################################
+## cycleway ##
+########################################
 
+#if _display_cycleways == 1
+    CLASS
+#if _display_bridges == 1
+        EXPRESSION "cycleway00"
+#else
+        EXPRESSION "cycleway"
+#endif
+#if _display_other_outline
+        STYLE
+           WIDTH _cycleway_width
+           OUTLINEWIDTH _cycleway_ol_width
+           OUTLINECOLOR _cycleway_ol_clr
+        END
+#endif
+        STYLE
+            PATTERN _cycleway_pattern END
+            WIDTH _cycleway_width
+            COLOR _cycleway_clr
+        END
+    END
+#endif
 
 
 ##################################################
