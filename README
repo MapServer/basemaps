@@ -1,6 +1,4 @@
-# Mapserver OSM basemaps
-
-- this package uses a python script and the c preprocessor to build a
+- this package uses the a python script and the c preprocessor to build a
 complete mapfile from a set of templates and styling information.
 
 - use the branch corresponding to your mapserver version, e.g.
