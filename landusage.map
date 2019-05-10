@@ -295,17 +295,25 @@ LAYER
     CLASSITEM "type"
     CLASS
       EXPRESSION "riverbank"
+#if _display_waterarea_outline
+        STYLE           
+           OUTLINECOLOR _waterarea_ol_clr
+           OUTLINEWIDTH _waterarea_ol_width
+        END
+#endif
         STYLE
-            COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
+            COLOR _waterarea_clr    
         END
     END
     CLASS
+#if _display_waterarea_outline
+        STYLE           
+           OUTLINECOLOR _waterarea_ol_clr
+           OUTLINEWIDTH _waterarea_ol_width
+        END
+#endif
         STYLE
-            COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
+            COLOR _waterarea_clr    
         END
 #if _display_waterarea_lbl == 1
         LABEL
