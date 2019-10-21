@@ -1,0 +1,18 @@
+version: '2'
+services:
+  postgis:    
+    build:
+        context: docker/postgis
+    # enable for local debug    
+    # ports:
+    #   - "5432:5432"
+    volumes:
+      - ".:/app"       
+  webserver:
+    depends_on: [postgis]
+    build: 
+      context: docker/webserver        
+    ports:
+        - "80:80"
+    volumes:
+        - ".:/app" 
