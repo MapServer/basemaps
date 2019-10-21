@@ -1,0 +1,16 @@
+SYMBOLSET
+
+  SYMBOL
+   name "citycircle"
+   type ellipse
+   points 1 1 end
+   filled true
+  END
+
+  SYMBOL
+    name "soccer"
+    TYPE SVG
+    IMAGE symbols/sports-soccer.svg
+  END
+
+END

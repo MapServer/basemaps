@@ -1,11 +1,11 @@
 #if _display_landusage == 1
 LAYER
+    NAME layername(landuse,_layer_suffix)
     TYPE POLYGON
     STATUS ON
     PROJECTION
         "init=epsg:OSM_SRID"
     END
-    NAME layername(landuse,_layer_suffix)
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
@@ -17,6 +17,7 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
+    SIZEUNITS meters
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
@@ -158,7 +159,7 @@ LAYER
       END
 #endif
    END
- 
+
     CLASS
         EXPRESSION 'hospital'
         STYLE
@@ -206,7 +207,7 @@ LAYER
 #endif
     END
     CLASS
-      EXPRESSION {sports_center,stadium,pitch}
+      EXPRESSION {sports_center,stadium}
       STYLE
           COLOR _sports_clr
       END
@@ -218,7 +219,7 @@ LAYER
         SIZE _sports_lbl_size
         COLOR _sports_lbl_clr
         OUTLINECOLOR _sports_lbl_ol_clr
-       ENCODING "utf-8"
+        ENCODING "utf-8"
         OUTLINEWIDTH _sports_lbl_ol_width
         PRIORITY 1
         WRAP ' '
@@ -228,6 +229,42 @@ LAYER
       END
 #endif
     END
+    CLASS
+      NAME "pitch"
+      EXPRESSION "pitch"
+      STYLE
+          COLOR _sports_clr
+      END
+#if _maxscale < 7000
+      STYLE
+            GEOMTRANSFORM centroid
+            SYMBOL "soccer"
+            ANGLE [angle]
+            SIZE [length]
+            WIDTH 3
+            MAXSCALEDENOM 7000
+            MINSCALEDENOM 0
+      END
+#endif
+#if _display_sports_lbl==1
+      LABEL
+        TYPE TRUETYPE
+        PARTIALS FALSE
+        FONT _sports_font
+        SIZE _sports_lbl_size
+        COLOR _sports_lbl_clr
+        OUTLINECOLOR _sports_lbl_ol_clr
+        ENCODING "utf-8"
+        OUTLINEWIDTH _sports_lbl_ol_width
+        PRIORITY 1
+        WRAP ' '
+        MAXLENGTH 6
+        ALIGN CENTER
+        MINFEATURESIZE AUTO
+      END
+#endif
+    END
+
 END
 
 #if _display_transport_areas == 1
@@ -289,7 +326,7 @@ LAYER
 #endif
     DATA _waterarea_data
     MAXSCALEDENOM _maxscale
-    MINSCALEDENOM _minscale  
+    MINSCALEDENOM _minscale
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASSITEM "type"
@@ -358,7 +395,7 @@ LAYER
     CLASS
         EXPRESSION "river"
         STYLE
-            COLOR _river_clr 
+            COLOR _river_clr
             WIDTH _river_width
         END
 #if _display_river_lbl == 1
