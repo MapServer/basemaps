@@ -239,13 +239,6 @@ vars= {
    'sports_lbl_ol_clr': "255 255 255",
    'sports_lbl_ol_width': 2,
 
-   'display_pedestrian_lbl' : {0:0, 12:1},
-   'pedestrian_font': "sc",
-   'pedestrian_lbl_size': 8,
-   'pedestrian_lbl_clr': '0 0 0',
-   'pedestrian_lbl_ol_clr': "255 255 255",
-   'pedestrian_lbl_ol_width': 2,
-
    'cemetery_clr': '"#d1d1d1"',
    'display_cemetery_lbl' : {0:0, 12:1},
    'cemetery_font': "sc",
@@ -556,6 +549,7 @@ vars= {
       0:0,
       15:1
    },
+   'display_pedestrian_lbl' : {0:0, 12:1},
    'pedestrian_font': "sc",
    'pedestrian_lbl_size': {
       0:0,
