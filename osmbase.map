@@ -21,7 +21,7 @@ IMAGETYPE png
 MAXSIZE 4000
 SIZE 800 800
 EXTENT OSM_EXTENT
-UNITS OSM_UNITS 
+UNITS OSM_UNITS
 IMAGECOLOR _ocean_clr0
 WEB
    METADATA
@@ -37,6 +37,7 @@ DEBUG _debug
 CONFIG "MS_ERRORFILE" "stderr"
 #endif
 
+SYMBOLSET symbols.txt
 CONFIG "PROJ_LIB" _proj_lib
 PROJECTION
    "init=epsg:OSM_SRID"
@@ -204,12 +205,5 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-
-SYMBOL
- name "citycircle"
- type ellipse
- points 1 1 end
- filled true
-END
 
 END

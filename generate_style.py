@@ -183,7 +183,23 @@ vars= {
       where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
-      \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
+      \'pitch\') order by area desc) as foo using unique osm_id using\
+      srid=OSM_SRID"',
+      17:'"geometry from (select geometry ,osm_id, type, name as name, CASE WHEN d12 < d23 THEN d12 ELSE d23 END as length,\
+             area,360-(a12+a23+90)/2 as angle FROM (SELECT geometry, osm_id,\
+             type, name, area,\
+             ST_Distance(st_pointn(ST_Boundary(geometry),1),st_pointn(ST_Boundary(geometry),2))-20\
+             as d12,ST_Distance(st_pointn(ST_Boundary(geometry),3),st_pointn(ST_Boundary(geometry),2))-20\
+             as d23,\
+             degrees(st_azimuth(st_pointn(ST_Boundary(geometry),1),st_pointn(ST_Boundary(geometry),2)))\
+                   as a12,\
+             degrees(st_azimuth(st_pointn(ST_Boundary(geometry),2),st_pointn(ST_Boundary(geometry),3)))\
+             as a23 FROM osm_new_landusages) as angle where type in\
+                   (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
+                      \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
+                      \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\
+                      \'sports_center\', \'pitch\') order by area desc) as foo\
+                       using unique osm_id using srid=2154"'
    },
 
    'industrial_clr': '"#d1d1d1"',
