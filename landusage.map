@@ -17,7 +17,6 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
-    SIZEUNITS meters
     CLASSITEM "type"
     LABELITEM "name"
     CLASS
@@ -235,17 +234,6 @@ LAYER
       STYLE
           COLOR _sports_clr
       END
-#if _maxscale < 7000
-      STYLE
-            GEOMTRANSFORM centroid
-            SYMBOL "soccer"
-            ANGLE [angle]
-            SIZE [length]
-            WIDTH 3
-            MAXSCALEDENOM 7000
-            MINSCALEDENOM 0
-      END
-#endif
 #if _display_sports_lbl==1
       LABEL
         TYPE TRUETYPE

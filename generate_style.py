@@ -185,23 +185,8 @@ vars= {
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by area desc) as foo using unique osm_id using\
-      srid=OSM_SRID"',
-      17:'"geometry from (select geometry ,osm_id, type, name as name, CASE WHEN d12 < d23 THEN d12 ELSE d23 END as length,\
-             area,360-(a12+a23+90)/2 as angle FROM (SELECT geometry, osm_id,\
-             type, name, area,\
-             ST_Distance(st_pointn(ST_Boundary(geometry),1),st_pointn(ST_Boundary(geometry),2))-20\
-             as d12,ST_Distance(st_pointn(ST_Boundary(geometry),3),st_pointn(ST_Boundary(geometry),2))-20\
-             as d23,\
-             degrees(st_azimuth(st_pointn(ST_Boundary(geometry),1),st_pointn(ST_Boundary(geometry),2)))\
-                   as a12,\
-             degrees(st_azimuth(st_pointn(ST_Boundary(geometry),2),st_pointn(ST_Boundary(geometry),3)))\
-             as a23 FROM osm_new_landusages) as angle where type in\
-                   (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
-                      \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
-                      \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\
-                      \'sports_center\', \'pitch\') order by area desc) as foo\
-                       using unique osm_id using srid=2154"'
-   },
+      srid=OSM_SRID"'
+      },
 
    'industrial_clr': '"#d1d1d1"',
    'industrial_ol_clr': '"#d1d1d1"',
@@ -248,7 +233,7 @@ vars= {
    'education_lbl_ol_clr': "255 255 255",
    'education_lbl_ol_width': 2,
 
-   'sports_clr': '"#DED1AB"',
+   'sports_clr': '"#C2D1B2"',
    'display_sports_lbl' : {0:0, 12:1},
    'sports_font': "sc",
    'sports_lbl_size': 8,
@@ -1148,6 +1133,50 @@ styles = {
          14:2
       }
    },
+   'cagc':{
+      'motorway_clr': "253 146 58",
+      'trunk_clr': "255 195 69",
+      'primary_clr': {
+         0:'193 181 157',
+         9:"255 253 139"
+      },
+      'secondary_clr': {
+         0:'193 181 157',
+         10:"255 253 139"
+      },
+      'tertiary_clr': {
+         0:'193 181 157',
+         12:"255 253 139"
+      },
+      'other_clr': {
+         0:'193 181 157',
+         14:"255 255 255"
+      },
+      'pedestrian_clr': '250 250 245',
+      #'forest_clr': "203 216 195",
+      #'forest_clr': "143 205 135",
+      'forest_clr': "192 227 187",
+      'industrial_clr': "209 208 205",
+      'education_clr': "222 210 172",
+      'hospital_clr': "229 198 195",
+      'residential_clr': "242 239 233",
+      'land_clr': "242 239 233",
+      'park_clr': '181 210 156',
+      'ocean_clr': '153 179 204',
+      'waterarea_clr': '153 179 204',
+      'river_clr': '153 179 204',
+      'stream_clr': '153 179 204',
+      'canal_clr': '153 179 204',
+
+      'motorway_ol_clr': '186 110 39',
+      'trunk_ol_clr': '221 159 17',
+      'primary_ol_clr': '193 181 157',
+      'secondary_ol_clr': '193 181 157',
+      'tertiary_ol_clr': '193 181 157',
+      'other_ol_clr': '193 181 157',
+      'pedestrian_ol_clr': '193 181 157',
+      'display_buildings':{ 0:0, 15:1}
+   },
    'google':{
       'motorway_clr': "253 146 58",
       'trunk_clr': "255 195 69",
@@ -1486,7 +1515,7 @@ from optparse import OptionParser
 # these are the preconfigured styles that can be called when creating the final mapfile,
 # e.g. with `make STYLE=google`. This will create an osm-google.map mapfile
 style_aliases = {
-
+   "cagc":"default,outlined,cagc",
    # map with no road casing and few colors, suited for using as a basemap when overlaying
    # other layers without risk of confusion between layers.
    "default":"default",
