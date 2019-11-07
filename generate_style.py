@@ -87,6 +87,7 @@ vars= {
       12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_waterarea_lbl' : {0:0, 6:1},
+   'display_waterarea_outline': {0:0, 14:1},
    'waterarea_clr': '"#B3C6D4"',
    'waterarea_ol_clr': '"#B3C6D4"',
    'waterarea_ol_width': 0,
