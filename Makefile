@@ -25,6 +25,8 @@ DEBUG?=1
 LAYERDEBUG?=1
 PROJ_LIB?=`pwd`
 STYLE?=default
+BASE?=
+OVERLAY?=
 #can also use google or bing
 
 template=osmbase.map
@@ -41,67 +43,79 @@ includes=land.map landusage.map borders.map highways.map places.map \
 
 mapfile=osm-$(STYLE).map
 
+ifdef BASE
+base=--include-base=$(BASE)
+else
+base=
+endif
+
+ifdef OVERLAY
+overlay=--include-overlay=$(OVERLAY)
+else
+overlay=
+endif
+
 all:$(mapfile) boundaries.sql
 
 generated/$(STYLE)style.msinc: generate_style.py
-	python generate_style.py -s $(STYLE) -g > $@
+	python generate_style.py -s $(STYLE) -g $(base) $(overlay) > $@
 
 generated/$(STYLE)level0.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 0 > $@ 
+	python generate_style.py  -s $(STYLE) -l 0 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level1.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 1 > $@ 
+	python generate_style.py  -s $(STYLE) -l 1 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level2.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 2 > $@ 
+	python generate_style.py  -s $(STYLE) -l 2 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level3.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 3 > $@ 
+	python generate_style.py  -s $(STYLE) -l 3 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level4.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 4 > $@ 
+	python generate_style.py  -s $(STYLE) -l 4 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level5.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 5 > $@ 
+	python generate_style.py  -s $(STYLE) -l 5 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level6.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 6 > $@ 
+	python generate_style.py  -s $(STYLE) -l 6 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level7.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 7 > $@ 
+	python generate_style.py  -s $(STYLE) -l 7 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level8.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 8 > $@ 
+	python generate_style.py  -s $(STYLE) -l 8 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level9.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 9 > $@ 
+	python generate_style.py  -s $(STYLE) -l 9 $(base) $(overlay) > $@ 
 
 generated/$(STYLE)level10.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 10 > $@
+	python generate_style.py  -s $(STYLE) -l 10 $(base) $(overlay) > $@
 
 generated/$(STYLE)level11.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 11 > $@
+	python generate_style.py  -s $(STYLE) -l 11 $(base) $(overlay) > $@
 
 generated/$(STYLE)level12.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 12 > $@
+	python generate_style.py  -s $(STYLE) -l 12 $(base) $(overlay) > $@
 
 generated/$(STYLE)level13.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 13 > $@
+	python generate_style.py  -s $(STYLE) -l 13 $(base) $(overlay) > $@
 
 generated/$(STYLE)level14.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 14 > $@
+	python generate_style.py  -s $(STYLE) -l 14 $(base) $(overlay) > $@
 
 generated/$(STYLE)level15.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 15 > $@
+	python generate_style.py  -s $(STYLE) -l 15 $(base) $(overlay) > $@
 
 generated/$(STYLE)level16.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 16 > $@
+	python generate_style.py  -s $(STYLE) -l 16 $(base) $(overlay) > $@
 
 generated/$(STYLE)level17.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 17 > $@
+	python generate_style.py  -s $(STYLE) -l 17 $(base) $(overlay) > $@
 
 generated/$(STYLE)level18.msinc: generate_style.py
-	python generate_style.py  -s $(STYLE) -l 18 > $@
+	python generate_style.py  -s $(STYLE) -l 18 $(base) $(overlay) > $@
 
 $(mapfile):$(template) $(includes)
 	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG)  -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -DOSM_FORCE_POSTGIS_EXTENT=$(OSM_FORCE_POSTGIS_EXTENT) -P -o $(mapfile) $(template) -DTHEME=$(STYLE) -D_proj_lib=\"$(PROJ_LIB)\" -Igenerated

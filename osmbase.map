@@ -56,6 +56,9 @@ END
 #include LEVELPASTER(THEME,0)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -64,6 +67,9 @@ END
 #include LEVELPASTER(THEME,1)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -72,6 +78,9 @@ END
 #include LEVELPASTER(THEME,2)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -80,6 +89,9 @@ END
 #include LEVELPASTER(THEME,3)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -88,6 +100,9 @@ END
 #include LEVELPASTER(THEME,4)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -96,6 +111,9 @@ END
 #include LEVELPASTER(THEME,5)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -104,6 +122,9 @@ END
 #include LEVELPASTER(THEME,6)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -112,6 +133,9 @@ END
 #include LEVELPASTER(THEME,7)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -120,6 +144,9 @@ END
 #include LEVELPASTER(THEME,8)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -128,6 +155,9 @@ END
 #include LEVELPASTER(THEME,9)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -136,6 +166,9 @@ END
 #include LEVELPASTER(THEME,10)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -144,6 +177,9 @@ END
 #include LEVELPASTER(THEME,11)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -152,6 +188,9 @@ END
 #include LEVELPASTER(THEME,12)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -160,6 +199,9 @@ END
 #include LEVELPASTER(THEME,13)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -168,6 +210,9 @@ END
 #include LEVELPASTER(THEME,14)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -176,6 +221,9 @@ END
 #include LEVELPASTER(THEME,15)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -184,6 +232,9 @@ END
 #include LEVELPASTER(THEME,16)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -192,6 +243,9 @@ END
 #include LEVELPASTER(THEME,17)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base 
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
@@ -200,10 +254,17 @@ END
 #include LEVELPASTER(THEME,18)
 #include "land.map"
 #include "landusage.map"
+#ifdef _include_base
+#include "include-base.map"
+#endif
 #include "highways.map"
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
+
+#if defined(_include_overlay)
+INCLUDE _include_overlay
+#endif
 
 SYMBOL
  name "citycircle"
