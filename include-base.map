@@ -1,0 +1,11 @@
+LAYER
+   STATUS ON
+   GROUP "default"
+   DEBUG _layerdebug
+   NAME layername(include,_layer_suffix)
+   MINSCALEDENOM _minscale
+   MAXSCALEDENOM _maxscale
+
+   INCLUDE _include_base
+END
+
