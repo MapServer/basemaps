@@ -1497,6 +1497,12 @@ styles = {
         'stream_clr': '0 0 255',
         'canal_clr': '"#A3DDE8"',
 
+        'stream_width': {
+            0: 0,
+            10: 0.5,
+            14: 1
+        },        
+
         'footway_clr': '0 0 0',
         'sports_clr': '"#DAEED1"',
         'sports_ol_clr': '"#8CA881"', #nefunguje    
