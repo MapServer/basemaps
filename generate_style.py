@@ -1463,45 +1463,57 @@ styles = {
         'footway_clr': '"#000000"'
     },
     'topo': {
-        'motorway_clr': "253 146 58",
-        'trunk_clr': "255 195 69",
+        'motorway_clr': '"#F29629"',
+        'trunk_clr': '"#F29629"',
         'primary_clr': {
-            0: '193 181 157',
-            9: "255 253 139"
+            0: '"#F7E761"',
+            9: '"#F29629"'
         },
         'secondary_clr': {
-            0: '193 181 157',
-            10: "255 253 139"
+            0: '"#FFFFFF"',
+            10: '"#F7E761"'
         },
         'tertiary_clr': {
-            0: '193 181 157',
-            12: "255 253 139"
+            0: '"#FFFFFF"',
+            12: '"#F7E761"'
         },
         'other_clr': {
-            0: '193 181 157',
-            14: "255 255 255"
+            0: '"#FFFFFF"',
+            14: '"#FFFFFF"'
         },
-        'pedestrian_clr': '250 250 245',
-        'forest_clr': "203 216 195",
-        'industrial_clr': "209 208 205",
-        'education_clr': "222 210 172",
-        'hospital_clr': "229 198 195",
-        'residential_clr': "242 239 233",
-        'land_clr': "242 239 233",
-        'park_clr': '181 210 156',
-        'ocean_clr': '153 179 204',
-        'waterarea_clr': '153 179 204',
-        'river_clr': '153 179 204',
-        'stream_clr': '153 179 204',
-        'canal_clr': '153 179 204',
+        'pedestrian_clr': '"#FFFFFF"',
+        'forest_clr': '"#D3EC9D"',
+        'industrial_clr': '"#EAEAEA"',
+        'education_clr': '"#EAEAEA"',
+        'hospital_clr': '"#EAEAEA"',
+        'residential_clr': '"#F7F7F7"',
+        'land_clr': '"#FDFDFD"',
+        'park_clr': '"#DCEBD3"',
 
-        'motorway_ol_clr': '186 110 39',
-        'trunk_ol_clr': '221 159 17',
-        'primary_ol_clr': '193 181 157',
-        'secondary_ol_clr': '193 181 157',
-        'tertiary_ol_clr': '193 181 157',
-        'other_ol_clr': '193 181 157',
-        'pedestrian_ol_clr': '193 181 157',
+        'ocean_clr': '"#A3DDE8"',
+        'waterarea_clr': '"#A3DDE8"',
+        'waterarea_ol_clr': '0 0 255',        
+        'river_clr': '"#A3DDE8"',
+        'stream_clr': '0 0 255',
+        'canal_clr': '"#A3DDE8"',
+
+        'footway_clr': '0 0 0',
+        'sports_clr': '"#DAEED1"',
+        'sports_ol_clr': '"#8CA881"', #nefunguje    
+
+        'building_clr': {
+            0: '20 20 20',
+            17: '155 155 155'
+        },
+        'building_ol_clr': '"#333333"',
+
+        # 'motorway_ol_clr': '186 110 39',
+        # 'trunk_ol_clr': '221 159 17',
+        # 'primary_ol_clr': '193 181 157',
+        # 'secondary_ol_clr': '193 181 157',
+        # 'tertiary_ol_clr': '193 181 157',
+        # 'other_ol_clr': '193 181 157',
+        # 'pedestrian_ol_clr': '193 181 157',
         'display_buildings': 1
     },    
 }
@@ -1525,10 +1537,10 @@ style_aliases = {
     "bing": "default,outlined,bing",
     "michelin": "default,outlined,centerlined,michelin",
 
-    "bw": "default,outlined,centerlined,bw"
+    "bw": "default,outlined,centerlined,bw",
 
     # a style resembling the opentopomap
-    "topo": "default,outlined,topo",    
+    "topo": "default,outlined,topo"    
 }
 
 
