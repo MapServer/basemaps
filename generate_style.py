@@ -83,7 +83,8 @@ style_aliases = {
    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
    "bing":"default,outlined,bing",
-   "michelin":"default,outlined,centerlined,michelin"
+   "michelin":"default,outlined,centerlined,michelin",
+   "bw":"default,outlined,centerlined,bw"
 }
 
 

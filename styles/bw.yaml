@@ -1,0 +1,83 @@
+border_2_clr: 0 0 0
+border_2_inner_clr: 0 0 0
+building_clr: 0 0 0
+building_ol_clr: 0 0 0
+canal_clr: '"#ffffff"'
+canal_lbl_clr: '"#000000"'
+capital_clr: 0 0 0
+capital_fg_clr: 0 0 0
+capital_ol_clr: 0 0 0
+cemetery_clr: 0 0 0
+city_clr: 0 0 0
+city_ol_clr: 0 0 0
+cycleway_clr: 0 0 0
+cycleway_ol_clr: 0 0 0
+education_clr: '"#ffffff"'
+footway_clr: '"#000000"'
+footway_ol_clr: 0 0 0
+forest_clr: '"#ffffff"'
+hamlet_clr: 0 0 0
+hamlet_ol_clr: 0 0 0
+hospital_clr: '"#ffffff"'
+industrial_clr: '"#ffffff"'
+industrial_ol_clr: 0 0 0
+land_clr: '"#ffffff"'
+locality_clr: 0 0 0
+locality_ol_clr: 0 0 0
+motorway_bridge_clr: 255 255 255
+motorway_centerline_clr: 255 255 255
+motorway_clr: '"#000000"'
+motorway_ol_clr: '"#FFFFFF"'
+ocean_clr: '"#ffffff"'
+other_bridge_clr: 255 255 255
+other_clr:
+  0: '"#FFFFFF"'
+  13: '"#ffffff"'
+other_ol_clr: '"#000000"'
+park_clr: '"#ffffff"'
+pedestrian_bridge_clr: 255 255 255
+pedestrian_clr: '"#ffffff"'
+pedestrian_ol_clr: 255 255 255
+primary_bridge_clr: 255 255 255
+primary_clr:
+  0: '"#FFFFFF"'
+  9: '"#000000"'
+primary_ol_clr: '"#FFFFFF"'
+railway_clr: 0 0 0
+railway_ol_clr: 0 0 0
+residential_clr: '"#ffffff"'
+residential_ol_clr: 0 0 0
+river_clr: '"#ffffff"'
+river_lbl_clr: '"#000000"'
+runway_center_clr: 0 0 0
+runway_clr: 0 0 0
+secondary_bridge_clr: 255 255 255
+secondary_clr:
+  0: '"#FFFFFF"'
+  10: '"#000000"'
+secondary_ol_clr: '"#FFFFFF"'
+sports_clr: 0 0 0
+stream_clr: '"#ffffff"'
+stream_lbl_clr: '"#000000"'
+suburb_clr: 0 0 0
+suburb_ol_clr: 0 0 0
+taxiway_clr: 0 0 0
+tertiary_bridge_clr: 255 255 255
+tertiary_clr:
+  0: '"#FFFFFF"'
+  12: '"#ffffff"'
+tertiary_ol_clr: '"#FFFFFF"'
+town_clr: 0 0 0
+town_ol_clr: 0 0 0
+track_clr: 0 0 0
+track_ol_clr: 0 0 0
+transport_clr: 0 0 0
+trunk_bridge_clr: 255 255 255
+trunk_clr: '"#000000"'
+trunk_ol_clr: '"#ffffff"'
+village_clr: 0 0 0
+village_ol_clr: 0 0 0
+waterarea_clr: '"#ffffff"'
+waterarea_lbl_clr: '"#000000"'
+waterarea_ol_clr: '"#000000"'
+
