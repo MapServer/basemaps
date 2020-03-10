@@ -1,0 +1,552 @@
+border_2_clr: { 0: '"#CDCBC6"' }
+border_2_inner_clr: { 0: '"#CDCBC6"', 4: '"#8d8b8d"' }
+border_2_inner_pattern: { 0: "" }
+border_2_inner_width: { 0: "0.5", 7: "1" }
+border_2_width: { 0: "5" }
+border_data: '"data/boundaries.shp"'
+border_epsg: { 0: '"init=epsg:4326"' }
+building_clr: '"#bbbbbb"'
+building_font: sc
+building_lbl_clr: 0 0 0
+building_lbl_ol_clr: 255 255 255
+building_lbl_ol_width: 2
+building_lbl_size: 8
+building_ol_clr: '"#333333"'
+building_ol_width: { 0: 0, 16: 0.1, 17: 0.5 }
+canal_clr: '"#B3C6D4"'
+canal_font: sc
+canal_lbl_clr: '"#6B94B0"'
+canal_lbl_ol_clr: 255 255 255
+canal_lbl_ol_width: 2
+canal_lbl_size: 8
+canal_width: { 0: 0, 10: 0.5, 12: 1, 14: 2, 15: 4, 16: 8, 17: 16, 18: 30 }
+capital_clr: 255 0 0
+capital_fg_clr: 0 0 0
+capital_fg_size: 2
+capital_font: sc
+capital_lbl_clr: 0 0 0
+capital_lbl_ol_clr: 255 255 255
+capital_lbl_ol_width: 2
+capital_lbl_size: { 0: 0, 3: 8, 8: 9, 10: 10, 13: 11, 15: 12 }
+capital_ol_clr: 0 0 0
+capital_size: 6
+cemetery_clr: '"#d1d1d1"'
+cemetery_font: sc
+cemetery_lbl_clr: 0 0 0
+cemetery_lbl_ol_clr: 255 255 255
+cemetery_lbl_ol_width: 2
+cemetery_lbl_size: 8
+city_clr: { 0: 200 200 200, 8: 255 255 255 }
+city_font: sc
+city_lbl_clr: { 0: 68 68 68, 8: 0 0 0 }
+city_lbl_ol_clr: 255 255 255
+city_lbl_ol_width: { 0: 2, 10: 3 }
+city_lbl_size: { 0: 0, 3: 8, 8: 9, 10: 10, 11: 11, 13: 12, 15: 13 }
+city_ol_clr: 0 0 0
+city_size: { 0: 5, 8: 6 }
+continent_font: scb
+continent_lbl_clr: 100 100 100
+continent_lbl_ol_clr: -1 -1 -1
+continent_lbl_ol_width: "1"
+continent_lbl_size: 8
+country_font: scb
+country_lbl_clr: 100 100 100
+country_lbl_ol_clr: -1 -1 -1
+country_lbl_ol_width: 2
+country_lbl_size: 8
+cycleway_clr: { 0: '"#aaaaaa"', 15: '"#ffffff"' }
+cycleway_ol_clr: 0 0 0
+cycleway_ol_width: 1
+cycleway_pattern: 2 4
+cycleway_width: { 0: 0, 15: 2 }
+display_aeroways: { 0: 0, 10: 1 }
+display_border_2: { 0: 1 }
+display_border_2_outer: { 0: 0, 6: 1 }
+display_bridges: { 0: 0, 14: 1 }
+display_buildings: { 0: 0, 15: 1 }
+display_canal_lbl: { 0: 0, 10: 1 }
+display_capital_symbol: { 0: 1, 10: 0 }
+display_capitals: 0
+display_cemetery_lbl: { 0: 0, 12: 1 }
+display_cities: { 0: 0, 3: 1, 16: 0 }
+display_city_symbol: { 0: 1, 10: 0 }
+display_continents: { 0: 1, 3: 0 }
+display_countries: { 0: 0, 2: 1, 8: 0 }
+display_cycleway_outline: 0
+display_cycleways: { 0: 0, 15: 1 }
+display_education_lbl: { 0: 0, 12: 1 }
+display_footway_outline: 0
+display_footways: { 0: 0, 15: 1 }
+display_forest_lbl: { 0: 0, 12: 1 }
+display_hamlet_symbol: 0
+display_hamlets: { 0: 0, 13: 1 }
+display_highways: { 0: 0, 5: 1 }
+display_hospital_lbl: { 0: 0, 12: 1 }
+display_industrial_lbl: { 0: 0, 11: 1 }
+display_landusage: { 0: 0, 4: 1 }
+display_localities: { 0: 0, 13: 1 }
+display_locality_symbol: 0
+display_motorway_links: { 0: 0, 9: 1 }
+display_motorway_outline: 0
+display_motorways: { 0: 0, 5: 1 }
+display_other_outline: 0
+display_other_roads: { 0: 0, 11: 1 }
+display_park_lbl: { 0: 0, 11: 1 }
+display_pedestrian: { 0: 0, 12: 1 }
+display_pedestrian_lbl: { 0: 0, 12: 1 }
+display_pedestrian_outline: 0
+display_primaries: { 0: 0, 8: 1 }
+display_primary_outline: 0
+display_railways: { 0: 0, 8: 1 }
+display_residential: 1
+display_residential_lbl: { 0: 0, 12: 1 }
+display_river_lbl: { 0: 0, 6: 1 }
+display_secondaries: { 0: 0, 9: 1 }
+display_secondary_outline: 0
+display_sports_lbl: { 0: 0, 12: 1 }
+display_stream_lbl: { 0: 0, 12: 1 }
+display_suburb_symbol: 0
+display_suburbs: { 0: 0, 13: 1 }
+display_tertiaries: { 0: 0, 10: 1 }
+display_tertiary_outline: 0
+display_town_symbol: { 0: 1, 12: 0 }
+display_towns: { 0: 0, 8: 1 }
+display_track_outline: 0
+display_tracks: { 0: 0, 12: 1 }
+display_transport_areas: { 0: 0, 11: 1 }
+display_transport_lbl: { 0: 0, 12: 1 }
+display_trunk_links: { 0: 0, 9: 1 }
+display_trunk_outline: 0
+display_trunks: { 0: 0, 5: 1 }
+display_village_symbol: { 0: 1, 14: 0 }
+display_villages: { 0: 0, 11: 1 }
+display_waterarea_lbl: { 0: 0, 6: 1 }
+display_waterarea_outline: { 0: 0, 14: 1 }
+display_waterways: { 0: 0, 6: 1 }
+education_clr: '"#DED1AB"'
+education_font: sc
+education_lbl_clr: 0 0 0
+education_lbl_ol_clr: 255 255 255
+education_lbl_ol_width: 2
+education_lbl_size: 8
+footway_clr: { 0: '"#aaaaaa"', 15: '"#ffffff"' }
+footway_ol_clr: 0 0 0
+footway_ol_width: 1
+footway_pattern: 2 3
+footway_width: { 0: 0, 15: 1 }
+forest_clr: '"#C2D1B2"'
+forest_font: sc
+forest_lbl_clr: 0 0 0
+forest_lbl_ol_clr: 255 255 255
+forest_lbl_ol_width: 2
+forest_lbl_size: 8
+hamlet_clr: 200 200 200
+hamlet_font: sc
+hamlet_lbl_clr: { 0: '"#444444"', 15: 0 0 0 }
+hamlet_lbl_ol_clr: 255 255 255
+hamlet_lbl_ol_width: 2
+hamlet_lbl_size: { 0: 0, 13: 8, 15: 9 }
+hamlet_ol_clr: 0 0 0
+hamlet_size: 5
+hospital_clr: '"#E6C8C3"'
+hospital_font: sc
+hospital_lbl_clr: 0 0 0
+hospital_lbl_ol_clr: 255 255 255
+hospital_lbl_ol_width: 2
+hospital_lbl_size: 8
+industrial_clr: '"#d1d1d1"'
+industrial_font: sc
+industrial_lbl_clr: 0 0 0
+industrial_lbl_ol_clr: 255 255 255
+industrial_lbl_ol_width: 2
+industrial_lbl_size: 8
+industrial_ol_clr: '"#d1d1d1"'
+industrial_ol_width: 0
+label_buildings: { 0: 0, 15: 1 }
+label_motorways: { 0: 0, 10: 1 }
+label_other_roads: { 0: 0, 15: 1 }
+label_pedestrian: { 0: 0, 15: 1 }
+label_primaries: { 0: 0, 13: 1 }
+label_secondaries: { 0: 0, 13: 1 }
+label_tertiaries: { 0: 0, 15: 1 }
+label_track: { 0: 0, 15: 1 }
+label_trunks: { 0: 0, 10: 1 }
+land_clr: '"#E8E6E1"'
+land_data: { 0: '"data/simplified_land_polygons"', 9: '"data/land_polygons"' }
+land_epsg: { 0: '"init=epsg:3857"' }
+landusage_data:
+  { 0: '"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN
+      as name from OSM_PREFIX_landusages_gen00)            as foo using unique osm_id
+      using srid=OSM_SRID"', 6: '"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN
+      as name from OSM_PREFIX_landusages_gen0)            as foo using unique osm_id
+      using srid=OSM_SRID"', 9: '"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN
+      as name from OSM_PREFIX_landusages_gen1       where type in (''forest'',''wood'',''industrial'',''commercial'',''residential''))
+      as foo using unique osm_id using srid=OSM_SRID"', 10: '"geometry from (select
+      geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1       where
+      type in (''forest'',''wood'',''pedestrian'',''cemetery'',''industrial'',''commercial'',      ''brownfield'',''residential'',''school'',''college'',''university'',      ''military'',''park'',''golf_course'',''hospital'',''parking'',''stadium'',''sports_center'',      ''pitch'')
+      order by area desc) as foo using unique osm_id using srid=OSM_SRID"', 12: '"geometry
+      from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages       where
+      type in (''forest'',''wood'',''pedestrian'',''cemetery'',''industrial'',''commercial'',      ''brownfield'',''residential'',''school'',''college'',''university'',      ''military'',''park'',''golf_course'',''hospital'',''parking'',''stadium'',''sports_center'',      ''pitch'')
+      order by area desc) as foo using unique osm_id using srid=OSM_SRID"' }
+layer_suffix:
+  {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 8,
+    9: 9,
+    10: 10,
+    11: 11,
+    12: 12,
+    13: 13,
+    14: 14,
+    15: 15,
+    16: 16,
+    17: 17,
+    18: 18,
+  }
+locality_clr: 200 200 200
+locality_font: sc
+locality_lbl_clr: { 0: '"#444444"', 15: 0 0 0 }
+locality_lbl_ol_clr: 255 255 255
+locality_lbl_ol_width: 2
+locality_lbl_size: { 0: 0, 13: 8, 15: 9 }
+locality_ol_clr: 0 0 0
+locality_size: 5
+maxscale:
+  {
+    0: 99999999999,
+    1: 332808204,
+    2: 166404102,
+    3: 83202051,
+    4: 41601025,
+    5: 20800512,
+    6: 10400256,
+    7: 5200128,
+    8: 2600064,
+    9: 1300032,
+    10: 650016,
+    11: 325008,
+    12: 162504,
+    13: 81252,
+    14: 40626,
+    15: 20313,
+    16: 10156,
+    17: 5078,
+    18: 2539,
+  }
+minscale:
+  {
+    0: 332808204,
+    1: 166404102,
+    2: 83202051,
+    3: 41601025,
+    4: 20800512,
+    5: 10400256,
+    6: 5200128,
+    7: 2600064,
+    8: 1300032,
+    9: 650016,
+    10: 325008,
+    11: 162504,
+    12: 81252,
+    13: 40626,
+    14: 20313,
+    15: 10156,
+    16: 5078,
+    17: 2539,
+    18: 0,
+  }
+motorway_bridge_clr: 136 136 136
+motorway_bridge_width: { 0: 0.5, 14: 1 }
+motorway_clr: 255 255 255
+motorway_font: scb
+motorway_lbl_clr: '"#555555"'
+motorway_lbl_size: { 0: 8, 14: 9 }
+motorway_ol_clr: 100 100 100
+motorway_ol_width: { 0: 0.5, 10: 1 }
+motorway_width:
+  { 0: 0.5, 8: 1, 9: 2, 11: 3, 12: 4, 14: 5, 15: 6, 16: 8, 17: 9, 18: 10 }
+ocean_clr: '"#B3C6D4"'
+other_bridge_clr: 136 136 136
+other_bridge_width: { 0: 0.5, 14: 1 }
+other_clr: { 0: '"#aaaaaa"', 15: '"#ffffff"' }
+other_font: sc
+other_lbl_clr: '"#333333"'
+other_lbl_ol_clr: 255 255 255
+other_lbl_ol_width: 2
+other_lbl_size: { 0: 0, 15: 8 }
+other_ol_clr: 0 0 0
+other_ol_width: 1
+other_width:
+  { 0: 0, 11: 0.5, 12: 0.75, 13: 1, 14: 1.5, 15: 2, 16: 4, 17: 5, 18: 6 }
+park_clr: '"#DCDCB4"'
+park_font: sc
+park_lbl_clr: 0 0 0
+park_lbl_ol_clr: 255 255 255
+park_lbl_ol_width: 2
+park_lbl_size: 8
+pedestrian_bridge_clr: 136 136 136
+pedestrian_bridge_width: { 0: 0.5, 14: 1 }
+pedestrian_clr: '"#f2f2ed"'
+pedestrian_font: sc
+pedestrian_lbl_clr: '"#333333"'
+pedestrian_lbl_ol_clr: 255 255 255
+pedestrian_lbl_ol_width: 2
+pedestrian_lbl_size: { 0: 0, 15: 8 }
+pedestrian_ol_clr: 0 0 0
+pedestrian_ol_width: 1
+pedestrian_width:
+  { 0: 0, 11: 0.5, 12: 0.75, 13: 1, 14: 1.5, 15: 2, 16: 2.5, 17: 3, 18: 3.5 }
+places_data:
+  {
+    0:
+      '"geometry from (select * from OSM_PREFIX_places where type in (''country'',''continent'')
+      and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using
+      unique osm_id using srid=OSM_SRID"',
+    3: '"geometry from (select * from OSM_PREFIX_places
+      where type in (''country'',''continent'',''city'') and OSM_NAME_COLUMN is not
+      NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+    8:
+      '"geometry from (select * from OSM_PREFIX_places where type in (''city'',''town'')
+      and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using
+      unique osm_id using srid=OSM_SRID"',
+    11: '"geometry from (select * from OSM_PREFIX_places
+      where type in (''city'',''town'',''village'') and OSM_NAME_COLUMN is not NULL
+      order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+    13:
+      '"geometry from (select * from OSM_PREFIX_places where OSM_NAME_COLUMN is not
+      NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+  }
+primary_bridge_clr: 136 136 136
+primary_bridge_width: { 0: 0.5, 14: 1 }
+primary_clr: { 0: '"#aaaaaa"', 9: '"#ffffff"' }
+primary_font: sc
+primary_lbl_clr: { 0: '"#333333"' }
+primary_lbl_ol_clr: { 0: 255 255 255 }
+primary_lbl_ol_width: 2
+primary_lbl_size: { 0: 0, 13: 8, 15: 9 }
+primary_ol_clr: 0 0 0
+primary_ol_width: 1
+primary_width:
+  {
+    0: 0.5,
+    9: 0.75,
+    10: 1,
+    11: 1.5,
+    12: 2,
+    13: 2.5,
+    14: 3,
+    15: 4,
+    16: 7,
+    17: 8,
+    18: 9,
+  }
+railway_clr: '"#777777"'
+railway_ol_clr: '"#777777"'
+railway_ol_width: 0
+railway_pattern: 2 2
+railway_tunnel_opacity: 40
+railway_width: { 0: 0.5, 10: 1 }
+railways_data:
+  {
+    0:
+      '"geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways_gen0
+      where type=''rail'') as foo using unique osm_id using srid=OSM_SRID"',
+    6: '"geometry
+      from (select geometry, osm_id, tunnel from OSM_PREFIX_railways_gen1 where type=''rail'')
+      as foo using unique osm_id using srid=OSM_SRID"',
+    12: '"geometry from (select
+      geometry, osm_id, tunnel from OSM_PREFIX_railways where type=''rail'') as foo
+      using unique osm_id using srid=OSM_SRID"',
+  }
+residential_clr: '"#E3DED4"'
+residential_font: sc
+residential_lbl_clr: 0 0 0
+residential_lbl_ol_clr: 255 255 255
+residential_lbl_ol_width: 2
+residential_lbl_size: 8
+residential_ol_clr: '"#E3DED4"'
+residential_ol_width: 0
+river_clr: '"#B3C6D4"'
+river_font: sc
+river_lbl_clr: '"#6B94B0"'
+river_lbl_ol_clr: 255 255 255
+river_lbl_ol_width: 2
+river_lbl_size: { 0: 8, 15: 9, 17: 10 }
+river_width:
+  {
+    0: 0,
+    6: 0.15,
+    7: 0.25,
+    8: 0.5,
+    9: 1,
+    11: 2,
+    13: 3,
+    15: 4,
+    16: 5,
+    17: 6,
+    18: 7,
+  }
+roads_data:
+  { 0: '"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type
+      from OSM_PREFIX_roads_gen0 where type in (''trunk'',''motorway'') order by z_order
+      asc) as foo using unique osm_id using srid=OSM_SRID"', 8: '"geometry from (select
+      osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where
+      type in (''trunk'',''motorway'',''primary'') order by z_order asc) as foo using
+      unique osm_id using srid=OSM_SRID"', 9: '"geometry from (select osm_id,geometry,OSM_NAME_COLUMN
+      as name,ref,type from OSM_PREFIX_roads_gen1 where type in (''secondary'',''trunk'',''motorway'',''primary'')
+      order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"', 10: '"geometry
+      from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1
+      ) as foo using unique osm_id using srid=OSM_SRID"', 11: '"geometry from (select
+      osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads order by
+      z_order asc) as foo using unique osm_id using srid=OSM_SRID"', 14: '"geometry
+      from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel
+      as type from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as
+      foo using unique osm_id using srid=OSM_SRID"' }
+runway_center_clr: 80 80 80
+runway_center_pattern: 2 2
+runway_center_width: { 0: 0, 15: 1 }
+runway_clr: 180 180 180
+runway_width:
+  { 0: 1, 11: 2, 12: 3, 13: 5, 14: 7, 15: 11, 16: 15, 17: 19, 18: 23 }
+secondary_bridge_clr: 136 136 136
+secondary_bridge_width: { 0: 0.5, 14: 1 }
+secondary_clr: { 0: '"#aaaaaa"', 10: '"#ffffff"' }
+secondary_font: sc
+secondary_lbl_clr: '"#333333"'
+secondary_lbl_ol_clr: 255 255 255
+secondary_lbl_ol_width: 2
+secondary_lbl_size: { 0: 0, 13: 8, 15: 9 }
+secondary_ol_clr: 0 0 0
+secondary_ol_width: 1
+secondary_width:
+  {
+    0: 0,
+    9: 0.5,
+    10: 0.75,
+    11: 1,
+    12: 1.5,
+    13: 2,
+    14: 2.5,
+    15: 3.5,
+    16: 6,
+    17: 7,
+    18: 8,
+  }
+sports_clr: '"#DED1AB"'
+sports_font: sc
+sports_lbl_clr: 0 0 0
+sports_lbl_ol_clr: 255 255 255
+sports_lbl_ol_width: 2
+sports_lbl_size: 8
+stream_clr: '"#B3C6D4"'
+stream_font: sc
+stream_lbl_clr: '"#6B94B0"'
+stream_lbl_ol_clr: 255 255 255
+stream_lbl_ol_width: 2
+stream_lbl_size: 8
+stream_width: { 0: 0, 10: 0.5, 12: 1, 14: 2 }
+suburb_clr: 200 200 200
+suburb_font: sc
+suburb_lbl_clr: { 0: '"#444444"', 15: 0 0 0 }
+suburb_lbl_ol_clr: 255 255 255
+suburb_lbl_ol_width: 2
+suburb_lbl_size: { 0: 0, 13: 8, 15: 9 }
+suburb_ol_clr: 0 0 0
+suburb_size: 5
+taxiway_clr: 180 180 180
+taxiway_width: { 0: 0, 10: 0.2, 13: 1, 14: 1.5, 15: 2, 16: 3, 17: 4, 18: 5 }
+tertiary_bridge_clr: 136 136 136
+tertiary_bridge_width: { 0: 0.5, 14: 1 }
+tertiary_clr: { 0: '"#aaaaaa"', 13: '"#ffffff"' }
+tertiary_font: sc
+tertiary_lbl_clr: '"#333333"'
+tertiary_lbl_ol_clr: 255 255 255
+tertiary_lbl_ol_width: 2
+tertiary_lbl_size: { 0: 0, 15: 8 }
+tertiary_ol_clr: 0 0 0
+tertiary_ol_width: 1
+tertiary_width:
+  {
+    0: 0,
+    10: 0.5,
+    11: 0.75,
+    12: 1,
+    13: 1.5,
+    14: 2,
+    15: 2.5,
+    16: 5,
+    17: 6,
+    18: 7,
+  }
+town_clr: 200 200 200
+town_font: sc
+town_lbl_clr: { 0: '"#666666"', 11: 0 0 0 }
+town_lbl_ol_clr: 255 255 255
+town_lbl_ol_width: 2
+town_lbl_size: { 0: 0, 8: 8, 10: 9, 12: 10, 15: 11 }
+town_ol_clr: 0 0 0
+town_size: { 0: 0, 8: 3, 10: 5 }
+track_clr: { 0: '"#aaaaaa"', 15: '"#ffffff"' }
+track_font: sc
+track_lbl_clr: '"#333333"'
+track_lbl_ol_clr: 255 255 255
+track_lbl_ol_width: 2
+track_lbl_size: { 0: 0, 15: 8 }
+track_ol_clr: 0 0 0
+track_ol_width: 1
+track_pattern: { 0: 2 2, 15: 2 3 }
+track_width: { 0: 0, 11: 0.5, 12: 0.75, 15: 1 }
+transport_clr: 200 200 200
+transport_font: sc
+transport_lbl_clr: 0 0 0
+transport_lbl_ol_clr: 255 255 255
+transport_lbl_ol_width: 2
+transport_lbl_size: 8
+trunk_bridge_clr: 136 136 136
+trunk_bridge_width: { 0: 0.5, 14: 1 }
+trunk_clr: 255 255 255
+trunk_font: scb
+trunk_lbl_clr: '"#555555"'
+trunk_lbl_size: { 0: 8, 14: 9 }
+trunk_ol_clr: 100 100 100
+trunk_ol_width: { 0: 0.5, 10: 1 }
+trunk_width:
+  { 0: 0.5, 8: 1, 9: 2, 11: 3, 12: 4, 14: 5, 15: 6, 16: 8, 17: 9, 18: 10 }
+tunnel_opacity: 40
+village_clr: 200 200 200
+village_font: sc
+village_lbl_clr: { 0: '"#444444"', 13: 0 0 0 }
+village_lbl_ol_clr: 255 255 255
+village_lbl_ol_width: 2
+village_lbl_size: { 0: 0, 10: 8, 13: 9, 15: 10 }
+village_ol_clr: 0 0 0
+village_size: { 0: 0, 11: 3, 13: 4 }
+waterarea_clr: '"#B3C6D4"'
+waterarea_data:
+  { 0: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type
+      from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"', 9: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1)
+      as foo using unique osm_id using srid=OSM_SRID"', 12: '"geometry from (select
+      geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas) as foo
+      using unique osm_id using srid=OSM_SRID"' }
+waterarea_font: sc
+waterarea_lbl_clr: '"#6B94B0"'
+waterarea_lbl_ol_clr: 255 255 255
+waterarea_lbl_ol_width: 2
+waterarea_lbl_size: 8
+waterarea_ol_clr: '"#B3C6D4"'
+waterarea_ol_width: 0
+waterways_data:
+  { 0: '"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN
+      as name from OSM_PREFIX_waterways_gen0 where type=''river'') as foo using unique
+      osm_id using srid=OSM_SRID"', 9: '"geometry from (select geometry, osm_id, type,
+      OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen1 where type=''river'') as
+      foo using unique osm_id using srid=OSM_SRID"', 12: '"geometry from (select geometry,
+      osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways) as foo using
+      unique osm_id using srid=OSM_SRID"' }
