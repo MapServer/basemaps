@@ -392,6 +392,7 @@ vars= {
       9:0.75,
       10:1,
       11:1.5,
+
       12:2,
       13:2.5,
       14:3,
@@ -1171,7 +1172,7 @@ styles = {
       'tertiary_ol_clr': '193 181 157',
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
-      'display_buildings':0
+      'display_buildings':1
    },
    'michelin':{
       'motorway_clr': '228 24 24',
@@ -1325,7 +1326,141 @@ styles = {
          14:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway||(case when bridge=\'yes\' then 1 else 0 end)||(case when tunnel=\'yes\' then 1 else 0 end) as type from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
       },
 
-   }
+   },
+   'bw':{
+        'park_clr': "0 0 0",
+        'residential_clr': "0 0 0",
+        'town_ol_clr': "0 0 0",
+        'other_clr': "0 0 0",
+        'motorway_ol_clr': "0 0 0",
+        'city_ol_clr': "0 0 0",
+        'suburb_ol_clr': "0 0 0",
+        'forest_clr': "0 0 0",
+        'tertiary_clr': "0 0 0",
+        'river_clr': "0 0 0",
+        'building_clr': "0 0 0",
+        'secondary_ol_clr': "0 0 0",
+        'pedestrian_ol_clr': "0 0 0",
+        'cemetery_clr': "0 0 0",
+        'hamlet_ol_clr': "0 0 0",
+        'land_clr': "0 0 0",
+        'capital_fg_clr': "0 0 0",
+        'town_clr': "0 0 0",
+        'border_2_inner_clr': "0 0 0",
+        'pedestrian_clr': "0 0 0",
+        'taxiway_clr': "0 0 0",
+        'cycleway_ol_clr': "0 0 0",
+        'footway_ol_clr': "0 0 0",
+        'canal_clr': "0 0 0",
+        'stream_clr': "0 0 0",
+        'village_clr': "0 0 0",
+        'track_clr': "0 0 0",
+        'hospital_clr': "0 0 0",
+        'motorway_clr': "0 0 0",
+        'trunk_clr': "0 0 0",
+        'ocean_clr': "0 0 0",
+        'building_ol_clr': "0 0 0",
+        'runway_center_clr': "0 0 0",
+        'border_2_clr': "0 0 0",
+        'village_ol_clr': "0 0 0",
+        'railway_ol_clr': "0 0 0",
+        'primary_clr': "0 0 0",
+        'industrial_clr': "0 0 0",
+        'primary_bridge_clr': "0 0 0",
+        'track_ol_clr': "0 0 0",
+        'other_ol_clr': "0 0 0",
+        'other_bridge_clr': "0 0 0",
+        'railway_clr': "0 0 0",
+        'education_clr': "0 0 0",
+        'hamlet_clr': "0 0 0",
+        'footway_clr': "0 0 0",
+        'waterarea_clr': "0 0 0",
+        'locality_ol_clr': "0 0 0",
+        'secondary_bridge_clr': "0 0 0",
+        'motorway_bridge_clr': "0 0 0",
+        'locality_clr': "0 0 0",
+        'runway_clr': "0 0 0",
+        'waterarea_ol_clr': "0 0 0",
+        'capital_ol_clr': "0 0 0",
+        'cycleway_clr': "0 0 0",
+        'capital_clr': "0 0 0",
+        'primary_ol_clr': "0 0 0",
+        'tertiary_ol_clr': "0 0 0",
+        'residential_ol_clr': "0 0 0",
+        'trunk_bridge_clr': "0 0 0",
+        'city_clr': "0 0 0",
+        'secondary_clr': "0 0 0",
+        'suburb_clr': "0 0 0",
+        'industrial_ol_clr': "0 0 0",
+        'sports_clr': "0 0 0",
+        'tertiary_bridge_clr': "0 0 0",
+        'trunk_ol_clr': "0 0 0",
+        'pedestrian_bridge_clr': "0 0 0",
+        'transport_clr': "0 0 0",
+
+       'waterarea_lbl_clr': '"#000000"',
+       'waterarea_clr': '"#000000"',
+       'waterarea_ol_clr': '"#000000"',
+       'ocean_clr': '"#000000"',
+       'canal_clr': '"#000000"',
+       'stream_clr': '"#000000"',
+       'river_clr': '"#000000"',
+       'river_clr': '"#000000"',
+       'canal_lbl_clr': '"#000000"',
+       'stream_lbl_clr': '"#000000"',
+       'river_lbl_clr': '"#000000"',
+
+
+       'motorway_bridge_clr':"255 255 255",
+       'trunk_bridge_clr':"255 255 255",
+       'primary_bridge_clr':"255 255 255",
+       'secondary_bridge_clr':"255 255 255",
+       'tertiary_bridge_clr':"255 255 255",
+       'other_bridge_clr':"255 255 255",
+       'pedestrian_bridge_clr':"255 255 255",
+       'motorway_centerline_clr': '255 255 255',
+
+      'motorway_clr': '"#000000"',
+      'trunk_clr': '"#000000"',
+      'primary_clr': {
+         0:'"#FFFFFF"',
+         9:'"#000000"'
+      },
+      'secondary_clr': {
+         0:'"#FFFFFF"',
+         10:'"#000000"'
+      },
+      'tertiary_clr': {
+         0:'"#FFFFFF"',
+         12:'"#ffffff"'
+      },
+      'other_clr': {
+         0:'"#FFFFFF"',
+         13:'"#ffffff"'
+      },
+      'pedestrian_clr': '"#ffffff"',
+      'forest_clr': '"#ffffff"',
+      'industrial_clr': '"#ffffff"',
+      'education_clr': '"#ffffff"',
+      'hospital_clr': '"#ffffff"',
+      'residential_clr': '"#ffffff"',
+      'land_clr': '"#ffffff"',
+      'park_clr': '"#ffffff"',
+      'ocean_clr': '"#ffffff"',
+      'waterarea_clr': '"#ffffff"',
+      'river_clr': '"#ffffff"',
+      'stream_clr': '"#ffffff"',
+      'canal_clr': '"#ffffff"',
+
+      'motorway_ol_clr': '"#FFFFFF"',
+      'trunk_ol_clr': '"#ffffff"',
+      'primary_ol_clr': '"#FFFFFF"',
+      'secondary_ol_clr': '"#FFFFFF"',
+      'tertiary_ol_clr': '"#FFFFFF"',
+      'other_ol_clr': '"#000000"',
+      'pedestrian_ol_clr': '255 255 255',
+      'footway_clr': '"#000000"'
+   },
 }
 
 import sys
@@ -1346,7 +1481,9 @@ style_aliases = {
    # same style as above, but using data coming from an osm2pgsql schema rather than imposm
    "googleosm2pgsql":"default,outlined,google,osm2pgsql",
    "bing":"default,outlined,bing",
-   "michelin":"default,outlined,centerlined,michelin"
+   "michelin":"default,outlined,centerlined,michelin",
+
+   "bw":"default,outlined,centerlined,bw"
 }
 
 
