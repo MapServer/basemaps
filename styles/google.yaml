@@ -8,19 +8,27 @@ land_clr: 242 239 233
 motorway_clr: 253 146 58
 motorway_ol_clr: 186 110 39
 ocean_clr: 153 179 204
-other_clr: { 0: 193 181 157, 14: 255 255 255 }
+other_clr:
+  0: 193 181 157
+  14: 255 255 255
 other_ol_clr: 193 181 157
 park_clr: 181 210 156
 pedestrian_clr: 250 250 245
 pedestrian_ol_clr: 193 181 157
-primary_clr: { 0: 193 181 157, 9: 255 253 139 }
+primary_clr:
+  0: 193 181 157
+  9: 255 253 139
 primary_ol_clr: 193 181 157
 residential_clr: 242 239 233
 river_clr: 153 179 204
-secondary_clr: { 0: 193 181 157, 10: 255 253 139 }
+secondary_clr:
+  0: 193 181 157
+  10: 255 253 139
 secondary_ol_clr: 193 181 157
 stream_clr: 153 179 204
-tertiary_clr: { 0: 193 181 157, 12: 255 253 139 }
+tertiary_clr:
+  0: 193 181 157
+  12: 255 253 139
 tertiary_ol_clr: 193 181 157
 trunk_clr: 255 195 69
 trunk_ol_clr: 221 159 17
