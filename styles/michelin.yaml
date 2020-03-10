@@ -1,0 +1,53 @@
+canal_clr: 172 220 244
+display_other_outline:
+  0: 0
+  14: 1
+display_primary_outline:
+  0: 0
+  11: 1
+display_secondary_outline:
+  0: 0
+  12: 1
+display_tertiary_outline:
+  0: 0
+  13: 1
+education_clr: '"#ded1ab"'
+footway_clr: '"#7f7f7f"'
+forest_clr: 188 220 180
+hospital_clr: '"#e6c8c3"'
+industrial_clr: '"#ebe5d9"'
+land_clr: '"#ffffff"'
+motorway_clr: 228 24 24
+motorway_ol_clr: 0 0 0
+motorway_ol_width: 0.5
+ocean_clr: 172 220 244
+other_clr:
+  0: '"#aaaaaa"'
+  13: '"#ffffff"'
+other_ol_clr: 0 0 0
+other_ol_width: 0.2
+park_clr: '"#dcdcb4"'
+pedestrian_clr: '"#fafaf5"'
+pedestrian_ol_clr: 0 0 0
+primary_clr:
+  0: '"#aaaaaa"'
+  9: 228 24 24
+primary_ol_clr: 0 0 0
+primary_ol_width: 0.2
+residential_clr: 255 234 206
+river_clr: 172 220 244
+secondary_clr:
+  0: '"#aaaaaa"'
+  10: 252 241 20
+secondary_ol_clr: 0 0 0
+secondary_ol_width: 0.2
+stream_clr: 172 220 244
+tertiary_clr:
+  0: '"#aaaaaa"'
+  12: 252 241 20
+tertiary_ol_clr: 0 0 0
+tertiary_ol_width: 0.2
+trunk_clr: 228 24 24
+trunk_ol_clr: 0 0 0
+trunk_ol_width: 0.5
+waterarea_clr: 172 220 244
