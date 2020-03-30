@@ -1036,6 +1036,7 @@ vars = {
 styles = {
     'default': {},
     'outlined': {
+        'building_opacity': '50',
         'display_motorway_outline': {
             0: 0,
             7: 1
@@ -1329,6 +1330,7 @@ styles = {
 
     },
     'bw': {
+        'building_opacity': '100',
         'park_clr': "0 0 0",
         'residential_clr': "0 0 0",
         'town_ol_clr': "0 0 0",

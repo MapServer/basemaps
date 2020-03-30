@@ -21,7 +21,7 @@ LAYER
     CLASS
       STYLE
          COLOR _building_clr
-         OPACITY 50
+         OPACITY _building_opacity
       END
       STYLE
          OUTLINECOLOR _building_ol_clr
