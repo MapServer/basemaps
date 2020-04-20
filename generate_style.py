@@ -1551,10 +1551,6 @@ styles = {
       'land_clr': '"#ffffff"',
       'park_clr': '"#ffffff"',
       'ocean_clr': '"#ffffff"',
-      'waterarea_clr': '"#ffffff"',
-      'river_clr': '"#ffffff"',
-      'stream_clr': '"#ffffff"',
-      'canal_clr': '"#ffffff"',
 
       'motorway_ol_clr': '"#FFFFFF"',
       'trunk_ol_clr': '"#ffffff"',
