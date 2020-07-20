@@ -274,58 +274,7 @@ END
 
 #endif
 
-LAYER
-    TYPE POLYGON
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    NAME layername(waterarea,_layer_suffix)
-    GROUP "default"
-    CONNECTIONTYPE POSTGIS
-    CONNECTION "OSM_DB_CONNECTION"
-#if OSM_FORCE_POSTGIS_EXTENT == 1
-    EXTENT OSM_EXTENT
-#endif
-    DATA _waterarea_data
-    MAXSCALEDENOM _maxscale
-    MINSCALEDENOM _minscale  
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    LABELITEM "name"
-    CLASSITEM "type"
-    CLASS
-      EXPRESSION "riverbank"
-        STYLE
-            COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
-        END
-    END
-    CLASS
-        STYLE
-            COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
-        END
-#if _display_waterarea_lbl == 1
-        LABEL
-          TYPE TRUETYPE
-          PARTIALS FALSE
-          FONT _waterarea_font
-          MINDISTANCE 200
-          SIZE _waterarea_lbl_size
-          COLOR _waterarea_lbl_clr
-       ENCODING "utf-8"
-          OUTLINECOLOR _waterarea_lbl_ol_clr
-          OUTLINEWIDTH _waterarea_lbl_ol_width
-          WRAP ' '
-          MAXLENGTH 5
-          ALIGN CENTER
-          MINFEATURESIZE AUTO
-        END
-#endif
-    END
-END
+
 
 #if _display_waterways == 1
 LAYER
@@ -416,6 +365,58 @@ LAYER
           ANGLE FOLLOW
           BUFFER 3
           PARTIALS FALSE
+        END
+#endif
+    END
+END
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    NAME layername(waterarea,_layer_suffix)
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
+    DATA _waterarea_data
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale  
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASSITEM "type"
+    CLASS
+      EXPRESSION "riverbank"
+        STYLE
+            COLOR _waterarea_clr
+            OUTLINECOLOR _waterarea_ol_clr
+            OUTLINEWIDTH _waterarea_ol_width
+        END
+    END
+    CLASS
+        STYLE
+            COLOR _waterarea_clr
+            OUTLINECOLOR _waterarea_ol_clr
+            OUTLINEWIDTH _waterarea_ol_width
+        END
+#if _display_waterarea_lbl == 1
+        LABEL
+          TYPE TRUETYPE
+          PARTIALS FALSE
+          FONT _waterarea_font
+          MINDISTANCE 200
+          SIZE _waterarea_lbl_size
+          COLOR _waterarea_lbl_clr
+       ENCODING "utf-8"
+          OUTLINECOLOR _waterarea_lbl_ol_clr
+          OUTLINEWIDTH _waterarea_lbl_ol_width
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+          MINFEATURESIZE AUTO
         END
 #endif
     END
