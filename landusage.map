@@ -23,6 +23,9 @@ LAYER
        EXPRESSION {forest,wood}
        STYLE
           COLOR _forest_clr
+#if _style_bw == 1
+	   SYMBOL "tree"
+#endif
        END
 #if _display_forest_lbl==1
       LABEL
@@ -401,6 +404,9 @@ LAYER
             COLOR _waterarea_clr
             OUTLINECOLOR _waterarea_ol_clr
             OUTLINEWIDTH _waterarea_ol_width
+#if _style_bw == 1
+            SYMBOL "water_area"
+#endif
         END
 #if _display_waterarea_lbl == 1
         LABEL
