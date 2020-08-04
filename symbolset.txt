@@ -1,0 +1,13 @@
+SYMBOLSET
+	SYMBOL
+		NAME	"tree"
+		TYPE	PIXMAP
+		IMAGE	"stromecky_v3.png"
+	END
+	
+	SYMBOL
+		NAME	"water_area"
+		TYPE	PIXMAP
+		IMAGE	"vlnka.png"
+	END
+END
