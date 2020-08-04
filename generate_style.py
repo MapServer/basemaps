@@ -1708,3 +1708,8 @@ if options.include_base and os.path.isfile(options.include_base):
 if options.include_overlay and os.path.isfile(options.include_overlay):
     print('#define _include_overlay \'{}\''.format(options.include_overlay))
 
+#_style_bw configuration
+if options.style == "bw":
+	print("#define _style_bw 1")
+else:
+	print("#define _style_bw 0")
