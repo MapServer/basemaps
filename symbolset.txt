@@ -2,12 +2,12 @@ SYMBOLSET
 	SYMBOL
 		NAME	"tree"
 		TYPE	PIXMAP
-		IMAGE	"stromecky_v3.png"
+		IMAGE	"tree.png"
 	END
 	
 	SYMBOL
 		NAME	"water_area"
 		TYPE	PIXMAP
-		IMAGE	"vlnka.png"
+		IMAGE	"water.png"
 	END
 END
