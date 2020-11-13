@@ -1207,7 +1207,8 @@ styles = {
       'park_clr': '181 210 156',
       'ocean_clr': '153 179 204',
       'waterarea_clr': '153 179 204',
-      'river_clr': '153 179 204',
+      #'river_clr': '153 179 204',
+      'river_clr': '170 216 249',
       'stream_clr': '153 179 204',
       'canal_clr': '153 179 204',
 
