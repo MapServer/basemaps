@@ -613,7 +613,8 @@ vars= {
    },
    'cycleway_pattern': '2 4',
    'cycleway_ol_width': 1,
-   'cycleway_ol_clr': "0 0 0",
+   #'cycleway_ol_clr': "0 0 0",
+   'cycleway_ol_clr': "200 200 200",
    'display_footways': {
       0:0,
       15:1
