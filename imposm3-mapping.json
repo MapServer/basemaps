@@ -22,8 +22,7 @@
         },
         "railways": {
             "source": "roads",
-            "sql_filter": "type IN ('rail', 'tram', 'light_rail', 'subway', 'narrow_gauge', 'preserved', 'funicular', 'monorail')",
-            "tolerance": 50.0
+            "sql_filter": "type IN ('rail', 'tram', 'light_rail', 'subway', 'narrow_gauge', 'preserved', 'funicular', 'monorail')"
         },
         "railways_gen1": {
             "source": "railways",
