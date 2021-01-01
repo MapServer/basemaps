@@ -145,55 +145,6 @@
             ],
             "type": "polygon",
             "mapping": {
-                "amenity": [
-                    "university",
-                    "school",
-                    "college",
-                    "library",
-                    "fuel",
-                    "parking",
-                    "cinema",
-                    "theatre",
-                    "place_of_worship",
-                    "hospital"
-                ],
-                "barrier": [
-                    "hedge"
-                ],
-                "leisure": [
-                    "park",
-                    "garden",
-                    "playground",
-                    "golf_course",
-                    "sports_centre",
-                    "pitch",
-                    "stadium",
-                    "common",
-                    "nature_reserve"
-                ],
-                "tourism": [
-                    "zoo"
-                ],
-                "natural": [
-                    "wood",
-                    "land",
-                    "scrub",
-                    "wetland",
-                    "heath"
-                ],
-                "man_made": [
-                    "pier"
-                ],
-                "aeroway": [
-                    "runway",
-                    "taxiway"
-                ],
-                "place": [
-                    "island"
-                ],
-                "military": [
-                    "barracks"
-                ],
                 "landuse": [
                     "park",
                     "forest",
@@ -216,9 +167,58 @@
                     "allotments",
                     "quarry"
                 ],
+                "leisure": [
+                    "park",
+                    "garden",
+                    "playground",
+                    "golf_course",
+                    "sports_centre",
+                    "pitch",
+                    "stadium",
+                    "common",
+                    "nature_reserve"
+                ],
+                "natural": [
+                    "wood",
+                    "land",
+                    "scrub",
+                    "wetland",
+                    "heath"
+                ],
                 "highway": [
                     "pedestrian",
                     "footway"
+                ],
+                "amenity": [
+                    "university",
+                    "school",
+                    "college",
+                    "library",
+                    "fuel",
+                    "parking",
+                    "cinema",
+                    "theatre",
+                    "place_of_worship",
+                    "hospital"
+                ],
+                "barrier": [
+                    "hedge"
+                ],
+                "tourism": [
+                    "zoo"
+                ],
+                "man_made": [
+                    "pier"
+                ],
+                "aeroway": [
+                    "runway",
+                    "taxiway"
+                ],
+                "place": [
+                    "island"
+                ],
+                "military": [
+                    "barracks"
                 ]
             }
         },
