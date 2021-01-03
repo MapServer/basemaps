@@ -217,7 +217,7 @@ waterways = LineStrings(
 waterareas = Polygons(
     name = 'waterareas',
     mapping = {
-        'waterway': ('riverbank',),
+        'waterway': ('riverbank','dock'),
         'natural': ('water',),
         'landuse': ('basin', 'reservoir'),
 })
