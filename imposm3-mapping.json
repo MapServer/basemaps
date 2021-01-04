@@ -62,7 +62,7 @@
     },
     "tables": {
         "landusages": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -84,7 +84,7 @@
                     "key": null
                 },
                 {
-                    "type": "pseudoarea",
+                    "type": "webmerc_area",
                     "name": "area",
                     "key": null
                 },
@@ -223,7 +223,7 @@
             }
         },
         "buildings": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -253,7 +253,7 @@
             }
         },
         "places": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -315,7 +315,7 @@
             }
         },
         "transport_areas": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -352,7 +352,7 @@
             }
         },
         "admin": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -387,7 +387,7 @@
             }
         },
         "aeroways": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -418,7 +418,7 @@
             }
         },
         "waterways": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -455,7 +455,7 @@
             }
         },
         "barrierways": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -497,7 +497,7 @@
             }
         },
         "transport_points": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -548,7 +548,7 @@
             }
         },
         "amenities": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -585,7 +585,7 @@
             }
         },
         "barrierpoints": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -630,7 +630,7 @@
             }
         },
         "housenumbers_interpolated": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -680,7 +680,7 @@
             }
         },
         "roads": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -744,12 +744,9 @@
             ],
             "type": "linestring",
             "filters": {
-                "exclude_tags": [
-                    [
-                        "area",
-                        "yes"
-                    ]
-                ]
+                "reject": {
+                    "area": [ "yes" ]
+                }
             },
             "mappings": {
                 "railway": {
@@ -803,7 +800,7 @@
             }
         },
         "housenumbers": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -848,7 +845,7 @@
             }
         },
         "waterareas": {
-            "fields": [
+            "columns": [
                 {
                     "type": "id",
                     "name": "osm_id",
@@ -870,7 +867,7 @@
                     "key": null
                 },
                 {
-                    "type": "pseudoarea",
+                    "type": "webmerc_area",
                     "name": "area",
                     "key": null
                 }
