@@ -878,7 +878,8 @@
             "type": "polygon",
             "mapping": {
                 "waterway": [
-                    "riverbank"
+                    "riverbank",
+                    "dock"
                 ],
                 "landuse": [
                     "basin",

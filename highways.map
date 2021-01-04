@@ -289,7 +289,26 @@ LAYER
     END
 #endif
 
+##################################################
+## piers                                        ##
+##################################################
 
+#if _display_piers == 1
+    CLASS
+        EXPRESSION {pier,pier00,pier10}
+#if _display_pier_outline
+        STYLE
+           WIDTH _pier_width
+           OUTLINEWIDTH _pier_ol_width
+           OUTLINECOLOR _pier_ol_clr
+        END
+#endif
+        STYLE
+            WIDTH _pier_width
+            COLOR _pier_clr
+        END
+    END
+#endif
 
 
 

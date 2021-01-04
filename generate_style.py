@@ -631,6 +631,21 @@ style = {
    'footway_pattern': '2 3',
    'footway_ol_width': 1,
    'footway_ol_clr': "0 0 0",
+   'display_piers': {
+      0:0,
+      15:1
+   },
+   'display_pier_outline': 0,
+   'pier_clr': {
+      0:'"#aaaaaa"',
+      15:'"#ffffff"',
+   },
+   'pier_width': {
+      0:0,
+      15:4,
+   },
+   'pier_ol_width': 1,
+   'pier_ol_clr': "0 0 0",
 
    ###### railways ########
    'display_railways': {
@@ -1107,6 +1122,11 @@ namedstyles = {
          17:1
       },
       'pedestrian_ol_clr': '0 0 0',
+      'display_pier_outline': 1,
+      'pier_ol_width': {
+         0:0.5,
+         17:1
+      },
    },
    'centerlined': {
       'display_motorway_centerline' : {
@@ -1174,6 +1194,7 @@ namedstyles = {
       'tertiary_ol_clr': '193 181 157',
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
+      'pier_ol_clr': '193 181 157',
       'display_buildings':1
    },
    'michelin':{
@@ -1218,6 +1239,7 @@ namedstyles = {
       'secondary_ol_width': 0.2,
       'tertiary_ol_width': 0.2,
       'other_ol_width': 0.2,
+      'pier_ol_width': 0.2,
 
       'pedestrian_clr': '"#fafaf5"',
       'forest_clr': '188 220 180',
@@ -1240,6 +1262,7 @@ namedstyles = {
       'tertiary_ol_clr': '0 0 0',
       'other_ol_clr': '0 0 0',
       'pedestrian_ol_clr': '0 0 0',
+      'pier_ol_clr': '0 0 0',
       'footway_clr': '"#7f7f7f"'
    },
    'bing':{
@@ -1282,6 +1305,7 @@ namedstyles = {
       'tertiary_ol_clr': '"#b7ac9a"',
       'other_ol_clr': '"#b7ac9a"',
       'pedestrian_ol_clr': '193 181 157',
+      'pier_ol_clr': '193 181 157',
       'footway_clr': '"#7f7f7f"'
    },
    'osm2pgsql': {
@@ -1461,6 +1485,7 @@ namedstyles = {
       'tertiary_ol_clr': '"#FFFFFF"',
       'other_ol_clr': '"#000000"',
       'pedestrian_ol_clr': '255 255 255',
+      'pier_ol_clr': '0 0 0',
       'footway_clr': '"#000000"'
    },
 }
