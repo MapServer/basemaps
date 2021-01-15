@@ -189,6 +189,7 @@ style = {
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
    },
 
+   'display_industrial': 1,
    'industrial_clr': '"#d1d1d1"',
    'industrial_ol_clr': '"#d1d1d1"',
    'industrial_ol_width': 0,
@@ -210,6 +211,7 @@ style = {
    'residential_lbl_ol_clr': "255 255 255",
    'residential_lbl_ol_width': 2,
 
+   'display_park': 1,
    'park_clr': '"#DCDCB4"',
    'display_park_lbl' : {0:0, 11:1},
    'park_font': "sc",
@@ -218,6 +220,7 @@ style = {
    'park_lbl_ol_clr': "255 255 255",
    'park_lbl_ol_width': 2,
 
+   'display_hospital': 1,
    'hospital_clr': '"#E6C8C3"',
    'display_hospital_lbl' : {0:0, 12:1},
    'hospital_font': "sc",
@@ -226,6 +229,7 @@ style = {
    'hospital_lbl_ol_clr': "255 255 255",
    'hospital_lbl_ol_width': 2,
 
+   'display_education': 1,
    'education_clr': '"#DED1AB"',
    'display_education_lbl' : {0:0, 12:1},
    'education_font': "sc",
@@ -234,6 +238,7 @@ style = {
    'education_lbl_ol_clr': "255 255 255",
    'education_lbl_ol_width': 2,
 
+   'display_sports': 1,
    'sports_clr': '"#DED1AB"',
    'display_sports_lbl' : {0:0, 12:1},
    'sports_font': "sc",
@@ -242,6 +247,7 @@ style = {
    'sports_lbl_ol_clr': "255 255 255",
    'sports_lbl_ol_width': 2,
 
+   'display_cemetery': 1,
    'cemetery_clr': '"#d1d1d1"',
    'display_cemetery_lbl' : {0:0, 12:1},
    'cemetery_font': "sc",
@@ -250,6 +256,7 @@ style = {
    'cemetery_lbl_ol_clr': "255 255 255",
    'cemetery_lbl_ol_width': 2,
 
+   'display_forest': 1,
    'forest_clr': '"#C2D1B2"',
    'display_forest_lbl' : {0:0, 12:1},
    'forest_font': "sc",
