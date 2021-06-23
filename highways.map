@@ -3,6 +3,9 @@ LAYER
     GROUP "default"
     STATUS ON
     CONNECTIONTYPE POSTGIS
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
     CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
@@ -45,6 +48,9 @@ LAYER
     MINSCALEDENOM _minscale
     MAXSCALEDENOM _maxscale
     NAME layername(roads,_layer_suffix)
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
     CONNECTIONTYPE postgis
     CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
@@ -897,6 +903,9 @@ LAYER
     MAXSCALEDENOM _maxscale
     TYPE LINE
     NAME layername(aeroways,_layer_suffix)
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
     CONNECTIONTYPE postgis
     CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
