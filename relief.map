@@ -18,7 +18,6 @@ LAYER
         COMPOP _relief_compop
     END
 END
-#endif
 
 LAYER
     TYPE RASTER
@@ -84,7 +83,8 @@ LAYER
     STATUS ON
     DEBUG _layerdebug
     NAME layername(contour,_layer_suffix)
-    PROCESSING "APPROXIMATION_SCALE=full"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
     PROJECTION
         _land_epsg
     END

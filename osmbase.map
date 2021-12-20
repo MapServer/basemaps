@@ -65,7 +65,6 @@ END
 #include "symbols-amenities-pg.map"
 #include "symbols-stations.map"
 
-
 #include LEVELPASTER(THEME,1)
 #include "land.map"
 #include "landusage.map"

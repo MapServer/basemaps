@@ -75,7 +75,6 @@ create index osm_aeroways_type_idx on import.osm_aeroways(type);
 create index osm_amenities_type_idx on import.osm_amenities(type);
 create index osm_barrierpoints_type_idx on import.osm_barrierpoints(type);
 create index osm_barrierways_type_idx on import.osm_barrierways(type);
-create index osm_buildings_type_idx on import.osm_buildings(type);
 create index osm_housenumbers_type_idx on import.osm_housenumbers(type);
 create index osm_housenumbers_interpolated_type_idx on import.osm_housenumbers_interpolated(type);
 create index osm_landusages_type_idx on import.osm_landusages(type);
@@ -97,12 +96,13 @@ create index osm_waterways_type_idx on import.osm_waterways(type);
 create index osm_waterways_gen0_type_idx on import.osm_waterways_gen0(type);
 create index osm_waterways_gen1_type_idx on import.osm_waterways_gen1(type);
 
+create index osm_buildings_type_idx on import.osm_buildings(type);
+
 create index osm_admin_name_idx on import.osm_admin(name);
 create index osm_aeroways_name_idx on import.osm_aeroways(name);
 create index osm_amenities_name_idx on import.osm_amenities(name);
 create index osm_barrierpoints_name_idx on import.osm_barrierpoints(name);
 create index osm_barrierways_name_idx on import.osm_barrierways(name);
-create index osm_buildings_name_idx on import.osm_buildings(name);
 create index osm_housenumbers_name_idx on import.osm_housenumbers(name);
 create index osm_housenumbers_interpolated_name_idx on import.osm_housenumbers_interpolated(name);
 create index osm_landusages_name_idx on import.osm_landusages(name);
@@ -124,12 +124,13 @@ create index osm_waterways_name_idx on import.osm_waterways(name);
 create index osm_waterways_gen0_name_idx on import.osm_waterways_gen0(name);
 create index osm_waterways_gen1_name_idx on import.osm_waterways_gen1(name);
 
+create index osm_buildings_name_idx on import.osm_buildings(name);
+
 VACUUM ANALYSE import.osm_admin;
 VACUUM ANALYSE import.osm_aeroways;
 VACUUM ANALYSE import.osm_amenities;
 VACUUM ANALYSE import.osm_barrierpoints;
 VACUUM ANALYSE import.osm_barrierways;
-VACUUM ANALYSE import.osm_buildings;
 VACUUM ANALYSE import.osm_housenumbers;
 VACUUM ANALYSE import.osm_housenumbers_interpolated;
 VACUUM ANALYSE import.osm_landusages;
@@ -150,3 +151,5 @@ VACUUM ANALYSE import.osm_waterareas_gen1;
 VACUUM ANALYSE import.osm_waterways;
 VACUUM ANALYSE import.osm_waterways_gen0;
 VACUUM ANALYSE import.osm_waterways_gen1;
+
+VACUUM ANALYSE import.osm_buildings;

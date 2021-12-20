@@ -1551,8 +1551,8 @@ styles = {
     },
     'topographic': {
         'display_relief': {
-            0: 0,
-            9: 0
+            0: 1,
+            9: 1
         },
         'relief_data': {
             0: '"topomap/relief-700.tif"',
@@ -1574,7 +1574,7 @@ styles = {
             0: '"topomap/slopeshade-5000.tif"',
             5: '"topomap/slopeshade-700.tif"',
             8: '"topomap/slopeshade-500.tif"',
-            8: '"topomap/slopeshade-30m-jpeg.tif"',
+            8: '"topomap/slopeshade-500.tif"',
         },
         'slopeshade_opacity': {
             0: 20,
@@ -1587,9 +1587,9 @@ styles = {
         },
         'contour_data': {
             0: '',
-            11: '"geom from (select height, geom from contour where height in (100, 50)"',
-            12: '"geom from (select height, geom from contour where height in (100, 20)"',
-            13: '"geom from (select height, geom from contour where height in (100, 50, 10)"'
+            11: '"geom from (select id, height, geom from contour where height in (100, 50)) as foo using unique id using srid=OSM_SRID"',
+            12: '"geom from (select id, height, geom from contour where height in (100, 20)) as foo using unique id using srid=OSM_SRID"',
+            13: '"geom from (select id, height, geom from contour where height in (100, 50, 10)) as foo using unique id using srid=OSM_SRID"'
         },
         'contour100_width': {
             0: 0,
@@ -1659,7 +1659,7 @@ style_aliases = {
     # symbols only layer
     "symbols-only": "symbols,symbols_only",
 
-    "topographic": "topographic"
+    "topographic": "topographic,default,outlined,google,symbols,buildings"
 }
 
 parser = OptionParser()
