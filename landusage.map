@@ -9,6 +9,9 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     DATA _landusage_data
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -16,15 +19,13 @@ LAYER
     MINSCALEDENOM _minscale
     CLASSITEM "type"
     LABELITEM "name"
+#if _display_forest==1
     CLASS
        EXPRESSION {forest,wood}
-#if _display_geometries == 1
        STYLE
           COLOR _forest_clr
        END
-#endif
 #if _display_forest_lbl==1
-#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _forest_font
@@ -39,19 +40,17 @@ LAYER
          PARTIALS FALSE
       END
 #endif
-#endif
     END
+#endif
+#if _display_residential==1
     CLASS
        EXPRESSION 'residential'
-#if _display_geometries == 1
        STYLE
           COLOR _residential_clr
           OUTLINECOLOR _residential_ol_clr
           OUTLINEWIDTH _residential_ol_width
        END
-#endif
 #if _display_residential_lbl==1
-#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _residential_font
@@ -66,19 +65,17 @@ LAYER
          PARTIALS FALSE
       END
 #endif
-#endif
    END
+#endif
+#if _display_industrial==1
    CLASS
      EXPRESSION {industrial,commercial,parking}
-#if _display_geometries == 1
      STYLE
        COLOR _industrial_clr
        OUTLINECOLOR _industrial_ol_clr
        OUTLINEWIDTH _industrial_ol_width
      END
-#endif
 #if _display_industrial_lbl==1
-#if _display_labels == 1
      LABEL
        ENCODING "utf-8"
        TYPE TRUETYPE
@@ -95,17 +92,15 @@ LAYER
        PARTIALS FALSE
      END
 #endif
-#endif
     END
+#endif
+#if _display_park==1
     CLASS
         EXPRESSION {park,golf_course}
-#if _display_geometries == 1
         STYLE
             COLOR _park_clr
         END
-#endif
 #if _display_park_lbl==1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -123,22 +118,20 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
-#endif
     END
+#endif
+#if _display_cemetery==1
     CLASS
         EXPRESSION 'cemetery'
-#if _display_geometries == 1
         STYLE
           COLOR _cemetery_clr
         END
-#endif
 #if _display_cemetery_lbl==1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
           FONT _cemetery_font
-            ENCODING "utf-8"
+       ENCODING "utf-8"
             SIZE _cemetery_lbl_size
             COLOR _cemetery_lbl_clr
             OUTLINECOLOR _cemetery_lbl_ol_clr
@@ -150,17 +143,14 @@ LAYER
             MINFEATURESIZE AUTO
         END
 #endif
-#endif
     END
+#endif
    CLASS
       EXPRESSION 'pedestrian'
-#if _display_geometries == 1
       STYLE
          COLOR _pedestrian_clr
       END
-#endif
 #if _display_pedestrian_lbl==1
-#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _pedestrian_font
@@ -175,18 +165,14 @@ LAYER
          PARTIALS FALSE
       END
 #endif
-#endif
    END
- 
+#if _display_hospital==1
     CLASS
         EXPRESSION 'hospital'
-#if _display_geometries == 1
         STYLE
             COLOR _hospital_clr
         END
-#endif
 #if _display_hospital_lbl==1
-#if _display_labels == 1
          LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -203,17 +189,15 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
-#endif
     END
+#endif
+#if _display_education==1
     CLASS
         EXPRESSION {school,college,university}
-#if _display_geometries == 1
         STYLE
             COLOR _education_clr
         END
-#endif
 #if _display_education_lbl==1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -230,17 +214,15 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
-#endif
     END
+#endif
+#if _display_sports==1
     CLASS
       EXPRESSION {sports_center,stadium,pitch}
-#if _display_geometries == 1
       STYLE
           COLOR _sports_clr
       END
-#endif
 #if _display_sports_lbl==1
-#if _display_labels == 1
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
@@ -257,8 +239,8 @@ LAYER
         MINFEATURESIZE AUTO
       END
 #endif
-#endif
     END
+#endif
 END
 
 #if _display_transport_areas == 1
@@ -272,19 +254,19 @@ LAYER
    GROUP "default"
    CONNECTIONTYPE POSTGIS
    CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
    DATA "geometry from OSM_PREFIX_transport_areas using unique osm_id using srid=OSM_SRID"
    PROCESSING "CLOSE_CONNECTION=DEFER"
    MAXSCALEDENOM _maxscale
    MINSCALEDENOM _minscale
    LABELITEM "name"
    CLASS
-#if _display_geometries == 1
       STYLE
          COLOR _transport_clr
       END
-#endif
 #if _display_transports_lbl==1
-#if _display_labels == 1
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
@@ -299,7 +281,6 @@ LAYER
         ALIGN CENTER
         MINFEATURESIZE AUTO
       END
-#endif
 #endif
    END
 END
@@ -316,32 +297,38 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     DATA _waterarea_data
     MAXSCALEDENOM _maxscale
-    MINSCALEDENOM _minscale  
+    MINSCALEDENOM _minscale
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASSITEM "type"
-#if _display_geometries == 1
     CLASS
       EXPRESSION "riverbank"
+#if _display_waterarea_outline
+        STYLE
+           OUTLINECOLOR _waterarea_ol_clr
+           OUTLINEWIDTH _waterarea_ol_width
+        END
+#endif
         STYLE
             COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
         END
     END
-#endif
     CLASS
-#if _display_geometries == 1
+#if _display_waterarea_outline
         STYLE
-            COLOR _waterarea_clr
-            OUTLINECOLOR _waterarea_ol_clr
-            OUTLINEWIDTH _waterarea_ol_width
+           OUTLINECOLOR _waterarea_ol_clr
+           OUTLINEWIDTH _waterarea_ol_width
         END
 #endif
+        STYLE
+            COLOR _waterarea_clr
+        END
 #if _display_waterarea_lbl == 1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -358,7 +345,6 @@ LAYER
           MINFEATURESIZE AUTO
         END
 #endif
-#endif
     END
 END
 
@@ -370,6 +356,9 @@ LAYER
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
     DATA _waterways_data
     CLASSITEM "type"
     MAXSCALEDENOM _maxscale
@@ -381,14 +370,11 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     CLASS
         EXPRESSION "river"
-#if _display_geometries == 1
         STYLE
-            COLOR _river_clr 
+            COLOR _river_clr
             WIDTH _river_width
         END
-#endif
 #if _display_river_lbl == 1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -405,18 +391,14 @@ LAYER
           BUFFER 3
         END
 #endif
-#endif
     END
     CLASS
         EXPRESSION "stream"
-#if _display_geometries == 1
         STYLE
             COLOR _stream_clr
             WIDTH _stream_width
         END
-#endif
 #if _display_stream_lbl == 1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           PARTIALS FALSE
@@ -433,18 +415,14 @@ LAYER
           BUFFER 3
         END
 #endif
-#endif
     END
     CLASS
         EXPRESSION "canal"
-#if _display_geometries == 1
         STYLE
             COLOR _canal_clr
             WIDTH _canal_width
         END
-#endif
 #if _display_canal_lbl == 1
-#if _display_labels == 1
         LABEL
           TYPE TRUETYPE
           FONT _canal_font
@@ -460,7 +438,6 @@ LAYER
           BUFFER 3
           PARTIALS FALSE
         END
-#endif
 #endif
     END
 END

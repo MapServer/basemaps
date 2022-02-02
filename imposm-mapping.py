@@ -39,8 +39,11 @@ from imposm.mapping import (
 # imposm.config.imposm_multipolygon_max_ring = 0
 # 
 # # split ways that are longer than x nodes (0 to split nothing)
-# imposm_linestring_max_length = 50
-
+# imposm.config.imposm_linestring_max_length = 50
+# 
+# # cache coords in a compact storage (with delta encoding)
+# # use this when memory is limited (default)
+# imposm.config.imposm_compact_coords_cache = True
 
 # set_default_name_type(LocalizedName(['name:en', 'int_name', 'name']))
 
@@ -169,7 +172,7 @@ transport_points = Points(
             'subway_entrance',
         ),
         'aeroway': (
-            'aerodome',
+            'aerodrome',
             'terminal',
             'helipad',
             'gate',
@@ -214,7 +217,7 @@ waterways = LineStrings(
 waterareas = Polygons(
     name = 'waterareas',
     mapping = {
-        'waterway': ('riverbank',),
+        'waterway': ('riverbank','dock'),
         'natural': ('water',),
         'landuse': ('basin', 'reservoir'),
 })
@@ -235,7 +238,7 @@ transport_areas = Polygons(
             'station',
         ),
         'aeroway': (
-            'aerodome',
+            'aerodrome',
             'terminal',
             'helipad',
             'apron',
@@ -386,14 +389,14 @@ landusages_gen00 = GeneralizedTable(
     name = 'landusages_gen00',
     tolerance = meter_to_mapunit(500.0),
     origin = landusages,
-    where = "type='forest' and ST_Area(geometry)>%f" % sqr_meter_to_mapunit(10000000),
+    where = "type IN ('forest', 'wood') AND ST_Area(geometry)>%f" % sqr_meter_to_mapunit(10000000),
 )
 
 landusages_gen0 = GeneralizedTable(
     name = 'landusages_gen0',
     tolerance = meter_to_mapunit(200.0),
     origin = landusages,
-    where = "type='forest' and ST_Area(geometry)>%f" % sqr_meter_to_mapunit(5000000),
+    where = "type IN ('forest', 'wood') AND ST_Area(geometry)>%f" % sqr_meter_to_mapunit(5000000),
 )
 
 landusages_gen1 = GeneralizedTable(

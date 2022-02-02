@@ -3,8 +3,14 @@ LAYER
  STATUS ON
  GROUP "default" 
  TYPE POINT
+ PROJECTION
+  "init=epsg:OSM_SRID"
+ END
  CONNECTIONTYPE postgis
  CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+ EXTENT OSM_EXTENT
+#endif
  NAME layername(places,_layer_suffix)
  MINSCALEDENOM _minscale
  MAXSCALEDENOM _maxscale
@@ -14,7 +20,6 @@ LAYER
 #if _display_capitals == 1
  CLASS
   EXPRESSION ('[capital]'='1')
-#if _display_labels == 1
   LABEL
    FONT _capital_font
    TYPE TRUETYPE
@@ -29,7 +34,6 @@ LAYER
    BUFFER 10
    PARTIALS FALSE
    POSITION auto
-   #if _display_geometries == 1
    #if _display_capital_symbol == 1
    STYLE
     SIZE _capital_size
@@ -43,15 +47,12 @@ LAYER
     COLOR _capital_fg_clr
    END
    #endif
-   #endif
   END
-#endif
  END
 #endif
 #if _display_continents == 1
  CLASS
   EXPRESSION 'continents'
-#if _display_labels == 1
   LABEL
    FONT _continent_font
    TYPE TRUETYPE
@@ -64,13 +65,11 @@ LAYER
    PARTIALS FALSE
    POSITION cc
   END
-#endif
  END
 #endif
 #if _display_countries == 1
  CLASS
   EXPRESSION 'country'
-#if _display_labels == 1
   LABEL
    FONT _country_font
    TYPE TRUETYPE
@@ -86,13 +85,11 @@ LAYER
    PARTIALS FALSE
    POSITION cc
   END
-#endif
  END
 #endif
 #if _display_cities == 1
  CLASS
   EXPRESSION 'city'
-#if _display_labels == 1
   LABEL
    FONT _city_font
    TYPE TRUETYPE
@@ -107,7 +104,6 @@ LAYER
    BUFFER 4
    PARTIALS FALSE
    POSITION auto
-   #if _display_geometries == 1
    #if _display_city_symbol == 1
    STYLE
     SIZE _city_size
@@ -116,15 +112,12 @@ LAYER
     OUTLINECOLOR _city_ol_clr
    END
    #endif
-   #endif
   END
-#endif
  END
 #endif
 #if _display_towns == 1
  CLASS
   EXPRESSION 'town'
-#if _display_labels == 1
   LABEL
    FONT _town_font
    TYPE TRUETYPE
@@ -140,7 +133,6 @@ LAYER
    POSITION AUTO
    BUFFER 4
    POSITION auto
-   #if _display_geometries == 1
    #if _display_town_symbol == 1
    STYLE
     SIZE _town_size
@@ -149,15 +141,40 @@ LAYER
     OUTLINECOLOR _town_ol_clr
    END
    #endif
+  END
+ END
+#endif
+#if _display_suburbs == 1
+ CLASS
+  EXPRESSION 'suburb'
+  LABEL
+   FONT _suburb_font
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE _suburb_lbl_size
+   COLOR _suburb_lbl_clr
+   OUTLINECOLOR _suburb_lbl_ol_clr
+   OUTLINEWIDTH _suburb_lbl_ol_width
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+   #if _display_suburb_symbol == 1
+   STYLE
+       SIZE _suburb_size
+       SYMBOL "citycircle"
+       COLOR _suburb_clr
+       OUTLINECOLOR _suburb_ol_clr
+   END
    #endif
   END
-#endif
  END
 #endif
 #if _display_villages == 1
  CLASS
   EXPRESSION 'village'
-#if _display_labels == 1
   LABEL
    FONT _village_font
    TYPE TRUETYPE
@@ -172,7 +189,6 @@ LAYER
    PARTIALS FALSE
    BUFFER 4
    POSITION AUTO
-   #if _display_geometries == 1
    #if _display_village_symbol == 1
    STYLE
        SYMBOL "citycircle"
@@ -181,15 +197,12 @@ LAYER
        SIZE _village_size
    END
    #endif
-   #endif
   END
-#endif
  END
 #endif
 #if _display_hamlets == 1
  CLASS
-  EXPRESSION {suburb,hamlet,locality}
-#if _display_labels == 1
+  EXPRESSION 'hamlet'
   LABEL
    FONT _hamlet_font
    TYPE TRUETYPE
@@ -204,8 +217,7 @@ LAYER
    BUFFER 4
    PARTIALS FALSE
    POSITION AUTO
-   #if _display_geometries == 1
-   #if _display_hamlets_symbol == 1
+   #if _display_hamlet_symbol == 1
    STYLE
        SIZE _hamlet_size
        SYMBOL "citycircle"
@@ -213,9 +225,35 @@ LAYER
        OUTLINECOLOR _hamlet_ol_clr
    END
    #endif
+  END
+ END
+#endif
+#if _display_localities == 1
+ CLASS
+  EXPRESSION 'locality'
+  LABEL
+   FONT _locality_font
+   TYPE TRUETYPE
+   ENCODING "utf-8"
+   SIZE _locality_lbl_size
+   COLOR _locality_lbl_clr
+   OUTLINECOLOR _locality_lbl_ol_clr
+   OUTLINEWIDTH _locality_lbl_ol_width
+   WRAP ' '
+   MAXLENGTH 8
+   ALIGN CENTER
+   BUFFER 4
+   PARTIALS FALSE
+   POSITION AUTO
+   #if _display_locality_symbol == 1
+   STYLE
+       SIZE _locality_size
+       SYMBOL "citycircle"
+       COLOR _locality_clr
+       OUTLINECOLOR _locality_ol_clr
+   END
    #endif
   END
-#endif
  END
 #endif
 END

@@ -1,0 +1,5 @@
+boundaries.sql
+osm-*.map
+osm-*.log
+*.mk
+!docker.mk

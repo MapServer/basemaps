@@ -1,9 +1,5 @@
-Readme.txt
-*.shp
-*.shx
-*.dbf
-*.index
 *.zip
-*.prj
-*.qix
-
+README
+land_polygons.*
+simplified_land_polygons.*
+*.pbf
