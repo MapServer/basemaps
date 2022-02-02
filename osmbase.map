@@ -17,7 +17,6 @@
 MAP
 
 FONTSET "fonts.lst"
-SYMBOLSET "symbols.lst"
 IMAGETYPE png
 MAXSIZE 4000
 SIZE 800 800
@@ -29,7 +28,7 @@ WEB
       "ows_enable_request"   "*"
       "wms_srs" "OSM_WMS_SRS"
       "labelcache_map_edge_buffer" "-10"
-      "wms_title" "osm france"
+      "wms_title" "OpenStreetMap"
    END
 END
 
@@ -44,13 +43,14 @@ PROJECTION
 END
 
 OUTPUTFORMAT
-  NAME "png"
-  DRIVER AGG/PNG
-  MIMETYPE "image/png"
-  IMAGEMODE RGBA
+  NAME "png_bw"
+  DRIVER "AGG/PNG"
+  MIMETYPE "image/png;mode=8bit,grayscale"
+  IMAGEMODE RGB
   EXTENSION "png"
-  FORMATOPTION "GAMMA=0.75"
-  FORMATOPTION "COMPRESSION=9"
+  TRANSPARENT FALSE
+  FORMATOPTION "PALETTE=grey.txt"
+  FORMATOPTION "PALETTE_FORCE=on"
 END
 
 #include LEVELPASTER(THEME,0)
@@ -60,10 +60,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
 
 #include LEVELPASTER(THEME,1)
 #include "land.map"
@@ -72,11 +68,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,2)
 #include "land.map"
@@ -85,11 +76,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,3)
 #include "land.map"
@@ -98,11 +84,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,4)
 #include "land.map"
@@ -111,11 +92,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,5)
 #include "land.map"
@@ -124,11 +100,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,6)
 #include "land.map"
@@ -137,11 +108,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,7)
 #include "land.map"
@@ -150,11 +116,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,8)
 #include "land.map"
@@ -163,11 +124,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,9)
 #include "land.map"
@@ -176,11 +132,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,10)
 #include "land.map"
@@ -189,11 +140,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,11)
 #include "land.map"
@@ -202,11 +148,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,12)
 #include "land.map"
@@ -215,11 +156,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,13)
 #include "land.map"
@@ -228,11 +164,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,14)
 #include "land.map"
@@ -241,11 +172,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,15)
 #include "land.map"
@@ -254,11 +180,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,16)
 #include "land.map"
@@ -267,11 +188,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,17)
 #include "land.map"
@@ -280,11 +196,6 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
-
 
 #include LEVELPASTER(THEME,18)
 #include "land.map"
@@ -293,10 +204,12 @@ END
 #include "buildings.map"
 #include "borders.map"
 #include "places.map"
-#include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
-#include "symbols-stations.map"
 
+SYMBOL
+ name "citycircle"
+ type ellipse
+ points 1 1 end
+ filled true
+END
 
 END

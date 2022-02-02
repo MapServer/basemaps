@@ -302,31 +302,31 @@ LAYER
 #endif
     DATA _waterarea_data
     MAXSCALEDENOM _maxscale
-    MINSCALEDENOM _minscale
+    MINSCALEDENOM _minscale  
     PROCESSING "CLOSE_CONNECTION=DEFER"
     LABELITEM "name"
     CLASSITEM "type"
     CLASS
       EXPRESSION "riverbank"
 #if _display_waterarea_outline
-        STYLE
+        STYLE           
            OUTLINECOLOR _waterarea_ol_clr
            OUTLINEWIDTH _waterarea_ol_width
         END
 #endif
         STYLE
-            COLOR _waterarea_clr
+            COLOR _waterarea_clr    
         END
     END
     CLASS
 #if _display_waterarea_outline
-        STYLE
+        STYLE           
            OUTLINECOLOR _waterarea_ol_clr
            OUTLINEWIDTH _waterarea_ol_width
         END
 #endif
         STYLE
-            COLOR _waterarea_clr
+            COLOR _waterarea_clr    
         END
 #if _display_waterarea_lbl == 1
         LABEL
@@ -371,7 +371,7 @@ LAYER
     CLASS
         EXPRESSION "river"
         STYLE
-            COLOR _river_clr
+            COLOR _river_clr 
             WIDTH _river_width
         END
 #if _display_river_lbl == 1
