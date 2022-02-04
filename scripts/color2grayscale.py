@@ -2,9 +2,12 @@ import fileinput
 import sys
 import re
 from random import randint
-
-# print 'Number of arguments:', len(sys.argv), 'arguments.'
-# print 'Argument List:', str(sys.argv[1])
+# Author Nicolas Ribot nicolas.ribot@gmail.com
+# script to change a mapfile color values based on different formulas:
+# changed mapfile is printed out
+#
+# usage: python color2grayscale(path to mapfile, <color type>
+# where <color type> can be one of grayscale, random, invert, luminance
 
 f = open(sys.argv[1], 'r')
 

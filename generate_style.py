@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: UTF-8 -*-
 import argparse
 
 layer_suffixes = {
@@ -1495,6 +1495,273 @@ namedstyles = {
       'pier_ol_clr': '0 0 0',
       'footway_clr': '"#000000"'
    },
+    # Nicolas Ribot, feb 2022: include a symbol-based style
+    'symbols':{
+        'display_symbols': {
+            0: 0,
+            10: 1
+        },
+        'display_amenities': {
+            0: 0,
+            14: 1
+        },
+        'display_labels': 1,
+        # airports
+        'symairport_size': {
+            0: 0,
+            11: 16,
+            13: 32
+        },
+        'symairport_lbl_size': 7,
+        'symairport_lbl_clr': '15 105 255',
+        'symairport_lbl_txt': {
+            0: "' '",
+            12: "'[name]'"
+        },
+        'symairport_lbl_font': "NotoSansUIRegular",
+        'symairport_symbol': {
+            0: 'nosymbol',
+            10: 'airport-20',
+            12: 'airport'
+        },
+        # aerodrome
+        'symaerodrome_lbl_size': 7,
+        'symaerodrome_lbl_clr': '15 105 255',#
+        'symaerodrome_lbl_txt': {
+            0: "' '",
+            13: "'[name]'"
+        },
+        'symaerodrome_lbl_font': "NotoSansUIRegular",
+        'symaerodrome_symbol': {
+            0: 'nosymbol',
+            13: 'aerodrome'
+        },
+        'symamenities_size': {
+            0: 0,
+            11: 16
+        },
+        'symairport_data': '"geometry from (select st_centroid(GEOMETRY) as geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_transport_areas where type = \'aerodrome\') as foo using unique osm_id using srid=OSM_SRID"',
+        'symamenities_data': {
+            0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT GEOMETRY, osm_id, OSM_NAME_COLUMN as name, COALESCE(\'tourism_\' || CASE WHEN tags->\'tourism\' IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'picnic_site\', \'viewpoint\')THEN tags->\'tourism\' ELSE NULL END,            \'amenity_\' || CASE WHEN tags->\'amenity\' IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\')               THEN tags->\'amenity\' ELSE NULL END,            \'shop_\' || CASE WHEN tags->\'shop\' IN (\'supermarket\', \'bag\', \'bakery\', \'beauty\', \'books\', \'butcher\', \'clothes\', \'computer\', \'confectionery\', \'fashion\', \'convenience\', \'department_store\', \'doityourself\', \'hardware\', \'fishmonger\', \'florist\', \'garden_centre\', \'hairdresser\', \'hifi\', \'ice_cream\', \'car\', \'car_repair\', \'bicycle\', \'mall\', \'pet\', \'photo\', \'photo_studio\', \'photography\', \'seafood\', \'shoes\', \'alcohol\', \'gift\', \'furniture\', \'kiosk\', \'mobile_phone\', \'motorcycle\', \'musical_instrument\', \'newsagent\', \'optician\', \'jewelry\', \'jewellery\', \'electronics\', \'chemist\', \'toys\', \'travel_agency\', \'car_parts\', \'greengrocer\', \'farm\', \'stationery\', \'laundry\', \'dry_cleaning\', \'beverages\', \'perfumery\', \'cosmetics\', \'variety_store\', \'wine\', \'outdoor\', \'copyshop\', \'sports\', \'deli\', \'tobacco\', \'art\', \'tea\')               THEN tags->\'shop\' ELSE NULL END,            \'leisure_\' || CASE WHEN tags->\'leisure\' IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\')               THEN tags->\'leisure\' ELSE NULL END,            \'man_made_\' || CASE WHEN tags->\'man_made\' IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\')               THEN tags->\'man_made\' ELSE NULL END,            \'natural_\' || CASE WHEN tags->\'natural\' IN (\'spring\')               THEN tags->\'natural\' ELSE NULL END,            \'historic_\' || CASE WHEN tags->\'historic\' IN (\'memorial\', \'monument\', \'archaeological_site\')               THEN tags->\'historic\' ELSE NULL END,            \'highway_\'|| CASE WHEN tags->\'highway\' IN (\'bus_stop\', \'elevator\', \'traffic_signals\')               THEN tags->\'highway\' ELSE NULL END,            \'power_\' || CASE WHEN tags->\'power\' IN (\'generator\')                THEN tags->\'power\' ELSE NULL END) AS feature,       tags->\'access\' as access,       tags->\'religion\' as religion,    tags->\'denomination\' as denomination,tags->\'generator_source\' as generator_source,       tags->\'power_source\' as power_source FROM OSM_PREFIX_amenities WHERE tags->\'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}\'::text[] && \'{artwork, alpine_hut, camp_site, caravan_site, chalet, guest_house, hostel, hotel, motel, information, museum, viewpoint, picnic_site,    shelter, atm, bank, bar, bicycle_rental, bus_station, cafe, car_rental, car_wash, cinema, clinic, community_centre,    fire_station, fountain, fuel, hospital, ice_cream, embassy, library, courthouse, townhall, parking, bicycle_parking,    motorcycle_parking, pharmacy, doctors, dentist, place_of_worship, police, post_box, post_office, pub, biergarten,    recycling, restaurant, food_court, fast_food, telephone, emergency_phone, taxi, theatre, toilets, drinking_water, prison,    hunting_stand, nightclub, veterinary, social_facility, charging_station,    water_park, playground, miniature_golf, golf_course, picnic_table,    mast, water_tower, lighthouse, windmill, obelisk,    spring,    memorial, monument, archaeological_site,    bus_stop, elevator, traffic_signals, wind}\'::text[] OR tags->\'shop\' is not null ) AS amenity_points_poly) as foo using unique osm_id using srid=OSM_SRID"',
+            12:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT GEOMETRY, osm_id, OSM_NAME_COLUMN as name, COALESCE(\'tourism_\' || CASE WHEN tags->\'tourism\' IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'picnic_site\', \'viewpoint\')THEN tags->\'tourism\' ELSE NULL END,            \'amenity_\' || CASE WHEN tags->\'amenity\' IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\')               THEN tags->\'amenity\' ELSE NULL END,            \'shop_\' || CASE WHEN tags->\'shop\' IN (\'supermarket\', \'bag\', \'bakery\', \'beauty\', \'books\', \'butcher\', \'clothes\', \'computer\', \'confectionery\', \'fashion\', \'convenience\', \'department_store\', \'doityourself\', \'hardware\', \'fishmonger\', \'florist\', \'garden_centre\', \'hairdresser\', \'hifi\', \'ice_cream\', \'car\', \'car_repair\', \'bicycle\', \'mall\', \'pet\', \'photo\', \'photo_studio\', \'photography\', \'seafood\', \'shoes\', \'alcohol\', \'gift\', \'furniture\', \'kiosk\', \'mobile_phone\', \'motorcycle\', \'musical_instrument\', \'newsagent\', \'optician\', \'jewelry\', \'jewellery\', \'electronics\', \'chemist\', \'toys\', \'travel_agency\', \'car_parts\', \'greengrocer\', \'farm\', \'stationery\', \'laundry\', \'dry_cleaning\', \'beverages\', \'perfumery\', \'cosmetics\', \'variety_store\', \'wine\', \'outdoor\', \'copyshop\', \'sports\', \'deli\', \'tobacco\', \'art\', \'tea\')               THEN tags->\'shop\' ELSE NULL END,            \'leisure_\' || CASE WHEN tags->\'leisure\' IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\')               THEN tags->\'leisure\' ELSE NULL END,            \'man_made_\' || CASE WHEN tags->\'man_made\' IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\')               THEN tags->\'man_made\' ELSE NULL END,            \'natural_\' || CASE WHEN tags->\'natural\' IN (\'spring\')               THEN tags->\'natural\' ELSE NULL END,            \'historic_\' || CASE WHEN tags->\'historic\' IN (\'memorial\', \'monument\', \'archaeological_site\')               THEN tags->\'historic\' ELSE NULL END,            \'highway_\'|| CASE WHEN tags->\'highway\' IN (\'bus_stop\', \'elevator\', \'traffic_signals\')               THEN tags->\'highway\' ELSE NULL END,            \'power_\' || CASE WHEN tags->\'power\' IN (\'generator\')                THEN tags->\'power\' ELSE NULL END) AS feature,       tags->\'access\' as access,       tags->\'religion\' as religion,    tags->\'denomination\' as denomination,tags->\'generator_source\' as generator_source,       tags->\'power_source\' as power_source FROM OSM_PREFIX_amenities WHERE tags->\'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}\'::text[] && \'{artwork, alpine_hut, camp_site, caravan_site, chalet, guest_house, hostel, hotel, motel, information, museum, viewpoint, picnic_site,    shelter, atm, bank, bar, bicycle_rental, bus_station, cafe, car_rental, car_wash, cinema, clinic, community_centre,    fire_station, fountain, fuel, hospital, ice_cream, embassy, library, courthouse, townhall, parking, bicycle_parking,    motorcycle_parking, pharmacy, doctors, dentist, place_of_worship, police, post_box, post_office, pub, biergarten,    recycling, restaurant, food_court, fast_food, telephone, emergency_phone, taxi, theatre, toilets, drinking_water, prison,    hunting_stand, nightclub, veterinary, social_facility, charging_station,    water_park, playground, miniature_golf, golf_course, picnic_table,    mast, water_tower, lighthouse, windmill, obelisk,    spring,    memorial, monument, archaeological_site,    bus_stop, elevator, traffic_signals, wind}\'::text[] OR tags->\'shop\' is not null ) AS amenity_points_poly) as foo using unique osm_id using srid=OSM_SRID"',
+        },
+        'symamenities_pg_data': {
+            0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (select  st_centroid(GEOMETRY) as geometry, osm_id, OSM_NAME_COLUMN as name, COALESCE(        \'tourism_\' || CASE WHEN tags->\'tourism\' IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'picnic_site\', \'viewpoint\')           THEN tags->\'tourism\' ELSE NULL END,        \'amenity_\' || CASE WHEN tags->\'amenity\' IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\')            THEN tags->\'amenity\' ELSE NULL END,        \'shop_\' || CASE WHEN tags->\'shop\' IN (\'supermarket\', \'bag\', \'bakery\', \'beauty\', \'books\', \'butcher\', \'clothes\', \'computer\', \'confectionery\', \'fashion\', \'convenience\', \'department_store\', \'doityourself\', \'hardware\', \'fishmonger\', \'florist\', \'garden_centre\', \'hairdresser\', \'hifi\', \'ice_cream\', \'car\', \'car_repair\', \'bicycle\', \'mall\', \'pet\', \'photo\', \'photo_studio\', \'photography\', \'seafood\', \'shoes\', \'alcohol\', \'gift\', \'furniture\', \'kiosk\', \'mobile_phone\', \'motorcycle\', \'musical_instrument\', \'newsagent\', \'optician\', \'jewelry\', \'jewellery\', \'electronics\', \'chemist\', \'toys\', \'travel_agency\', \'car_parts\', \'greengrocer\', \'farm\', \'stationery\', \'laundry\', \'dry_cleaning\', \'beverages\', \'perfumery\', \'cosmetics\', \'variety_store\', \'wine\', \'outdoor\', \'copyshop\', \'sports\', \'deli\', \'tobacco\', \'art\', \'tea\')           THEN tags->\'shop\' ELSE NULL END,        \'leisure_\' || CASE WHEN tags->\'leisure\' IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\')           THEN tags->\'leisure\' ELSE NULL END,        \'man_made_\' || CASE WHEN tags->\'man_made\' IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\')            THEN tags->\'man_made\' ELSE NULL END,        \'natural_\' || CASE WHEN tags->\'natural\' IN (\'spring\')            THEN tags->\'natural\' ELSE NULL END,        \'historic_\' || CASE WHEN tags->\'historic\' IN (\'memorial\', \'monument\', \'archaeological_site\')            THEN tags->\'historic\' ELSE NULL END,        \'highway_\'|| CASE WHEN tags->\'highway\' IN (\'bus_stop\', \'elevator\', \'traffic_signals\')            THEN tags->\'highway\' ELSE NULL END,        \'power_\' || CASE WHEN tags->\'power\' IN (\'generator\')            THEN tags->\'power\' ELSE NULL END ) as feature,       tags->\'access\' as access,       tags->\'religion\' as religion,       tags->\'denomination\' as denomination,       tags->\'generator_source\' as generator_source,       tags->\'power_source\' as power_source from OSM_PREFIX_landusages where tags->\'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}\'::text[]&& \'{artwork, alpine_hut, camp_site, caravan_site, chalet, guest_house, hostel, hotel, motel, information, museum, viewpoint, picnic_site,shelter, atm, bank, bar, bicycle_rental, bus_station, cafe, car_rental, car_wash, cinema, clinic, community_centre, fire_station,fountain, fuel, hospital, ice_cream, embassy, library, courthouse, townhall, parking, bicycle_parking, motorcycle_parking,pharmacy, doctors, dentist, place_of_worship, police, post_box, post_office, pub, biergarten, recycling, restaurant, food_court,fast_food, telephone, emergency_phone, taxi, theatre, toilets, drinking_water, prison, hunting_stand, nightclub, veterinary,social_facility, charging_station, water_park, playground, miniature_golf, golf_course, picnic_table,mast, water_tower, lighthouse, windmill, obelisk, spring, memorial, monument, archaeological_site,bus_stop, elevator, traffic_signals, generator, wind}\'::text[] OR tags->\'shop\' is not null) AS amenity_points_poly) as foo using unique osm_id using srid=OSM_SRID"',
+            12: '"geometry from (SELECT  *,  NULL AS nullid FROM (select  st_centroid(GEOMETRY) as geometry, osm_id, OSM_NAME_COLUMN as name, COALESCE(        \'tourism_\' || CASE WHEN tags->\'tourism\' IN (\'artwork\', \'alpine_hut\', \'camp_site\', \'caravan_site\', \'chalet\', \'guest_house\', \'hostel\', \'hotel\', \'motel\', \'information\', \'museum\', \'picnic_site\', \'viewpoint\')           THEN tags->\'tourism\' ELSE NULL END,        \'amenity_\' || CASE WHEN tags->\'amenity\' IN (\'shelter\', \'atm\', \'bank\', \'bar\', \'bicycle_rental\', \'bus_station\', \'cafe\', \'car_rental\', \'car_wash\', \'cinema\', \'clinic\', \'community_centre\', \'fire_station\', \'fountain\', \'fuel\', \'hospital\', \'ice_cream\', \'embassy\', \'library\', \'courthouse\', \'townhall\', \'parking\', \'bicycle_parking\', \'motorcycle_parking\', \'pharmacy\', \'doctors\', \'dentist\', \'place_of_worship\', \'police\', \'post_box\', \'post_office\', \'pub\', \'biergarten\', \'recycling\', \'restaurant\', \'food_court\', \'fast_food\', \'telephone\', \'emergency_phone\', \'taxi\', \'theatre\', \'toilets\', \'drinking_water\', \'prison\', \'hunting_stand\', \'nightclub\', \'veterinary\', \'social_facility\', \'charging_station\')            THEN tags->\'amenity\' ELSE NULL END,        \'shop_\' || CASE WHEN tags->\'shop\' IN (\'supermarket\', \'bag\', \'bakery\', \'beauty\', \'books\', \'butcher\', \'clothes\', \'computer\', \'confectionery\', \'fashion\', \'convenience\', \'department_store\', \'doityourself\', \'hardware\', \'fishmonger\', \'florist\', \'garden_centre\', \'hairdresser\', \'hifi\', \'ice_cream\', \'car\', \'car_repair\', \'bicycle\', \'mall\', \'pet\', \'photo\', \'photo_studio\', \'photography\', \'seafood\', \'shoes\', \'alcohol\', \'gift\', \'furniture\', \'kiosk\', \'mobile_phone\', \'motorcycle\', \'musical_instrument\', \'newsagent\', \'optician\', \'jewelry\', \'jewellery\', \'electronics\', \'chemist\', \'toys\', \'travel_agency\', \'car_parts\', \'greengrocer\', \'farm\', \'stationery\', \'laundry\', \'dry_cleaning\', \'beverages\', \'perfumery\', \'cosmetics\', \'variety_store\', \'wine\', \'outdoor\', \'copyshop\', \'sports\', \'deli\', \'tobacco\', \'art\', \'tea\')           THEN tags->\'shop\' ELSE NULL END,        \'leisure_\' || CASE WHEN tags->\'leisure\' IN (\'water_park\', \'playground\', \'miniature_golf\', \'golf_course\', \'picnic_table\')           THEN tags->\'leisure\' ELSE NULL END,        \'man_made_\' || CASE WHEN tags->\'man_made\' IN (\'mast\', \'water_tower\', \'lighthouse\', \'windmill\', \'obelisk\')            THEN tags->\'man_made\' ELSE NULL END,        \'natural_\' || CASE WHEN tags->\'natural\' IN (\'spring\')            THEN tags->\'natural\' ELSE NULL END,        \'historic_\' || CASE WHEN tags->\'historic\' IN (\'memorial\', \'monument\', \'archaeological_site\')            THEN tags->\'historic\' ELSE NULL END,        \'highway_\'|| CASE WHEN tags->\'highway\' IN (\'bus_stop\', \'elevator\', \'traffic_signals\')            THEN tags->\'highway\' ELSE NULL END,        \'power_\' || CASE WHEN tags->\'power\' IN (\'generator\')            THEN tags->\'power\' ELSE NULL END ) as feature,       tags->\'access\' as access,       tags->\'religion\' as religion,       tags->\'denomination\' as denomination,       tags->\'generator_source\' as generator_source,       tags->\'power_source\' as power_source from OSM_PREFIX_landusages where tags->\'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}\'::text[]&& \'{artwork, alpine_hut, camp_site, caravan_site, chalet, guest_house, hostel, hotel, motel, information, museum, viewpoint, picnic_site,shelter, atm, bank, bar, bicycle_rental, bus_station, cafe, car_rental, car_wash, cinema, clinic, community_centre, fire_station,fountain, fuel, hospital, ice_cream, embassy, library, courthouse, townhall, parking, bicycle_parking, motorcycle_parking,pharmacy, doctors, dentist, place_of_worship, police, post_box, post_office, pub, biergarten, recycling, restaurant, food_court,fast_food, telephone, emergency_phone, taxi, theatre, toilets, drinking_water, prison, hunting_stand, nightclub, veterinary,social_facility, charging_station, water_park, playground, miniature_golf, golf_course, picnic_table,mast, water_tower, lighthouse, windmill, obelisk, spring, memorial, monument, archaeological_site,bus_stop, elevator, traffic_signals, generator, wind}\'::text[] OR tags->\'shop\' is not null) AS amenity_points_poly) as foo using unique osm_id using srid=OSM_SRID"',
+        },
+        'symstations_data': {
+            0:  '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT GEOMETRY  as geometry, OSM_NAME_COLUMN as name,  osm_id, coalesce(tags->\'railway\', tags->\'highway\', tags->\'amenity\') as railway, tags->\'metro\' as metro, tags->\'aerialway\' as aerialway, CASE tags->\'railway\'  WHEN \'station\' THEN 1  WHEN \'subway_entrance\'  THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE tags->\'{railway, aerialway,public_transport}\'::text[] && \'{station, halt, tram_stop, subway_entrance, platform}\'::text[]) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+            12: '"geometry from (SELECT  *,  NULL AS nullid FROM (SELECT GEOMETRY  as geometry, OSM_NAME_COLUMN as name,  osm_id, coalesce(tags->\'railway\', tags->\'highway\', tags->\'amenity\') as railway, tags->\'metro\' as metro, tags->\'aerialway\' as aerialway, CASE tags->\'railway\'  WHEN \'station\' THEN 1  WHEN \'subway_entrance\'  THEN 3  ELSE 2 END AS prio FROM OSM_PREFIX_transport_points WHERE tags->\'{railway, aerialway,public_transport}\'::text[] && \'{station, halt, tram_stop, subway_entrance, platform}\'::text[]) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+        },
+        'symstations_metro_data': {
+            0:  '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT GEOMETRY  as geometry, OSM_NAME_COLUMN  AS name, osm_id FROM OSM_PREFIX_transport_points WHERE tags->\'railway\' = \'station\' AND       tags->\'operator\' IN (\'Tisséo\', \'RATP\',\'STAR\',\'TCL\',\'Transpole\')) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+            12: '"geometry from (SELECT   *,   NULL AS nullid FROM (SELECT GEOMETRY  as geometry, OSM_NAME_COLUMN  AS name, osm_id FROM OSM_PREFIX_transport_points WHERE tags->\'railway\' = \'station\' AND       tags->\'operator\' IN (\'Tisséo\', \'RATP\',\'STAR\',\'TCL\',\'Transpole\')) AS stations) as foo using unique osm_id using srid=OSM_SRID"',
+        },
+        'display_symamenities_z18': {
+            0: 0,
+            18: 1
+        },
+        'display_symamenities_z17': {
+            0: 0,
+            17: 1
+        },
+        'display_symamenities_z16': {
+            0: 0,
+            16: 1
+        },
+        'display_symamenities_z15': {
+            0: 0,
+            15: 1
+        },
+        'display_symamenities_z14': {
+            0: 0,
+            14: 1
+        },
+        'display_symamenities_z13': {
+            0: 0,
+            13: 1
+        },
+        'display_symamenities_z12': {
+            0: 0,
+            12: 1
+        },
+        'display_symamenities_z11': {
+            0: 0,
+            11: 1
+        },
+
+        # Stations properties: bus, train, tram, metro
+        # bus stop
+        'symstation_busstop_lbl_size': {
+            0: 0,
+            17: 8.23
+        },
+        'symstation_busstop_lbl_txt': {
+            0: "' '",
+            17: "'[name]'"
+        },
+        'symstation_busstop_lbl_clr': "15 101 204",
+        'symstation_busstop_lbl_font': "NotoSansUIRegular",
+        'symstation_busstop_symbol': {
+            0: "nosymbol",
+            16: "symbols-square-bus-svg",
+            17: "symbols-bus-stop-12-svg"
+        },
+        'symstation_busstop_size': {
+            0: 0,
+            16: 6,
+            17: 12
+        },
+        # bus station
+        'symstation_bus_lbl_size': {
+            0: 0,
+            17: 8.23
+        },
+        'symstation_bus_lbl_txt': {
+            0: "' '",
+            17: "'[name]'"
+        },
+        'symstation_bus_lbl_clr': "15 101 204",
+        'symstation_bus_lbl_font': "NotoSansUIRegular",
+        'symstation_bus_symbol': {
+            0: "nosymbol",
+            16: "symbols-bus-station-n-16-png"
+        },
+        # train
+        'symstation_train_lbl_size': {
+            0: 0,
+            14: 8.23
+        },
+        'symstation_train_lbl_txt': {
+            0: "' '",
+            14: "'[name]'"
+        },
+        'symstation_train_lbl_clr': "118 101 255",
+        'symstation_train_lbl_font': "NotoSansUIRegular",
+        'symstation_train_symbol': {
+            0: "nosymbol",
+            12: "symbols-train-png"
+        },
+        'symstation_train_size': {
+            0: 0,
+            12: 8,
+            14: 10
+        },
+        # metro
+        'symsubway_entrance_symbol': "symbols-entrance-10-svg",
+        'symsubway_entrance_size': {
+            0: 0,
+            18: 5
+        },
+        'symstation_metro_lbl_size': {
+            0: 0,
+            14: 7
+        },
+        'symstation_metro_lbl_txt': {
+            0: "' '",
+            14: "'[name]'"
+        },
+        'symstation_metro_lbl_clr': "118 101 255",
+        'symstation_metro_lbl_font': "NotoSansUIBold",
+        'symstation_metro_symbol': {
+            0: "nosymbol",
+            13: "symbols-square-svg",
+            14: "symbols-metro-png"
+        },
+        'symstation_metro_size': {
+            0: 0,
+            13: 6,
+            14: 14,
+            16: 16
+        },
+
+        # tram
+        'symstation_tram_lbl_size': {
+            0: 0,
+            15: 6
+        },
+        'symstation_tram_lbl_txt': {
+            0: "' '",
+            15: "'[name]'"
+        },
+        'symstation_tram_lbl_clr': "118 101 255",
+        'symstation_tram_lbl_font': "NotoSansUIRegular",
+        'symstation_tram_symbol': {
+            0: "nosymbol",
+            # 12: "symbols-square-svg"
+            13: "symbols-square-svg"
+        },
+        'symstation_tram_size': {
+            0: 0,
+            13: 4,
+            15: 6
+        },
+
+        # amenities point properties
+
+        'sym_lbl_size': {
+            0: 0,
+            16: 7.4
+        },
+        'sym_lbl_txt': {
+            0: "' '",
+            16: "'[name]'"
+        },
+        'sympharmacy_symbol': {
+            0: "nosymbol",
+            16: "symbols-pharmacy-16-svg"
+        },
+        'sym_lbl_ol_width': 2.3814773980154356,
+        'sympharmacy_lbl_clr': "0 133 48",
+        'sym_lbl_ol_clr': "255 255 255",
+        'sympharmacy_lbl_font': "NotoSansUIRegular",
+
+        'symmotorparking_symbol': {
+            0: "nosymbol",
+            16: "symbols-motorcycle-parking-16-svg"
+        },
+        'symbikeparking_symbol': {
+            0: "nosymbol",
+            16: "symbols-bicycle-parking-16-svg"
+        },
+        'symparking_symbol': {
+            0: "nosymbol",
+            15: "symbols-parking-svg"
+        },
+        'sympost_symbol': {
+            0: "nosymbol",
+            16: "symbols-post-office-14-svg"
+        },
+        'sympost_size': {
+            0: 0,
+            16: 14
+        },
+        'sympostbox_symbol': {
+            0: "nosymbol",
+            17: "symbols-post-box-12-svg"
+        },
+        'sympostbox_size': {
+            0: 0,
+            17: 12,
+        },
+        'symhospital_lbl_clr': "16 82 188",
+        'symhospital_lbl_font': "NotoSansUIRegular",
+        'symhospital_symbol': {
+            0: "nosymbol",
+            15: "symbols-hospital-16-svg"
+        },
+        'symhospital_lbl_txt': {
+            0: "' '",
+            15: "'[name]'"
+        },
+        'symhospital_lbl_size': {
+            0: 0,
+            15: 7.4
+        },
+        # amenities polygon properties
+        # aeroways properties
+
+    }
 }
 
 # these are the preconfigured styles that can be called when creating the final mapfile,
@@ -1513,7 +1780,11 @@ style_aliases = {
    "bing":"default,outlined,bing",
    "michelin":"default,outlined,centerlined,michelin",
 
-   "bw":"default,outlined,centerlined,bw"
+   "bw":"default,outlined,centerlined,bw",
+
+   # a style adding symbols for poi and other features, ala google map
+   "defaultsymbols": "default,symbols",
+   "googlesymbols": "default,outlined,google,symbols"
 }
 
 

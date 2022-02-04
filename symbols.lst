@@ -24,6 +24,18 @@ SYMBOLSET
       IMAGE "symbols/airport.p.16.png"
     END
 
+    SYMBOL
+      NAME "airport-20"
+      TYPE pixmap
+      IMAGE "symbols/png/airport-20.png"
+    END
+
+    SYMBOL
+      NAME "airport-svg"
+      TYPE svg
+      IMAGE "symbols/airport.svg"
+    END
+
     # test:
     SYMBOL
       NAME "test"
@@ -258,6 +270,11 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-aerodrome-svg
+    IMAGE symbols/png/aerodrome.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME aerodrome
     IMAGE symbols/png/aerodrome.png
     TYPE pixmap
   END

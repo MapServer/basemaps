@@ -12,6 +12,47 @@
     CLASSITEM "railway"
 
     CLASS
+      EXPRESSION {bus_station}
+      LABEL
+        SIZE _symstation_bus_lbl_size
+        COLOR _symstation_bus_lbl_clr
+        TEXT _symstation_bus_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 4
+        POSITION lc
+        FONT _symstation_bus_lbl_font
+        TYPE truetype
+        MAXLENGTH 0
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_bus_symbol
+        END
+      END
+    END
+    
+    CLASS
+      EXPRESSION {bus_stop}
+      LABEL
+        SIZE _symstation_busstop_lbl_size
+        COLOR _symstation_busstop_lbl_clr
+        TEXT _symstation_busstop_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 4
+        POSITION lc
+        FONT _symstation_busstop_lbl_font
+        TYPE truetype
+        MAXLENGTH 0
+        ALIGN CENTER
+        STYLE
+            SYMBOL _symstation_busstop_symbol
+            SIZE _symstation_busstop_size
+        END
+      END
+    END
+    
+    CLASS
       EXPRESSION {station}
       LABEL
         SIZE _symstation_train_lbl_size

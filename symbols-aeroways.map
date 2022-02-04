@@ -13,9 +13,43 @@ LAYER
     CLASS
       EXPRESSION /^Aéroport.*$/
       LABEL
-        PARTIALS false
+        SIZE _symairport_lbl_size
+        COLOR _symairport_lbl_clr
+        TEXT _symairport_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 2
+        POSITION lc
+        FONT _symairport_lbl_font
+        TYPE truetype
+        MAXLENGTH 0
+        ALIGN CENTER
+        WRAP ' '
+        FORCE TRUE
         STYLE
-          SYMBOL "airport"
+          SYMBOL _symairport_symbol
+        END
+      END
+  END
+
+  CLASS
+      EXPRESSION /^[Aérodrome|Altisurface].*$/
+      LABEL
+        SIZE _symaerodrome_lbl_size
+        COLOR _symaerodrome_lbl_clr
+        TEXT _symaerodrome_lbl_txt
+        OUTLINECOLOR _sym_lbl_ol_clr
+        OUTLINEWIDTH _sym_lbl_ol_width
+        OFFSET 0 2
+        POSITION lc
+        FONT _symaerodrome_lbl_font
+        TYPE truetype
+        MAXLENGTH 0
+        ALIGN CENTER
+        WRAP ' '
+        FORCE TRUE
+        STYLE
+          SYMBOL _symaerodrome_symbol
         END
       END
     END

@@ -2018,27 +2018,6 @@
       END
     END
     CLASS
-     EXPRESSION ('[feature]' = 'highway_bus_stop')
-      LABEL
-        partials false
-        SIZE 7.4
-        COLOR "#094AFF"
-        TEXT '[name]'
-        OUTLINECOLOR "#ffffff99"
-        OUTLINEWIDTH 2.3814773980154356
-        OFFSET 0 0
-        POSITION lc
-        FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-        STYLE
-          SYMBOL "symbols-bus-stop-12-svg"
-        END
-      END
-    END
-    CLASS
      EXPRESSION ('[feature]' = 'amenity_bicycle_rental')
       LABEL
         STYLE
@@ -2279,22 +2258,6 @@
           SYMBOL "symbols-camping-16-svg"
         END
       END
-    END
-    CLASS
-     EXPRESSION ('[feature]' = 'amenity_bus_station')
-      LABEL
-        STYLE
-          SYMBOL "symbols-bus-station-n-16-png"
-          size 14
-        END
-      END
-    END
-    CLASS
-     EXPRESSION ('[feature]' = 'highway_bus_stop')
-        STYLE
-          SYMBOL "symbols-square-bus-svg"
-          size 5
-        END
     END
     CLASS
      EXPRESSION ('[feature]' = 'amenity_shelter')

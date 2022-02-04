@@ -80,7 +80,7 @@
     END
 
     CLASS
-      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_motorcycle_parking') )
+      EXPRESSION ( ('[feature]' = 'amenity_motorcycle_parking') )
       LABEL
         STYLE
         OPACITY 0.33
@@ -89,7 +89,7 @@
       END
     END
     CLASS
-      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_bicycle_parking') )
+      EXPRESSION (('[feature]' = 'amenity_bicycle_parking') )
       LABEL
         STYLE
         OPACITY 0.33
@@ -98,7 +98,7 @@
       END
     END
     CLASS
-      EXPRESSION (('[access]' != '') AND ('[access]' != 'public') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_parking') )
+      EXPRESSION (('[feature]' = 'amenity_parking') )
       LABEL
         STYLE
         OPACITY 0.33

@@ -19,7 +19,6 @@ LAYER
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
     CLASS
-      #if _display_geometries == 1
       STYLE
          COLOR _building_clr
          OPACITY 50
@@ -28,9 +27,7 @@ LAYER
          OUTLINECOLOR _building_ol_clr
          WIDTH _building_ol_width
       END
-      #endif
 #if _label_buildings == 1
-#if _display_labels == 1
       LABEL
          TYPE TRUETYPE
          FONT _building_font
@@ -44,7 +41,6 @@ LAYER
          MAXLENGTH 6
          ALIGN CENTER
       END
-#endif
 #endif
    END
 END
