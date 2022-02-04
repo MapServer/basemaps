@@ -1784,7 +1784,9 @@ style_aliases = {
 
    # a style adding symbols for poi and other features, ala google map
    "defaultsymbols": "default,symbols",
-   "googlesymbols": "default,outlined,google,symbols"
+   "googlesymbols": "default,outlined,google,symbols",
+   "michelinsymbols": "default,outlined,centerlined,michelin,symbols",
+   "bingsymbols": "default,outlined,bing,symbols"
 }
 
 

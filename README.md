@@ -25,5 +25,73 @@
   "bingosm2pgsql":"default,outlined,bing,osm2pgsql" then run `make STYLE=bingosm2pgsql` to create the osm-bingosm2pgsql.map
 
 - Most configuration and tweaks should be done in generate_style.py.
-  documentation as to how to edit can be fount at
+  documentation as to how to edit can be found at
   https://mapserver.org/basemaps/style.html.
+
+# Available styles
+## default style
+zoom 10
+
+![default style, zoom 10](style-default-z10.png)
+
+zoom 14
+
+![default style, zoom 14](style-default-z14.png)
+
+## google style
+zoom 10
+
+![google style, zoom 10](style-google-z10.png)
+
+zoom 14
+
+![google style, zoom 14](style-google-z14.png)
+
+## bing style
+zoom 10
+
+![bing style, zoom 10](style-bing-z10.png)
+
+zoom 14
+
+![bing style, zoom 14](style-bing-z14.png)
+
+## michelin style
+zoom 10
+
+![michelin style, zoom 10](style-michelin-z10.png)
+
+zoom 14
+
+![michelin style, zoom 14](style-michelin-z14.png)
+
+## bw style
+zoom 10
+
+![bw style, zoom 10](style-bw-z10.png)
+
+zoom 14
+
+![bw style, zoom 14](style-bw-z14.png)
+
+## Symbol style
+To produce a mapfile displaying symbols, load OSM data with imposm3 using the file `imposm3-mapping-symbols.json` as mapping file
+
+After OSM data is loaded, run post-symbols.sql to create some indexes that will speed-up queries.
+(this file should be built with make command)
+
+The following style aliases based on symbol style are defined:
+ - defaultsymbols
+ - googlesymbols
+ - bingsymbols
+ - michelinsymbols
+
+zoom 10
+
+![symbols style, zoom 10](style-symbols-z10.png)
+
+zoom 16
+
+![symbols style, zoom 16](style-symbols-z16.png)
+
+

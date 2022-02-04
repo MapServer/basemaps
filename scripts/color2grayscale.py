@@ -8,6 +8,7 @@ from random import randint
 #
 # usage: python color2grayscale(path to mapfile, <color type>
 # where <color type> can be one of grayscale, random, invert, luminance
+# todo: manage hex colors
 
 f = open(sys.argv[1], 'r')
 

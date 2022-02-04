@@ -42,7 +42,7 @@ includes=land.map landusage.map borders.map highways.map places.map \
 
 mapfile=osm-$(STYLE).map
 
-all:$(mapfile) boundaries.sql
+all:$(mapfile) boundaries.sql post-symbols.sql
 
 generated/$(STYLE)style.msinc: generate_style.py
 	python generate_style.py -s $(STYLE) -g > $@
@@ -117,6 +117,10 @@ $(mapfile):$(template) $(includes)
 	$(SED) -e 's/OSM_DB_CONNECTION/$(OSM_DB_CONNECTION)/g' $(mapfile)
 
 boundaries.sql: boundaries.sql.in
+	cp -f $< $@
+	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+
+post-symbols.sql: post-symbols.sql.in
 	cp -f $< $@
 	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
 
