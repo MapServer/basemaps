@@ -187,13 +187,7 @@
                 "common",
                 "nature_reserve", "water_park", "miniature_golf",  "picnic_table"
               ],
-              "natural": [
-                "wood",
-                "land",
-                "scrub",
-                "wetland",
-                "heath", "spring"
-              ],
+              "natural": ["wood","land","scrub","wetland","heath", "spring", "peak"],
               "highway": [
                 "pedestrian",
                 "footway", "bus_stop", "elevator", "traffic_signals"
@@ -211,7 +205,7 @@
                 "hedge"
               ],
               "tourism": [
-                "zoo", "artwork", "alpine_hut", "camp_site", "caravan_site", "chalet", "guest_house", "hostel", "hotel", "motel", "information", "museum", "viewpoint", "picnic_site"
+                "gallery","zoo", "artwork", "alpine_hut", "camp_site", "caravan_site", "chalet", "guest_house", "hostel", "hotel", "motel", "information", "museum", "viewpoint", "picnic_site"
               ],
               "man_made": [
                 "pier", "mast", "water_tower", "lighthouse", "windmill", "obelisk"
@@ -601,7 +595,16 @@
             ],
             "type": "point",
             "mapping": {
-                "amenity": ["__any__"]
+              "amenity": ["__any__"],
+              "shop": [ "__any__"],
+              "tourism": [ "artwork", "alpine_hut", "camp_site", "caravan_site", "chalet", "guest_house", "hostel", "hotel",
+                          "motel", "information", "museum", "viewpoint", "picnic_site"],
+              "leisure":  ["water_park", "playground", "miniature_golf", "golf_course", "picnic_table"],
+              "man_made": [ "mast", "water_tower", "lighthouse", "windmill", "obelisk"],
+              "natural": [ "spring", "peak"],
+              "historic": [ "memorial", "monument", "archaeological_site"],
+              "highway": [ "bus_stop", "elevator", "traffic_signals"],
+              "power": [ "generator"],
             }
         },
         "barrierpoints": {

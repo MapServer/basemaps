@@ -1,0 +1,43 @@
+-- 03 fevrier 2022
+-- author Nicolas Ribot
+-- SQL to launch after imposm3 import when using imposm3-mapping-symbols.json mapping:
+
+-- index from where clauses in the data
+create index on OSM_PREFIX_amenities using gin(tags);
+create index on OSM_PREFIX_transport_points using gin(tags);
+create index on OSM_PREFIX_transport_points using gin((tags->'{railway, aerialway,public_transport}'::text[]));
+create index on OSM_PREFIX_transport_areas (type);
+create index on OSM_PREFIX_waterways_gen0 (type);
+create index on OSM_PREFIX_waterways_gen1 (type);
+create index on OSM_PREFIX_roads_gen0 (type);
+create index on OSM_PREFIX_roads_gen1 (type);
+create index on OSM_PREFIX_roads (z_order);
+create index on OSM_PREFIX_roads (st_length(geometry));
+create index on OSM_PREFIX_railways_gen0 (type);
+create index on OSM_PREFIX_railways_gen1 (type);
+create index on OSM_PREFIX_railways (type);
+create index on OSM_PREFIX_landusages_gen1 (type);
+create index on OSM_PREFIX_landusages using gin(tags);
+create index on OSM_PREFIX_landusages ((tags->'shop'));
+create index on OSM_PREFIX_landusages using gin((tags->'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]));
+create index on OSM_PREFIX_landusages (type);
+create index on OSM_PREFIX_places (type);
+
+vacuum analyse OSM_PREFIX_amenities;
+vacuum analyse OSM_PREFIX_transport_points;
+vacuum analyse OSM_PREFIX_transport_points;
+vacuum analyse OSM_PREFIX_transport_areas;
+vacuum analyse OSM_PREFIX_waterways_gen0;
+vacuum analyse OSM_PREFIX_waterways_gen1;
+vacuum analyse OSM_PREFIX_roads_gen0;
+vacuum analyse OSM_PREFIX_roads_gen1;
+vacuum analyse OSM_PREFIX_roads;
+vacuum analyse OSM_PREFIX_railways_gen0;
+vacuum analyse OSM_PREFIX_railways_gen1;
+vacuum analyse OSM_PREFIX_railways;
+vacuum analyse OSM_PREFIX_landusages_gen1;
+vacuum analyse OSM_PREFIX_landusages;
+vacuum analyse OSM_PREFIX_landusages;
+vacuum analyse OSM_PREFIX_landusages;
+vacuum analyse OSM_PREFIX_landusages;
+vacuum analyse OSM_PREFIX_places;

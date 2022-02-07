@@ -17,6 +17,20 @@ SYMBOLSET
      points 1 1 end
      filled true
     END
+    # shops as small circle
+    SYMBOL
+     name "shopcircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
+    # shops as small circle
+    SYMBOL
+     name "amenitiescircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
 
     SYMBOL
       NAME "airport"
@@ -46,6 +60,11 @@ SYMBOLSET
   SYMBOL
     NAME symbols-shop-alcohol-16-svg
     IMAGE symbols/png/shop_alcohol.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-interior-decoration-14-svg
+    IMAGE symbols/png/interior_decoration-14.png
     TYPE pixmap
   END
   SYMBOL
@@ -695,7 +714,7 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-spring-svg
-    IMAGE symbols/png/spring.png
+    IMAGE symbols/png/spring-14.png
     TYPE pixmap
   END
   SYMBOL
@@ -874,6 +893,11 @@ SYMBOLSET
     TYPE pixmap
   END
   SYMBOL
+    NAME symbols-shop-marketplace
+    IMAGE symbols/png/marketplace-14.png
+    TYPE pixmap
+  END
+  SYMBOL
     NAME symbols-beach-coarse-png
     IMAGE symbols/png/beach_coarse.png
     TYPE pixmap
@@ -884,8 +908,13 @@ SYMBOLSET
     TYPE pixmap
   END
   SYMBOL
-    NAME symbols-train-png
+    NAME symbols-sncf-png
     IMAGE symbols/png/logo-sncf.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-train-png
+    IMAGE symbols/png/square-bus.png
     TYPE pixmap
   END
   SYMBOL
@@ -950,6 +979,11 @@ SYMBOLSET
   END
   SYMBOL
     NAME symbols-post-office-14-svg
+    IMAGE symbols/png/post_office-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-post-france
     IMAGE symbols/png/laposte.png
     TYPE pixmap
   END

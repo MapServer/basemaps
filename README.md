@@ -86,12 +86,27 @@ The following style aliases based on symbol style are defined:
  - bingsymbols
  - michelinsymbols
 
-zoom 10
+### default vs defaultsymbols styles
 
-![symbols style, zoom 10](style-symbols-z10.png)
+
+zoom 15
+
+![dzoom 15](style-default-z15.png)
+![dszoom 15](style-defaultsymbols-z15.png) 
 
 zoom 16
 
-![symbols style, zoom 16](style-symbols-z16.png)
+![szoom 16](style-default-z16.png)
+![dszoom 16](style-defaultsymbols-z16.png) 
+
+zoom 17
+
+![dzoom 17](style-default-z17.png)
+![dszoom 17](style-defaultsymbols-z17.png) 
+
+zoom 18
+
+![dzoom 18](style-default-z18.png)
+![dszoom 18](style-defaultsymbols-z18.png) 
 
 

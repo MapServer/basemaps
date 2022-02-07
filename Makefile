@@ -17,7 +17,7 @@ OSM_NAME_COLUMN?=name
 #OSM_EXTENT?=-180 -90 180 90
 OSM_SRID?=3857
 OSM_UNITS?=meters
-OSM_DB_CONNECTION?=host=localhost dbname=osm user=nicolas password=osm port=8432
+OSM_DB_CONNECTION?=host=localhost dbname=osm user=osm password=osm port=5432
 OSM_EXTENT?=-20000000 -20000000 20000000 20000000
 OSM_FORCE_POSTGIS_EXTENT?=0
 OSM_WMS_SRS?=EPSG:900913 EPSG:4326 EPSG:3857 EPSG:2154 EPSG:310642901 EPSG:4171 EPSG:310024802 EPSG:310915814 EPSG:310486805 EPSG:310702807 EPSG:310700806 EPSG:310547809 EPSG:310706808 EPSG:310642810 EPSG:310642801 EPSG:310642812 EPSG:310032811 EPSG:310642813 EPSG:2986 EPSG:3035
@@ -30,7 +30,7 @@ STYLE?=default
 template=osmbase.map
 
 includes=land.map landusage.map borders.map highways.map places.map \
-         symbols-aeroways.map symbols-amenities-pg.map symbols-amenities-pt.map symbols-stations.map \
+         symbols-aeroways.map symbols-amenities.map symbols-stations.map \
 		 generated/$(STYLE)style.msinc \
 		 generated/$(STYLE)level0.msinc generated/$(STYLE)level1.msinc generated/$(STYLE)level2.msinc generated/$(STYLE)level3.msinc \
 		 generated/$(STYLE)level4.msinc generated/$(STYLE)level5.msinc generated/$(STYLE)level6.msinc generated/$(STYLE)level7.msinc \

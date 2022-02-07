@@ -1,4 +1,4 @@
-#if _display_symbols == 1
+#if _display_symstations == 1
   LAYER
     GROUP "default"
     STATUS ON
@@ -11,9 +11,11 @@
     DATA _symstations_data
     CLASSITEM "railway"
 
+#if _display_symstations_bus == 1
     CLASS
       EXPRESSION {bus_station}
       LABEL
+#if _display_symstations_bus_lbl == 1
         SIZE _symstation_bus_lbl_size
         COLOR _symstation_bus_lbl_clr
         TEXT _symstation_bus_lbl_txt
@@ -25,6 +27,7 @@
         TYPE truetype
         MAXLENGTH 0
         ALIGN CENTER
+#endif
         STYLE
             SYMBOL _symstation_bus_symbol
         END
@@ -34,6 +37,7 @@
     CLASS
       EXPRESSION {bus_stop}
       LABEL
+#if _display_symstations_bus_lbl == 1
         SIZE _symstation_busstop_lbl_size
         COLOR _symstation_busstop_lbl_clr
         TEXT _symstation_busstop_lbl_txt
@@ -45,16 +49,20 @@
         TYPE truetype
         MAXLENGTH 0
         ALIGN CENTER
+#endif
         STYLE
             SYMBOL _symstation_busstop_symbol
-            SIZE _symstation_busstop_size
+             SIZE _symstation_busstop_size
         END
       END
     END
-    
+#endif
+
+#if _display_symstations_train == 1
     CLASS
       EXPRESSION {station}
-      LABEL
+      LABEL 
+#if _display_symstations_train_lbl == 1          
         SIZE _symstation_train_lbl_size
         COLOR _symstation_train_lbl_clr
         TEXT _symstation_train_lbl_txt
@@ -67,16 +75,19 @@
         MAXLENGTH 0
         WRAP " "
         ALIGN CENTER
+#endif     
         STYLE
             SYMBOL _symstation_train_symbol
             size _symstation_train_size
         END
       END
     END
-
+#endif
+#if _display_symstations_tram == 1
     CLASS
       EXPRESSION {tram_stop,halt}
       LABEL
+#if _display_symstations_tram_lbl == 1
         SIZE _symstation_tram_lbl_size
         COLOR _symstation_tram_lbl_clr
         TEXT _symstation_tram_lbl_txt
@@ -86,27 +97,33 @@
         POSITION lc
         FONT _symstation_tram_lbl_font
         TYPE truetype
+        WRAP " "
         ALIGN CENTER
+#endif      
         STYLE
             SYMBOL _symstation_tram_symbol
             size _symstation_tram_size
         END
       END
     END
-
+#endif
+    
+#if _display_symstations_metro == 1
     CLASS
       EXPRESSION ('[metro]' = 'metro')
       LABEL
+#if _display_symstations_metro_lbl == 1
         SIZE _symstation_metro_lbl_size
         COLOR _symstation_metro_lbl_clr
         TEXT _symstation_metro_lbl_txt
         OUTLINECOLOR _sym_lbl_ol_clr
         OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 2
+        OFFSET 0 0
         POSITION lc
         FONT _symstation_metro_lbl_font
         TYPE truetype
         ALIGN CENTER
+#endif
         STYLE
             SYMBOL _symstation_metro_symbol
             size _symstation_metro_size
@@ -125,7 +142,9 @@
       END
     end
   END
+#endif
 
+#if _display_symstations_metro == 1
   LAYER
     GROUP "default"
     STATUS ON
@@ -139,22 +158,26 @@
 
     CLASS
       LABEL
+#if _display_symstations_metro_lbl == 1
         SIZE _symstation_metro_lbl_size
         COLOR _symstation_metro_lbl_clr
         TEXT _symstation_metro_lbl_txt
         OUTLINECOLOR _sym_lbl_ol_clr
         OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 2
+        OFFSET 0 0
         POSITION lc
         PRIORITY 5
         FONT _symstation_metro_lbl_font
         TYPE truetype
         ALIGN CENTER
+        WRAP " "
+#endif
         STYLE
             SYMBOL _symstation_metro_symbol
             size _symstation_metro_size
         END
       END
     END
+#endif
   END
 #endif

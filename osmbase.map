@@ -62,8 +62,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 #include LEVELPASTER(THEME,1)
@@ -74,8 +73,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -87,8 +85,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -100,8 +97,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -113,8 +109,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -126,8 +121,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -139,8 +133,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -152,8 +145,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -165,8 +157,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -178,8 +169,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -191,8 +181,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -204,8 +193,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -217,8 +205,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -230,8 +217,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -243,8 +229,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -256,8 +241,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -269,8 +253,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -282,8 +265,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 
@@ -295,8 +277,7 @@ END
 #include "borders.map"
 #include "places.map"
 #include "symbols-aeroways.map"
-#include "symbols-amenities-pt.map"
-#include "symbols-amenities-pg.map"
+#include "symbols-amenities.map"
 #include "symbols-stations.map"
 
 SYMBOL

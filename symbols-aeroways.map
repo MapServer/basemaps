@@ -10,48 +10,55 @@ LAYER
     NAME layername(symairport,_layer_suffix)
     DATA _symairport_data
     CLASSITEM "name"
+#if _display_symairways == 1
     CLASS
       EXPRESSION /^Aéroport.*$/
       LABEL
-        SIZE _symairport_lbl_size
-        COLOR _symairport_lbl_clr
-        TEXT _symairport_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 2
-        POSITION lc
-        FONT _symairport_lbl_font
-        TYPE truetype
-        MAXLENGTH 0
-        ALIGN CENTER
-        WRAP ' '
-        FORCE TRUE
+#if _display_symairways_lbl == 1
+            SIZE _symairport_lbl_size
+            COLOR _symairport_lbl_clr
+            TEXT _symairport_lbl_txt
+            OUTLINECOLOR _sym_lbl_ol_clr
+            OUTLINEWIDTH _sym_lbl_ol_width
+            OFFSET 0 2
+            POSITION lc
+            FONT _symairport_lbl_font
+            TYPE truetype
+            MAXLENGTH 0
+            ALIGN CENTER
+            WRAP ' '
+            FORCE TRUE
+#endif
         STYLE
           SYMBOL _symairport_symbol
         END
       END
   END
-
+#endif
+#if _display_symaerodrome == 1
   CLASS
       EXPRESSION /^[Aérodrome|Altisurface].*$/
       LABEL
-        SIZE _symaerodrome_lbl_size
-        COLOR _symaerodrome_lbl_clr
-        TEXT _symaerodrome_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 2
-        POSITION lc
-        FONT _symaerodrome_lbl_font
-        TYPE truetype
-        MAXLENGTH 0
-        ALIGN CENTER
-        WRAP ' '
-        FORCE TRUE
+#if _display_symaerodrome_lbl == 1
+            SIZE _symaerodrome_lbl_size
+            COLOR _symaerodrome_lbl_clr
+            TEXT _symaerodrome_lbl_txt
+            OUTLINECOLOR _sym_lbl_ol_clr
+            OUTLINEWIDTH _sym_lbl_ol_width
+            OFFSET 0 2
+            POSITION lc
+            FONT _symaerodrome_lbl_font
+            TYPE truetype
+            MAXLENGTH 0
+            ALIGN CENTER
+            WRAP ' '
+            FORCE TRUE
+#endif
         STYLE
           SYMBOL _symaerodrome_symbol
         END
       END
     END
+#endif
 END
 #endif
