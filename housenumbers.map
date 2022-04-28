@@ -1,0 +1,35 @@
+#if _display_housenumbers == 1
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "OSM_DB_CONNECTION"
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE POINT
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+		EXTENT OSM_EXTENT
+#endif
+		NAME layername(housenumbers,_layer_suffix)
+		DATA _housenumbers_data
+		CLASS
+			LABEL
+				SIZE _housenumbers_lbl_size
+				COLOR _housenumbers_lbl_clr
+				TEXT _housenumbers_lbl_txt
+				OUTLINECOLOR _housenumbers_lbl_ol_clr
+				OUTLINEWIDTH _housenumbers_lbl_ol_width
+				POSITION cc
+				FONT _housenumbers_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				ALIGN CENTER
+				WRAP ' '
+				FORCE FALSE
+			END
+		END
+	END
+#endif
