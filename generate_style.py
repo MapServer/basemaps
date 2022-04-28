@@ -1328,22 +1328,10 @@ namedstyles = {
 			0: '"way from (select way, osm_id, tunnel, railway as type from OSM_PREFIX_line where railway=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
 		},
 		'landusage_data': {
-			0: '"way from (select way, osm_id, name, type from (select way, st_area(way) as area, osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'wood\',\'residential\')\
-         order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-			6: '"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\')\
-         order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-			9: '"way from (select way, osm_id, name, type from (select way, st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
-         \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
-         \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
-         \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-			12: '"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
-         where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
-         \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
-         \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
-         \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
+			0: '"way from (select way, osm_id, name, type from (select way, st_area(way) as area, osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 where type in (\'forest\',\'wood\',\'residential\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
+			6: '"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
+			9: '"way from (select way, osm_id, name, type from (select way, st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\'brownfield\',\'residential\',\'school\',\'college\',\'university\',\'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
+			12: '"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\'brownfield\',\'residential\',\'school\',\'college\',\'university\',\'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
 		},
 		'roads_data': {
 			0: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway in (\'motorway\',\'trunk\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
@@ -1353,7 +1341,6 @@ namedstyles = {
 			11: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
 			14: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway||(case when bridge=\'yes\' then 1 else 0 end)||(case when tunnel=\'yes\' then 1 else 0 end) as type from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
 		},
-
 	},
 	'bw': {
 		'park_clr': "0 0 0",
@@ -1646,6 +1633,28 @@ namedstyles = {
 
 		'display_peak_lbl': {0: 0, 13: 1}
 		# todo: all symbols here ?
+	},
+	'housenumbers': {
+		# begin displaying housenumbers at z17
+		'display_housenumbers': {0: 0, 17: 1},
+
+
+		'housenumbers_data': {
+			0: 'nodata',
+			17: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, type AS label, osm_id FROM OSM_PREFIX_housenumbers) AS numbers) as foo using unique osm_id using srid=OSM_SRID"',
+			18: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, CASE WHEN name <> \'\' AND type <> \'\' THEN name || \' (\' || type || \')\' WHEN name <> \'\' THEN name ELSE type END AS label, osm_id FROM OSM_PREFIX_housenumbers) AS numbers) as foo using unique osm_id using srid=OSM_SRID"'
+		},
+
+		'housenumbers_lbl_size': {
+			0: 0,
+			17: 8,
+			18: 6
+		},
+		'housenumbers_lbl_clr': '100 100 100',
+		'housenumbers_lbl_ol_clr': '255 255 255',
+		'housenumbers_lbl_ol_width': 1.0,
+		'housenumbers_lbl_txt': "'[label]'",
+		'housenumbers_lbl_font': "NotoSansUIRegular"
 	}
 }
 
@@ -1671,7 +1680,13 @@ style_aliases = {
 	"defaultsymbols": "default,symbols",
 	"googlesymbols": "default,outlined,google,symbols",
 	"michelinsymbols": "default,outlined,centerlined,michelin,symbols",
-	"bingsymbols": "default,outlined,bing,symbols"
+	"bingsymbols": "default,outlined,bing,symbols",
+
+	# a style adding housenumbers
+	"defaultsymbolshousenumbers": "default,symbols,housenumbers",
+	"googlesymbolshousenumbers": "default,outlined,google,symbols,housenumbers",
+	"michelinsymbolshousenumbers": "default,outlined,centerlined,michelin,symbols,housenumbers",
+	"bingsymbolshousenumbers": "default,outlined,bing,symbols,housenumbers"
 }
 
 parser = argparse.ArgumentParser()

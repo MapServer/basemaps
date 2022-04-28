@@ -1,183 +1,188 @@
 #if _display_symstations == 1
-  LAYER
-    GROUP "default"
-    STATUS ON
-    CONNECTIONTYPE POSTGIS
-    CONNECTION "OSM_DB_CONNECTION"
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    TYPE POINT
-    NAME layername(symstations,_layer_suffix)
-    DATA _symstations_data
-    CLASSITEM "railway"
-
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "OSM_DB_CONNECTION"
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE POINT
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+		EXTENT OSM_EXTENT
+#endif
+		NAME layername(symstations,_layer_suffix)
+		DATA _symstations_data
+		CLASSITEM "railway"
 #if _display_symstations_bus == 1
-    CLASS
-      EXPRESSION {bus_station}
-      LABEL
+		CLASS
+			EXPRESSION {bus_station}
+			LABEL
 #if _display_symstations_bus_lbl == 1
-        SIZE _symstation_bus_lbl_size
-        COLOR _symstation_bus_lbl_clr
-        TEXT _symstation_bus_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 4
-        POSITION lc
-        FONT _symstation_bus_lbl_font
-        TYPE truetype
-        MAXLENGTH 0
-        ALIGN CENTER
+				SIZE _symstation_bus_lbl_size
+				COLOR _symstation_bus_lbl_clr
+				TEXT _symstation_bus_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 4
+				POSITION lc
+				FONT _symstation_bus_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				ALIGN CENTER
 #endif
-        STYLE
-            SYMBOL _symstation_bus_symbol
-        END
-      END
-    END
-    
-    CLASS
-      EXPRESSION {bus_stop}
-      LABEL
+				STYLE
+					SYMBOL _symstation_bus_symbol
+				END
+			END
+		END
+
+		CLASS
+			EXPRESSION {bus_stop}
+			LABEL
 #if _display_symstations_bus_lbl == 1
-        SIZE _symstation_busstop_lbl_size
-        COLOR _symstation_busstop_lbl_clr
-        TEXT _symstation_busstop_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 4
-        POSITION lc
-        FONT _symstation_busstop_lbl_font
-        TYPE truetype
-        MAXLENGTH 0
-        ALIGN CENTER
+				SIZE _symstation_busstop_lbl_size
+				COLOR _symstation_busstop_lbl_clr
+				TEXT _symstation_busstop_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 4
+				POSITION lc
+				FONT _symstation_busstop_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				ALIGN CENTER
 #endif
-        STYLE
-            SYMBOL _symstation_busstop_symbol
-             SIZE _symstation_busstop_size
-        END
-      END
-    END
+				STYLE
+					SYMBOL _symstation_busstop_symbol
+					SIZE _symstation_busstop_size
+				END
+			END
+		END
 #endif
 
 #if _display_symstations_train == 1
-    CLASS
-      EXPRESSION {station}
-      LABEL 
+		CLASS
+			EXPRESSION {station}
+			LABEL 
 #if _display_symstations_train_lbl == 1          
-        SIZE _symstation_train_lbl_size
-        COLOR _symstation_train_lbl_clr
-        TEXT _symstation_train_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 4
-        POSITION lc
-        FONT _symstation_train_lbl_font
-        TYPE truetype
-        MAXLENGTH 0
-        WRAP " "
-        ALIGN CENTER
-#endif     
-        STYLE
-            SYMBOL _symstation_train_symbol
-            size _symstation_train_size
-        END
-      END
-    END
+				SIZE _symstation_train_lbl_size
+				COLOR _symstation_train_lbl_clr
+				TEXT _symstation_train_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 4
+				POSITION lc
+				FONT _symstation_train_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				WRAP " "
+				ALIGN CENTER
+#endif
+				STYLE
+					SYMBOL _symstation_train_symbol
+					SIZE _symstation_train_size
+				END
+			END
+		END
 #endif
 #if _display_symstations_tram == 1
-    CLASS
-      EXPRESSION {tram_stop,halt}
-      LABEL
+		CLASS
+			EXPRESSION {tram_stop,halt}
+			LABEL
 #if _display_symstations_tram_lbl == 1
-        SIZE _symstation_tram_lbl_size
-        COLOR _symstation_tram_lbl_clr
-        TEXT _symstation_tram_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 2
-        POSITION lc
-        FONT _symstation_tram_lbl_font
-        TYPE truetype
-        WRAP " "
-        ALIGN CENTER
-#endif      
-        STYLE
-            SYMBOL _symstation_tram_symbol
-            size _symstation_tram_size
-        END
-      END
-    END
+				SIZE _symstation_tram_lbl_size
+				COLOR _symstation_tram_lbl_clr
+				TEXT _symstation_tram_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 2
+				POSITION lc
+				FONT _symstation_tram_lbl_font
+				TYPE truetype
+				WRAP " "
+				ALIGN CENTER
 #endif
-    
-#if _display_symstations_metro == 1
-    CLASS
-      EXPRESSION ('[metro]' = 'metro')
-      LABEL
-#if _display_symstations_metro_lbl == 1
-        SIZE _symstation_metro_lbl_size
-        COLOR _symstation_metro_lbl_clr
-        TEXT _symstation_metro_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 0
-        POSITION lc
-        FONT _symstation_metro_lbl_font
-        TYPE truetype
-        ALIGN CENTER
-#endif
-        STYLE
-            SYMBOL _symstation_metro_symbol
-            size _symstation_metro_size
-        END
-      END
-    END
-
-    CLASS
-      EXPRESSION ('[railway]' = 'subway_entrance')
-      LABEL
-        PARTIALS false
-        STYLE
-            SYMBOL _symsubway_entrance_symbol
-            size _symsubway_entrance_size
-        END
-      END
-    end
-  END
+				STYLE
+					SYMBOL _symstation_tram_symbol
+					SIZE _symstation_tram_size
+				END
+			END
+		END
 #endif
 
 #if _display_symstations_metro == 1
-  LAYER
-    GROUP "default"
-    STATUS ON
-    CONNECTIONTYPE POSTGIS
-    CONNECTION "OSM_DB_CONNECTION"
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    TYPE POINT
-    NAME layername(symstations_metro,_layer_suffix)
-    DATA _symstations_metro_data
-
-    CLASS
-      LABEL
+		CLASS
+			EXPRESSION ('[metro]' = 'metro')
+			LABEL
 #if _display_symstations_metro_lbl == 1
-        SIZE _symstation_metro_lbl_size
-        COLOR _symstation_metro_lbl_clr
-        TEXT _symstation_metro_lbl_txt
-        OUTLINECOLOR _sym_lbl_ol_clr
-        OUTLINEWIDTH _sym_lbl_ol_width
-        OFFSET 0 0
-        POSITION lc
-        PRIORITY 5
-        FONT _symstation_metro_lbl_font
-        TYPE truetype
-        ALIGN CENTER
-        WRAP " "
+				SIZE _symstation_metro_lbl_size
+				COLOR _symstation_metro_lbl_clr
+				TEXT _symstation_metro_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 0
+				POSITION lc
+				FONT _symstation_metro_lbl_font
+				TYPE truetype
+				ALIGN CENTER
 #endif
-        STYLE
-            SYMBOL _symstation_metro_symbol
-            size _symstation_metro_size
-        END
-      END
-    END
+				STYLE
+					SYMBOL _symstation_metro_symbol
+					SIZE _symstation_metro_size
+				END
+			END
+		END
+
+		CLASS
+			EXPRESSION ('[railway]' = 'subway_entrance')
+			LABEL
+				PARTIALS false
+				STYLE
+					SYMBOL _symsubway_entrance_symbol
+					SIZE _symsubway_entrance_size
+				END
+			END
+		END
+	END
 #endif
-  END
+
+#if _display_symstations_metro == 1
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "OSM_DB_CONNECTION"
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE POINT
+		NAME layername(symstations_metro,_layer_suffix)
+		DATA _symstations_metro_data
+
+		CLASS
+			LABEL
+#if _display_symstations_metro_lbl == 1
+				SIZE _symstation_metro_lbl_size
+				COLOR _symstation_metro_lbl_clr
+				TEXT _symstation_metro_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 0
+				POSITION lc
+				PRIORITY 5
+				FONT _symstation_metro_lbl_font
+				TYPE truetype
+				ALIGN CENTER
+				WRAP " "
+#endif
+				STYLE
+					SYMBOL _symstation_metro_symbol
+					SIZE _symstation_metro_size
+				END
+			END
+		END
+#endif
+	END
 #endif

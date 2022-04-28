@@ -1,64 +1,70 @@
 #if _display_symbols == 1
-LAYER
-    GROUP "default"
-    STATUS ON
-    CONNECTIONTYPE POSTGIS
-    CONNECTION "OSM_DB_CONNECTION"
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    TYPE POINT
-    NAME layername(symairport,_layer_suffix)
-    DATA _symairport_data
-    CLASSITEM "name"
-#if _display_symairways == 1
-    CLASS
-      EXPRESSION /^Aéroport.*$/
-      LABEL
-#if _display_symairways_lbl == 1
-            SIZE _symairport_lbl_size
-            COLOR _symairport_lbl_clr
-            TEXT _symairport_lbl_txt
-            OUTLINECOLOR _sym_lbl_ol_clr
-            OUTLINEWIDTH _sym_lbl_ol_width
-            OFFSET 0 2
-            POSITION lc
-            FONT _symairport_lbl_font
-            TYPE truetype
-            MAXLENGTH 0
-            ALIGN CENTER
-            WRAP ' '
-            FORCE TRUE
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "OSM_DB_CONNECTION"
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE POINT
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+		EXTENT OSM_EXTENT
 #endif
-        STYLE
-          SYMBOL _symairport_symbol
-        END
-      END
-  END
+		NAME layername(symairport,_layer_suffix)
+		DATA _symairport_data
+		CLASSITEM "name"
+#if _display_symairways == 1
+		CLASS
+			EXPRESSION /^Aéroport.*$/
+			LABEL
+#if _display_symairways_lbl == 1
+				SIZE _symairport_lbl_size
+				COLOR _symairport_lbl_clr
+				TEXT _symairport_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 2
+				POSITION lc
+				FONT _symairport_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				ALIGN CENTER
+				WRAP ' '
+				FORCE TRUE
+#endif
+				STYLE
+					SYMBOL _symairport_symbol
+				END
+			END
+		END
 #endif
 #if _display_symaerodrome == 1
-  CLASS
-      EXPRESSION /^[Aérodrome|Altisurface].*$/
-      LABEL
+		CLASS
+			EXPRESSION /^[Aérodrome|Altisurface].*$/
+			LABEL
 #if _display_symaerodrome_lbl == 1
-            SIZE _symaerodrome_lbl_size
-            COLOR _symaerodrome_lbl_clr
-            TEXT _symaerodrome_lbl_txt
-            OUTLINECOLOR _sym_lbl_ol_clr
-            OUTLINEWIDTH _sym_lbl_ol_width
-            OFFSET 0 2
-            POSITION lc
-            FONT _symaerodrome_lbl_font
-            TYPE truetype
-            MAXLENGTH 0
-            ALIGN CENTER
-            WRAP ' '
-            FORCE TRUE
+				SIZE _symaerodrome_lbl_size
+				COLOR _symaerodrome_lbl_clr
+				TEXT _symaerodrome_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 2
+				POSITION lc
+				FONT _symaerodrome_lbl_font
+				TYPE truetype
+				MAXLENGTH 0
+				ALIGN CENTER
+				WRAP ' '
+				FORCE TRUE
 #endif
-        STYLE
-          SYMBOL _symaerodrome_symbol
-        END
-      END
-    END
+				STYLE
+					SYMBOL _symaerodrome_symbol
+				END
+			END
+		END
 #endif
-END
+	END
 #endif
