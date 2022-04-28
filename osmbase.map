@@ -15,44 +15,44 @@
 
 #include STYLEPASTER(THEME)
 MAP
+	FONTSET "fonts.lst"
+	SYMBOLSET "symbols.lst"
+	IMAGETYPE png
+	MAXSIZE 4000
+	SIZE 800 800
+	EXTENT OSM_EXTENT
+	UNITS OSM_UNITS 
+	IMAGECOLOR _ocean_clr0
+	WEB
+		METADATA
+			"ows_enable_request" "*"
+			"wms_srs" "OSM_WMS_SRS"
+			"labelcache_map_edge_buffer" "-10"
+			"wms_title" "OpenStreetMap"
+		END
+	END
 
-FONTSET "fonts.lst"
-SYMBOLSET "symbols.lst"
-IMAGETYPE png
-MAXSIZE 4000
-SIZE 800 800
-EXTENT OSM_EXTENT
-UNITS OSM_UNITS 
-IMAGECOLOR _ocean_clr0
-WEB
-   METADATA
-      "ows_enable_request"   "*"
-      "wms_srs" "OSM_WMS_SRS"
-      "labelcache_map_edge_buffer" "-10"
-      "wms_title" "OpenStreetMap"
-   END
-END
-
-DEBUG _debug
+	DEBUG _debug
 #if _debug > 0 || _layerdebug > 0
-CONFIG "MS_ERRORFILE" "stderr"
+	CONFIG "MS_ERRORFILE" "stderr"
 #endif
 
-CONFIG "PROJ_LIB" _proj_lib
-PROJECTION
-   "init=epsg:OSM_SRID"
-END
+	CONFIG "PROJ_LIB" _proj_lib
 
-OUTPUTFORMAT
-  NAME "png_bw"
-  DRIVER "AGG/PNG"
-  MIMETYPE "image/png;mode=8bit,grayscale"
-  IMAGEMODE RGB
-  EXTENSION "png"
-  TRANSPARENT FALSE
-  FORMATOPTION "PALETTE=grey.txt"
-  FORMATOPTION "PALETTE_FORCE=on"
-END
+	PROJECTION
+		"init=epsg:OSM_SRID"
+	END
+
+	OUTPUTFORMAT
+		NAME "png_bw"
+		DRIVER "AGG/PNG"
+		MIMETYPE "image/png;mode=8bit,grayscale"
+		IMAGEMODE RGB
+		EXTENSION "png"
+		TRANSPARENT FALSE
+		FORMATOPTION "PALETTE=grey.txt"
+		FORMATOPTION "PALETTE_FORCE=on"
+	END
 
 #include LEVELPASTER(THEME,0)
 #include "land.map"
@@ -64,6 +64,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 #include LEVELPASTER(THEME,1)
 #include "land.map"
@@ -75,6 +76,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,2)
@@ -87,6 +89,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,3)
@@ -99,6 +102,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,4)
@@ -111,6 +115,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,5)
@@ -123,6 +128,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,6)
@@ -135,6 +141,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,7)
@@ -147,6 +154,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,8)
@@ -159,6 +167,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,9)
@@ -171,6 +180,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,10)
@@ -183,6 +193,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,11)
@@ -195,6 +206,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,12)
@@ -207,6 +219,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,13)
@@ -219,6 +232,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,14)
@@ -231,6 +245,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,15)
@@ -243,6 +258,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,16)
@@ -255,6 +271,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,17)
@@ -267,6 +284,7 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
 
 #include LEVELPASTER(THEME,18)
@@ -279,12 +297,14 @@ END
 #include "symbols-aeroways.map"
 #include "symbols-amenities.map"
 #include "symbols-stations.map"
+#include "housenumbers.map"
 
-SYMBOL
- name "citycircle"
- type ellipse
- points 1 1 end
- filled true
-END
+
+	SYMBOL
+		NAME "citycircle"
+		TYPE ellipse
+		POINTS 1 1 end
+		FILLED true
+	END
 
 END

@@ -1,959 +1,888 @@
 #if _display_railways == 1
-LAYER
-    GROUP "default"
-    STATUS ON
-    CONNECTIONTYPE POSTGIS
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    CONNECTION "OSM_DB_CONNECTION"
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
-    EXTENT OSM_EXTENT
+		EXTENT OSM_EXTENT
 #endif
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    TYPE LINE
-    NAME layername(railways,_layer_suffix)
-    DATA _railways_data
-    CLASSITEM "tunnel"
-    CLASS
-      EXPRESSION "0"
-        STYLE
-         WIDTH _railway_width
-         COLOR _railway_clr
-         OUTLINEWIDTH _railway_ol_width
-         OUTLINECOLOR _railway_ol_clr
-         PATTERN _railway_pattern END
-         LINECAP BUTT
-        END
-    END
-    CLASS
-        STYLE
-         WIDTH _railway_width
-         COLOR _railway_clr
-         PATTERN _railway_pattern END
-         OPACITY _railway_tunnel_opacity
-         LINECAP BUTT
-        END
-    END
-END
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE LINE
+		NAME layername(railways,_layer_suffix)
+		DATA _railways_data
+		CLASSITEM "tunnel"
+		CLASS
+			EXPRESSION "0"
+			STYLE
+				WIDTH _railway_width
+				COLOR _railway_clr
+				OUTLINEWIDTH _railway_ol_width
+				OUTLINECOLOR _railway_ol_clr
+				PATTERN _railway_pattern END
+				LINECAP BUTT
+			END
+		END
+		CLASS
+			STYLE
+				WIDTH _railway_width
+				COLOR _railway_clr
+				PATTERN _railway_pattern END
+				OPACITY _railway_tunnel_opacity
+				LINECAP BUTT
+			END
+		END
+	END
 #endif
 
 #if _display_highways == 1
-
-LAYER
-    GROUP "default"
-    STATUS ON
-    TYPE LINE
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    NAME layername(roads,_layer_suffix)
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    CONNECTIONTYPE postgis
-    CONNECTION "OSM_DB_CONNECTION"
+	LAYER
+		GROUP "default"
+		STATUS ON
+		TYPE LINE
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		NAME layername(roads,_layer_suffix)
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		CONNECTIONTYPE postgis
+		CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
-    EXTENT OSM_EXTENT
+		EXTENT OSM_EXTENT
 #endif
-    DATA _roads_data
-    LABELITEM "name"
-    CLASSITEM "type"
+		DATA _roads_data
+		LABELITEM "name"
+		CLASSITEM "type"
 
-########################################
-## small roads, no tunnels or bridges ##
-########################################
-
+		########################################
+		## small roads, no tunnels or bridges ##
+		########################################
 #if _display_other_roads == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+			EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
 #else
-        EXPRESSION {unclassified,residential,service,road,living_street}
+			EXPRESSION {unclassified,residential,service,road,living_street}
 #endif
 #if _display_other_outline
-        STYLE
-           WIDTH _other_width
-           OUTLINEWIDTH _other_ol_width
-           OUTLINECOLOR _other_ol_clr
-        END
+			STYLE
+				WIDTH _other_width
+				OUTLINEWIDTH _other_ol_width
+				OUTLINECOLOR _other_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _other_width
-            COLOR _other_clr
-        END
+			STYLE
+				WIDTH _other_width
+				COLOR _other_clr
+			END
 #if _label_other_roads == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _other_font
-            SIZE _other_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            ANGLE FOLLOW
-            COLOR _other_lbl_clr
-            OUTLINECOLOR _other_lbl_ol_clr
-            OUTLINEWIDTH _other_lbl_ol_width
-            ENCODING "UTF-8"
-            MINFEATURESIZE AUTO
-            BUFFER 3
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _other_font
+				SIZE _other_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				ANGLE FOLLOW
+				COLOR _other_lbl_clr
+				OUTLINECOLOR _other_lbl_ol_clr
+				OUTLINEWIDTH _other_lbl_ol_width
+				ENCODING "UTF-8"
+				MINFEATURESIZE AUTO
+				BUFFER 3
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-
-##################################################
-## tracks                                       ##
-##################################################
-
+		##################################################
+		## tracks                                       ##
+		##################################################
 #if _display_tracks == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "track00"
+			EXPRESSION "track00"
 #else
-        EXPRESSION "track"
+			EXPRESSION "track"
 #endif
 #if _display_track_outline
-        STYLE
-           WIDTH _track_width
-           OUTLINEWIDTH _track_ol_width
-           OUTLINECOLOR _track_ol_clr
-        END
+			STYLE
+				WIDTH _track_width
+				OUTLINEWIDTH _track_ol_width
+				OUTLINECOLOR _track_ol_clr
+			END
 #endif
-        STYLE
-            PATTERN _track_pattern END
-            WIDTH _track_width
-            COLOR _track_clr
-        END
+			STYLE
+				PATTERN _track_pattern END
+				WIDTH _track_width
+				COLOR _track_clr
+			END
 #if _label_track == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _track_font
-            SIZE _track_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            ANGLE FOLLOW
-            COLOR _track_lbl_clr
-            OUTLINECOLOR _track_lbl_ol_clr
-            OUTLINEWIDTH _track_lbl_ol_width
-            MINFEATURESIZE AUTO
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _track_font
+				SIZE _track_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				ANGLE FOLLOW
+				COLOR _track_lbl_clr
+				OUTLINECOLOR _track_lbl_ol_clr
+				OUTLINEWIDTH _track_lbl_ol_width
+				MINFEATURESIZE AUTO
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-
-##################################################
-## tertiary roads, simple                       ##
-##################################################
-
+		##################################################
+		## tertiary roads, simple                       ##
+		##################################################
 #if _display_tertiaries == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION {tertiary00,tertiary_link00}
+			EXPRESSION {tertiary00,tertiary_link00}
 #else
-        EXPRESSION {tertiary,tertiary_link}
+			EXPRESSION {tertiary,tertiary_link}
 #endif
 #if _display_tertiary_outline
-        STYLE
-           WIDTH _tertiary_width
-           OUTLINEWIDTH _tertiary_ol_width
-           OUTLINECOLOR _tertiary_ol_clr
-        END
+			STYLE
+				WIDTH _tertiary_width
+				OUTLINEWIDTH _tertiary_ol_width
+				OUTLINECOLOR _tertiary_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _tertiary_width
-            COLOR _tertiary_clr
-        END
+			STYLE
+				WIDTH _tertiary_width
+				COLOR _tertiary_clr
+			END
 #if _label_tertiaries == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _tertiary_font
-            SIZE _tertiary_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            ANGLE FOLLOW
-            COLOR _tertiary_lbl_clr
-            OUTLINECOLOR _tertiary_lbl_ol_clr
-            OUTLINEWIDTH _tertiary_lbl_ol_width
-            MINFEATURESIZE AUTO
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _tertiary_font
+				SIZE _tertiary_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				ANGLE FOLLOW
+				COLOR _tertiary_lbl_clr
+				OUTLINECOLOR _tertiary_lbl_ol_clr
+				OUTLINEWIDTH _tertiary_lbl_ol_width
+				MINFEATURESIZE AUTO
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-
-##################################################
-## secondary roads, simple                      ##
-##################################################
-
+		##################################################
+		## secondary roads, simple                      ##
+		##################################################
 #if _display_secondaries == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION {secondary00,secondary_link00}
+			EXPRESSION {secondary00,secondary_link00}
 #else
-        EXPRESSION {secondary,secondary_link}
+			EXPRESSION {secondary,secondary_link}
 #endif
 #if _display_secondary_outline
-        STYLE
-           WIDTH _secondary_width
-           OUTLINEWIDTH _secondary_ol_width
-           OUTLINECOLOR _secondary_ol_clr
-        END
+			STYLE
+			WIDTH _secondary_width
+			OUTLINEWIDTH _secondary_ol_width
+			OUTLINECOLOR _secondary_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _secondary_width
-            COLOR _secondary_clr
-        END
+			STYLE
+				WIDTH _secondary_width
+				COLOR _secondary_clr
+			END
 #if _label_secondaries == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE 
-            FONT _secondary_font
-            SIZE _secondary_lbl_size 
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            ANGLE FOLLOW
-            COLOR _secondary_lbl_clr
-            OUTLINECOLOR _secondary_lbl_ol_clr
-            OUTLINEWIDTH _secondary_lbl_ol_width
-            MINFEATURESIZE AUTO
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE 
+				FONT _secondary_font
+				SIZE _secondary_lbl_size 
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				ANGLE FOLLOW
+				COLOR _secondary_lbl_clr
+				OUTLINECOLOR _secondary_lbl_ol_clr
+				OUTLINEWIDTH _secondary_lbl_ol_width
+				MINFEATURESIZE AUTO
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-########################################
-## cycleway ##
-########################################
-
+		########################################
+		## cycleway ##
+		########################################
 #if _display_cycleways == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "cycleway00"
+			EXPRESSION "cycleway00"
 #else
-        EXPRESSION "cycleway"
+			EXPRESSION "cycleway"
 #endif
 #if _display_other_outline
-        STYLE
-           WIDTH _cycleway_width
-           OUTLINEWIDTH _cycleway_ol_width
-           OUTLINECOLOR _cycleway_ol_clr
-        END
+			STYLE
+				WIDTH _cycleway_width
+				OUTLINEWIDTH _cycleway_ol_width
+				OUTLINECOLOR _cycleway_ol_clr
+			END
 #endif
-        STYLE
-            PATTERN _cycleway_pattern END
-            WIDTH _cycleway_width
-            COLOR _cycleway_clr
-        END
-    END
+			STYLE
+				PATTERN _cycleway_pattern END
+				WIDTH _cycleway_width
+				COLOR _cycleway_clr
+			END
+		END
 #endif
 
-
-##################################################
-## footways                                     ##
-##################################################
-
+		##################################################
+		## footways                                     ##
+		##################################################
 #if _display_footways == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION {footway00,path00}
+			EXPRESSION {footway00,path00}
 #else
-        EXPRESSION {footway,path}
+			EXPRESSION {footway,path}
 #endif
 #if _display_footway_outline
-        STYLE
-           WIDTH _footway_width
-           OUTLINEWIDTH _footway_ol_width
-           OUTLINECOLOR _footway_ol_clr
-        END
+			STYLE
+				WIDTH _footway_width
+				OUTLINEWIDTH _footway_ol_width
+				OUTLINECOLOR _footway_ol_clr
+			END
 #endif
-        STYLE
-            PATTERN _footway_pattern END
-            WIDTH _footway_width
-            COLOR _footway_clr
-        END
-    END
+			STYLE
+				PATTERN _footway_pattern END
+				WIDTH _footway_width
+				COLOR _footway_clr
+			END
+		END
 #endif
 
-##################################################
-## piers                                        ##
-##################################################
-
+		##################################################
+		## piers                                        ##
+		##################################################
 #if _display_piers == 1
-    CLASS
-        EXPRESSION {pier,pier00,pier10}
+		CLASS
+			EXPRESSION {pier,pier00,pier10}
 #if _display_pier_outline
-        STYLE
-           WIDTH _pier_width
-           OUTLINEWIDTH _pier_ol_width
-           OUTLINECOLOR _pier_ol_clr
-        END
-#endif
-        STYLE
-            WIDTH _pier_width
-            COLOR _pier_clr
-        END
-    END
-#endif
+			STYLE
+				WIDTH _pier_width
+				OUTLINEWIDTH _pier_ol_width
+				OUTLINECOLOR _pier_ol_clr
+			END
+	#endif
+			STYLE
+				WIDTH _pier_width
+				COLOR _pier_clr
+			END
+		END
+	#endif
 
-
-
-##################################################
-## primary roads, simple                        ##
-##################################################
+		##################################################
+		## primary roads, simple                        ##
+		##################################################
 #if _display_primaries == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION {primary00,primary_link00}
+			EXPRESSION {primary00,primary_link00}
 #else
-        EXPRESSION {primary,primary_link}
+			EXPRESSION {primary,primary_link}
 #endif
 #if _display_primary_outline
-        STYLE
-           WIDTH _primary_width
-           OUTLINEWIDTH _primary_ol_width
-           OUTLINECOLOR _primary_ol_clr
-        END
+			STYLE
+				WIDTH _primary_width
+				OUTLINEWIDTH _primary_ol_width
+				OUTLINECOLOR _primary_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _primary_width 
-            COLOR _primary_clr
-        END
+			STYLE
+				WIDTH _primary_width 
+				COLOR _primary_clr
+			END
 #if _label_primaries == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _primary_font
-            SIZE _primary_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            MINFEATURESIZE AUTO
-            COLOR _primary_lbl_clr
-            OUTLINECOLOR _primary_lbl_ol_clr
-            OUTLINEWIDTH _primary_lbl_ol_width
-            ANGLE FOLLOW
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _primary_font
+				SIZE _primary_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				MINFEATURESIZE AUTO
+				COLOR _primary_lbl_clr
+				OUTLINECOLOR _primary_lbl_ol_clr
+				OUTLINEWIDTH _primary_lbl_ol_width
+				ANGLE FOLLOW
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-##################################################
-## pedestrian streets, simple                   ##
-##################################################
-
+		##################################################
+		## pedestrian streets, simple                   ##
+		##################################################
 #if _display_pedestrian == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION 'pedestrian00'
+			EXPRESSION 'pedestrian00'
 #else
-        EXPRESSION 'pedestrian'
+			EXPRESSION 'pedestrian'
 #endif
 #if _display_pedestrian_outline
-        STYLE
-           WIDTH _pedestrian_width
-           OUTLINEWIDTH _pedestrian_ol_width
-           OUTLINECOLOR _pedestrian_ol_clr
-        END
+			STYLE
+				WIDTH _pedestrian_width
+				OUTLINEWIDTH _pedestrian_ol_width
+				OUTLINECOLOR _pedestrian_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _pedestrian_width 
-            COLOR _pedestrian_clr
-        END
+			STYLE
+				WIDTH _pedestrian_width 
+				COLOR _pedestrian_clr
+			END
 #if _label_pedestrian == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _pedestrian_font
-            SIZE _pedestrian_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            ANGLE FOLLOW
-            COLOR _pedestrian_lbl_clr
-            OUTLINECOLOR _pedestrian_lbl_ol_clr
-            OUTLINEWIDTH _pedestrian_lbl_ol_width
-            MINFEATURESIZE AUTO
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _pedestrian_font
+				SIZE _pedestrian_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				ANGLE FOLLOW
+				COLOR _pedestrian_lbl_clr
+				OUTLINECOLOR _pedestrian_lbl_ol_clr
+				OUTLINEWIDTH _pedestrian_lbl_ol_width
+				MINFEATURESIZE AUTO
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-
-##################################################
-## motorways, simple                            ##
-##################################################
-
+		##################################################
+		## motorways, simple                            ##
+		##################################################
 #if _display_motorways == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "motorway00"
+			EXPRESSION "motorway00"
 #else
-        EXPRESSION "motorway"
+			EXPRESSION "motorway"
 #endif
-        TEXT ("[ref]")
+			TEXT ("[ref]")
 #if _display_motorway_outline
-        STYLE
-           WIDTH _motorway_width
-           OUTLINEWIDTH _motorway_ol_width
-           OUTLINECOLOR _motorway_ol_clr
-        END
+			STYLE
+				WIDTH _motorway_width
+				OUTLINEWIDTH _motorway_ol_width
+				OUTLINECOLOR _motorway_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _motorway_width
-            COLOR _motorway_clr
-        END
+			STYLE
+				WIDTH _motorway_width
+				COLOR _motorway_clr
+			END
 #if _display_motorway_centerline
-        STYLE
-           WIDTH _motorway_centerline_width
-           COLOR _motorway_centerline_clr
-        END
+			STYLE
+				WIDTH _motorway_centerline_width
+				COLOR _motorway_centerline_clr
+			END
 #endif
 #if _label_motorways == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            PRIORITY 1
-            FONT _motorway_font
-            SIZE _motorway_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            MINFEATURESIZE AUTO
-            COLOR _motorway_lbl_clr
-            ANGLE FOLLOW
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				PRIORITY 1
+				FONT _motorway_font
+				SIZE _motorway_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				MINFEATURESIZE AUTO
+				COLOR _motorway_lbl_clr
+				ANGLE FOLLOW
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-##################################################
-## motorway links, simple                       ##
-##################################################
-
+		##################################################
+		## motorway links, simple                       ##
+		##################################################
 #if _display_motorway_links == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "motorway_link00"
+			EXPRESSION "motorway_link00"
 #else
-        EXPRESSION "motorway_link"
+			EXPRESSION "motorway_link"
 #endif
 #if _display_motorway_outline
-        STYLE
-           WIDTH _primary_width
-           OUTLINEWIDTH _motorway_ol_width
-           OUTLINECOLOR _motorway_ol_clr
-        END
+			STYLE
+				WIDTH _primary_width
+				OUTLINEWIDTH _motorway_ol_width
+				OUTLINECOLOR _motorway_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _primary_width
-            COLOR _motorway_clr
-        END
-    END
+			STYLE
+				WIDTH _primary_width
+				COLOR _motorway_clr
+			END
+		END
 #endif
 
-
-
-
-##################################################
-## trunks, simple                               ##
-##################################################
-
+		##################################################
+		## trunks, simple                               ##
+		##################################################
 #if _display_trunks == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "trunk00"
+			EXPRESSION "trunk00"
 #else
-        EXPRESSION "trunk"
+			EXPRESSION "trunk"
 #endif
-        TEXT ("[ref]")
+			TEXT ("[ref]")
 #if _display_trunk_outline
-        STYLE
-           WIDTH _trunk_width
-           OUTLINEWIDTH _trunk_ol_width
-           OUTLINECOLOR _trunk_ol_clr
-        END
+			STYLE
+			WIDTH _trunk_width
+			OUTLINEWIDTH _trunk_ol_width
+			OUTLINECOLOR _trunk_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _trunk_width 
-            COLOR _trunk_clr
-        END
+			STYLE
+				WIDTH _trunk_width 
+				COLOR _trunk_clr
+			END
 #if _display_trunk_centerline
-        STYLE
-           WIDTH _trunk_centerline_width
-           COLOR _trunk_centerline_clr
-        END
+			STYLE
+			WIDTH _trunk_centerline_width
+			COLOR _trunk_centerline_clr
+			END
 #endif
 #if _label_trunks == 1
-        LABEL
-            TYPE TRUETYPE
-            PARTIALS FALSE
-            FONT _trunk_font
-            SIZE _trunk_lbl_size
-            MINDISTANCE 200
-            REPEATDISTANCE 400
-            MINFEATURESIZE AUTO
-            COLOR _trunk_lbl_clr
-            ANGLE FOLLOW
-            BUFFER 3
-            ENCODING "UTF-8"
-        END
+			LABEL
+				TYPE TRUETYPE
+				PARTIALS FALSE
+				FONT _trunk_font
+				SIZE _trunk_lbl_size
+				MINDISTANCE 200
+				REPEATDISTANCE 400
+				MINFEATURESIZE AUTO
+				COLOR _trunk_lbl_clr
+				ANGLE FOLLOW
+				BUFFER 3
+				ENCODING "UTF-8"
+			END
 #endif
-    END
+		END
 #endif
 
-
-
-
-##################################################
-## trunk links, simple                          ##
-##################################################
-
+		##################################################
+		## trunk links, simple                          ##
+		##################################################
 #if _display_trunk_links == 1
-    CLASS
+		CLASS
 #if _display_bridges == 1
-        EXPRESSION "trunk_link00"
+			EXPRESSION "trunk_link00"
 #else
-        EXPRESSION "trunk_link"
+			EXPRESSION "trunk_link"
 #endif
 #if _display_trunk_outline
-        STYLE
-           WIDTH _primary_width
-           OUTLINEWIDTH _trunk_ol_width
-           OUTLINECOLOR _trunk_ol_clr
-        END
+			STYLE
+				WIDTH _primary_width
+				OUTLINEWIDTH _trunk_ol_width
+				OUTLINECOLOR _trunk_ol_clr
+			END
 #endif
-        STYLE
-            WIDTH _primary_width
-            COLOR _trunk_clr
-        END
-    END
+			STYLE
+				WIDTH _primary_width
+				COLOR _trunk_clr
+			END
+		END
 #endif
 
-
-
-###########################################################
-##                                                       ##
-##   Bridges and tunnels                                 ##
-##                                                       ##
-###########################################################
-
+		###########################################################
+		##                                                       ##
+		##   Bridges and tunnels                                 ##
+		##                                                       ##
+		###########################################################
 #if _display_bridges == 1
-
-
-##########################
-## other roads, bridges ##
-##########################
+		##########################
+		## other roads, bridges ##
+		##########################
 #if _display_other_roads == 1
-    CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+		CLASS
+			EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
 #if _display_other_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _other_width
-            OUTLINECOLOR _other_bridge_clr
-            OUTLINEWIDTH _other_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _other_width
-            COLOR _other_clr
-        END
-    END
+			STYLE
+				WIDTH _other_width
+				OUTLINECOLOR _other_bridge_clr
+				OUTLINEWIDTH _other_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _other_width
+				COLOR _other_clr
+			END
+		END
 #endif
 
-
-##########################
-## tertiaries, bridges  ##
-##########################
+		##########################
+		## tertiaries, bridges  ##
+		##########################
 #if _display_tertiaries == 1
-    CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+		CLASS
+			EXPRESSION {tertiary10,tertiary_link10}
 #if _display_tertiary_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _tertiary_width
-            OUTLINECOLOR _tertiary_bridge_clr
-            OUTLINEWIDTH _tertiary_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _tertiary_width
-            COLOR _tertiary_clr
-        END
-    END
+			STYLE
+				WIDTH _tertiary_width
+				OUTLINECOLOR _tertiary_bridge_clr
+				OUTLINEWIDTH _tertiary_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _tertiary_width
+				COLOR _tertiary_clr
+			END
+		END
 #endif
 
-
-
-###########################
-## secondaries, bridges  ##
-###########################
+		###########################
+		## secondaries, bridges  ##
+		###########################
 #if _display_secondaries == 1
-    CLASS
-        EXPRESSION {secondary10,secondary_link10}
+		CLASS
+			EXPRESSION {secondary10,secondary_link10}
 #if _display_secondary_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _secondary_width
-            OUTLINECOLOR _secondary_bridge_clr
-            OUTLINEWIDTH _secondary_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _secondary_width
-            COLOR _secondary_clr
-        END
-    END
+			STYLE
+				WIDTH _secondary_width
+				OUTLINECOLOR _secondary_bridge_clr
+				OUTLINEWIDTH _secondary_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _secondary_width
+				COLOR _secondary_clr
+			END
+		END
 #endif
 
-
-
-########################
-## primaries, bridges ##
-########################
+		########################
+		## primaries, bridges ##
+		########################
 #if _display_primaries == 1
-    CLASS
-        EXPRESSION {primary10,primary_link10}
+		CLASS
+			EXPRESSION {primary10,primary_link10}
 #if _display_primary_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _primary_width
-            OUTLINECOLOR _primary_bridge_clr
-            OUTLINEWIDTH _primary_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _primary_width
-            COLOR _primary_clr 
-        END
-    END
-#endif
+			STYLE
+				WIDTH _primary_width
+				OUTLINECOLOR _primary_bridge_clr
+				OUTLINEWIDTH _primary_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _primary_width
+				COLOR _primary_clr 
+			END
+		END
+	#endif
 
-
-########################
-## pedestrian bridges ##
-########################
+		########################
+		## pedestrian bridges ##
+		########################
 #if _display_pedestrian == 1
-    CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+		CLASS
+			EXPRESSION {pedestrian10,footway10,path10}
 #if _display_pedestrian_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _pedestrian_width 
-            OUTLINECOLOR _pedestrian_bridge_clr
-            OUTLINEWIDTH _pedestrian_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _pedestrian_width 
-            COLOR _pedestrian_clr
-        END
-    END
+			STYLE
+				WIDTH _pedestrian_width 
+				OUTLINECOLOR _pedestrian_bridge_clr
+				OUTLINEWIDTH _pedestrian_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _pedestrian_width 
+				COLOR _pedestrian_clr
+			END
+		END
 #endif
 
-########################
-## motorways, bridges ##
-########################
+		########################
+		## motorways, bridges ##
+		########################
 #if _display_motorways == 1
-    CLASS
-        EXPRESSION "motorway10"
+		CLASS
+			EXPRESSION "motorway10"
 #if _display_motorway_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _motorway_width
-            OUTLINECOLOR _motorway_bridge_clr
-            OUTLINEWIDTH _motorway_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _motorway_width
-            COLOR _motorway_clr
-        END
-    END
+			STYLE
+				WIDTH _motorway_width
+				OUTLINECOLOR _motorway_bridge_clr
+				OUTLINEWIDTH _motorway_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _motorway_width
+				COLOR _motorway_clr
+			END
+		END
 #endif
 #if _display_motorway_links == 1
-    CLASS
-        EXPRESSION "motorway_link10"
+		CLASS
+			EXPRESSION "motorway_link10"
 #if _display_motorway_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _primary_width
-            OUTLINECOLOR _motorway_bridge_clr
-            OUTLINEWIDTH _primary_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _primary_width
-            COLOR _motorway_clr
-        END
-    END
+			STYLE
+				WIDTH _primary_width
+				OUTLINECOLOR _motorway_bridge_clr
+				OUTLINEWIDTH _primary_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _primary_width
+				COLOR _motorway_clr
+			END
+		END
 #endif
 
-
-
-####################
-## trunk, bridges ##
-####################
+		####################
+		## trunk, bridges ##
+		####################
 #if _display_trunks == 1
-    CLASS
-        EXPRESSION "trunk10"
+		CLASS
+			EXPRESSION "trunk10"
 #if _display_trunk_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _trunk_width
-            OUTLINECOLOR _trunk_bridge_clr
-            OUTLINEWIDTH _trunk_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _trunk_width
-            COLOR _trunk_clr 
-        END
-    END
+			STYLE
+				WIDTH _trunk_width
+				OUTLINECOLOR _trunk_bridge_clr
+				OUTLINEWIDTH _trunk_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _trunk_width
+				COLOR _trunk_clr 
+			END
+		END
 #endif
 #if _display_trunk_links == 1
-    CLASS
-        EXPRESSION "trunk_link10"
+		CLASS
+			EXPRESSION "trunk_link10"
 #if _display_trunk_outline
-        STYLE
-        END
+			STYLE
+			END
 #endif
-        STYLE
-            WIDTH _primary_width
-            OUTLINECOLOR _trunk_bridge_clr
-            OUTLINEWIDTH _trunk_bridge_width
-            LINECAP BUTT
-        END
-        STYLE
-            WIDTH _primary_width
-            COLOR _trunk_clr
-        END
-    END
+			STYLE
+				WIDTH _primary_width
+				OUTLINECOLOR _trunk_bridge_clr
+				OUTLINEWIDTH _trunk_bridge_width
+				LINECAP BUTT
+			END
+			STYLE
+				WIDTH _primary_width
+				COLOR _trunk_clr
+			END
+		END
 #endif
 
-
-
-
-
-
-########################
-## small road tunnels ##
-########################
+		########################
+		## small road tunnels ##
+		########################
 #if _display_other_roads == 1
-    CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
-        STYLE
-            WIDTH _other_width
-            COLOR _other_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION {unclassified01,residential01,service01,living_street01}
+			STYLE
+				WIDTH _other_width
+				COLOR _other_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-########################
-## pedestrian tunnels ##
-########################
+		########################
+		## pedestrian tunnels ##
+		########################
 #if _display_pedestrian == 1
-    CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
-        STYLE
-            WIDTH _pedestrian_width 
-            COLOR _pedestrian_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION {pedestrian01,footway01,path01}
+			STYLE
+				WIDTH _pedestrian_width 
+				COLOR _pedestrian_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-
-
-
-######################
-## tertiary tunnels ##
-######################
+		######################
+		## tertiary tunnels ##
+		######################
 #if _display_tertiaries == 1
-    CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
-        STYLE
-            WIDTH _tertiary_width
-            COLOR _tertiary_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION {tertiary01,tertiary_link01}
+			STYLE
+				WIDTH _tertiary_width
+				COLOR _tertiary_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-#######################
-## secondary tunnels ##
-#######################
+		#######################
+		## secondary tunnels ##
+		#######################
 #if _display_secondaries == 1
-    CLASS
-        EXPRESSION {secondary01,secondary_link01}
-        STYLE
-            WIDTH _secondary_width
-            COLOR _secondary_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION {secondary01,secondary_link01}
+			STYLE
+				WIDTH _secondary_width
+				COLOR _secondary_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-
-#####################
-## primary tunnels ##
-#####################
+		#####################
+		## primary tunnels ##
+		#####################
 #if _display_primaries == 1
-    CLASS
-        EXPRESSION {primary01,primary_link01}
-        STYLE
-            WIDTH _primary_width
-            COLOR _primary_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION {primary01,primary_link01}
+			STYLE
+				WIDTH _primary_width
+				COLOR _primary_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-
-######################
-## motorway tunnels ##
-######################
+		######################
+		## motorway tunnels ##
+		######################
 #if _display_motorways == 1
-    CLASS
-        EXPRESSION "motorway01"
-        STYLE
-            WIDTH _motorway_width
-            COLOR _motorway_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION "motorway01"
+			STYLE
+				WIDTH _motorway_width
+				COLOR _motorway_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 #if _display_motorway_links == 1
-    CLASS
-        EXPRESSION "motorway_link01"
-        STYLE
-            WIDTH _primary_width
-            COLOR _motorway_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION "motorway_link01"
+			STYLE
+				WIDTH _primary_width
+				COLOR _motorway_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 
-
-###################
-## trunk tunnels ##
-###################
+		###################
+		## trunk tunnels ##
+		###################
 #if _display_trunks == 1
-    CLASS
-        EXPRESSION "trunk01"
-        STYLE
-            WIDTH _trunk_width
-            COLOR _trunk_clr
-            OPACITY _tunnel_opacity
-        END
-    END
+		CLASS
+			EXPRESSION "trunk01"
+			STYLE
+				WIDTH _trunk_width
+				COLOR _trunk_clr
+				OPACITY _tunnel_opacity
+			END
+		END
 #endif
 #if _display_trunk_links == 1
-    CLASS
-        EXPRESSION "trunk_link01"
-        STYLE
-            WIDTH _primary_width
-            COLOR _trunk_clr
-            OPACITY _tunnel_opacity
-        END
-    END
-#endif
-
+		CLASS
+			EXPRESSION "trunk_link01"
+			STYLE
+				WIDTH _primary_width
+				COLOR _trunk_clr
+				OPACITY _tunnel_opacity
+			END
+		END
+	#endif
 #endif
 ##(display_roads_tunnels)
-END
-    
+	END
 
 #if _display_aeroways == 1
-LAYER
-    GROUP "default"
-    STATUS ON
-    MINSCALEDENOM _minscale
-    MAXSCALEDENOM _maxscale
-    TYPE LINE
-    NAME layername(aeroways,_layer_suffix)
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    CONNECTIONTYPE postgis
-    CONNECTION "OSM_DB_CONNECTION"
+	LAYER
+		GROUP "default"
+		STATUS ON
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE LINE
+		NAME layername(aeroways,_layer_suffix)
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		CONNECTIONTYPE postgis
+		CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
-    EXTENT OSM_EXTENT
+		EXTENT OSM_EXTENT
 #endif
-    DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
-    CLASSITEM "type"
-    CLASS
-      EXPRESSION "runway"
-      STYLE
-        COLOR _runway_clr
-        WIDTH _runway_width
-        LINECAP BUTT
-        LINEJOIN MITER
-      END
-      STYLE
-        COLOR _runway_center_clr
-        WIDTH _runway_center_width
-        PATTERN _runway_center_pattern END
-        LINECAP BUTT
-      END
-    END
-    CLASS
-      EXPRESSION "taxiway"
-      STYLE
-        COLOR _taxiway_clr
-        WIDTH _taxiway_width
-      END
-    END
-END
+		DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
+		CLASSITEM "type"
+		CLASS
+			EXPRESSION "runway"
+			STYLE
+				COLOR _runway_clr
+				WIDTH _runway_width
+				LINECAP BUTT
+				LINEJOIN MITER
+			END
+			STYLE
+				COLOR _runway_center_clr
+				WIDTH _runway_center_width
+				PATTERN _runway_center_pattern END
+				LINECAP BUTT
+			END
+			END
+			CLASS
+			EXPRESSION "taxiway"
+			STYLE
+				COLOR _taxiway_clr
+				WIDTH _taxiway_width
+			END
+		END
+	END
 #endif
-#endif    
+#endif

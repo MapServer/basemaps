@@ -15,43 +15,42 @@
 
 #include STYLEPASTER(THEME)
 MAP
+	FONTSET "fonts.lst"
+	SYMBOLSET "symbols.lst"
+	IMAGETYPE png
+	MAXSIZE 4000
+	SIZE 800 800
+	EXTENT OSM_EXTENT
+		UNITS OSM_UNITS
+	IMAGECOLOR _ocean_clr0
+	WEB
+		METADATA
+			"ows_enable_request"   "*"
+			"wms_srs" "OSM_WMS_SRS"
+			"labelcache_map_edge_buffer" "-10"
+			"wms_title" "osm france"
+		END
+	END
 
-FONTSET "fonts.lst"
-SYMBOLSET "symbols.lst"
-IMAGETYPE png
-MAXSIZE 4000
-SIZE 800 800
-EXTENT OSM_EXTENT
-       UNITS OSM_UNITS
-IMAGECOLOR _ocean_clr0
-WEB
-    METADATA
-        "ows_enable_request"   "*"
-        "wms_srs" "OSM_WMS_SRS"
-        "labelcache_map_edge_buffer" "-10"
-        "wms_title" "osm france"
-    END
-END
-
-DEBUG _debug
+	DEBUG _debug
 #if _debug > 0 || _layerdebug > 0
-CONFIG "MS_ERRORFILE" "stderr"
+	CONFIG "MS_ERRORFILE" "stderr"
 #endif
 
-CONFIG "PROJ_LIB" _proj_lib
-PROJECTION
-    "init=epsg:OSM_SRID"
-END
+	CONFIG "PROJ_LIB" _proj_lib
+	PROJECTION
+		"init=epsg:OSM_SRID"
+	END
 
-OUTPUTFORMAT
-    NAME "png"
-    DRIVER AGG/PNG
-    MIMETYPE "image/png"
-    IMAGEMODE RGBA
-    EXTENSION "png"
-    FORMATOPTION "GAMMA=0.75"
-    FORMATOPTION "COMPRESSION=9"
-END
+	OUTPUTFORMAT
+		NAME "png"
+		DRIVER AGG/PNG
+		MIMETYPE "image/png"
+		IMAGEMODE RGBA
+		EXTENSION "png"
+		FORMATOPTION "GAMMA=0.75"
+		FORMATOPTION "COMPRESSION=9"
+	END
 
 #include LEVELPASTER(THEME,0)
 #include "relief.map"

@@ -1,47 +1,47 @@
 #if _display_buildings == 1
-LAYER
-    STATUS ON
-    PROJECTION
-        "init=epsg:OSM_SRID"
-    END
-    GROUP "default"
-    NAME layername(buildings,_layer_suffix)
-    TYPE POLYGON
-    CONNECTIONTYPE postgis
-    CONNECTION "OSM_DB_CONNECTION"
+	LAYER
+		STATUS ON
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		GROUP "default"
+		NAME layername(buildings,_layer_suffix)
+		TYPE POLYGON
+		CONNECTIONTYPE postgis
+		CONNECTION "OSM_DB_CONNECTION"
 #if OSM_FORCE_POSTGIS_EXTENT == 1
-    EXTENT OSM_EXTENT
+		EXTENT OSM_EXTENT
 #endif
-    DATA "geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"
-    LABELITEM "name"
-    PROCESSING "LABEL_NO_CLIP=ON"
-    PROCESSING "CLOSE_CONNECTION=DEFER"
-    MAXSCALEDENOM _maxscale
-    MINSCALEDENOM _minscale
-    CLASS
-      STYLE
-         COLOR _building_clr
-         OPACITY 50
-      END
-      STYLE
-         OUTLINECOLOR _building_ol_clr
-         WIDTH _building_ol_width
-      END
+		DATA "geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"
+		LABELITEM "name"
+		PROCESSING "LABEL_NO_CLIP=ON"
+		PROCESSING "CLOSE_CONNECTION=DEFER"
+		MAXSCALEDENOM _maxscale
+		MINSCALEDENOM _minscale
+		CLASS
+			STYLE
+				COLOR _building_clr
+				OPACITY 50
+			END
+			STYLE
+				OUTLINECOLOR _building_ol_clr
+				WIDTH _building_ol_width
+			END
 #if _label_buildings == 1
-      LABEL
-         TYPE TRUETYPE
-         FONT _building_font
-         PARTIALS FALSE
-         MINFEATURESIZE AUTO
-         SIZE _building_lbl_size
-         COLOR _building_lbl_clr
-         OUTLINECOLOR _building_lbl_ol_clr
-         OUTLINEWIDTH _building_lbl_ol_width
-         WRAP ' '
-         MAXLENGTH 6
-         ALIGN CENTER
-      END
+			LABEL
+				TYPE TRUETYPE
+				FONT _building_font
+				PARTIALS FALSE
+				MINFEATURESIZE AUTO
+				SIZE _building_lbl_size
+				COLOR _building_lbl_clr
+				OUTLINECOLOR _building_lbl_ol_clr
+				OUTLINEWIDTH _building_lbl_ol_width
+				WRAP ' '
+				MAXLENGTH 6
+				ALIGN CENTER
+			END
 #endif
-   END
-END
+		END
+	END
 #endif
