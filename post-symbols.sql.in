@@ -25,7 +25,6 @@ create index on OSM_PREFIX_places (type);
 
 vacuum analyse OSM_PREFIX_amenities;
 vacuum analyse OSM_PREFIX_transport_points;
-vacuum analyse OSM_PREFIX_transport_points;
 vacuum analyse OSM_PREFIX_transport_areas;
 vacuum analyse OSM_PREFIX_waterways_gen0;
 vacuum analyse OSM_PREFIX_waterways_gen1;
@@ -36,8 +35,5 @@ vacuum analyse OSM_PREFIX_railways_gen0;
 vacuum analyse OSM_PREFIX_railways_gen1;
 vacuum analyse OSM_PREFIX_railways;
 vacuum analyse OSM_PREFIX_landusages_gen1;
-vacuum analyse OSM_PREFIX_landusages;
-vacuum analyse OSM_PREFIX_landusages;
-vacuum analyse OSM_PREFIX_landusages;
 vacuum analyse OSM_PREFIX_landusages;
 vacuum analyse OSM_PREFIX_places;
