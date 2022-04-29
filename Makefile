@@ -127,6 +127,8 @@ post-symbols.sql: post-symbols.sql.in
 
 clean:
 	rm -f generated/*
+	rm -r boundaries.sql
+	rm -f post-symbols.sql
 
 .PHONY: data
 data:
