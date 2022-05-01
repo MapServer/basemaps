@@ -23,8 +23,47 @@ create index on OSM_PREFIX_landusages using gin((tags->'{tourism,amenity,shop,le
 create index on OSM_PREFIX_landusages (type);
 create index on OSM_PREFIX_places (type);
 
+-- create materialized view to significantly speed up display of symbols
+CREATE MATERIALIZED VIEW public.v_OSM_PREFIX_symbols_amenities_landusages
+TABLESPACE pg_default
+AS
+ SELECT OSM_PREFIX_amenities.geometry,
+    OSM_PREFIX_amenities.osm_id,
+    OSM_PREFIX_amenities.OSM_NAME_COLUMN,
+    OSM_PREFIX_amenities.tags
+   FROM OSM_PREFIX_amenities
+  WHERE (OSM_PREFIX_amenities.tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]) && '{marketplace,artwork,alpine_hut,camp_site,caravan_site,chalet,guest_house,hostel,hotel,motel,information,museum,viewpoint,picnic_site,shelter,atm,bank,bar,bicycle_rental,bus_station,cafe,car_rental,car_wash,cinema,clinic,community_centre,fire_station,fountain,fuel,hospital,ice_cream,embassy,library,courthouse,townhall,parking,bicycle_parking,motorcycle_parking,pharmacy,doctors,dentist,place_of_worship,police,post_box,post_office,pub,biergarten,recycling,restaurant,food_court,fast_food,telephone,emergency_phone,taxi,theatre,toilets,drinking_water,prison,hunting_stand,nightclub,veterinary,social_facility,charging_station,water_park,playground,miniature_golf,golf_course,picnic_table,mast,water_tower,lighthouse,windmill,obelisk,spring,memorial,monument,archaeological_site,bus_stop,elevator,traffic_signals,wind,peak}'::text[] OR (OSM_PREFIX_amenities.tags -> 'shop'::text) IS NOT NULL
+UNION ALL
+ SELECT st_centroid(OSM_PREFIX_landusages.geometry) AS geometry,
+    OSM_PREFIX_landusages.osm_id,
+    OSM_PREFIX_landusages.OSM_NAME_COLUMN,
+    OSM_PREFIX_landusages.tags
+   FROM OSM_PREFIX_landusages
+  WHERE (OSM_PREFIX_landusages.tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]) && '{artwork,alpine_hut,camp_site,caravan_site,chalet,guest_house,hostel,hotel,motel,information,museum,viewpoint,picnic_site,shelter,atm,bank,bar,bicycle_rental,bus_station,cafe,car_rental,car_wash,cinema,clinic,community_centre,fire_station,fountain,fuel,hospital,ice_cream,embassy,library,courthouse,townhall,parking,bicycle_parking,motorcycle_parking,pharmacy,doctors,dentist,place_of_worship,police,post_box,post_office,pub,biergarten,recycling,restaurant,food_court,fast_food,telephone,emergency_phone,taxi,theatre,toilets,drinking_water,prison,hunting_stand,nightclub,veterinary,social_facility,charging_station,water_park,playground,miniature_golf,golf_course,picnic_table,mast,water_tower,lighthouse,windmill,obelisk,spring,memorial,monument,archaeological_site,bus_stop,elevator,traffic_signals,generator,wind,peak}'::text[] OR (OSM_PREFIX_landusages.tags -> 'shop'::text) IS NOT NULL
+WITH DATA;
+
+CREATE INDEX v_OSM_PREFIX_symbols_amenities_landusages_expr_idx1
+    ON public.v_OSM_PREFIX_symbols_amenities_landusages USING gin
+    ((tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]) COLLATE pg_catalog."default")
+    TABLESPACE pg_default;
+CREATE INDEX v_OSM_PREFIX_symbols_amenities_landusages_geom
+    ON public.v_OSM_PREFIX_symbols_amenities_landusages USING gist
+    (geometry)
+    TABLESPACE pg_default;
+CREATE INDEX v_OSM_PREFIX_symbols_amenities_landusages_geom_geohash
+    ON public.v_OSM_PREFIX_symbols_amenities_landusages USING btree
+    (st_geohash(st_transform(st_setsrid(box2d(geometry)::geometry, 3857), 4326)) COLLATE pg_catalog."default")
+    TABLESPACE pg_default;
+CREATE INDEX v_OSM_PREFIX_symbols_amenities_landusages_idx
+    ON public.v_OSM_PREFIX_symbols_amenities_landusages USING btree
+    ((tags -> 'shop'::text) COLLATE pg_catalog."default")
+    TABLESPACE pg_default;
+CREATE INDEX v_OSM_PREFIX_symbols_amenities_landusages_tags_idx
+    ON public.v_OSM_PREFIX_symbols_amenities_landusages USING gin
+    (tags)
+    TABLESPACE pg_default;
+
 vacuum analyse OSM_PREFIX_amenities;
-vacuum analyse OSM_PREFIX_transport_points;
 vacuum analyse OSM_PREFIX_transport_points;
 vacuum analyse OSM_PREFIX_transport_areas;
 vacuum analyse OSM_PREFIX_waterways_gen0;
@@ -36,8 +75,5 @@ vacuum analyse OSM_PREFIX_railways_gen0;
 vacuum analyse OSM_PREFIX_railways_gen1;
 vacuum analyse OSM_PREFIX_railways;
 vacuum analyse OSM_PREFIX_landusages_gen1;
-vacuum analyse OSM_PREFIX_landusages;
-vacuum analyse OSM_PREFIX_landusages;
-vacuum analyse OSM_PREFIX_landusages;
 vacuum analyse OSM_PREFIX_landusages;
 vacuum analyse OSM_PREFIX_places;

@@ -21,11 +21,11 @@ MAP
 	MAXSIZE 4000
 	SIZE 800 800
 	EXTENT OSM_EXTENT
-		UNITS OSM_UNITS
+	UNITS OSM_UNITS
 	IMAGECOLOR _ocean_clr0
 	WEB
 		METADATA
-			"ows_enable_request"   "*"
+			"ows_enable_request" "*"
 			"wms_srs" "OSM_WMS_SRS"
 			"labelcache_map_edge_buffer" "-10"
 			"wms_title" "osm france"

@@ -124,9 +124,16 @@ boundaries.sql: boundaries.sql.in
 post-symbols.sql: post-symbols.sql.in
 	cp -f $< $@
 	$(SED) -e 's/OSM_PREFIX_/$(OSM_PREFIX)/g' $@
+	$(info ********** Important notice regarding additional symbol layers **********)
+	$(info If you haven't done so already please execute SQL script post-symbols.sql)
+	$(info on your OSM database. The script creates additional indexes and views)
+	$(info without which the symbol style layers won't work!)
+	$(info *************************************************************************)
 
 clean:
 	rm -f generated/*
+	rm -r boundaries.sql
+	rm -f post-symbols.sql
 
 .PHONY: data
 data:
