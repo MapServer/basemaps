@@ -1196,8 +1196,7 @@ namedstyles = {
 		'tertiary_ol_clr': '193 181 157',
 		'other_ol_clr': '193 181 157',
 		'pedestrian_ol_clr': '193 181 157',
-		'pier_ol_clr': '193 181 157',
-		'display_buildings': 1
+		'pier_ol_clr': '193 181 157'
 	},
 	'michelin': {
 		'motorway_clr': '228 24 24',
@@ -1637,7 +1636,6 @@ namedstyles = {
 	'housenumbers': {
 		# begin displaying housenumbers at z17
 		'display_housenumbers': {0: 0, 17: 1},
-
 
 		'housenumbers_data': {
 			0: 'nodata',
