@@ -1196,8 +1196,7 @@ namedstyles = {
 		'tertiary_ol_clr': '193 181 157',
 		'other_ol_clr': '193 181 157',
 		'pedestrian_ol_clr': '193 181 157',
-		'pier_ol_clr': '193 181 157',
-		'display_buildings': 1
+		'pier_ol_clr': '193 181 157'
 	},
 	'michelin': {
 		'motorway_clr': '228 24 24',
@@ -1638,11 +1637,10 @@ namedstyles = {
 		# begin displaying housenumbers at z17
 		'display_housenumbers': {0: 0, 17: 1},
 
-
 		'housenumbers_data': {
 			0: 'nodata',
-			17: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, type AS label, osm_id FROM OSM_PREFIX_housenumbers) AS numbers) as foo using unique osm_id using srid=OSM_SRID"',
-			18: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, CASE WHEN name <> \'\' AND type <> \'\' THEN name || \' (\' || type || \')\' WHEN name <> \'\' THEN name ELSE type END AS label, osm_id FROM OSM_PREFIX_housenumbers) AS numbers) as foo using unique osm_id using srid=OSM_SRID"'
+			17: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, housenumber AS label, id FROM v_OSM_PREFIX_housenumbers_buildings) AS numbers) as foo using unique id using srid=OSM_SRID"',
+			18: '"geometry from (SELECT *, NULL AS nullid FROM (SELECT GEOMETRY as geometry, CASE WHEN name <> \'\' AND housenumber <> \'\' THEN name || \' (\' || housenumber || \')\' WHEN name <> \'\' THEN name ELSE housenumber END AS label, id FROM v_OSM_PREFIX_housenumbers_buildings) AS numbers) as foo using unique id using srid=OSM_SRID"'
 		},
 
 		'housenumbers_lbl_size': {
