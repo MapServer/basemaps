@@ -49,12 +49,12 @@ from imposm.mapping import (
 
 db_conf = Options(
     # db='osm',
-    host='localhost',
-    port=5432,
-    user='osm',
+    host='docker.for.mac.localhost',
+    port=5436,
+    user='nicolas',
     password='osm',
     sslmode='allow',
-    prefix='osm_new_',
+    prefix='osm_',
     proj='epsg:3857',
 )
 

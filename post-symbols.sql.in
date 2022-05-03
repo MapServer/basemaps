@@ -1,0 +1,95 @@
+-- 03 fevrier 2022
+-- author Nicolas Ribot
+-- SQL to launch after imposm3 import when using imposm3-mapping-symbols.json mapping:
+
+-- index from where clauses in the data
+create index if not exists OSM_PREFIX_amenities_tags_idx on OSM_PREFIX_amenities using gin(tags);
+create index if not exists OSM_PREFIX_transport_points_tags_idx on OSM_PREFIX_transport_points using gin(tags);
+create index if not exists OSM_PREFIX_transport_points_expr_idx on OSM_PREFIX_transport_points using gin((tags->'{railway, aerialway,public_transport}'::text[]));
+create index if not exists OSM_PREFIX_transport_areas_type_idx on OSM_PREFIX_transport_areas (type);
+create index if not exists OSM_PREFIX_waterways_gen0_type_idx on OSM_PREFIX_waterways_gen0 (type);
+create index if not exists OSM_PREFIX_waterways_gen1_type_idx on OSM_PREFIX_waterways_gen1 (type);
+create index if not exists OSM_PREFIX_roads_gen0_type_idx on OSM_PREFIX_roads_gen0 (type);
+create index if not exists OSM_PREFIX_roads_gen1_type_idx on OSM_PREFIX_roads_gen1 (type);
+create index if not exists OSM_PREFIX_roads_z_order_idx on OSM_PREFIX_roads (z_order);
+create index if not exists OSM_PREFIX_roads_st_length_idx on OSM_PREFIX_roads (st_length(geometry));
+create index if not exists OSM_PREFIX_railways_gen0_type_idx on OSM_PREFIX_railways_gen0 (type);
+create index if not exists OSM_PREFIX_railways_gen1_type_idx on OSM_PREFIX_railways_gen1 (type);
+create index if not exists OSM_PREFIX_railways_type_idx on OSM_PREFIX_railways (type);
+create index if not exists OSM_PREFIX_landusages_gen1_type_idx on OSM_PREFIX_landusages_gen1 (type);
+create index if not exists OSM_PREFIX_landusages_tags_idx on OSM_PREFIX_landusages using gin(tags);
+create index if not exists OSM_PREFIX_landusages_expr_idx on OSM_PREFIX_landusages ((tags->'shop'));
+create index if not exists OSM_PREFIX_landusages_expr_idx1 on OSM_PREFIX_landusages using gin((tags->'{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]));
+create index if not exists OSM_PREFIX_landusages_type_idx on OSM_PREFIX_landusages (type);
+create index if not exists OSM_PREFIX_places_type_idx on OSM_PREFIX_places (type);
+
+-- create materialized view to combine housenumbers from various tables and speed up display
+create materialized view if not exists v_OSM_PREFIX_housenumbers_buildings
+as
+	select uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as id,
+		OSM_PREFIX_housenumbers.geometry,
+		OSM_PREFIX_housenumbers.osm_id,
+		OSM_PREFIX_housenumbers.OSM_NAME_COLUMN,
+		OSM_PREFIX_housenumbers.type as housenumber,
+		OSM_PREFIX_housenumbers."addr:street",
+		OSM_PREFIX_housenumbers."addr:postcode",
+		OSM_PREFIX_housenumbers."addr:city"
+	from OSM_PREFIX_housenumbers
+union all
+	select uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as id,
+		case when st_intersects(st_centroid(OSM_PREFIX_buildings.geometry), OSM_PREFIX_buildings.geometry) then st_centroid(OSM_PREFIX_buildings.geometry) else st_pointonsurface(OSM_PREFIX_buildings.geometry) end as geometry,
+		OSM_PREFIX_buildings.osm_id,
+		OSM_PREFIX_buildings.OSM_NAME_COLUMN,
+		OSM_PREFIX_buildings."addr:housenumber" as housenumber,
+		OSM_PREFIX_buildings."addr:street",
+		OSM_PREFIX_buildings."addr:postcode",
+		OSM_PREFIX_buildings."addr:city"
+	from OSM_PREFIX_buildings
+	where (OSM_PREFIX_buildings."addr:housenumber" is not null and OSM_PREFIX_buildings."addr:housenumber" <> '')
+with data;
+
+create unique index if not exists v_OSM_PREFIX_housenumbers_buildings_idx on v_OSM_PREFIX_housenumbers_buildings (id);
+create index if not exists v_OSM_PREFIX_housenumbers_buildings_geom on v_OSM_PREFIX_housenumbers_buildings using gist(geometry);
+create index if not exists v_OSM_PREFIX_housenumbers_buildings_geom_geohash on v_OSM_PREFIX_housenumbers_buildings using btree(st_geohash(st_transform(st_setsrid(box2d(geometry)::geometry, OSM_SRID), 4326)));
+
+-- create materialized view to significantly speed up display of symbols
+create materialized view if not exists v_OSM_PREFIX_symbols_amenities_landusages
+as
+	select uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as id,
+		OSM_PREFIX_amenities.geometry,
+		OSM_PREFIX_amenities.osm_id,
+		OSM_PREFIX_amenities.OSM_NAME_COLUMN,
+		OSM_PREFIX_amenities.tags
+	from OSM_PREFIX_amenities
+	where (OSM_PREFIX_amenities.tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]) && '{marketplace,artwork,alpine_hut,camp_site,caravan_site,chalet,guest_house,hostel,hotel,motel,information,museum,viewpoint,picnic_site,shelter,atm,bank,bar,bicycle_rental,bus_station,cafe,car_rental,car_wash,cinema,clinic,community_centre,fire_station,fountain,fuel,hospital,ice_cream,embassy,library,courthouse,townhall,parking,bicycle_parking,motorcycle_parking,pharmacy,doctors,dentist,place_of_worship,police,post_box,post_office,pub,biergarten,recycling,restaurant,food_court,fast_food,telephone,emergency_phone,taxi,theatre,toilets,drinking_water,prison,hunting_stand,nightclub,veterinary,social_facility,charging_station,water_park,playground,miniature_golf,golf_course,picnic_table,mast,water_tower,lighthouse,windmill,obelisk,spring,memorial,monument,archaeological_site,bus_stop,elevator,traffic_signals,wind,peak}'::text[] OR (OSM_PREFIX_amenities.tags -> 'shop'::text) is not null
+union all
+	select uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as id,
+		st_centroid(OSM_PREFIX_landusages.geometry) as geometry,
+		OSM_PREFIX_landusages.osm_id,
+		OSM_PREFIX_landusages.OSM_NAME_COLUMN,
+		OSM_PREFIX_landusages.tags
+	from OSM_PREFIX_landusages
+	where (OSM_PREFIX_landusages.tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]) && '{artwork,alpine_hut,camp_site,caravan_site,chalet,guest_house,hostel,hotel,motel,information,museum,viewpoint,picnic_site,shelter,atm,bank,bar,bicycle_rental,bus_station,cafe,car_rental,car_wash,cinema,clinic,community_centre,fire_station,fountain,fuel,hospital,ice_cream,embassy,library,courthouse,townhall,parking,bicycle_parking,motorcycle_parking,pharmacy,doctors,dentist,place_of_worship,police,post_box,post_office,pub,biergarten,recycling,restaurant,food_court,fast_food,telephone,emergency_phone,taxi,theatre,toilets,drinking_water,prison,hunting_stand,nightclub,veterinary,social_facility,charging_station,water_park,playground,miniature_golf,golf_course,picnic_table,mast,water_tower,lighthouse,windmill,obelisk,spring,memorial,monument,archaeological_site,bus_stop,elevator,traffic_signals,generator,wind,peak}'::text[] OR (OSM_PREFIX_landusages.tags -> 'shop'::text) is not null
+with data;
+
+create unique index if not exists v_OSM_PREFIX_symbols_amenities_landusages_idx on v_OSM_PREFIX_symbols_amenities_landusages (id);
+create index if not exists v_OSM_PREFIX_symbols_amenities_landusages_geom on v_OSM_PREFIX_symbols_amenities_landusages using gist(geometry);
+create index if not exists v_OSM_PREFIX_symbols_amenities_landusages_geom_geohash on v_OSM_PREFIX_symbols_amenities_landusages using btree(st_geohash(st_transform(st_setsrid(box2d(geometry)::geometry, OSM_SRID), 4326)));
+create index if not exists v_OSM_PREFIX_symbols_amenities_landusages_tags_idx on v_OSM_PREFIX_symbols_amenities_landusages using gin(tags);
+create index if not exists v_OSM_PREFIX_symbols_amenities_landusages_expr_idx on v_OSM_PREFIX_symbols_amenities_landusages ((tags -> 'shop'::text));
+create index if not exists v_OSM_PREFIX_symbols_amenities_landusages_expr_idx1 on v_OSM_PREFIX_symbols_amenities_landusages using gin((tags -> '{tourism,amenity,shop,leisure,man_made,natural,historic,highway,power,generator_source,power_source}'::text[]));
+
+vacuum analyse OSM_PREFIX_amenities;
+vacuum analyse OSM_PREFIX_transport_points;
+vacuum analyse OSM_PREFIX_transport_areas;
+vacuum analyse OSM_PREFIX_waterways_gen0;
+vacuum analyse OSM_PREFIX_waterways_gen1;
+vacuum analyse OSM_PREFIX_roads_gen0;
+vacuum analyse OSM_PREFIX_roads_gen1;
+vacuum analyse OSM_PREFIX_roads;
+vacuum analyse OSM_PREFIX_railways_gen0;
+vacuum analyse OSM_PREFIX_railways_gen1;
+vacuum analyse OSM_PREFIX_railways;
+vacuum analyse OSM_PREFIX_landusages_gen1;
+vacuum analyse OSM_PREFIX_landusages;
+vacuum analyse OSM_PREFIX_places;

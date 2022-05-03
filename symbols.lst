@@ -1,0 +1,1020 @@
+# Nicolas Ribot, 08 dec 2016:
+# adds symbols management
+# original symbol in osmbase.map
+SYMBOLSET
+    #empty symbol
+    SYMBOL
+     name "nosymbol"
+     type ellipse
+     points 0 0 end
+     filled false
+    END
+
+    # cities
+    SYMBOL
+     name "citycircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
+    # shops as small circle
+    SYMBOL
+     name "shopcircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
+    # shops as small circle
+    SYMBOL
+     name "amenitiescircle"
+     type ellipse
+     points 1 1 end
+     filled true
+    END
+
+    SYMBOL
+      NAME "airport"
+      TYPE pixmap
+      IMAGE "symbols/airport.p.16.png"
+    END
+
+    SYMBOL
+      NAME "airport-20"
+      TYPE pixmap
+      IMAGE "symbols/png/airport-20.png"
+    END
+
+    SYMBOL
+      NAME "airport-svg"
+      TYPE svg
+      IMAGE "symbols/airport.svg"
+    END
+
+    # test:
+    SYMBOL
+      NAME "test"
+      TYPE svg
+      IMAGE "symbols/shop_furniture.16.svg"
+    END
+
+  SYMBOL
+    NAME symbols-shop-alcohol-16-svg
+    IMAGE symbols/png/shop_alcohol.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-interior-decoration-14-svg
+    IMAGE symbols/png/interior_decoration-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-car-parts-14-svg
+    IMAGE symbols/png/car_parts-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hifi-14-svg
+    IMAGE symbols/png/hifi-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bus-stop-12-svg
+    IMAGE symbols/png/bus_stop.12.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-rock-overlay-png
+    IMAGE symbols/png/rock_overlay.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bicycle-parking-16-svg
+    IMAGE symbols/png/bicycle_parking.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-sikhist-16-svg
+    IMAGE symbols/png/sikhist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-diy-16-svg
+    IMAGE symbols/png/shop_diy.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-chalet-p-16-png
+    IMAGE symbols/png/chalet.p.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bus-station-n-16-png
+    IMAGE symbols/png/bus_station.n.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-toilets-16-svg
+    IMAGE symbols/png/toilets.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-taxi-16-svg
+    IMAGE symbols/png/taxi.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-firestation-16-svg
+    IMAGE symbols/png/firestation.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-peak-svg
+    IMAGE symbols/png/peak.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-orchard-png
+    IMAGE symbols/png/orchard.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-4-z7-svg
+    IMAGE symbols/png/place/place-4-z7.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-deli-14-svg
+    IMAGE symbols/png/deli-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-chemist-14-svg
+    IMAGE symbols/png/chemist-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-charging-station-16-svg
+    IMAGE symbols/png/charging_station.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-monument-16-svg
+    IMAGE symbols/png/monument.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-museum-16-svg
+    IMAGE symbols/png/museum.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-entrance-10-svg
+    IMAGE symbols/png/entrance.10.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shintoist-16-svg
+    IMAGE symbols/png/shintoist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-sports-14-svg
+    IMAGE symbols/png/sports-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-photo-14-svg
+    IMAGE symbols/png/photo-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-quarry-png
+    IMAGE symbols/png/quarry.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-variety-store-14-svg
+    IMAGE symbols/png/variety_store-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-optician-16-svg
+    IMAGE symbols/png/shop_optician.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-biergarten-16-svg
+    IMAGE symbols/png/biergarten.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-helipad-svg
+    IMAGE symbols/png/helipad.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-copyshop-14-svg
+    IMAGE symbols/png/copyshop-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-emergency-phone-16-svg
+    IMAGE symbols/png/emergency_phone.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-nightclub-14-svg
+    IMAGE symbols/png/nightclub.14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-grave-yard-generic-png
+    IMAGE symbols/png/grave_yard_generic.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-bog-png
+    IMAGE symbols/png/wetland_bog.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-newsagent-14-svg
+    IMAGE symbols/png/newsagent-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-viewpoint-16-svg
+    IMAGE symbols/png/viewpoint.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-6-svg
+    IMAGE symbols/png/place/place-6.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-mobile-phone-16-svg
+    IMAGE symbols/png/shop_mobile_phone.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-confectionery-14-svg
+    IMAGE symbols/png/confectionery-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-convenience-svg
+    IMAGE symbols/png/shop_convenience.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-information-12-svg
+    IMAGE symbols/png/information.12.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-waste-basket-10-svg
+    IMAGE symbols/png/waste_basket.10.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-playground-16-svg
+    IMAGE symbols/png/playground.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-jewish-16-svg
+    IMAGE symbols/png/jewish.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-aerodrome-svg
+    IMAGE symbols/png/aerodrome.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME aerodrome
+    IMAGE symbols/png/aerodrome.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-garden-centre-14-svg
+    IMAGE symbols/png/garden_centre-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-library-14-svg
+    IMAGE symbols/png/library.14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-windmill-16-svg
+    IMAGE symbols/png/windmill.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hospital-16-svg
+    IMAGE symbols/png/hopital.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-6-z7-svg
+    IMAGE symbols/png/place/place-6-z7.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-water-park-16-svg
+    IMAGE symbols/png/water_park.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-jewelry-16-svg
+    IMAGE symbols/png/shop_jewelry.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hinduist-16-svg
+    IMAGE symbols/png/hinduist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-power-wind-16-svg
+    IMAGE symbols/png/power_wind-16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-communications-16-svg
+    IMAGE symbols/png/communications.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-cafe-16-svg
+    IMAGE symbols/png/cafe.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-police-16-svg
+    IMAGE symbols/png/police.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-swamp-png
+    IMAGE symbols/png/wetland_swamp.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-reed-png
+    IMAGE symbols/png/wetland_reed.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-buddhist-16-svg
+    IMAGE symbols/png/buddhist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-gate-svg
+    IMAGE symbols/png/gate.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-post-box-12-svg
+    IMAGE symbols/png/LaPoste-BAL.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-embassy-16-svg
+    IMAGE symbols/png/embassy.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-level-crossing-svg
+    IMAGE symbols/png/level_crossing.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-military-red-hatch-png
+    IMAGE symbols/png/military_red_hatch.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-bicycle-16-svg
+    IMAGE symbols/png/shop_bicycle.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-greengrocer-14-svg
+    IMAGE symbols/png/greengrocer-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-beauty-14-svg
+    IMAGE symbols/png/beauty-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-community-centre-14-svg
+    IMAGE symbols/png/community_centre-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shelter-14-svg
+    IMAGE symbols/png/shelter-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-christian-16-svg
+    IMAGE symbols/png/christian.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-transport-slipway-p-20-png
+    IMAGE symbols/png/transport_slipway.p.20.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-tobacco-14-svg
+    IMAGE symbols/png/tobacco-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-artwork-14-svg
+    IMAGE symbols/png/artwork-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-alpinehut-p-16-png
+    IMAGE symbols/png/alpinehut.p.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bench-16-svg
+    IMAGE symbols/png/bench.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-beach-png
+    IMAGE symbols/png/beach.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-taoist-16-svg
+    IMAGE symbols/png/taoist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-furniture-16-svg
+    IMAGE symbols/png/shop_furniture.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-fast-food-16-svg
+    IMAGE symbols/png/fast_food.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-pub-16-svg
+    IMAGE symbols/png/pub.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-fuel-16-svg
+    IMAGE symbols/png/fuel.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-car-wash-14-svg
+    IMAGE symbols/png/car_wash-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-town-hall-16-svg
+    IMAGE symbols/png/town_hall.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-picnic-16-svg
+    IMAGE symbols/png/picnic.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-electronics-16-svg
+    IMAGE symbols/png/shop_electronics.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-perfumery-14-svg
+    IMAGE symbols/png/perfumery-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-telephone-16-svg
+    IMAGE symbols/png/telephone.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-department-store-p-16-svg
+    IMAGE symbols/png/department_store2.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-caravan-park-16-svg
+    IMAGE symbols/png/caravan_park.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-4-svg
+    IMAGE symbols/png/place/place-4.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-elevator-12-svg
+    IMAGE symbols/png/elevator-12.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-laundry-14-svg
+    IMAGE symbols/png/laundry-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-clothes-16-svg
+    IMAGE symbols/png/shop_clothes.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-dog-park-png
+    IMAGE symbols/png/dog_park.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-forest-png
+    IMAGE symbols/png/forest.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shopping-car-repair-16-svg
+    IMAGE symbols/png/shopping_car_repair.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-golf-p-20-png
+    IMAGE symbols/png/golf.p.20.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-musical-instrument-14-svg
+    IMAGE symbols/png/musical_instrument-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-prison-16-svg
+    IMAGE symbols/png/prison.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-archaeological-site-16-svg
+    IMAGE symbols/png/archaeological_site.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-butcher-png
+    IMAGE symbols/png/shop_butcher.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hotel-16-svg
+    IMAGE symbols/png/hotel.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-courthouse-16-svg
+    IMAGE symbols/png/courthouse-16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-cinema-16-svg
+    IMAGE symbols/png/cinema.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-scrub-png
+    IMAGE symbols/png/scrub.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-capital-6-svg
+    IMAGE symbols/png/place/place-capital-6.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-gift-16-svg
+    IMAGE symbols/png/shop_gift.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-bakery-16-svg
+    IMAGE symbols/png/shop_bakery.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bag-14-svg
+    IMAGE symbols/png/bag-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-tourist-memorial-16-svg
+    IMAGE symbols/png/tourist_memorial.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-drinking-water-16-svg
+    IMAGE symbols/png/drinking_water.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-danger-png
+    IMAGE symbols/png/danger.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-pet-16-svg
+    IMAGE symbols/png/shop_pet.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-ice-cream-14-svg
+    IMAGE symbols/png/ice-cream-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-social-facility-14-svg
+    IMAGE symbols/png/social_facility-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-lighthouse-16-svg
+    IMAGE symbols/png/lighthouse.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-motorcycle-parking-16-svg
+    IMAGE symbols/png/motorcycle_parking.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-shoes-16-svg
+    IMAGE symbols/png/shop_shoes.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-hairdresser-16-svg
+    IMAGE symbols/png/shop_hairdresser.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-stationery-14-svg
+    IMAGE symbols/png/stationery-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-car-svg
+    IMAGE symbols/png/shop_car.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-power-tower-svg
+    IMAGE symbols/png/power_tower.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-oneway-reverse-svg
+    IMAGE symbols/png/oneway-reverse.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-reef-png
+    IMAGE symbols/png/reef.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-png
+    IMAGE symbols/png/wetland.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-of-worship-16-svg
+    IMAGE symbols/png/place_of_worship.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-motel-16-svg
+    IMAGE symbols/png/motel.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-spring-svg
+    IMAGE symbols/png/spring-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-marsh-png
+    IMAGE symbols/png/wetland_marsh.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-water-tower-16-svg
+    IMAGE symbols/png/water_tower.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-doctors-16-svg
+    IMAGE symbols/png/doctors.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-rental-car-16-svg
+    IMAGE symbols/png/rental_car.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-liftgate-svg
+    IMAGE symbols/png/liftgate.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-scree-overlay-png
+    IMAGE symbols/png/scree_overlay.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-tea-14-svg
+    IMAGE symbols/png/tea-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-toys-14-svg
+    IMAGE symbols/png/toys-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-rental-bicycle-16-svg
+    IMAGE symbols/png/rental_bicycle.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bar-16-svg
+    IMAGE symbols/png/bar.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hunting-stand-16-svg
+    IMAGE symbols/png/hunting-stand.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-theatre-16-svg
+    IMAGE symbols/png/theatre.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-camping-16-svg
+    IMAGE symbols/png/camping.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-wetland-mangrove-png
+    IMAGE symbols/png/wetland_mangrove.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-computer-14-svg
+    IMAGE symbols/png/computer-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-art-14-svg
+    IMAGE symbols/png/art-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-oneway-svg
+    IMAGE symbols/png/oneway.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-muslim-16-svg
+    IMAGE symbols/png/muslim.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-florist-16-svg
+    IMAGE symbols/png/florist.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-traffic-light-svg
+    IMAGE symbols/png/traffic_light.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-bank-16-svg
+    IMAGE symbols/png/bank.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-grave-yard-jewish-png
+    IMAGE symbols/png/grave_yard_jewish.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-place-place-capital-8-svg
+    IMAGE symbols/png/place/place-capital-8.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-parking-svg
+    IMAGE symbols/png/parking.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-ford-16-svg
+    IMAGE symbols/png/ford.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-cave-14-svg
+    IMAGE symbols/png/cave.14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-saddle-svg
+    IMAGE symbols/png/saddle.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-grey-vertical-hatch-png
+    IMAGE symbols/png/grey_vertical_hatch.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-travel-agency-14-svg
+    IMAGE symbols/png/travel_agency-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-restaurant-16-svg
+    IMAGE symbols/png/restaurant.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-beverages-14-svg
+    IMAGE symbols/png/beverages-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-veterinary-14-svg
+    IMAGE symbols/png/veterinary-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-fountain-14-svg
+    IMAGE symbols/png/fountain-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-christian-9-svg
+    IMAGE symbols/png/christian.9.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-supermarket-svg
+    IMAGE symbols/png/shop_supermarket.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-shop-marketplace
+    IMAGE symbols/png/marketplace-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-beach-coarse-png
+    IMAGE symbols/png/beach_coarse.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-square-svg
+    IMAGE symbols/png/square-metro.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-sncf-png
+    IMAGE symbols/png/logo-sncf.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-train-png
+    IMAGE symbols/png/square-bus.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-metro-png
+    IMAGE symbols/png/logo-metro-16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-square-bus-svg
+    IMAGE symbols/png/square-bus.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-seafood-14-svg
+    IMAGE symbols/png/seafood-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-outdoor-14-svg
+    IMAGE symbols/png/outdoor-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-atm-16-svg
+    IMAGE symbols/png/atm.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-power-tower-small-svg
+    IMAGE symbols/png/power_tower_small.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-level-crossing2-svg
+    IMAGE symbols/png/level_crossing2.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-mini-roundabout-svg
+    IMAGE symbols/png/mini_roundabout.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-recycling-16-svg
+    IMAGE symbols/png/recycling.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-miniature-golf-p-20-png
+    IMAGE symbols/png/miniature_golf.p.20.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-motorcycle-14-svg
+    IMAGE symbols/png/motorcycle-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-vineyard-png
+    IMAGE symbols/png/vineyard.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-post-office-14-svg
+    IMAGE symbols/png/post_office-14.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-post-france
+    IMAGE symbols/png/laposte.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-guest-house-p-16-png
+    IMAGE symbols/png/guest_house.p.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-pharmacy-16-svg
+    IMAGE symbols/png/pharmacy.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-hostel-16-svg
+    IMAGE symbols/png/hostel.16.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-grave-yard-christian-png
+    IMAGE symbols/png/grave_yard_christian.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-allotments-png
+    IMAGE symbols/png/allotments.png
+    TYPE pixmap
+  END
+  SYMBOL
+    NAME symbols-dentist-16-svg
+    IMAGE symbols/png/dentist.16.png
+    TYPE pixmap
+  END
+END

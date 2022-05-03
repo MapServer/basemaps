@@ -1,0 +1,2148 @@
+#if _display_symamenities == 1
+	LAYER
+		GROUP "default"
+		STATUS ON
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "OSM_DB_CONNECTION"
+		PROJECTION
+			"init=epsg:OSM_SRID"
+		END
+		MINSCALEDENOM _minscale
+		MAXSCALEDENOM _maxscale
+		TYPE POINT
+		NAME layername(symamenities,_layer_suffix)
+		DATA _symamenities_data
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+		EXTENT OSM_EXTENT
+#endif
+		/**************************** symbols displayed at z11 ******************************************************/
+#if _display_symbols_z11 == 1
+		CLASS
+			EXPRESSION (('[feature]' = 'natural_volcano') OR ('[feature]' = 'natural_peak'))
+			LABEL
+#if _display_peak_lbl == 1
+				partials false
+				SIZE _sym_lbl_size
+				COLOR _sympeak_lbl_clr
+				TEXT _sym_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 0
+				POSITION lc
+				FONT _sympeak_lbl_font
+				TYPE TRUETYPE
+				POSITION lc
+				WRAP ' '
+				MAXLENGTH 6
+				ALIGN CENTER
+				MINFEATURESIZE AUTO
+				ALIGN CENTER
+#endif
+				STYLE
+					SYMBOL "symbols-peak-svg"
+				END
+			END
+		END
+#endif
+		/**************************** symbols displayed at z12 ******************************************************/
+
+		/**************************** symbols displayed at z13 ******************************************************/
+#if _display_symbols_z13 == 1
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_alpine_hut')
+			LABEL
+				STYLE
+					SYMBOL "symbols-alpinehut-p-16-png"
+				END
+			END
+		END
+#endif
+
+/**************************** symbols displayed at z14 ******************************************************/
+#if _display_symbols_z14 == 1
+		CLASS
+			EXPRESSION ('[feature]' = 'natural_spring')
+			LABEL
+				STYLE
+					SYMBOL "symbols-spring-svg"
+				END
+			END
+		END
+#endif
+
+/**************************** symbols displayed at z15 ******************************************************/
+#if _display_symbols_z15 == 1
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_hospital')
+			LABEL
+				partials false
+				SIZE _sym_lbl_size
+				COLOR _symhospital_lbl_clr
+				TEXT _sym_lbl_txt
+				OUTLINECOLOR _sym_lbl_ol_clr
+				OUTLINEWIDTH _sym_lbl_ol_width
+				OFFSET 0 0
+				POSITION lc
+				FONT _symhospital_lbl_font
+				TYPE TRUETYPE
+				POSITION lc
+				WRAP ' '
+				MAXLENGTH 6
+				ALIGN CENTER
+				MINFEATURESIZE AUTO
+				ALIGN CENTER
+				STYLE
+					SYMBOL _symhospital_symbol
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'power_generator') AND ('[generator_source]' = 'wind') AND ('[power_source]' = 'wind'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-power-wind-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'power_generator') AND ('[power_source]' = 'wind'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-power-wind-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'power_generator') AND ('[generator_source]' = 'wind'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-power-wind-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'natural_cave_entrance')
+			LABEL
+				STYLE
+					SYMBOL "symbols-cave-14-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'natural_saddle')
+			LABEL
+				STYLE
+					SYMBOL "symbols-saddle-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'man_made_lighthouse')
+			LABEL
+				STYLE
+					SYMBOL "symbols-lighthouse-16-svg"
+				END
+			END
+		END
+#endif
+
+		/**************************** symbols displayed at z16 ******************************************************/
+#if _display_symbols_z16 == 1
+		CLASS
+			EXPRESSION (('[denomination]' = 'jehovahs_witness') AND ('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'christian'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-place-of-worship-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'taoist'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-taoist-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'shinto'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-shintoist-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'buddhist'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-buddhist-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'hindu'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-hinduist-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'jewish'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-jewish-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'sikh'))
+				LABEL
+					STYLE
+						SYMBOL "symbols-sikhist-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'muslim'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-muslim-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_place_of_worship') AND ('[religion]' = 'christian'))
+			STYLE
+				SYMBOL "symbols-christian-16-svg"
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_place_of_worship')
+			LABEL
+				STYLE
+					SYMBOL "symbols-place-of-worship-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_hunting_stand')
+			LABEL
+				STYLE
+					SYMBOL "symbols-hunting-stand-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'man_made_windmill')
+			LABEL
+				STYLE
+					SYMBOL "symbols-windmill-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'aeroway_helipad')
+			LABEL
+				STYLE
+					SYMBOL "symbols-helipad-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_picnic_site')
+			LABEL
+				STYLE
+					SYMBOL "symbols-picnic-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'shop_department_store')
+			LABEL
+				partials false
+				SIZE 7.4
+				COLOR "#9C399C"
+				TEXT '[name]'
+				OUTLINECOLOR "#ffffff99"
+				OUTLINEWIDTH 2.3814773980154356
+				OFFSET 0 2
+				POSITION lc
+				FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+				TYPE truetype
+				MAXLENGTH 0
+				WRAP " "
+				ALIGN CENTER
+				STYLE
+					SYMBOL "symbols-department-store-p-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'shop_supermarket')
+			LABEL
+				partials false
+				SIZE 7.4
+				COLOR "#9C399C"
+				TEXT '[name]'
+				OUTLINECOLOR "#ffffff99"
+				OUTLINEWIDTH 2.3814773980154356
+				OFFSET 0 2
+				POSITION lc
+				FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+				TYPE truetype
+				MAXLENGTH 0
+				WRAP " "
+				ALIGN CENTER
+				STYLE
+					SYMBOL "symbols-shop-supermarket-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'historic_archaeological_site')
+			LABEL
+				STYLE
+					SYMBOL "symbols-archaeological-site-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'historic_monument')
+			LABEL
+				STYLE
+					SYMBOL "symbols-monument-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'man_made_obelisk')
+			LABEL
+				STYLE
+					SYMBOL "symbols-monument-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_viewpoint')
+			LABEL
+				STYLE
+					SYMBOL "symbols-viewpoint-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_theatre')
+			STYLE
+				SYMBOL "symbols-theatre-16-svg"
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_police')
+			LABEL
+				STYLE
+					SYMBOL "symbols-police-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_place_of_worship')
+			LABEL
+				STYLE
+					SYMBOL "symbols-place-of-worship-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_clinic')
+			LABEL
+				STYLE
+					SYMBOL "symbols-doctors-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_museum')
+			LABEL
+				STYLE
+					SYMBOL "symbols-museum-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_townhall')
+			LABEL
+				STYLE
+					SYMBOL "symbols-town-hall-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_courthouse')
+			LABEL
+				STYLE
+					SYMBOL "symbols-courthouse-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_library')
+			LABEL
+				STYLE
+					SYMBOL "symbols-library-14-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_fire_station')
+			LABEL
+				STYLE
+					SYMBOL "symbols-firestation-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_cinema')
+			LABEL
+				STYLE
+					SYMBOL "symbols-cinema-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_caravan_site')
+			LABEL
+				STYLE
+					SYMBOL "symbols-caravan-park-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'highway_ford')
+			LABEL
+				STYLE
+					SYMBOL "symbols-ford-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'tourism_camp_site')
+			LABEL
+				STYLE
+					SYMBOL "symbols-camping-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_shelter')
+			LABEL
+				STYLE
+					SYMBOL "symbols-shelter-14-svg"
+				END
+			END
+		END
+#endif
+
+		/**************************** symbols displayed at z17 ***************************************************************************/
+#if _display_symbols_z17 == 1
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_marketplace')
+			LABEL
+				partials false
+				SIZE 7.4
+				COLOR "#9C399C"
+				TEXT '[name]'
+				OUTLINECOLOR "#ffffff99"
+				OUTLINEWIDTH 2.3814773980154356
+				OFFSET 0 2
+				POSITION lc
+				FONT "NotoSansUIRegular,NotoSansSymbolsRegular,NotoEmojiRegular,DejaVuSansBook"
+				TYPE truetype
+				MAXLENGTH 0
+				WRAP " "
+				ALIGN CENTER
+				FORCE true
+				STYLE
+					SYMBOL "symbols-shop-marketplace"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ('[feature]' = 'amenity_pharmacy')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL _sympharmacy_symbol
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ( ('[feature]' = 'amenity_motorcycle_parking') )
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					OPACITY 0.33
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL _symmotorparking_symbol
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION ( ('[feature]' = 'shop_interior_decoration') )
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					OPACITY 0.33
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-interior-decoration-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[feature]' = 'amenity_bicycle_parking') )
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					OPACITY 0.33
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL _symbikeparking_symbol
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION (('[access]' = 'yes') AND ('[feature]' = 'amenity_parking') )
+			LABEL
+				STYLE
+					SYMBOL _symparking_symbol
+				END
+			END
+		END
+		CLASS
+			EXPRESSION(('[access]' != '') AND ('[access]' != 'yes') AND ('[feature]' = 'leisure_playground'))
+			LABEL
+				FORCE true
+				STYLE
+					OPACITY 0.33
+					SYMBOL "symbols-playground-16-svg"
+					END
+				END
+		END
+		CLASS
+			EXPRESSION(('[access]' != '') AND ('[access]' != 'yes') AND ('[feature]' = 'amenity_recycling'))
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					OPACITY 0.33
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-recycling-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_slipway')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-transport-slipway-p-20-png"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_picnic_table')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-picnic-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_miniature_golf')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-miniature-golf-p-20-png"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_playground')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-playground-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_dog_park')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-shop-pet-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'leisure_water_park')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-water-park-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_variety_store')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-variety-store-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_tea')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-tea-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_tobacco')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-tobacco-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_stationery')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-stationery-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_sports')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-sports-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_travel_agency')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-travel-agency-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_toys')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-toys-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_jewellery')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-jewelry-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_jewelry')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-jewelry-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_newsagent')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-newsagent-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_kiosk')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-newsagent-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_musical_instrument')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-musical-instrument-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_motorcycle')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-motorcycle-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_mobile_phone')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-mobile-phone-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_furniture')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-furniture-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_outdoor')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-outdoor-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_optician')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-optician-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_wine')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-alcohol-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_alcohol')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-alcohol-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_electronics')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-electronics-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_gift')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-gift-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_shoes')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-shoes-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_photography')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-photo-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_photo_studio')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-photo-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_photo')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-photo-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_pet')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-pet-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_bicycle')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-bicycle-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_car_repair')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shopping-car-repair-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_car_parts')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-car-parts-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_car')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-car-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_ice_cream')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-ice-cream-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_hifi')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-hifi-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_hairdresser')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-hairdresser-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_farm')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-greengrocer-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_greengrocer')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-greengrocer-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_garden_centre')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-garden-centre-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_florist')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-florist-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_seafood')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-seafood-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_fishmonger')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-seafood-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_laundry')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-laundry-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_dry_cleaning')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-laundry-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_hardware')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-diy-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_doityourself')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-diy-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_deli')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-deli-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_perfumery')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-perfumery-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_cosmetics')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-perfumery-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_copyshop')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-copyshop-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_confectionery')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-confectionery-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_convenience')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-convenience-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_computer')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-computer-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_fashion')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-clothes-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_clothes')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-clothes-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_chemist')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-chemist-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_butcher')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-butcher-png"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_books')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-library-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_beverages')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-beverages-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_beauty')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-beauty-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_bakery')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-shop-bakery-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'shop_bag')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 154 30 156
+#else
+					SYMBOL "symbols-bag-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION(('[feature]' = 'shop_art') OR ('[feature]' = 'shop_gallery'))
+			LABEL
+				STYLE
+					SYMBOL "symbols-art-14-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'historic_memorial')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-tourist-memorial-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'man_made_water_tower')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-water-tower-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_prison')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-prison-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_drinking_water')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-drinking-water-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_toilets')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-toilets-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_emergency_phone')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-emergency-phone-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_telephone')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-telephone-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_fast_food')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-fast-food-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_food_court')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-restaurant-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_restaurant')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-restaurant-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_recycling')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-recycling-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_biergarten')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-biergarten-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_pub')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-pub-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_post_office')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-post-office-14-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_post_box')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-post-box-12-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'historic_wayside_cross')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-christian-9-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'man_made_cross')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-christian-9-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_veterinary')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-veterinary-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_dentist')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-dentist-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_doctors')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-doctors-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'man_made_mast')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-communications-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_social_facility')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-social-facility-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_community_centre')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-community-centre-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_embassy')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-embassy-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_information')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-information-12-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_ice_cream')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-ice-cream-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_motel')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-motel-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_hotel')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-hotel-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_hostel')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-hostel-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_guest_house')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-guest-house-p-16-png"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_fuel')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-fuel-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_charging_station')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-charging-station-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_nightclub')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-nightclub-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_chalet')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-chalet-p-16-png"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_car_wash')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-car-wash-14-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_car_rental')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-rental-car-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'tourism_artwork')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-artwork-14-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_cafe')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-cafe-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'highway_traffic_signals')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-traffic-light-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_taxi')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-taxi-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_bicycle_rental')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-rental-bicycle-16-svg"
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_bar')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-bar-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_bank')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-bank-16-svg"
+#endif
+				END
+			END
+		END
+		CLASS
+			EXPRESSION('[feature]' = 'amenity_atm')
+			LABEL
+				FORCE true
+				STYLE
+#if _display_symbols_circle == 1
+					SYMBOL "shopcircle"
+					SIZE 4
+					COLOR 185 96 5
+#else
+					SYMBOL "symbols-atm-16-svg"
+#endif
+				END
+			END
+		END
+#endif
+
+		/**************************** symbols displayed at z18 ***************************************************************************/
+#if _display_symbols_z17 == 1
+		CLASS
+			EXPRESSION ('[feature]' = 'highway_elevator')
+			LABEL
+				FORCE true
+				STYLE
+					SYMBOL "symbols-elevator-12-svg"
+				END
+			END
+		END
+#endif
+	END
+#endif

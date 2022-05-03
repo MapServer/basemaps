@@ -1,0 +1,112 @@
+#define PASTER(str)  #str
+#define STYLEPASTER2(stylename)   PASTER(stylename##style.msinc)
+#define LEVELPASTER2(stylename,index)   PASTER(stylename##level##index.msinc)
+#define STYLEPASTER(stylename)   STYLEPASTER2(stylename)
+#define LEVELPASTER(stylename,level)   LEVELPASTER2(stylename,level)
+
+## if you want unique layer names across zoom levels, use
+## #define layername(name,suffix) xxstr(name)
+## instead of the following macro
+
+#define layername(name,suffix) xstr(name,suffix)
+#define includefile(prefix,style) xstr(pri,suffix)
+#define xstr(s,t) xxstr(s##t)
+#define xxstr(s) #s
+
+#include STYLEPASTER(THEME)
+MAP
+	FONTSET "fonts.lst"
+	SYMBOLSET "symbols.lst"
+	IMAGETYPE png
+	MAXSIZE 4000
+	SIZE 800 800
+	EXTENT OSM_EXTENT
+	UNITS OSM_UNITS
+	IMAGECOLOR _ocean_clr0
+	WEB
+		METADATA
+			"ows_enable_request" "*"
+			"wms_srs" "OSM_WMS_SRS"
+			"labelcache_map_edge_buffer" "-10"
+			"wms_title" "osm france"
+		END
+	END
+
+	DEBUG _debug
+#if _debug > 0 || _layerdebug > 0
+	CONFIG "MS_ERRORFILE" "stderr"
+#endif
+
+	CONFIG "PROJ_LIB" _proj_lib
+	PROJECTION
+		"init=epsg:OSM_SRID"
+	END
+
+	OUTPUTFORMAT
+		NAME "png"
+		DRIVER AGG/PNG
+		MIMETYPE "image/png"
+		IMAGEMODE RGBA
+		EXTENSION "png"
+		FORMATOPTION "GAMMA=0.75"
+		FORMATOPTION "COMPRESSION=9"
+	END
+
+#include LEVELPASTER(THEME,0)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,1)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,2)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,3)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,4)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,5)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,6)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,7)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,8)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,9)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,10)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,11)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,12)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,13)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,14)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,15)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,16)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,17)
+#include "relief.map"
+
+#include LEVELPASTER(THEME,18)
+#include "relief.map"
+
+END
