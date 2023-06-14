@@ -1,4 +1,4 @@
-FROM camptocamp/postgres:10
+FROM ghcr.io/camptocamp/postgres:14-postgis-3
 
 ARG USER_ID=1000
 
