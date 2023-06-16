@@ -1,18 +1,68 @@
 version: '2'
+
 services:
   postgis:    
     build:
         context: docker/postgis
     # enable for local debug    
-    # ports:
-    #   - "5432:5432"
-    volumes:
-      - ".:/app"       
-  webserver:
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=osm
+      - POSTGRES_USER=osm
+      - POSTGRES_PASSWORD=osm
+
+  mapserver:
     depends_on: [postgis]
-    build: 
-      context: docker/webserver        
+    build:
+        context: docker/webserver
+    environment:
+      - MS_MAPFILE=/etc/mapserver/osm-default.map
+      - MS_DEBUGLEVEL=4
+      - MAPSERVER_CONFIG_FILE=/etc/mapserver/config.conf
     ports:
         - "80:80"
     volumes:
-        - ".:/app" 
+        - ".:/etc/mapserver/"
+
+  imposm:
+    depends_on: [postgis]
+    build:
+      context: docker/imposm
+    user: www-data
+    environment:
+      - |
+        PBF_FILES=
+        http://download.geofabrik.de/europe/france/reunion-latest.osm.pbf
+      - PGUSER=osm
+      - PGPASSWORD=osm
+      - PGDATABASE=osm
+      - PGPORT=5432
+      - PGHOST=postgis
+      - IMPOSM_CONNECTION=postgis://osm:osm@postgis/osm
+
+      # seconds between 2 executions of the script
+      # if 0, then no update will be done, only the first initial import from the PBF
+      - TIME=120
+      # folder for settings (with *.json and *.sql)
+      - SETTINGS=settings
+      # folder for caching
+      - CACHE=cache
+      # folder for diff which has been imported
+      - IMPORT_DONE=import_done
+      # folder for diff which hasn't been imported yet
+      - IMPORT_QUEUE=import_queue
+      # it can be 3857
+      - SRID=3857
+      # see http://imposm.org/docs/imposm3/latest/tutorial.html#optimize
+      - OPTIMIZE=false
+      # see http://imposm.org/docs/imposm3/latest/tutorial.html#deploy-production-tables
+      - DBSCHEMA_PRODUCTION=public
+      # http://imposm.org/docs/imposm3/latest/tutorial.html#deploy-production-tables
+      - DBSCHEMA_IMPORT=import
+      # http://imposm.org/docs/imposm3/latest/tutorial.html#deploy-production-tables
+      - DBSCHEMA_BACKUP=backup
+      # Install some styles if you are using the default mapping. It can be 'yes' or 'no'
+      - QGIS_STYLE=yes
+      # Use clip in the database
+      - CLIP=no

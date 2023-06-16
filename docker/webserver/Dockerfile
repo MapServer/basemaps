@@ -1,15 +1,22 @@
-FROM debian:bookworm
+FROM camptocamp/mapserver:8.0
 
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    mapserver-bin cgi-mapserver apache2  libapache2-mod-fcgid \
-    git make build-essential python3 wget unzip 
+RUN apt-get update && \
+	apt-get install --assume-yes --no-install-recommends git make python3 gcc curl unzip wget
 
-RUN a2enmod alias fcgid cgid
+RUN git clone https://github.com/mapserver/basemaps.git /etc/mapserver && \
+    cd /etc/mapserver && \
+    git checkout 733bf56dc9e13eac53a1462fd2db563382d8dc0f && \
+    chown -R www-data /etc/mapserver && \
+    chmod -R g+w /etc/mapserver
 
-ADD run-httpd.sh /run-httpd.sh
-RUN chmod -v +x /run-httpd.sh
+RUN make -C /etc/mapserver/ data
 
-WORKDIR /app    
+VOLUME /etc/mapserver/data
 
-CMD ["/run-httpd.sh"]    
+COPY docker-entrypoint.sh /
+COPY epsg /etc/mapserver/
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/usr/local/bin/start-server"]
+
+ENV STYLE=google
