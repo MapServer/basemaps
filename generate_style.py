@@ -560,7 +560,7 @@ style = {
       0:0,
       15:1
    },
-   'display_pedestrian_lbl' : {0:0, 12:1},
+   'display_pedestrian_lbl' : {0:0, 15:1},
    'pedestrian_font': "sc",
    'pedestrian_lbl_size': {
       0:0,
