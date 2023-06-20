@@ -17,7 +17,7 @@ services:
     build:
         context: docker/webserver
     environment:
-      - MS_MAPFILE=/etc/mapserver/osm-default.map
+      - MS_MAPFILE=/etc/mapserver/osm-google.map
       - MS_DEBUGLEVEL=4
       - MAPSERVER_CONFIG_FILE=/etc/mapserver/config.conf
     ports:
