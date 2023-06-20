@@ -1,4 +1,4 @@
-FROM camptocamp/mapserver:8.0
+FROM camptocamp/mapserver:7.6
 
 RUN apt-get update && \
 	apt-get install --assume-yes --no-install-recommends git make python3 gcc curl unzip wget
