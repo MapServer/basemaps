@@ -1,7 +1,7 @@
 # MapServer OSM basemaps
 
 - This package uses a Python script and the C preprocessor to build a
-  complete MapServer mapfile from a set of templates and styling information, 
+  complete [MapServer](https://mapserver.org) mapfile from a set of templates and styling information, 
   for [OpenStreetMap](https://www.openstreetmap.org) data.
 
 - Please perform all pull requests into the `main` branch, and 
@@ -9,8 +9,8 @@
   one of the repository managers will then apply the corresponding label, 
   to magically backport to that branch.
 
-  - use branch `main' for all for all pull requests
-  - other branches to backport to include:
+  - use branch `main' for all pull requests
+  - other branches to possibly backport to include:
     - `mapserver-7.6`
     - `branch-6-2`
 
