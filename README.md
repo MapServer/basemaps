@@ -1,7 +1,8 @@
 # MapServer OSM basemaps
 
 - This package uses a Python script and the C preprocessor to build a
-  complete mapfile from a set of templates and styling information.
+  complete MapServer mapfile from a set of templates and styling information, 
+  for [OpenStreetMap](https://www.openstreetmap.org) data.
 
 - Please perform all pull requests into the `main` branch, and 
   inside the pull request mention which branch to backport the changes to; 
