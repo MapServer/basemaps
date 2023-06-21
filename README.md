@@ -9,7 +9,7 @@
   one of the repository managers will then apply the corresponding label, 
   to magically backport to that branch.
 
-  - use branch `main' for all pull requests
+  - use branch `main` for all pull requests
   - other branches to possibly backport to include:
     - `mapserver-7.6`
     - `branch-6-2`
