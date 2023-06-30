@@ -84,9 +84,9 @@ style = {
 
    ##### water #####
    'waterarea_data': {
-      0: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
-      9: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
-      12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
+      0: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_SCHEMA.OSM_PREFIX_waterareas_gen0) as foo using unique osm_id using srid=OSM_SRID"',
+      9: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_SCHEMA.OSM_PREFIX_waterareas_gen1) as foo using unique osm_id using srid=OSM_SRID"',
+      12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_SCHEMA.OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_waterarea_lbl' : {0:0, 6:1},
    'display_waterarea_outline': {0:0, 14:1},
@@ -105,9 +105,9 @@ style = {
       6:1
    },
    'waterways_data': {
-      0:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen0 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways_gen1 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
-      12:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
+      0:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_waterways_gen0 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_waterways_gen1 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
    },
 
    'canal_width': {
@@ -171,18 +171,18 @@ style = {
    },
 
    'landusage_data': {
-      0:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen00)\
+      0:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_landusages_gen00)\
             as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen0)\
+      6:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_landusages_gen0)\
             as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
+      9:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\')) as foo using unique osm_id using srid=OSM_SRID"',
-      10:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages_gen1 \
+      10:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_landusages_gen1 \
       where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-      12:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_PREFIX_landusages \
+      12:'"geometry from (select geometry ,osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_landusages \
       where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
       \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
@@ -277,12 +277,12 @@ style = {
    ###### highways #######
 
    'roads_data': {
-      0:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen0 where type in (\'trunk\',\'motorway\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      8:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where type in (\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 where type in (\'secondary\',\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      10:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads_gen1 ) as foo using unique osm_id using srid=OSM_SRID"',
-      11:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
-      14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
+      0:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads_gen0 where type in (\'trunk\',\'motorway\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      8:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads_gen1 where type in (\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      9:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads_gen1 where type in (\'secondary\',\'trunk\',\'motorway\',\'primary\') order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      10:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads_gen1 ) as foo using unique osm_id using srid=OSM_SRID"',
+      11:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
+      14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_SCHEMA.OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
 
    'tunnel_opacity': 40,
@@ -669,9 +669,9 @@ style = {
    'railway_pattern': '2 2',
    'railway_tunnel_opacity': 40,
    'railways_data': {
-      0:'"geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways_gen0 where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"',
-      6:'"geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways_gen1 where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"',
-      12:'"geometry from (select geometry, osm_id, tunnel from OSM_PREFIX_railways where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
+      0:'"geometry from (select geometry, osm_id, tunnel from OSM_SCHEMA.OSM_PREFIX_railways_gen0 where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"',
+      6:'"geometry from (select geometry, osm_id, tunnel from OSM_SCHEMA.OSM_PREFIX_railways_gen1 where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"',
+      12:'"geometry from (select geometry, osm_id, tunnel from OSM_SCHEMA.OSM_PREFIX_railways where type=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
    },
 
 
@@ -844,11 +844,11 @@ style = {
 
    ###### places ######
    'places_data': {
-      0: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      3: '"geometry from (select * from OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      8: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      11: '"geometry from (select * from OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
-      13: '"geometry from (select * from OSM_PREFIX_places where OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      0: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where type in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      3: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where type in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      8: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where type in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      11: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
+      13: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
    },
    'display_capitals': 0,
    'display_capital_symbol': {
@@ -1317,46 +1317,46 @@ namedstyles = {
    },
    'osm2pgsql': {
       'waterarea_data': {
-         0: '"way from (select way,osm_id , OSM_NAME_COLUMN as name, waterway as type from OSM_PREFIX_polygon where \\\"natural\\\"=\'water\' or landuse=\'basin\' or landuse=\'reservoir\' or waterway=\'riverbank\') as foo using unique osm_id using srid=OSM_SRID"'
+         0: '"way from (select way,osm_id , OSM_NAME_COLUMN as name, waterway as type from OSM_SCHEMA.OSM_PREFIX_polygon where \\\"natural\\\"=\'water\' or landuse=\'basin\' or landuse=\'reservoir\' or waterway=\'riverbank\') as foo using unique osm_id using srid=OSM_SRID"'
       },
       'waterways_data': {
-         0: '"way from (select way,waterway as type,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_line where waterway IN (\'river\', \'stream\', \'canal\')) as foo using unique osm_id using srid=OSM_SRID"'
+         0: '"way from (select way,waterway as type,osm_id, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_line where waterway IN (\'river\', \'stream\', \'canal\')) as foo using unique osm_id using srid=OSM_SRID"'
       },
       'places_data': {
-         0: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_PREFIX_point where place in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
-         3: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_PREFIX_point where place in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
-         8: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_PREFIX_point where place in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
-         11: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_PREFIX_point where place in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
-         13: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_PREFIX_point where place is not NULL and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
+         0: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_SCHEMA.OSM_PREFIX_point where place in (\'country\',\'continent\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
+         3: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_SCHEMA.OSM_PREFIX_point where place in (\'country\',\'continent\',\'city\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
+         8: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_SCHEMA.OSM_PREFIX_point where place in (\'city\',\'town\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
+         11: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_SCHEMA.OSM_PREFIX_point where place in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
+         13: '"way from (select osm_id, way, OSM_NAME_COLUMN as name, place as type from OSM_SCHEMA.OSM_PREFIX_point where place is not NULL and OSM_NAME_COLUMN is not NULL ) as foo using unique osm_id using srid=OSM_SRID"',
       },
       'railways_data': {
-         0:'"way from (select way, osm_id, tunnel, railway as type from OSM_PREFIX_line where railway=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
+         0:'"way from (select way, osm_id, tunnel, railway as type from OSM_SCHEMA.OSM_PREFIX_line where railway=\'rail\') as foo using unique osm_id using srid=OSM_SRID"'
       },
       'landusage_data': {
-         0:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area, osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
+         0:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area, osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_polygon) as osm2 \
          where type in (\'forest\',\'wood\',\'residential\')\
          order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-         6:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
+         6:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_polygon) as osm2 \
          where type in (\'forest\',\'wood\',\'industrial\',\'commercial\',\'residential\')\
          order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-         9:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
+         9:'"way from (select way, osm_id, name, type from (select way, st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_polygon) as osm2 \
          where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
          \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
          \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
          \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"',
-         12:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_PREFIX_polygon) as osm2 \
+         12:'"way from (select way, osm_id, name, type from (select way , st_area(way) as area ,osm_id, (case when landuse is not null then landuse else (case when \\\"natural\\\" is not null then \\\"natural\\\" else (case when leisure is not null then leisure else amenity end) end) end) as type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_polygon) as osm2 \
          where type in (\'forest\',\'wood\',\'pedestrian\',\'cemetery\',\'industrial\',\'commercial\',\
          \'brownfield\',\'residential\',\'school\',\'college\',\'university\',\
          \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
          \'pitch\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
       },
       'roads_data': {
-         0: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway in (\'motorway\',\'trunk\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
-         8: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
-         9: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\',\'secondary\',\'motorway_link\',\'trunk_link\',\'primary_link\')order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
-         10:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\',\'secondary\',\'tertiary\',\'motorway_link\',\'trunk_link\',\'primary_link\',\'secondary_link\',\'tertiary_link\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
-         11:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
-         14:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway||(case when bridge=\'yes\' then 1 else 0 end)||(case when tunnel=\'yes\' then 1 else 0 end) as type from OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         0: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_SCHEMA.OSM_PREFIX_line where highway in (\'motorway\',\'trunk\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         8: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_SCHEMA.OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         9: '"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_SCHEMA.OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\',\'secondary\',\'motorway_link\',\'trunk_link\',\'primary_link\')order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         10:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_SCHEMA.OSM_PREFIX_line where highway in (\'motorway\',\'trunk\',\'primary\',\'secondary\',\'tertiary\',\'motorway_link\',\'trunk_link\',\'primary_link\',\'secondary_link\',\'tertiary_link\') order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         11:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway as type, 0 as tunnel, 0 as bridge from OSM_SCHEMA.OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
+         14:'"way from (select osm_id,way,OSM_NAME_COLUMN as name,ref,highway||(case when bridge=\'yes\' then 1 else 0 end)||(case when tunnel=\'yes\' then 1 else 0 end) as type from OSM_SCHEMA.OSM_PREFIX_line where highway is not null order by z_order asc, st_length(way) asc) as foo using unique osm_id using srid=OSM_SRID"',
       },
 
    },
