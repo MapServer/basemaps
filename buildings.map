@@ -12,7 +12,7 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
-    DATA "geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry,osm_id, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_buildings) as foo using unique osm_id using srid=OSM_SRID"
     LABELITEM "name"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
