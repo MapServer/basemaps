@@ -35,4 +35,4 @@ for url in $PBF_FILES; do
 done
 
 imposm import $OPTIONS -write
-imposm import $OPTIONS --dbschema-production=prod -deployproduction
+imposm import $OPTIONS -deployproduction

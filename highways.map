@@ -930,7 +930,7 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
-    DATA "geometry from (select geometry, osm_id, type from OSM_SCHEMA.OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
+    DATA "geometry from (select geometry, osm_id, type from OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
     CLASS
       EXPRESSION "runway"
