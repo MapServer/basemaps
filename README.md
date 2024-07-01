@@ -35,3 +35,16 @@
   https://mapserver.org/basemaps/style.html.
   
 - Windows users can follow the steps at https://github.com/MapServer/MapServer/wiki/RenderingOsmDataWindows
+
+## Docker installation
+
+After installing docker and docker compose, run the following command (port 80
+should not be already used in your local system):
+```
+docker compose up -d
+```
+Then use your browser to go to:
+```
+http://localhost/cgi-bin/mapserv?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+```
+
