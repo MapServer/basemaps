@@ -442,4 +442,33 @@ LAYER
     END
 END
 #endif
-#endif
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    NAME layername(landuse_on_water,_layer_suffix)
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "OSM_DB_CONNECTION"
+  #if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+  #endif
+    DATA _landusage_data
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale
+    CLASSITEM "type"
+    LABELITEM "name"
+    CLASS
+      EXPRESSION 'pier'
+      STYLE
+         COLOR _pier_clr
+      END
+    END
+  END
+  
+  #endif
