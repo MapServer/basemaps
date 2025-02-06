@@ -14,6 +14,9 @@ LAYER
     MAXSCALEDENOM _maxscale
     TYPE LINE
     NAME layername(railways,_layer_suffix)
+    COMPOSITE
+     OPACITY _railway_opacity
+    END # COMPOSITE
     DATA _railways_data
     CLASSITEM "tunnel"
     CLASS
@@ -48,6 +51,9 @@ LAYER
     MINSCALEDENOM _minscale
     MAXSCALEDENOM _maxscale
     NAME layername(roads,_layer_suffix)
+    COMPOSITE
+     OPACITY _roads_opacity
+    END # COMPOSITE
     PROJECTION
         "init=epsg:OSM_SRID"
     END
@@ -56,6 +62,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+    COMPOSITE
+     OPACITY 20
+    END # COMPOSITE
     DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
@@ -930,6 +939,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+    COMPOSITE
+     OPACITY _aeroways_opacity
+    END # COMPOSITE
     DATA "geometry from (select geometry, osm_id, type from OSM_SCHEMA.OSM_PREFIX_aeroways) as foo using unique osm_id using srid=OSM_SRID"
     CLASSITEM "type"
     CLASS

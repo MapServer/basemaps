@@ -12,6 +12,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+    COMPOSITE
+      OPACITY _landusage_opacity
+    END # COMPOSITE
     DATA _landusage_data
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -257,6 +260,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+   COMPOSITE
+     OPACITY _transport_opacity
+   END # COMPOSITE
    DATA "geometry from OSM_SCHEMA.OSM_PREFIX_transport_areas using unique osm_id using srid=OSM_SRID"
    PROCESSING "CLOSE_CONNECTION=DEFER"
    MAXSCALEDENOM _maxscale
@@ -300,6 +306,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+    COMPOSITE
+      OPACITY _waterarea_opacity
+    END # COMPOSITE
     DATA _waterarea_data
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale  
@@ -359,6 +368,9 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
+    COMPOSITE
+      OPACITY _waterways_opacity
+    END # COMPOSITE
     DATA _waterways_data
     CLASSITEM "type"
     MAXSCALEDENOM _maxscale
@@ -456,6 +468,9 @@ LAYER
   #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
   #endif
+    COMPOSITE
+      OPACITY _landusage_opacity
+    END # COMPOSITE
     DATA _landusage_data
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"

@@ -18,6 +18,9 @@ LAYER
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM _maxscale
     MINSCALEDENOM _minscale
+    COMPOSITE
+        OPACITY _building_opacity
+    END # COMPOSITE
     CLASS
       STYLE
          COLOR _building_clr

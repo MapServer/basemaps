@@ -7,6 +7,9 @@ LAYER
    TYPE LINE
    NAME layername(admin_fr,_layer_suffix)
    DATA _admin_data
+   COMPOSITE
+     OPACITY _admin_opacity
+   END # COMPOSITE
    CLASS
       STYLE
          COLOR _admin_clr
@@ -26,6 +29,9 @@ LAYER
    PROJECTION
      _border_epsg
    END
+   COMPOSITE
+     OPACITY _border_opacity
+   END # COMPOSITE
    DATA _border_data
 #if _display_border_2 == 1
    CLASS

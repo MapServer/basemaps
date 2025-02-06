@@ -77,6 +77,7 @@ style = {
       0:'"data/simplified_land_polygons"',
       9:'"data/land_polygons"'
    },
+   'land_opacity': 100,
    'land_epsg': {
       0:'"init=epsg:3857"',
    },
@@ -90,6 +91,7 @@ style = {
    },
    'display_waterarea_lbl' : {0:0, 6:1},
    'display_waterarea_outline': {0:0, 14:1},
+   'waterarea_opacity': 100,
    'waterarea_clr': '"#B3C6D4"',
    'waterarea_ol_clr': '"#B3C6D4"',
    'waterarea_ol_width': 0,
@@ -109,6 +111,7 @@ style = {
       9:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_waterways_gen1 where type=\'river\') as foo using unique osm_id using srid=OSM_SRID"',
       12:'"geometry from (select geometry, osm_id, type, OSM_NAME_COLUMN as name from OSM_SCHEMA.OSM_PREFIX_waterways) as foo using unique osm_id using srid=OSM_SRID"'
    },
+   'waterways_opacity': 100,
 
    'canal_width': {
       0:0,
@@ -188,7 +191,7 @@ style = {
       \'military\',\'park\',\'golf_course\',\'hospital\',\'parking\',\'stadium\',\'sports_center\',\
       \'pitch\',\'pier\') order by area desc) as foo using unique osm_id using srid=OSM_SRID"'
    },
-
+   'landusage_opacity': 100,
    'display_industrial': 1,
    'industrial_clr': '"#d1d1d1"',
    'industrial_ol_clr': '"#d1d1d1"',
@@ -266,6 +269,7 @@ style = {
    'forest_lbl_ol_width': 2,
 
    'display_transport_areas' : {0:0,11:1},
+   'transport_opacity': 100,
    'transport_clr': '200 200 200',
    'display_transport_lbl' : {0:0, 12:1},
    'transport_font': "sc",
@@ -284,6 +288,7 @@ style = {
       11:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type from OSM_SCHEMA.OSM_PREFIX_roads order by z_order asc) as foo using unique osm_id using srid=OSM_SRID"',
       14:'"geometry from (select osm_id,geometry,OSM_NAME_COLUMN as name,ref,type||bridge||tunnel as type from OSM_SCHEMA.OSM_PREFIX_roads order by z_order asc, st_length(geometry) asc) as foo using unique osm_id using srid=OSM_SRID"',
    },
+   'roads_opacity': 100,
 
    'tunnel_opacity': 40,
 
@@ -659,6 +664,7 @@ style = {
       0:0,
       8:1
    },
+   'railway_opacity': 100,
    'railway_clr': '"#777777"',
    'railway_width': {
       0:0.5,
@@ -680,6 +686,7 @@ style = {
    'border_epsg': {
       0: '"init=epsg:4326"'
    },
+   'border_opacity': 100,
 
    'display_border_2': {
       0:1
@@ -789,6 +796,7 @@ style = {
       0: 0,
       15:1
    },
+   'building_opacity': 100,
    'building_clr': '"#bbbbbb"',
    'building_ol_clr': '"#333333"',
    'building_ol_width': {
@@ -812,6 +820,7 @@ style = {
       0:0,
       10:1
    },
+   'aeroways_opacity': 100,
    'runway_clr': "180 180 180",
    'runway_width': {
       0:1,
@@ -850,6 +859,7 @@ style = {
       11: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where type in (\'city\',\'town\',\'village\') and OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
       13: '"geometry from (select * from OSM_SCHEMA.OSM_PREFIX_places where OSM_NAME_COLUMN is not NULL order by population asc nulls first) as foo using unique osm_id using srid=OSM_SRID"',
    },
+   'places_opacity': 100,
    'display_capitals': 0,
    'display_capital_symbol': {
       0:1,
