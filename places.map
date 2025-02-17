@@ -14,6 +14,9 @@ LAYER
  NAME layername(places,_layer_suffix)
  MINSCALEDENOM _minscale
  MAXSCALEDENOM _maxscale
+ COMPOSITE
+   OPACITY _places_opacity
+ END # COMPOSITE
  DATA _places_data
  LABELITEM 'name'
  CLASSITEM 'type'

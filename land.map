@@ -10,6 +10,9 @@ LAYER
    END
    MINSCALEDENOM _minscale
    MAXSCALEDENOM _maxscale
+   COMPOSITE
+     OPACITY _land_opacity
+   END # COMPOSITE
    DATA _land_data
    CLASS
        STYLE
