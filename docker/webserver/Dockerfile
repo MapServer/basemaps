@@ -1,4 +1,4 @@
-FROM camptocamp/mapserver:master
+FROM camptocamp/mapserver:8.4-gdal3.10
 
 RUN apt-get update && \
 	apt-get install --assume-yes --no-install-recommends git make python3 gcc curl unzip wget

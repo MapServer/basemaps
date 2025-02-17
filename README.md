@@ -45,6 +45,6 @@ docker compose up -d
 ```
 Then use your browser to go to:
 ```
-http://localhost/cgi-bin/mapserv?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
+http://localhost?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities
 ```
 

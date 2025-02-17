@@ -12,7 +12,7 @@ RUN groupadd nopwsudo \
 
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    git make build-essential python wget unzip mapserver-bin cgi-mapserver
+    git make build-essential python3 wget unzip mapserver-bin cgi-mapserver
 
 RUN mkdir /app \
     && chown -R mapserveruser /app    

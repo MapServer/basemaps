@@ -6,7 +6,6 @@ CONFIG
     MS_ERRORFILE "stderr"
 #endif
 
-    PROJ_LIB _proj_lib
   END
   MAPS
     BASEMAPS "/etc/mapserver/osm-google.map"
