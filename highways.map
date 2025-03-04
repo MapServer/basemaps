@@ -62,9 +62,6 @@ LAYER
 #if OSM_FORCE_POSTGIS_EXTENT == 1
     EXTENT OSM_EXTENT
 #endif
-    COMPOSITE
-     OPACITY 20
-    END # COMPOSITE
     DATA _roads_data
     LABELITEM "name"
     CLASSITEM "type"
