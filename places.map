@@ -29,8 +29,10 @@ LAYER
    SIZE _capital_lbl_size
    ENCODING "utf-8"
    COLOR _capital_lbl_clr
+#if _display_capitals_outline == 1
    OUTLINECOLOR _capital_lbl_ol_clr
    OUTLINEWIDTH _capital_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -62,8 +64,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _continent_lbl_size
    COLOR _continent_lbl_clr
+#if _display_continents_outline == 1
    OUTLINECOLOR _continent_lbl_ol_clr
    OUTLINEWIDTH _continent_lbl_ol_width
+#endif
    BUFFER 4
    PARTIALS FALSE
    POSITION cc
@@ -79,8 +83,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _country_lbl_size
    COLOR _country_lbl_clr
+#if _display_countries_outline == 1
    OUTLINECOLOR _country_lbl_ol_clr
    OUTLINEWIDTH _country_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -99,8 +105,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _city_lbl_size
    COLOR _city_lbl_clr
+#if _display_cities_outline == 1
    OUTLINECOLOR _city_lbl_ol_clr
    OUTLINEWIDTH _city_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -127,8 +135,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _town_lbl_size
    COLOR _town_lbl_clr
+#if _display_towns_outline == 1
    OUTLINECOLOR _town_lbl_ol_clr
    OUTLINEWIDTH _town_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -156,8 +166,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _suburb_lbl_size
    COLOR _suburb_lbl_clr
+#if _display_suburbs_outline == 1
    OUTLINECOLOR _suburb_lbl_ol_clr
    OUTLINEWIDTH _suburb_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -184,8 +196,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _village_lbl_size
    COLOR _village_lbl_clr
+#if _display_villages_outline == 1
    OUTLINECOLOR _village_lbl_ol_clr
    OUTLINEWIDTH _village_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -212,8 +226,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _hamlet_lbl_size
    COLOR _hamlet_lbl_clr
+#if _display_hamlets_outline == 1
    OUTLINECOLOR _hamlet_lbl_ol_clr
    OUTLINEWIDTH _hamlet_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
@@ -240,8 +256,10 @@ LAYER
    ENCODING "utf-8"
    SIZE _locality_lbl_size
    COLOR _locality_lbl_clr
+#if _display_localities_outline == 1
    OUTLINECOLOR _locality_lbl_ol_clr
    OUTLINEWIDTH _locality_lbl_ol_width
+#endif
    WRAP ' '
    MAXLENGTH 8
    ALIGN CENTER
