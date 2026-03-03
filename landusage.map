@@ -34,8 +34,10 @@ LAYER
          FONT _forest_font
          SIZE _forest_lbl_size
          COLOR _forest_lbl_clr
+#if _display_forest_lbl_ol==1
          OUTLINECOLOR _forest_lbl_ol_clr
          OUTLINEWIDTH _forest_lbl_ol_width
+#endif
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER
@@ -59,8 +61,10 @@ LAYER
          FONT _residential_font
          SIZE _residential_lbl_size
          COLOR _residential_lbl_clr
+#if _display_residential_lbl_ol==1
          OUTLINECOLOR _residential_lbl_ol_clr
          OUTLINEWIDTH _residential_lbl_ol_width
+#endif
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER
@@ -85,8 +89,10 @@ LAYER
        FONT _industrial_font
        SIZE _industrial_lbl_size
        COLOR _industrial_lbl_clr
+#if _display_industrial_lbl_ol==1
        OUTLINECOLOR _industrial_lbl_ol_clr
        OUTLINEWIDTH _pedestrian_lbl_ol_width
+#endif
        PRIORITY 2
        WRAP ' '
        MAXLENGTH 6
@@ -111,8 +117,10 @@ LAYER
           SIZE _park_lbl_size
        ENCODING "utf-8"
           COLOR _park_lbl_clr
+#if _display_park_lbl_ol==1
           OUTLINECOLOR _park_lbl_ol_clr
           OUTLINEWIDTH _park_lbl_ol_width
+#endif
           PRIORITY 2
           POSITION cc
           WRAP ' '
@@ -137,8 +145,10 @@ LAYER
        ENCODING "utf-8"
             SIZE _cemetery_lbl_size
             COLOR _cemetery_lbl_clr
+#if _display_cemetery_lbl_ol==1
             OUTLINECOLOR _cemetery_lbl_ol_clr
             OUTLINEWIDTH _cemetery_lbl_ol_width
+#endif
             PRIORITY 2
             WRAP ' '
             MAXLENGTH 6
@@ -159,8 +169,10 @@ LAYER
          FONT _pedestrian_font
          SIZE _pedestrian_lbl_size
          COLOR _pedestrian_lbl_clr
+#if _display_pedestrian_lbl_ol==1
          OUTLINECOLOR _pedestrian_lbl_ol_clr
          OUTLINEWIDTH _pedestrian_lbl_ol_width
+#endif
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER
@@ -181,10 +193,12 @@ LAYER
           PARTIALS FALSE
           FONT _hospital_font
           SIZE _hospital_lbl_size
+          ENCODING "utf-8"
           COLOR _hospital_lbl_clr
+#if _display_hospital_lbl_ol==1
           OUTLINECOLOR _hospital_lbl_ol_clr
-       ENCODING "utf-8"
           OUTLINEWIDTH _hospital_lbl_ol_width
+#endif
           PRIORITY 1
           WRAP ' '
           MAXLENGTH 6
@@ -206,10 +220,12 @@ LAYER
           PARTIALS FALSE
           FONT _education_font
           SIZE _education_lbl_size
-       ENCODING "utf-8"
+          ENCODING "utf-8"
           COLOR _education_lbl_clr
+#if _display_education_lbl_ol==1
           OUTLINECOLOR _education_lbl_ol_clr
           OUTLINEWIDTH _education_lbl_ol_width
+#endif
           PRIORITY 1
           WRAP ' '
           MAXLENGTH 6
@@ -231,10 +247,12 @@ LAYER
         PARTIALS FALSE
         FONT _sports_font
         SIZE _sports_lbl_size
+        ENCODING "utf-8"
         COLOR _sports_lbl_clr
+#if _display_sports_lbl_ol==1
         OUTLINECOLOR _sports_lbl_ol_clr
-       ENCODING "utf-8"
         OUTLINEWIDTH _sports_lbl_ol_width
+#endif
         PRIORITY 1
         WRAP ' '
         MAXLENGTH 6
@@ -272,15 +290,17 @@ LAYER
       STYLE
          COLOR _transport_clr
       END
-#if _display_transports_lbl==1
+#if _display_transport_lbl==1
       LABEL
         TYPE TRUETYPE
         PARTIALS FALSE
         FONT _transport_font
         SIZE _transport_lbl_size
-        COLOR _stransport_lbl_clr
+        COLOR _transport_lbl_clr
+#if _display_transport_lbl_ol==1
         OUTLINECOLOR _transport_lbl_ol_clr
         OUTLINEWIDTH _transport_lbl_ol_width
+#endif
         PRIORITY 1
         WRAP ' '
         MAXLENGTH 6
@@ -344,10 +364,12 @@ LAYER
           FONT _waterarea_font
           MINDISTANCE 200
           SIZE _waterarea_lbl_size
+          ENCODING "utf-8"
           COLOR _waterarea_lbl_clr
-       ENCODING "utf-8"
+#if _display_waterarea_lbl_ol == 1
           OUTLINECOLOR _waterarea_lbl_ol_clr
           OUTLINEWIDTH _waterarea_lbl_ol_width
+#endif
           WRAP ' '
           MAXLENGTH 5
           ALIGN CENTER
@@ -394,8 +416,10 @@ LAYER
           MINDISTANCE 200
           SIZE _river_lbl_size
           COLOR _river_lbl_clr
+#if _display_river_lbl_ol == 1
           OUTLINECOLOR _river_lbl_ol_clr
           OUTLINEWIDTH _river_lbl_ol_width
+#endif
           REPEATDISTANCE 400
           ENCODING "utf-8"
           MINFEATURESIZE AUTO
@@ -419,8 +443,10 @@ LAYER
             REPEATDISTANCE 400
           SIZE _stream_lbl_size
           COLOR _stream_lbl_clr
+#if _display_stream_lbl_ol == 1
           OUTLINECOLOR _stream_lbl_ol_clr
           OUTLINEWIDTH _stream_lbl_ol_width
+#endif
           MINFEATURESIZE AUTO
        ENCODING "utf-8"
           ANGLE FOLLOW
@@ -441,10 +467,12 @@ LAYER
           MINDISTANCE 200
             REPEATDISTANCE 400
           SIZE _canal_lbl_size
+          ENCODING "utf-8"
           COLOR _canal_lbl_clr
-       ENCODING "utf-8"
+#if _display_canal_lbl_ol == 1
           OUTLINECOLOR _canal_lbl_ol_clr
           OUTLINEWIDTH _canal_lbl_ol_width
+#endif
           MINFEATURESIZE AUTO
           ANGLE FOLLOW
           BUFFER 3

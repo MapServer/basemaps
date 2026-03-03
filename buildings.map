@@ -38,8 +38,10 @@ LAYER
          MINFEATURESIZE AUTO
          SIZE _building_lbl_size
          COLOR _building_lbl_clr
+#if _label_outline_buildings == 1
          OUTLINECOLOR _building_lbl_ol_clr
          OUTLINEWIDTH _building_lbl_ol_width
+#endif
          WRAP ' '
          MAXLENGTH 6
          ALIGN CENTER

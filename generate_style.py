@@ -90,6 +90,7 @@ style = {
       12: '"geometry from (select geometry,osm_id ,OSM_NAME_COLUMN as name,type from OSM_SCHEMA.OSM_PREFIX_waterareas) as foo using unique osm_id using srid=OSM_SRID"'
    },
    'display_waterarea_lbl' : {0:0, 6:1},
+   'display_waterarea_lbl_ol': 1,
    'display_waterarea_outline': {0:0, 14:1},
    'waterarea_opacity': 100,
    'waterarea_clr': '"#B3C6D4"',
@@ -124,6 +125,7 @@ style = {
       18:30
    },
    'display_canal_lbl' : {0:0, 10:1},
+   'display_canal_lbl_ol': 1,
    'canal_clr': '"#B3C6D4"',
    'canal_font': "sc",
    'canal_lbl_size': 8,
@@ -138,6 +140,7 @@ style = {
       14:2
    },
    'display_stream_lbl' : {0:0, 12:1},
+   'display_stream_lbl_ol': 1,
    'stream_clr': '"#B3C6D4"',
    'stream_font': "sc",
    'stream_lbl_size': 8,
@@ -159,6 +162,7 @@ style = {
       18:7
    },
    'display_river_lbl' : {0:0, 6:1},
+   'display_river_lbl_ol': 1,
    'river_clr': '"#B3C6D4"',
    'river_font': "sc",
    'river_lbl_size': {0:8,15:9,17:10},
@@ -197,6 +201,7 @@ style = {
    'industrial_ol_clr': '"#d1d1d1"',
    'industrial_ol_width': 0,
    'display_industrial_lbl' : {0:0, 11:1},
+   'display_industrial_lbl_ol': 1,
    'industrial_font': "sc",
    'industrial_lbl_size': 8,
    'industrial_lbl_clr': '0 0 0',
@@ -208,6 +213,7 @@ style = {
    'residential_ol_clr': '"#E3DED4"',
    'residential_ol_width': 0,
    'display_residential_lbl' : {0:0, 12:1},
+   'display_residential_lbl_ol': 1,
    'residential_font': "sc",
    'residential_lbl_size': 8,
    'residential_lbl_clr': '0 0 0',
@@ -217,6 +223,7 @@ style = {
    'display_park': 1,
    'park_clr': '"#DCDCB4"',
    'display_park_lbl' : {0:0, 11:1},
+   'display_park_lbl_ol': 1,
    'park_font': "sc",
    'park_lbl_size': 8,
    'park_lbl_clr': '0 0 0',
@@ -226,6 +233,7 @@ style = {
    'display_hospital': 1,
    'hospital_clr': '"#E6C8C3"',
    'display_hospital_lbl' : {0:0, 12:1},
+   'display_hospital_lbl_ol': 1,
    'hospital_font': "sc",
    'hospital_lbl_size': 8,
    'hospital_lbl_clr': '0 0 0',
@@ -235,6 +243,7 @@ style = {
    'display_education': 1,
    'education_clr': '"#DED1AB"',
    'display_education_lbl' : {0:0, 12:1},
+   'display_education_lbl_ol': 1,
    'education_font': "sc",
    'education_lbl_size': 8,
    'education_lbl_clr': '0 0 0',
@@ -244,6 +253,7 @@ style = {
    'display_sports': 1,
    'sports_clr': '"#DED1AB"',
    'display_sports_lbl' : {0:0, 12:1},
+   'display_sports_lbl_ol': 1,
    'sports_font': "sc",
    'sports_lbl_size': 8,
    'sports_lbl_clr': '0 0 0',
@@ -253,6 +263,7 @@ style = {
    'display_cemetery': 1,
    'cemetery_clr': '"#d1d1d1"',
    'display_cemetery_lbl' : {0:0, 12:1},
+   'display_cemetery_lbl_ol': 1,
    'cemetery_font': "sc",
    'cemetery_lbl_size': 8,
    'cemetery_lbl_clr': '0 0 0',
@@ -262,6 +273,7 @@ style = {
    'display_forest': 1,
    'forest_clr': '"#C2D1B2"',
    'display_forest_lbl' : {0:0, 12:1},
+   'display_forest_lbl_ol': 1,
    'forest_font': "sc",
    'forest_lbl_size': 8,
    'forest_lbl_clr': '0 0 0',
@@ -272,6 +284,7 @@ style = {
    'transport_opacity': 100,
    'transport_clr': '200 200 200',
    'display_transport_lbl' : {0:0, 12:1},
+   'display_transport_lbl_ol': 1,
    'transport_font': "sc",
    'transport_lbl_size': 8,
    'transport_lbl_clr': '0 0 0',
@@ -419,6 +432,7 @@ style = {
       0:0,
       13:1
    },
+   'label_outline_primaries': 1,
    'primary_font': "sc",
    'primary_lbl_size': {
       0:0,
@@ -461,6 +475,7 @@ style = {
       0:0,
       13:1
    },
+   'label_outline_secondaries': 1,
    'secondary_font': "sc",
    'secondary_lbl_size': {
       0:0,
@@ -498,6 +513,7 @@ style = {
       0:0,
       15:1
    },
+   'label_outline_tertiaries': 1,
    'tertiary_font': "sc",
    'tertiary_lbl_size': {
       0:0,
@@ -533,6 +549,7 @@ style = {
       0:0,
       15:1
    },
+   'label_outline_other_roads': 1,
    'other_font': "sc",
    'other_lbl_size': {
       0:0,
@@ -565,7 +582,9 @@ style = {
       0:0,
       15:1
    },
+   'label_outline_pedestrian': 1,
    'display_pedestrian_lbl' : {0:0, 15:1},
+   'display_pedestrian_lbl_ol': 1,
    'pedestrian_font': "sc",
    'pedestrian_lbl_size': {
       0:0,
@@ -600,6 +619,7 @@ style = {
       0:0,
       15:1
    },
+   'label_outline_track': 1,
    'track_font': "sc",
    'track_lbl_size': {
       0:0,
@@ -813,6 +833,7 @@ style = {
       0: 0,
       15: 1
    },
+   'label_outline_buildings': 1,
 
 
    ####### aeroways #######
@@ -861,6 +882,7 @@ style = {
    },
    'places_opacity': 100,
    'display_capitals': 0,
+   'display_capitals_outline': 1,
    'display_capital_symbol': {
       0:1,
       10:0
@@ -888,6 +910,7 @@ style = {
       0:1,
       3:0
    },
+   'display_continents_outline': 1,
    'continent_lbl_size': 8,
    'continent_lbl_clr': "100 100 100",
    'continent_lbl_ol_width': "1",
@@ -899,6 +922,7 @@ style = {
       2:1,
       8:0
    },
+   'display_countries_outline': 1,
    'country_lbl_size': 8,
    'country_lbl_clr': "100 100 100",
    'country_lbl_ol_width': 2,
@@ -910,6 +934,7 @@ style = {
       3:1,
       16:0
    },
+   'display_cities_outline': 1,
    'display_city_symbol': {
       0:1,
       10:0
@@ -947,6 +972,7 @@ style = {
       0:0,
       8:1
    },
+   'display_towns_outline': 1,
    'display_town_symbol': {
       0:1,
       12:0
@@ -977,6 +1003,7 @@ style = {
       0:0,
       13:1
    },
+   'display_suburbs_outline': 1,
    'suburb_font': "sc",
    'suburb_lbl_clr': {
       0:'"#444444"',
@@ -998,6 +1025,7 @@ style = {
       0:0,
       11:1
    },
+   'display_villages_outline': 1,
    'display_village_symbol': {
       0:1,
       14:0
@@ -1027,6 +1055,7 @@ style = {
       0:0,
       13:1
    },
+   'display_hamlets_outline': 1,
    'hamlet_font': "sc",
    'hamlet_lbl_clr': {
       0:'"#444444"',
@@ -1048,6 +1077,7 @@ style = {
       0:0,
       13:1
    },
+   'display_localities_outline': 1,
    'locality_font': "sc",
    'locality_lbl_clr': {
       0:'"#444444"',

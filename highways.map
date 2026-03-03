@@ -98,8 +98,10 @@ LAYER
             REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
             OUTLINECOLOR _other_lbl_ol_clr
             OUTLINEWIDTH _other_lbl_ol_width
+#endif
             ENCODING "UTF-8"
             MINFEATURESIZE AUTO
             BUFFER 3
@@ -145,8 +147,10 @@ LAYER
             REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _track_lbl_clr
+#if _label_outline_track == 1
             OUTLINECOLOR _track_lbl_ol_clr
             OUTLINEWIDTH _track_lbl_ol_width
+#endif
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -191,8 +195,10 @@ LAYER
             REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _tertiary_lbl_clr
+#if _label_outline_tertiaries == 1
             OUTLINECOLOR _tertiary_lbl_ol_clr
             OUTLINEWIDTH _tertiary_lbl_ol_width
+#endif
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -237,8 +243,10 @@ LAYER
             REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _secondary_lbl_clr
+#if _label_outline_secondaries == 1
             OUTLINECOLOR _secondary_lbl_ol_clr
             OUTLINEWIDTH _secondary_lbl_ol_width
+#endif
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
@@ -355,8 +363,10 @@ LAYER
             REPEATDISTANCE 400
             MINFEATURESIZE AUTO
             COLOR _primary_lbl_clr
+#if _label_outline_primaries == 1
             OUTLINECOLOR _primary_lbl_ol_clr
             OUTLINEWIDTH _primary_lbl_ol_width
+#endif
             ANGLE FOLLOW
             BUFFER 3
             ENCODING "UTF-8"
@@ -400,8 +410,10 @@ LAYER
             REPEATDISTANCE 400
             ANGLE FOLLOW
             COLOR _pedestrian_lbl_clr
+#if _label_outline_pedestrian == 1
             OUTLINECOLOR _pedestrian_lbl_ol_clr
             OUTLINEWIDTH _pedestrian_lbl_ol_width
+#endif
             MINFEATURESIZE AUTO
             BUFFER 3
             ENCODING "UTF-8"
