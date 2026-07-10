@@ -42,6 +42,54 @@ LAYER
 END
 #endif
 
+#if _display_subway == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    CONNECTIONTYPE POSTGIS
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE LINE
+    NAME layername(subway,_layer_suffix)
+    COMPOSITE
+     OPACITY _subway_opacity
+    END # COMPOSITE
+    DATA _subway_data
+    CLASSITEM "tunnel"
+    CLASS
+      EXPRESSION "0"
+        STYLE
+         WIDTH _subway_width
+         COLOR _subway_clr
+         OUTLINEWIDTH _subway_ol_width
+         OUTLINECOLOR _subway_ol_clr
+#if _subway_pattern != 0
+         PATTERN _subway_pattern END
+#endif
+         LINECAP BUTT
+        END
+    END
+    CLASS
+        STYLE
+         WIDTH _subway_width
+         COLOR _subway_clr
+#if _subway_pattern != 0
+         PATTERN _subway_pattern END
+#endif
+         OPACITY _subway_tunnel_opacity
+         LINECAP BUTT
+        END
+    END
+END
+#endif
+
 #if _display_highways == 1
 
 LAYER
@@ -64,7 +112,6 @@ LAYER
 #endif
     DATA _roads_data
     LABELITEM "name"
-    CLASSITEM "type"
 
 ########################################
 ## small roads, no tunnels or bridges ##
@@ -73,9 +120,9 @@ LAYER
 #if _display_other_roads == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION {unclassified00,residential00,service00,road00,living_street00}
+        EXPRESSION ("[type]" IN "unclassified,residential,road,living_street" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION {unclassified,residential,service,road,living_street}
+        EXPRESSION ("[type]" IN "unclassified,residential,service,road,living_street")
 #endif
 #if _display_other_outline
         STYLE
@@ -121,9 +168,9 @@ LAYER
 #if _display_tracks == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "track00"
+        EXPRESSION ("[type]" = "track" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "track"
+        EXPRESSION ("[type]" = "track")
 #endif
 #if _display_track_outline
         STYLE
@@ -170,9 +217,9 @@ LAYER
 #if _display_tertiaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION {tertiary00,tertiary_link00}
+        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION {tertiary,tertiary_link}
+        EXPRESSION ("[type]" IN "tertiary,tertiary_link")
 #endif
 #if _display_tertiary_outline
         STYLE
@@ -218,9 +265,9 @@ LAYER
 #if _display_secondaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION {secondary00,secondary_link00}
+        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION {secondary,secondary_link}
+        EXPRESSION ("[type]" IN "secondary,secondary_link")
 #endif
 #if _display_secondary_outline
         STYLE
@@ -236,9 +283,9 @@ LAYER
 #if _label_secondaries == 1
         LABEL
             TYPE TRUETYPE
-            PARTIALS FALSE 
+            PARTIALS FALSE
             FONT _secondary_font
-            SIZE _secondary_lbl_size 
+            SIZE _secondary_lbl_size
             MINDISTANCE 200
             REPEATDISTANCE 400
             ANGLE FOLLOW
@@ -263,9 +310,9 @@ LAYER
 #if _display_cycleways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "cycleway00"
+        EXPRESSION ("[type]" = "cycleway" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "cycleway"
+        EXPRESSION ("[type]" = "cycleway")
 #endif
 #if _display_other_outline
         STYLE
@@ -290,9 +337,9 @@ LAYER
 #if _display_footways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION {footway00,path00}
+        EXPRESSION ("[type]" IN "footway,path" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION {footway,path}
+        EXPRESSION ("[type]" IN "footway,path")
 #endif
 #if _display_footway_outline
         STYLE
@@ -338,9 +385,9 @@ LAYER
 #if _display_primaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION {primary00,primary_link00}
+        EXPRESSION ("[type]" IN "primary,primary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION {primary,primary_link}
+        EXPRESSION ("[type]" IN "primary,primary_link")
 #endif
 #if _display_primary_outline
         STYLE
@@ -350,7 +397,7 @@ LAYER
         END
 #endif
         STYLE
-            WIDTH _primary_width 
+            WIDTH _primary_width
             COLOR _primary_clr
         END
 #if _label_primaries == 1
@@ -385,9 +432,9 @@ LAYER
 #if _display_pedestrian == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION 'pedestrian00'
+        EXPRESSION ("[type]" = "pedestrian" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION 'pedestrian'
+        EXPRESSION ("[type]" = "pedestrian")
 #endif
 #if _display_pedestrian_outline
         STYLE
@@ -397,7 +444,7 @@ LAYER
         END
 #endif
         STYLE
-            WIDTH _pedestrian_width 
+            WIDTH _pedestrian_width
             COLOR _pedestrian_clr
         END
 #if _label_pedestrian == 1
@@ -433,9 +480,9 @@ LAYER
 #if _display_motorways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "motorway00"
+        EXPRESSION ("[type]" = "motorway" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "motorway"
+        EXPRESSION ("[type]" = "motorway")
 #endif
         TEXT ("[ref]")
 #if _display_motorway_outline
@@ -484,9 +531,9 @@ LAYER
 #if _display_motorway_links == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "motorway_link00"
+        EXPRESSION ("[type]" = "motorway_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "motorway_link"
+        EXPRESSION ("[type]" = "motorway_link")
 #endif
 #if _display_motorway_outline
         STYLE
@@ -512,9 +559,9 @@ LAYER
 #if _display_trunks == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "trunk00"
+        EXPRESSION ("[type]" = "trunk" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "trunk"
+        EXPRESSION ("[type]" = "trunk")
 #endif
         TEXT ("[ref]")
 #if _display_trunk_outline
@@ -525,7 +572,7 @@ LAYER
         END
 #endif
         STYLE
-            WIDTH _trunk_width 
+            WIDTH _trunk_width
             COLOR _trunk_clr
         END
 #if _display_trunk_centerline
@@ -562,9 +609,9 @@ LAYER
 #if _display_trunk_links == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION "trunk_link00"
+        EXPRESSION ("[type]" = "trunk_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
 #else
-        EXPRESSION "trunk_link"
+        EXPRESSION ("[type]" = "trunk_link")
 #endif
 #if _display_trunk_outline
         STYLE
@@ -596,7 +643,7 @@ LAYER
 ##########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION {unclassified10,residential10,service10,road10,living_street10}
+        EXPRESSION ("[type]" IN "unclassified,residential,road,living_street" AND "[bridge]" = "1")
 #if _display_other_outline
         STYLE
         END
@@ -620,7 +667,7 @@ LAYER
 ##########################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION {tertiary10,tertiary_link10}
+        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[bridge]" = "1")
 #if _display_tertiary_outline
         STYLE
         END
@@ -645,7 +692,7 @@ LAYER
 ###########################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION {secondary10,secondary_link10}
+        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[bridge]" = "1")
 #if _display_secondary_outline
         STYLE
         END
@@ -670,7 +717,7 @@ LAYER
 ########################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION {primary10,primary_link10}
+        EXPRESSION ("[type]" IN "primary,primary_link" AND "[bridge]" = "1")
 #if _display_primary_outline
         STYLE
         END
@@ -683,7 +730,7 @@ LAYER
         END
         STYLE
             WIDTH _primary_width
-            COLOR _primary_clr 
+            COLOR _primary_clr
         END
     END
 #endif
@@ -694,19 +741,19 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION {pedestrian10,footway10,path10}
+        EXPRESSION ("[type]" IN "pedestrian,footway,path" AND "[bridge]" = "1")
 #if _display_pedestrian_outline
         STYLE
         END
 #endif
         STYLE
-            WIDTH _pedestrian_width 
+            WIDTH _pedestrian_width
             OUTLINECOLOR _pedestrian_bridge_clr
             OUTLINEWIDTH _pedestrian_bridge_width
             LINECAP BUTT
         END
         STYLE
-            WIDTH _pedestrian_width 
+            WIDTH _pedestrian_width
             COLOR _pedestrian_clr
         END
     END
@@ -717,7 +764,7 @@ LAYER
 ########################
 #if _display_motorways == 1
     CLASS
-        EXPRESSION "motorway10"
+        EXPRESSION ("[type]" = "motorway" AND "[bridge]" = "1")
 #if _display_motorway_outline
         STYLE
         END
@@ -736,7 +783,7 @@ LAYER
 #endif
 #if _display_motorway_links == 1
     CLASS
-        EXPRESSION "motorway_link10"
+        EXPRESSION ("[type]" = "motorway_link" AND "[bridge]" = "1")
 #if _display_motorway_outline
         STYLE
         END
@@ -761,7 +808,7 @@ LAYER
 ####################
 #if _display_trunks == 1
     CLASS
-        EXPRESSION "trunk10"
+        EXPRESSION ("[type]" = "trunk" AND "[bridge]" = "1")
 #if _display_trunk_outline
         STYLE
         END
@@ -774,13 +821,13 @@ LAYER
         END
         STYLE
             WIDTH _trunk_width
-            COLOR _trunk_clr 
+            COLOR _trunk_clr
         END
     END
 #endif
 #if _display_trunk_links == 1
     CLASS
-        EXPRESSION "trunk_link10"
+        EXPRESSION ("[type]" = "trunk_link" AND "[bridge]" = "1")
 #if _display_trunk_outline
         STYLE
         END
@@ -808,7 +855,7 @@ LAYER
 ########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION {unclassified01,residential01,service01,living_street01}
+        EXPRESSION ("[type]" IN "unclassified,residential,living_street" AND "[tunnel]" = "1")
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -822,9 +869,9 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION {pedestrian01,footway01,path01}
+        EXPRESSION ("[type]" IN "pedestrian,footway,path" AND "[tunnel]" = "1")
         STYLE
-            WIDTH _pedestrian_width 
+            WIDTH _pedestrian_width
             COLOR _pedestrian_clr
             OPACITY _tunnel_opacity
         END
@@ -839,7 +886,7 @@ LAYER
 ######################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION {tertiary01,tertiary_link01}
+        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[tunnel]" = "1")
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
@@ -853,7 +900,7 @@ LAYER
 #######################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION {secondary01,secondary_link01}
+        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[tunnel]" = "1")
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -868,7 +915,7 @@ LAYER
 #####################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION {primary01,primary_link01}
+        EXPRESSION ("[type]" IN "primary,primary_link" AND "[tunnel]" = "1")
         STYLE
             WIDTH _primary_width
             COLOR _primary_clr
@@ -883,7 +930,7 @@ LAYER
 ######################
 #if _display_motorways == 1
     CLASS
-        EXPRESSION "motorway01"
+        EXPRESSION ("[type]" = "motorway" AND "[tunnel]" = "1")
         STYLE
             WIDTH _motorway_width
             COLOR _motorway_clr
@@ -893,7 +940,7 @@ LAYER
 #endif
 #if _display_motorway_links == 1
     CLASS
-        EXPRESSION "motorway_link01"
+        EXPRESSION ("[type]" = "motorway_link" AND "[tunnel]" = "1")
         STYLE
             WIDTH _primary_width
             COLOR _motorway_clr
@@ -908,7 +955,7 @@ LAYER
 ###################
 #if _display_trunks == 1
     CLASS
-        EXPRESSION "trunk01"
+        EXPRESSION ("[type]" = "trunk" AND "[tunnel]" = "1")
         STYLE
             WIDTH _trunk_width
             COLOR _trunk_clr
@@ -918,7 +965,7 @@ LAYER
 #endif
 #if _display_trunk_links == 1
     CLASS
-        EXPRESSION "trunk_link01"
+        EXPRESSION ("[type]" = "trunk_link" AND "[tunnel]" = "1")
         STYLE
             WIDTH _primary_width
             COLOR _trunk_clr
@@ -929,8 +976,195 @@ LAYER
 
 #endif
 ##(display_roads_tunnels)
+
+#if _display_service_overlay == 1
+    CLASS
+        EXPRESSION ("[type]" = "service" AND "[service]" = "")
+        STYLE
+            WIDTH _service_width
+            COLOR _service_clr
+#if _display_service_outline
+            OUTLINEWIDTH _service_ol_width
+            OUTLINECOLOR _service_ol_clr
+#endif
+        END
+#if _label_other_roads == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
+            SIZE _other_lbl_size
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
+            OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH _other_lbl_ol_width
+#endif
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION ("[type]" = "service" AND "[service]" = "parking_aisle")
+        STYLE
+            WIDTH _parking_aisle_width
+            COLOR _parking_aisle_clr
+#if _display_parking_aisle_outline
+            OUTLINEWIDTH _parking_aisle_ol_width
+            OUTLINECOLOR _parking_aisle_ol_clr
+#endif
+        END
+#if _label_other_roads == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
+            SIZE _other_lbl_size
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
+            OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH _other_lbl_ol_width
+#endif
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION ("[type]" = "service" AND "[service]" = "alley")
+        STYLE
+            WIDTH _alley_width
+            COLOR _alley_clr
+#if _display_alley_outline
+            OUTLINEWIDTH _alley_ol_width
+            OUTLINECOLOR _alley_ol_clr
+#endif
+        END
+#if _label_other_roads == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
+            SIZE _other_lbl_size
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
+            OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH _other_lbl_ol_width
+#endif
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION ("[type]" = "service" AND "[service]" IN "driveway,drive_through")
+        STYLE
+            WIDTH _driveway_width
+            COLOR _driveway_clr
+#if _display_driveway_outline
+            OUTLINEWIDTH _driveway_ol_width
+            OUTLINECOLOR _driveway_ol_clr
+#endif
+        END
+#if _label_other_roads == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
+            SIZE _other_lbl_size
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
+            OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH _other_lbl_ol_width
+#endif
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+#endif
+    END
+    CLASS
+        EXPRESSION ("[type]" = "service" AND "[service]" != "" AND NOT("[service]" IN "parking_aisle,alley,driveway,drive_through"))
+        STYLE
+            WIDTH _other_service_width
+            COLOR _other_service_clr
+#if _display_other_service_outline
+            OUTLINEWIDTH _other_service_ol_width
+            OUTLINECOLOR _other_service_ol_clr
+#endif
+        END
+#if _label_other_roads == 1
+        LABEL
+            TYPE TRUETYPE
+            PARTIALS FALSE
+            FONT _other_font
+            SIZE _other_lbl_size
+            MINDISTANCE 200
+            REPEATDISTANCE 400
+            ANGLE FOLLOW
+            COLOR _other_lbl_clr
+#if _label_outline_other_roads == 1
+            OUTLINECOLOR _other_lbl_ol_clr
+            OUTLINEWIDTH _other_lbl_ol_width
+#endif
+            ENCODING "UTF-8"
+            MINFEATURESIZE AUTO
+            BUFFER 3
+        END
+#endif
+    END
+#endif
+
 END
-    
+
+
+#if _display_oneway_arrows == 1
+LAYER
+    GROUP "default"
+    STATUS ON
+    MINSCALEDENOM _minscale
+    MAXSCALEDENOM _maxscale
+    TYPE LINE
+    NAME layername(oneway_arrows,_layer_suffix)
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    CONNECTIONTYPE postgis
+    CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
+    DATA _oneway_arrow_data
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASS
+        ## Accept both oneway=1 (forward) and oneway=-1 (backward)
+        EXPRESSION ("[oneway]" = "1" OR "[oneway]" = "-1")
+        STYLE
+            SYMBOL "oneway_arrow"
+            SIZE _oneway_arrow_size
+            COLOR _oneway_arrow_clr
+            GAP _oneway_arrow_gap
+            ANGLE AUTO
+        END
+    END
+END
+#endif
+
 
 #if _display_aeroways == 1
 LAYER
@@ -977,4 +1211,4 @@ LAYER
     END
 END
 #endif
-#endif    
+#endif

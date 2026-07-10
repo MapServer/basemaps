@@ -1,0 +1,38 @@
+
+
+#if _display_trees == 1
+LAYER
+    TYPE POINT
+    STATUS ON
+    PROJECTION
+        "init=epsg:OSM_SRID"
+    END
+    NAME layername(trees,_layer_suffix)
+    GROUP "default"
+    CONNECTIONTYPE postgis
+    CONNECTION "OSM_DB_CONNECTION"
+#if OSM_FORCE_POSTGIS_EXTENT == 1
+    EXTENT OSM_EXTENT
+#endif
+    DATA _tree_data
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM _maxscale
+    MINSCALEDENOM _minscale
+    CLASS
+        STYLE
+            SYMBOL "citycircle"
+            SIZE _tree_size
+            COLOR _tree_clr
+            OPACITY _tree_opacity
+        END
+#if _display_tree_trunk != 0
+        STYLE
+            SYMBOL "citycircle"
+            SIZE _tree_trunk_size
+            COLOR _tree_trunk_clr
+            OPACITY _tree_trunk_opacity
+        END
+#endif
+    END
+END
+#endif
