@@ -704,31 +704,31 @@ style = {
    'service_overlay_opacity': 100,
    'service_clr': '"#ffffff"',
    'service_width': {0:0, 14:0.9, 16:2.3, 17:5.4, 18:6.9},
-   'display_service_outline': {0:0, 14:1},
+   'display_service_outline': 0,
    'service_ol_clr': "0 0 0",
    'service_ol_width': 1,
 
    'parking_aisle_clr': '"#ffffff"',
    'parking_aisle_width': {0:0, 16:0.8, 17:1.9, 18:3.15},
-   'display_parking_aisle_outline': {0:0, 16:1},
+   'display_parking_aisle_outline': 0,
    'parking_aisle_ol_clr': "0 0 0",
    'parking_aisle_ol_width': 1,
 
    'alley_clr': '"#ffffff"',
    'alley_width': {0:0, 16:0.8, 17:1.9, 18:3.15},
-   'display_alley_outline': {0:0, 16:1},
+   'display_alley_outline': 0,
    'alley_ol_clr': "0 0 0",
    'alley_ol_width': 1,
 
    'driveway_clr': '"#ffffff"',
    'driveway_width': {0:0, 16:0.8, 17:1.9, 18:3.15},
-   'display_driveway_outline': {0:0, 16:1},
+   'display_driveway_outline': 0,
    'driveway_ol_clr': "0 0 0",
    'driveway_ol_width': 1,
 
    'other_service_clr': '"#ffffff"',
    'other_service_width': {0:0, 17:1.9, 18:3.15},
-   'display_other_service_outline': {0:0, 17:1},
+   'display_other_service_outline': 0,
    'other_service_ol_clr': "0 0 0",
    'other_service_ol_width': 1,
 
@@ -1394,6 +1394,46 @@ namedstyles = {
          0:0.5,
          17:1
       },
+      'display_service_outline': {
+         0:0,
+         14:1
+      },
+      'service_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'display_parking_aisle_outline': {
+         0:0,
+         16:1
+      },
+      'parking_aisle_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'display_alley_outline': {
+         0:0,
+         16:1
+      },
+      'alley_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'display_driveway_outline': {
+         0:0,
+         16:1
+      },
+      'driveway_ol_width': {
+         0:0.5,
+         17:1
+      },
+      'display_other_service_outline': {
+         0:0,
+         17:1
+      },
+      'other_service_ol_width': {
+         0:0.5,
+         17:1
+      },
    },
    'centerlined': {
       'display_motorway_centerline' : {
@@ -1462,6 +1502,20 @@ namedstyles = {
       'other_ol_clr': '193 181 157',
       'pedestrian_ol_clr': '193 181 157',
       'pier_ol_clr': '193 181 157',
+      # service roads: same casing as other roads, thinner fills;
+      # cap the z18 fill width below other_width (6)
+      'service_ol_clr': '193 181 157',
+      'parking_aisle_ol_clr': '193 181 157',
+      'alley_ol_clr': '193 181 157',
+      'driveway_ol_clr': '193 181 157',
+      'other_service_ol_clr': '193 181 157',
+      'service_width': {
+         0:0,
+         14:0.9,
+         16:2.3,
+         17:5.4,
+         18:5.4
+      },
       'display_buildings':1
    },
    'michelin':{
@@ -1644,6 +1698,11 @@ namedstyles = {
       'alley_ol_clr': '"#e3e2e0"',
       'driveway_ol_clr': '"#e3e2e0"',
       'other_service_ol_clr': '"#e3e2e0"',
+      'service_ol_width': 1,
+      'parking_aisle_ol_width': 1,
+      'alley_ol_width': 1,
+      'driveway_ol_width': 1,
+      'other_service_ol_width': 1,
       'oneway_arrow_clr': '"#575757"',
 
       'motorway_width': {
@@ -1849,6 +1908,12 @@ namedstyles = {
       'other_ol_clr': '"#b7ac9a"',
       'pedestrian_ol_clr': '193 181 157',
       'pier_ol_clr': '193 181 157',
+      # service roads: same casing as other roads
+      'service_ol_clr': '"#b7ac9a"',
+      'parking_aisle_ol_clr': '"#b7ac9a"',
+      'alley_ol_clr': '"#b7ac9a"',
+      'driveway_ol_clr': '"#b7ac9a"',
+      'other_service_ol_clr': '"#b7ac9a"',
       'footway_clr': '"#7f7f7f"'
    },
    'osm2pgsql': {
@@ -1942,6 +2007,16 @@ namedstyles = {
         'track_ol_clr': "0 0 0",
         'other_ol_clr': "0 0 0",
         'other_bridge_clr': "0 0 0",
+        'service_ol_clr': "0 0 0",
+        'service_ol_width': 1,
+        'parking_aisle_ol_clr': "0 0 0",
+        'parking_aisle_ol_width': 1,
+        'alley_ol_clr': "0 0 0",
+        'alley_ol_width': 1,
+        'driveway_ol_clr': "0 0 0",
+        'driveway_ol_width': 1,
+        'other_service_ol_clr': "0 0 0",
+        'other_service_ol_width': 1,
         'railway_clr': "0 0 0",
         'education_clr': "0 0 0",
         'hamlet_clr': "0 0 0",
