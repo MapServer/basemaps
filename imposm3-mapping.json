@@ -141,6 +141,11 @@
                     },
                     "type": "enumerate",
                     "name": "z_order"
+                },
+                {
+                    "type": "string",
+                    "name": "parking",
+                    "key": "parking"
                 }
             ],
             "type": "polygon",
@@ -890,6 +895,26 @@
                 ],
                 "leisure": [
                     "swimming_pool"
+                ]
+            }
+        },
+        "trees": {
+            "columns": [
+                {
+                    "type": "id",
+                    "name": "osm_id",
+                    "key": null
+                },
+                {
+                    "type": "geometry",
+                    "name": "geometry",
+                    "key": null
+                }
+            ],
+            "type": "point",
+            "mapping": {
+                "natural": [
+                    "tree"
                 ]
             }
         }

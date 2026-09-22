@@ -31,13 +31,13 @@ STYLE?=default
 template=osmbase.map
 tpl_configfile=config.conf.tpl
 
-includes=land.map landusage.map borders.map highways.map places.map \
+includes=land.map landusage.map borders.map highways.map places.map trees.map \
 		 generated/$(STYLE)style.msinc \
 		 generated/$(STYLE)level0.msinc generated/$(STYLE)level1.msinc generated/$(STYLE)level2.msinc generated/$(STYLE)level3.msinc \
 		 generated/$(STYLE)level4.msinc generated/$(STYLE)level5.msinc generated/$(STYLE)level6.msinc generated/$(STYLE)level7.msinc \
 		 generated/$(STYLE)level8.msinc generated/$(STYLE)level9.msinc generated/$(STYLE)level10.msinc generated/$(STYLE)level11.msinc \
 		 generated/$(STYLE)level12.msinc generated/$(STYLE)level13.msinc generated/$(STYLE)level14.msinc generated/$(STYLE)level15.msinc \
-		 generated/$(STYLE)level16.msinc generated/$(STYLE)level17.msinc generated/$(STYLE)level18.msinc
+		 generated/$(STYLE)level16.msinc generated/$(STYLE)level17.msinc generated/$(STYLE)level18.msinc generated/$(STYLE)level19.msinc generated/$(STYLE)level20.msinc
 
 
 
@@ -50,34 +50,34 @@ generated/$(STYLE)style.msinc: generate_style.py
 	python3 generate_style.py -s $(STYLE) -g > $@
 
 generated/$(STYLE)level0.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 0 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 0 > $@
 
 generated/$(STYLE)level1.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 1 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 1 > $@
 
 generated/$(STYLE)level2.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 2 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 2 > $@
 
 generated/$(STYLE)level3.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 3 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 3 > $@
 
 generated/$(STYLE)level4.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 4 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 4 > $@
 
 generated/$(STYLE)level5.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 5 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 5 > $@
 
 generated/$(STYLE)level6.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 6 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 6 > $@
 
 generated/$(STYLE)level7.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 7 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 7 > $@
 
 generated/$(STYLE)level8.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 8 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 8 > $@
 
 generated/$(STYLE)level9.msinc: generate_style.py
-	python3 generate_style.py  -s $(STYLE) -l 9 > $@ 
+	python3 generate_style.py  -s $(STYLE) -l 9 > $@
 
 generated/$(STYLE)level10.msinc: generate_style.py
 	python3 generate_style.py  -s $(STYLE) -l 10 > $@
@@ -105,6 +105,12 @@ generated/$(STYLE)level17.msinc: generate_style.py
 
 generated/$(STYLE)level18.msinc: generate_style.py
 	python3 generate_style.py  -s $(STYLE) -l 18 > $@
+
+generated/$(STYLE)level19.msinc: generate_style.py
+	python3 generate_style.py  -s $(STYLE) -l 19 > $@
+
+generated/$(STYLE)level20.msinc: generate_style.py
+	python3 generate_style.py  -s $(STYLE) -l 20 > $@
 
 $(mapfile):$(template) $(includes)
 	$(CPP) -D_debug=$(DEBUG) -D_layerdebug=$(LAYERDEBUG) -DOSM_PREFIX=$(OSM_PREFIX) -DOSM_SRID=$(OSM_SRID) -DOSM_FORCE_POSTGIS_EXTENT=$(OSM_FORCE_POSTGIS_EXTENT) -P -o $(mapfile) $(template) -DTHEME=$(STYLE) -D_proj_lib=\"$(PROJ_LIB)\" -Igenerated
