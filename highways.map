@@ -112,6 +112,7 @@ LAYER
 #endif
     DATA _roads_data
     LABELITEM "name"
+    CLASSITEM "type"
 
 ########################################
 ## small roads, no tunnels or bridges ##
@@ -120,9 +121,9 @@ LAYER
 #if _display_other_roads == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" IN "unclassified,residential,road,living_street" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION {unclassified00,residential00,road00,living_street00}
 #else
-        EXPRESSION ("[type]" IN "unclassified,residential,service,road,living_street")
+        EXPRESSION {unclassified,residential,service,road,living_street}
 #endif
 #if _display_other_outline
         STYLE
@@ -168,9 +169,9 @@ LAYER
 #if _display_tracks == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "track" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "track00"
 #else
-        EXPRESSION ("[type]" = "track")
+        EXPRESSION "track"
 #endif
 #if _display_track_outline
         STYLE
@@ -217,9 +218,9 @@ LAYER
 #if _display_tertiaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION {tertiary00,tertiary_link00}
 #else
-        EXPRESSION ("[type]" IN "tertiary,tertiary_link")
+        EXPRESSION {tertiary,tertiary_link}
 #endif
 #if _display_tertiary_outline
         STYLE
@@ -265,9 +266,9 @@ LAYER
 #if _display_secondaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION {secondary00,secondary_link00}
 #else
-        EXPRESSION ("[type]" IN "secondary,secondary_link")
+        EXPRESSION {secondary,secondary_link}
 #endif
 #if _display_secondary_outline
         STYLE
@@ -310,9 +311,9 @@ LAYER
 #if _display_cycleways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "cycleway" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "cycleway00"
 #else
-        EXPRESSION ("[type]" = "cycleway")
+        EXPRESSION "cycleway"
 #endif
 #if _display_other_outline
         STYLE
@@ -337,9 +338,9 @@ LAYER
 #if _display_footways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" IN "footway,path" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION {footway00,path00}
 #else
-        EXPRESSION ("[type]" IN "footway,path")
+        EXPRESSION {footway,path}
 #endif
 #if _display_footway_outline
         STYLE
@@ -385,9 +386,9 @@ LAYER
 #if _display_primaries == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" IN "primary,primary_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION {primary00,primary_link00}
 #else
-        EXPRESSION ("[type]" IN "primary,primary_link")
+        EXPRESSION {primary,primary_link}
 #endif
 #if _display_primary_outline
         STYLE
@@ -432,9 +433,9 @@ LAYER
 #if _display_pedestrian == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "pedestrian" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "pedestrian00"
 #else
-        EXPRESSION ("[type]" = "pedestrian")
+        EXPRESSION "pedestrian"
 #endif
 #if _display_pedestrian_outline
         STYLE
@@ -480,9 +481,9 @@ LAYER
 #if _display_motorways == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "motorway" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "motorway00"
 #else
-        EXPRESSION ("[type]" = "motorway")
+        EXPRESSION "motorway"
 #endif
         TEXT ("[ref]")
 #if _display_motorway_outline
@@ -531,9 +532,9 @@ LAYER
 #if _display_motorway_links == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "motorway_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "motorway_link00"
 #else
-        EXPRESSION ("[type]" = "motorway_link")
+        EXPRESSION "motorway_link"
 #endif
 #if _display_motorway_outline
         STYLE
@@ -559,9 +560,9 @@ LAYER
 #if _display_trunks == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "trunk" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "trunk00"
 #else
-        EXPRESSION ("[type]" = "trunk")
+        EXPRESSION "trunk"
 #endif
         TEXT ("[ref]")
 #if _display_trunk_outline
@@ -609,9 +610,9 @@ LAYER
 #if _display_trunk_links == 1
     CLASS
 #if _display_bridges == 1
-        EXPRESSION ("[type]" = "trunk_link" AND "[bridge]" = "0" AND "[tunnel]" = "0")
+        EXPRESSION "trunk_link00"
 #else
-        EXPRESSION ("[type]" = "trunk_link")
+        EXPRESSION "trunk_link"
 #endif
 #if _display_trunk_outline
         STYLE
@@ -643,7 +644,7 @@ LAYER
 ##########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION ("[type]" IN "unclassified,residential,road,living_street" AND "[bridge]" = "1")
+        EXPRESSION {unclassified10,residential10,road10,living_street10}
 #if _display_other_outline
         STYLE
         END
@@ -667,7 +668,7 @@ LAYER
 ##########################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[bridge]" = "1")
+        EXPRESSION {tertiary10,tertiary_link10}
 #if _display_tertiary_outline
         STYLE
         END
@@ -692,7 +693,7 @@ LAYER
 ###########################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[bridge]" = "1")
+        EXPRESSION {secondary10,secondary_link10}
 #if _display_secondary_outline
         STYLE
         END
@@ -717,7 +718,7 @@ LAYER
 ########################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "primary,primary_link" AND "[bridge]" = "1")
+        EXPRESSION {primary10,primary_link10}
 #if _display_primary_outline
         STYLE
         END
@@ -741,7 +742,7 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION ("[type]" IN "pedestrian,footway,path" AND "[bridge]" = "1")
+        EXPRESSION {pedestrian10,footway10,path10}
 #if _display_pedestrian_outline
         STYLE
         END
@@ -764,7 +765,7 @@ LAYER
 ########################
 #if _display_motorways == 1
     CLASS
-        EXPRESSION ("[type]" = "motorway" AND "[bridge]" = "1")
+        EXPRESSION "motorway10"
 #if _display_motorway_outline
         STYLE
         END
@@ -783,7 +784,7 @@ LAYER
 #endif
 #if _display_motorway_links == 1
     CLASS
-        EXPRESSION ("[type]" = "motorway_link" AND "[bridge]" = "1")
+        EXPRESSION "motorway_link10"
 #if _display_motorway_outline
         STYLE
         END
@@ -808,7 +809,7 @@ LAYER
 ####################
 #if _display_trunks == 1
     CLASS
-        EXPRESSION ("[type]" = "trunk" AND "[bridge]" = "1")
+        EXPRESSION "trunk10"
 #if _display_trunk_outline
         STYLE
         END
@@ -827,7 +828,7 @@ LAYER
 #endif
 #if _display_trunk_links == 1
     CLASS
-        EXPRESSION ("[type]" = "trunk_link" AND "[bridge]" = "1")
+        EXPRESSION "trunk_link10"
 #if _display_trunk_outline
         STYLE
         END
@@ -855,7 +856,7 @@ LAYER
 ########################
 #if _display_other_roads == 1
     CLASS
-        EXPRESSION ("[type]" IN "unclassified,residential,living_street" AND "[tunnel]" = "1")
+        EXPRESSION {unclassified01,residential01,living_street01}
         STYLE
             WIDTH _other_width
             COLOR _other_clr
@@ -869,7 +870,7 @@ LAYER
 ########################
 #if _display_pedestrian == 1
     CLASS
-        EXPRESSION ("[type]" IN "pedestrian,footway,path" AND "[tunnel]" = "1")
+        EXPRESSION {pedestrian01,footway01,path01}
         STYLE
             WIDTH _pedestrian_width
             COLOR _pedestrian_clr
@@ -886,7 +887,7 @@ LAYER
 ######################
 #if _display_tertiaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "tertiary,tertiary_link" AND "[tunnel]" = "1")
+        EXPRESSION {tertiary01,tertiary_link01}
         STYLE
             WIDTH _tertiary_width
             COLOR _tertiary_clr
@@ -900,7 +901,7 @@ LAYER
 #######################
 #if _display_secondaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "secondary,secondary_link" AND "[tunnel]" = "1")
+        EXPRESSION {secondary01,secondary_link01}
         STYLE
             WIDTH _secondary_width
             COLOR _secondary_clr
@@ -915,7 +916,7 @@ LAYER
 #####################
 #if _display_primaries == 1
     CLASS
-        EXPRESSION ("[type]" IN "primary,primary_link" AND "[tunnel]" = "1")
+        EXPRESSION {primary01,primary_link01}
         STYLE
             WIDTH _primary_width
             COLOR _primary_clr
@@ -930,7 +931,7 @@ LAYER
 ######################
 #if _display_motorways == 1
     CLASS
-        EXPRESSION ("[type]" = "motorway" AND "[tunnel]" = "1")
+        EXPRESSION "motorway01"
         STYLE
             WIDTH _motorway_width
             COLOR _motorway_clr
@@ -940,7 +941,7 @@ LAYER
 #endif
 #if _display_motorway_links == 1
     CLASS
-        EXPRESSION ("[type]" = "motorway_link" AND "[tunnel]" = "1")
+        EXPRESSION "motorway_link01"
         STYLE
             WIDTH _primary_width
             COLOR _motorway_clr
@@ -955,7 +956,7 @@ LAYER
 ###################
 #if _display_trunks == 1
     CLASS
-        EXPRESSION ("[type]" = "trunk" AND "[tunnel]" = "1")
+        EXPRESSION "trunk01"
         STYLE
             WIDTH _trunk_width
             COLOR _trunk_clr
@@ -965,7 +966,7 @@ LAYER
 #endif
 #if _display_trunk_links == 1
     CLASS
-        EXPRESSION ("[type]" = "trunk_link" AND "[tunnel]" = "1")
+        EXPRESSION "trunk_link01"
         STYLE
             WIDTH _primary_width
             COLOR _trunk_clr
@@ -979,7 +980,7 @@ LAYER
 
 #if _display_service_overlay == 1
     CLASS
-        EXPRESSION ("[type]" = "service" AND "[service]" = "")
+        EXPRESSION ("[type]" IN "service00,service10,service01" AND "[service]" = "")
         STYLE
             WIDTH _service_width
             COLOR _service_clr
@@ -1009,7 +1010,7 @@ LAYER
 #endif
     END
     CLASS
-        EXPRESSION ("[type]" = "service" AND "[service]" = "parking_aisle")
+        EXPRESSION ("[type]" IN "service00,service10,service01" AND "[service]" = "parking_aisle")
         STYLE
             WIDTH _parking_aisle_width
             COLOR _parking_aisle_clr
@@ -1039,7 +1040,7 @@ LAYER
 #endif
     END
     CLASS
-        EXPRESSION ("[type]" = "service" AND "[service]" = "alley")
+        EXPRESSION ("[type]" IN "service00,service10,service01" AND "[service]" = "alley")
         STYLE
             WIDTH _alley_width
             COLOR _alley_clr
@@ -1069,7 +1070,7 @@ LAYER
 #endif
     END
     CLASS
-        EXPRESSION ("[type]" = "service" AND "[service]" IN "driveway,drive_through")
+        EXPRESSION ("[type]" IN "service00,service10,service01" AND "[service]" IN "driveway,drive_through")
         STYLE
             WIDTH _driveway_width
             COLOR _driveway_clr
@@ -1099,7 +1100,7 @@ LAYER
 #endif
     END
     CLASS
-        EXPRESSION ("[type]" = "service" AND "[service]" != "" AND NOT("[service]" IN "parking_aisle,alley,driveway,drive_through"))
+        EXPRESSION ("[type]" IN "service00,service10,service01" AND "[service]" != "" AND NOT("[service]" IN "parking_aisle,alley,driveway,drive_through"))
         STYLE
             WIDTH _other_service_width
             COLOR _other_service_clr
